@@ -18,6 +18,7 @@ set showcmd		      " display incomplete commands
 set incsearch		    " do incremental searching
 set guioptions-=T
 set nowrap 	  	    " nowrap!
+set number          " gotta have my line numbers
 
 set expandtab		    " set up spaces as tabs
 set tabstop=2
