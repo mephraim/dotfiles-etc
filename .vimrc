@@ -83,6 +83,22 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" Set initial window size
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window.
+  set lines=150 columns=240
+else
+  " This is console Vim.
+  if exists("+lines")
+    set lines=50
+  endif
+  if exists("+columns")
+    set columns=100
+  endif
+endif 
+
+" Leader stuff """""""""""""""""""""""""""""""""""""
 let mapleader = ","
 
 " Fuzzfinder stuff
@@ -96,5 +112,11 @@ map <leader>n :NERDTreeToggle<CR>
 " Quick buffer stuff
 map <leader>bd :bd<CR>
 
+" Quickly get rid of highlighting
+map <leader>nh :noh<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Close tags
-au Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
+au Filetype html,xml,xsl,rhtml,rxml source ~/.vim/scripts/closetag.vim
+
+
