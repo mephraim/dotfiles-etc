@@ -98,8 +98,12 @@ else
   endif
 endif 
 
+
 " Leader stuff """""""""""""""""""""""""""""""""""""
 let mapleader = ","
+
+" Ack for the current word
+map <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR> 
 
 " Fuzzfinder stuff
 map <leader>fb :FufBuffer<CR>
