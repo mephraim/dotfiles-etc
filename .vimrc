@@ -77,21 +77,12 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" Set initial window size
+" Gui stuff
 if has("gui_running")
-  " GUI is running or is about to start.
-  set lines=150 columns=240 " Maximize gvim window.
-  set guioptions-=T   " get rid of the toolbar
-else
-  " This is console Vim.
-  if exists("+lines")
-    set lines=50
-  endif
-  if exists("+columns")
-    set columns=100
-  endif
+  set lines=150 columns=230 " Maximize gvim window.
+  set guioptions-=T         " get rid of the toolbar
+  set guicursor=a:blinkon0  " no blinking cursor
 endif 
-
 
 " Leader stuff """""""""""""""""""""""""""""""""""""
 let mapleader = ","
@@ -116,5 +107,3 @@ map <leader>nh :noh<CR>
 
 " Close tags
 au Filetype html,xml,xsl,rhtml,rxml source ~/.vim/scripts/closetag.vim
-
-
