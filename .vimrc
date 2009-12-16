@@ -7,16 +7,10 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-if has("vms")
-  set nobackup		  " do not keep a backup file, use versions instead
-else
-  set backup		    " keep a backup file
-endif
 set history=50		  " keep 50 lines of command line history
 set ruler		        " show the cursor position all the time
 set showcmd		      " display incomplete commands
 set incsearch		    " do incremental searching
-set guioptions-=T
 set nowrap 	  	    " nowrap!
 set number          " gotta have my line numbers
 
@@ -86,8 +80,8 @@ endif
 " Set initial window size
 if has("gui_running")
   " GUI is running or is about to start.
-  " Maximize gvim window.
-  set lines=150 columns=240
+  set lines=150 columns=240 " Maximize gvim window.
+  set guioptions-=T   " get rid of the toolbar
 else
   " This is console Vim.
   if exists("+lines")

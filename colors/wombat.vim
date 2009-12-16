@@ -49,3 +49,6 @@ hi Number		guifg=#e5786d gui=none
 hi Special		guifg=#e7f6da gui=none
 
 
+if has("gui_running")
+  set guifont=Monaco:h13 
+endif 
