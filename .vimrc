@@ -103,6 +103,10 @@ map <leader>bd :bd<CR>
 
 " Quickly get rid of highlighting
 map <leader>nh :noh<CR>
+
+" Taglist
+map <leader>tl :TlistToggle<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Close tags
