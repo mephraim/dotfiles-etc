@@ -82,6 +82,7 @@ if has("gui_running")
   set lines=150 columns=230 " Maximize gvim window.
   set guioptions-=T         " get rid of the toolbar
   set guicursor=a:blinkon0  " no blinking cursor
+  set transparency=3        " a little transparency just for fun
 endif 
 
 " Leader stuff """""""""""""""""""""""""""""""""""""
@@ -100,6 +101,7 @@ map <leader>n :NERDTreeToggle<CR>
 
 " Quick buffer stuff
 map <leader>bd :bd<CR>
+map <leader>bdd :bd!<CR>
 
 " Quickly get rid of highlighting
 map <leader>nh :noh<CR>
@@ -111,3 +113,6 @@ map <leader>tl :TlistToggle<CR>
 
 " Close tags
 au Filetype html,xml,xsl,rhtml,rxml source ~/.vim/scripts/closetag.vim
+
+" Sets up SCMDiff with git as the source control
+let g:SCMDiffCommand = 'git'
