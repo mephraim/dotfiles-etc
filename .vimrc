@@ -111,8 +111,5 @@ map <leader>tl :TlistToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Close tags
-au Filetype html,xml,xsl,rhtml,rxml source ~/.vim/scripts/closetag.vim
-
 " Sets up SCMDiff with git as the source control
 let g:SCMDiffCommand = 'git'
