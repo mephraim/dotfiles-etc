@@ -10,9 +10,10 @@ set backspace=indent,eol,start
 set history=50		  " keep 50 lines of command line history
 set ruler		        " show the cursor position all the time
 set showcmd		      " display incomplete commands
-set incsearch		    " do incremental searching
 set nowrap 	  	    " nowrap!
 set number          " gotta have my line numbers
+set noerrorbells    " no error bells
+set visualbell      
 
 set expandtab		    " set up spaces as tabs
 set tabstop=2
@@ -30,10 +31,19 @@ if has('mouse')
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   syntax on
-  set hlsearch
+endif
+
+" Search stuff
+set hlsearch        " Use search highlighting
+set incsearch		    " do incremental searching
+set ignorecase      " search ignoring case
+
+" Spell checking
+if v:version >= 700
+  " Enable spell check for text files
+  autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en
 endif
 
 " Only do this part when compiled with support for autocommands.
