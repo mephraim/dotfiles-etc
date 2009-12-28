@@ -133,3 +133,13 @@ imap <C-d> <end>
 
 " Sets up SCMDiff with git as the source control
 let g:SCMDiffCommand = 'git'
+
+" Showmarks config  """"""""""""""""""""""""""""""""
+
+" Turn showmarks off by default
+let g:showmarks_enable=0
+
+" Don't show automatic marks
+let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
