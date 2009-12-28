@@ -122,6 +122,13 @@ map <leader>nh :noh<CR>
 " Taglist
 map <leader>tl :TlistToggle<CR>
 
+" Allow cursor movements during insert mode
+imap <C-h> <C-o>h
+imap <C-j> <C-o>j
+imap <C-k> <C-o>k
+imap <C-l> <C-o>l
+imap <C-d> <end>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Sets up SCMDiff with git as the source control
