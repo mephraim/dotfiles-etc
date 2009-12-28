@@ -15,8 +15,11 @@ set number          " gotta have my line numbers
 set noerrorbells    " no error bells
 set visualbell      
 
+
 set expandtab		    " set up spaces as tabs
-set tabstop=2
+set tabstop=2       " 2 spaces
+set shiftwidth=2
+set smarttab
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
