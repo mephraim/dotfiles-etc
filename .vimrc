@@ -17,7 +17,7 @@ set visualbell
 
 
 set expandtab		    " set up spaces as tabs
-set tabstop=2       " 2 spaces
+set sts=2           " 2 spaces
 set shiftwidth=2
 set smarttab
 
