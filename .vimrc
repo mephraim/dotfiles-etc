@@ -7,16 +7,16 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set history=50		  " keep 50 lines of command line history
-set ruler		        " show the cursor position all the time
-set showcmd		      " display incomplete commands
-set nowrap 	  	    " nowrap!
+set history=50      " keep 50 lines of command line history
+set ruler           " show the cursor position all the time
+set showcmd         " display incomplete commands
+set nowrap 	    " nowrap!
 set number          " gotta have my line numbers
 set noerrorbells    " no error bells
 set visualbell      
 
 
-set expandtab		    " set up spaces as tabs
+set expandtab       " set up spaces as tabs
 set sts=2           " 2 spaces
 set shiftwidth=2
 set smarttab
@@ -40,7 +40,7 @@ endif
 
 " Search stuff
 set hlsearch        " Use search highlighting
-set incsearch		    " do incremental searching
+set incsearch       " do incremental searching
 set ignorecase      " search ignoring case
 
 " Spell checking
@@ -78,7 +78,7 @@ if has("autocmd")
   augroup END
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent	" always set autoindenting on
 
 endif " has("autocmd")
 
