@@ -37,6 +37,6 @@ argv << "html:#{report_file}"
 ::Spec::Runner::CommandLine.run(::Spec::Runner::OptionParser.parse(argv, STDERR, STDOUT))
 
 if File.exists? report_file
-  `firefox #{report_file}`
+  `open #{report_file}`
 end
 
