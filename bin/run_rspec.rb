@@ -1,7 +1,13 @@
-spec_dir=File.dirname(ARGV[0])
-rails_project_dir="#{spec_dir}/../.."
+def cleanup_report(file_name)
+  if File.exists? file_name
+    File.delete file_name
+  end
+end
 
-report_file="#{rails_project_dir}/doc/rspec_report.html"
+spec_dir = File.dirname(ARGV[0])
+rails_project_dir = "#{spec_dir}/../.."
+
+report_file = "/tmp/vim_rspec_report.html"
 
 rspec_rails_plugin = File.join(rails_project_dir,'vendor','plugins','rspec','lib')
 if File.directory?(rspec_rails_plugin)
@@ -25,9 +31,7 @@ module Spec
   end
 end
 
-if File.exists? report_file
-  File.delete report_file
-end
+cleanup_report(report_file)
 
 argv = [ARGV[0]]
 argv << "--c"
@@ -39,4 +43,3 @@ argv << "html:#{report_file}"
 if File.exists? report_file
   `open #{report_file}`
 end
-
