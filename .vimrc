@@ -123,6 +123,9 @@ map <leader>nh :noh<CR>
 " Taglist
 map <leader>tl :TlistToggle<CR>
 
+"Fast editing of .vimrc
+map <leader>vimrc :e! ~/.vimrc<CR>
+
 " Allow cursor movements during insert mode
 imap <C-h> <C-o>h
 imap <C-j> <C-o>j
