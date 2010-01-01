@@ -205,3 +205,5 @@ let g:showmarks_enable=0
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+" Error coloring for the JSlint plugin
+let g:jslint_highlight_color="#6F2828"  
