@@ -133,6 +133,9 @@ imap <C-k> <C-o>k
 imap <C-l> <C-o>l
 imap <C-d> <end>
 
+" hitting jj will jump out of insert mode
+imap jj <esc>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
