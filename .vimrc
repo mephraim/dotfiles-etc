@@ -216,3 +216,6 @@ map <silent> <leader>rb :RunAllRubyTests<CR>
 map <silent> <leader>rc :RunRubyFocusedContext<CR>
 map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Show the yankring """"""""""""""""""""""""""""""""" 
+map <leader>yr :YRShow<cr>
