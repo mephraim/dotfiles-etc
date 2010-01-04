@@ -211,7 +211,8 @@ let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 " Error coloring for the JSlint plugin
 let g:jslint_highlight_color="#6F2828"  
 
-
+" For Ruby focused testing """"""""""""""""""""""""""
 map <silent> <leader>rb :RunAllRubyTests<CR>
 map <silent> <leader>rc :RunRubyFocusedContext<CR>
 map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
