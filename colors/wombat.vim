@@ -1,5 +1,6 @@
 " Maintainer:	Lars H. Nielsen (dengmao@gmail.com)
-" Last Change:	January 22 2007
+" Last Change By Lars:	January 22 2007
+" Further Changed By: Matt Ephraim
 
 set background=dark
 
@@ -53,3 +54,9 @@ hi Special		guifg=#e7f6da gui=none
 if has("gui_running")
   set guifont=Monaco:h13 
 endif 
+
+" Diff highlighting
+hi DiffAdd guibg=#495C44 guifg=#D9FADC 
+hi DiffChange guibg=#49615C guifg=#FAFFFE 
+hi DiffText guibg=#ACFFD7 guifg=#5A5C5A 
+hi DiffDelete guibg=#290700 guifg=#FC5B3B

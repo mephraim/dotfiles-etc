@@ -196,17 +196,8 @@ map !s :call RunRspec()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""
 
-" SCMDiff Stuff """""""""""""""""""""""""""""""""""
-
 " Sets up SCMDiff with git as the source control
 let g:SCMDiffCommand = 'git'
-
-highlight DiffAdd guibg=#222422 guifg=#D9FADC 
-highlight DiffChange guibg=#2E1F0B guifg=#FFA631 
-highlight DiffText guibg=#181F18 guifg=white 
-highlight DiffDelete guibg=#290700 guifg=#FC5B3B
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Showmarks config  """"""""""""""""""""""""""""""""
 
