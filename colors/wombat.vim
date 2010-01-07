@@ -56,7 +56,7 @@ if has("gui_running")
 endif 
 
 " Diff highlighting
-hi DiffAdd guibg=#495C44 guifg=#D9FADC 
+hi DiffAdd guibg=#495C44 guifg=#F3F7F3 
 hi DiffChange guibg=#49615C guifg=#FAFFFE 
-hi DiffText guibg=#ACFFD7 guifg=#5A5C5A 
+hi DiffText guibg=#495C44 guifg=#F3F7F3 
 hi DiffDelete guibg=#290700 guifg=#FC5B3B
