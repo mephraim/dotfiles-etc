@@ -38,7 +38,7 @@ hi SpecialKey	guifg=#808080 guibg=#343434 gui=none
 
 " Syntax highlighting
 hi Comment 		guifg=#A7A7A7 gui=italic
-hi Todo 		guifg=#8f8f8f gui=italic
+hi Todo 		guibg=#242424 guifg=#F1F13A gui=underline
 hi Constant 	guifg=#e5786d gui=none
 hi String 		guifg=#95e454 gui=italic
 hi Identifier 	guifg=#cae682 gui=none
