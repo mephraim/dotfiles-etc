@@ -58,5 +58,5 @@ endif
 " Diff highlighting
 hi DiffAdd guibg=#495C44 guifg=#F3F7F3 
 hi DiffChange guibg=#49615C guifg=#FAFFFE 
-hi DiffText guibg=#495C44 guifg=#F3F7F3 
+hi DiffText guifg=#97B191 guibg=#242424 
 hi DiffDelete guibg=#290700 guifg=#FC5B3B
