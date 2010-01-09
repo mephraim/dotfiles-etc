@@ -136,6 +136,9 @@ imap <C-d> <end>
 " hitting jj will jump out of insert mode
 imap jj <esc>
 
+" Quickly add a semicolon to the end of the line (there's probably a much
+" better way to do this)
+map <silent> <leader>; mZ$A;<C-c>`Z:delmarks Z<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
