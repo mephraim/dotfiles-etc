@@ -153,7 +153,6 @@ map <silent> <leader>; mZ$A;<C-c>`Z:delmarks Z<CR>
 
 " Folding stuff """""""""""""""""""""""""""""" 
 set foldmethod=syntax " use the syntax file to create folds
-set foldcolumn=2      " create a fold column
 
 " Set a nicer foldtext function via http://vim.wikia.com/wiki/Customize_text_for_closed_folds
 set foldtext=MyFoldText()
@@ -243,8 +242,6 @@ let g:tlWindowPosition = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-" Syntastic """""""""""""""""""""""""""""""""""""""""
-
+" Syntastic stuff """""""""""""""""""""""""""""""""""
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
