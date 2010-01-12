@@ -15,7 +15,6 @@ set number          " gotta have my line numbers
 set noerrorbells    " no error bells
 set visualbell      
 set hidden          " allow buffer switching without saving
-set cursorline      " highlight the current line
 
 set expandtab       " set up spaces as tabs
 set sts=2           " 2 spaces
