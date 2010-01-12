@@ -99,6 +99,16 @@ if has("gui_running")
   set transparency=3        " a little transparency just for fun
 endif 
 
+
+" Status line """""""""""""""""""""""""""""""""""""
+
+" Syntastic errors
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Leader stuff """""""""""""""""""""""""""""""""""""
 let mapleader = ","
 
@@ -232,3 +242,9 @@ map <leader>tl <Plug>TaskList
 let g:tlWindowPosition = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" Syntastic """""""""""""""""""""""""""""""""""""""""
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
