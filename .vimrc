@@ -99,6 +99,16 @@ if has("gui_running")
   set transparency=3        " a little transparency just for fun
 endif 
 
+
+" Status line """""""""""""""""""""""""""""""""""""
+
+" Syntastic errors
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Leader stuff """""""""""""""""""""""""""""""""""""
 let mapleader = ","
 
@@ -149,7 +159,6 @@ map <leader>sh :split<CR>
 
 " Folding stuff """""""""""""""""""""""""""""" 
 set foldmethod=syntax " use the syntax file to create folds
-set foldcolumn=2      " create a fold column
 
 " Set a nicer foldtext function via http://vim.wikia.com/wiki/Customize_text_for_closed_folds
 set foldtext=MyFoldText()
@@ -228,3 +237,17 @@ map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
 
 " Show the yankring """"""""""""""""""""""""""""""""" 
 map <leader>yr :YRShow<cr>
+
+" Tasklist stuff """"""""""""""""""""""""""""""""""""
+
+" Show the tasklist
+map <leader>tl <Plug>TaskList
+
+" Show the tasklist on the bottom
+let g:tlWindowPosition = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Syntastic stuff """""""""""""""""""""""""""""""""""
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
