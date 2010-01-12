@@ -139,6 +139,12 @@ imap jj <esc>
 " Quickly add a semicolon to the end of the line (there's probably a much
 " better way to do this)
 map <silent> <leader>; mZ$A;<C-c>`Z:delmarks Z<CR>
+
+" quick vertical split
+map <leader>sv :vsplit<CR>
+
+" quick horizontal split
+map <leader>sh :split<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
