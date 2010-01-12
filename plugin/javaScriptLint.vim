@@ -10,6 +10,9 @@
 "               plugin to work properly.  This page should get you started:
 "               http://www.javascriptlint.com/docs/index.htm
 " Last Modified: May 5, 2009
+if exists("g:jslint_disabled") && g:jslint_disabled
+    finish
+endif
 
 if !exists("jslint_command")
   let jslint_command = 'jsl'

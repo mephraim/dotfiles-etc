@@ -229,6 +229,9 @@ let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 " Error coloring for the JSlint plugin
 let g:jslint_highlight_color="#6F2828"  
 
+" Disable jslint for now"
+let g:jslint_disabled=1
+
 " For Ruby focused testing """"""""""""""""""""""""""
 map <silent> <leader>rb :RunAllRubyTests<CR>
 map <silent> <leader>rc :RunRubyFocusedContext<CR>
@@ -241,7 +244,7 @@ map <leader>yr :YRShow<cr>
 " Tasklist stuff """"""""""""""""""""""""""""""""""""
 
 " Show the tasklist
-map <leader>tl <Plug>TaskList
+map <leader>todo <Plug>TaskList
 
 " Show the tasklist on the bottom
 let g:tlWindowPosition = 1
@@ -249,5 +252,5 @@ let g:tlWindowPosition = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Syntastic stuff """""""""""""""""""""""""""""""""""
-let g:syntastic_enable_signs=1
+let g:syntastic_enable_signs=0
 let g:syntastic_auto_loc_list=1
