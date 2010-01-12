@@ -222,3 +222,13 @@ map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
 
 " Show the yankring """"""""""""""""""""""""""""""""" 
 map <leader>yr :YRShow<cr>
+
+" Tasklist stuff """"""""""""""""""""""""""""""""""""
+
+" Show the tasklist
+map <leader>tl <Plug>TaskList
+
+" Show the tasklist on the bottom
+let g:tlWindowPosition = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
