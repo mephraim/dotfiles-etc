@@ -154,6 +154,10 @@ map <leader>sv :vsplit<CR>
 
 " quick horizontal split
 map <leader>sh :split<CR>
+
+" Quick full screen toggle
+map <leader>fs :set invfullscreen<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
