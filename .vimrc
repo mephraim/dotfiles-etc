@@ -257,3 +257,17 @@ let g:tlWindowPosition = 1
 " Syntastic stuff """""""""""""""""""""""""""""""""""
 let g:syntastic_enable_signs=0
 let g:syntastic_auto_loc_list=1
+
+" Sign lines functionality """""""""""""""""""""""""
+function! SignLines() range
+  let n = a:firstline
+  execute(":sign define fixme text=!! texthl=Todo")
+  while n <= a:lastline
+    if getline(n) =~ '\(TODO\|FIXME\)'
+      execute(":sign place ".n." line=".n." name=fixme file=".expand("%:p"))
+    endif
+    let n = n + 1
+  endwhile  
+endfunction
+map <silent> <leader>sl :call SignLines()<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""
