@@ -158,6 +158,17 @@ map <leader>sh :split<CR>
 " Quick full screen toggle
 map <leader>fs :set invfullscreen<CR>
 
+" For Ruby focused testing """"""""""""""""""""""""""
+map <silent> <leader>rb :RunAllRubyTests<CR>
+map <silent> <leader>rc :RunRubyFocusedContext<CR>
+map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Show the yankring """"""""""""""""""""""""""""""""" 
+map <leader>yr :YRShow<cr>
+
+"Show the tag explorer
+nnoremap <silent> <leader>te :TagExplorer<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
@@ -235,14 +246,6 @@ let g:jslint_highlight_color="#6F2828"
 " Disable jslint for now"
 let g:jslint_disabled=1
 
-" For Ruby focused testing """"""""""""""""""""""""""
-map <silent> <leader>rb :RunAllRubyTests<CR>
-map <silent> <leader>rc :RunRubyFocusedContext<CR>
-map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Show the yankring """"""""""""""""""""""""""""""""" 
-map <leader>yr :YRShow<cr>
 
 " Tasklist stuff """"""""""""""""""""""""""""""""""""
 
