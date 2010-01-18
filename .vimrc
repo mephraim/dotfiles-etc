@@ -98,6 +98,8 @@ if has("gui_running")
   set transparency=3        " a little transparency just for fun
 endif 
 
+" Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
+set listchars=tab:▸\ ,eol:¬
 
 " Status line """""""""""""""""""""""""""""""""""""
 
