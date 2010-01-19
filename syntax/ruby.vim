@@ -321,4 +321,9 @@ hi def link rubySpaceError		rubyError
 
 let b:current_syntax = "ruby"
 
+" Add some extras if this an rspec file
+if expand('%') =~# '_spec\.rb$'
+  syn keyword rubyRspec describe context it specify it_should_behave_like before after setup subject 
+endif
+
 " vim: nowrap sw=2 sts=2 ts=8 noet ff=unix:
