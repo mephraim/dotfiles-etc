@@ -169,8 +169,11 @@ map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
 " Show the yankring """"""""""""""""""""""""""""""""" 
 map <leader>yr :YRShow<cr>
 
-"Show the tag explorer
+" Show the tag explorer
 nnoremap <silent> <leader>te :TagExplorer<CR>
+
+" Quickly generate some lorem ipsum text
+map <leader>lorem :Loremipsum<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
