@@ -75,6 +75,8 @@ if has("autocmd")
     \   exe "normal! g`\"" |
     \ endif
 
+  autocmd FileType mkd,wiki,txt UniCycleOn
+  
   augroup END
 else
 
