@@ -46,7 +46,7 @@ set ignorecase      " search ignoring case
 " Spell checking
 if v:version >= 700
   " Enable spell check for text files
-  autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en
+  autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown setlocal spell spelllang=en
 endif
 
 " Only do this part when compiled with support for autocommands.
