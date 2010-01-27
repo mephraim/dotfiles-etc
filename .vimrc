@@ -95,7 +95,7 @@ if has("gui_running")
   set lines=150 columns=230 " Maximize gvim window.
   set guioptions-=T         " get rid of the toolbar
   set guicursor=a:blinkon0  " no blinking cursor
-  set transparency=3        " a little transparency just for fun
+  set transparency=1        " a little transparency just for fun
 endif 
 
 " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
