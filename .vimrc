@@ -104,12 +104,15 @@ endif
 set listchars=tab:▸\ ,eol:¬
 
 " Status line """""""""""""""""""""""""""""""""""""
+set laststatus=2
 
 " Syntastic errors
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" Show some information about the current file
+set statusline+=%F%m%r%h%w\ [type=%Y]\ [ASCII=\%03.3b]\  
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Leader stuff """""""""""""""""""""""""""""""""""""
