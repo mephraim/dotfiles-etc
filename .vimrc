@@ -179,6 +179,9 @@ nnoremap <silent> <leader>te :TagExplorer<CR>
 
 " Quickly generate some lorem ipsum text
 map <leader>lorem :Loremipsum<CR>
+
+" Show the syntax rules being applied to the current word
+map <leader>attr :call SyntaxAttr()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
@@ -290,3 +293,6 @@ function! SignLines() range
 endfunction
 map <silent> <leader>sl :call SignLines()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set up the SyntaxAttr.vim plugin
+autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
