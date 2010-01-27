@@ -29,7 +29,7 @@ hi LineNr       guifg=#857b6f guibg=#000000 gui=none
 hi StatusLine   guifg=#f6f3e8 guibg=#2B4133 gui=italic
 hi StatusLineNC guifg=#857b6f guibg=#181B22 gui=none
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
-hi Folded       guibg=#1B1B1B guifg=#E1F3FA gui=none
+hi Folded       guibg=#272727 guifg=#E1F3FA gui=none
 hi FoldColumn   guifg=#444444 guibg=#080808
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
@@ -51,12 +51,13 @@ hi Special      guifg=#e7f6da gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
 hi Tag          gui=underline
 
+" fooo"
 if has("gui_running")
   set guifont=Monaco:h13 
 endif 
 
 " Diff highlighting
-hi DiffAdd    guibg=#495C44 guifg=#F3F7F3 
+hi DiffAdd    guibg=#D1FFB6 guifg=#080C06 
 hi DiffChange guibg=#49615C guifg=#FAFFFE 
 hi DiffText   guifg=#97B191 guibg=#242424 
 hi DiffDelete guibg=#290700 guifg=#FC5B3B
