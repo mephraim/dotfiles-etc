@@ -10,7 +10,7 @@ set backspace=indent,eol,start
 set history=50      " keep 50 lines of command line history
 set ruler           " show the cursor position all the time
 set showcmd         " display incomplete commands
-set nowrap 	    " nowrap!
+set nowrap          " nowrap!
 set number          " gotta have my line numbers
 set noerrorbells    " no error bells
 set visualbell      
@@ -80,7 +80,7 @@ if has("autocmd")
   augroup END
 else
 
-  set autoindent	" always set autoindenting on
+  set autoindent " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -89,7 +89,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+                  \ | wincmd p | diffthis
 endif
 
 " Gui stuff
@@ -102,6 +102,9 @@ endif
 
 " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
 set listchars=tab:▸\ ,eol:¬
+
+" Show some context when scrolling
+set scrolloff=2
 
 " Status line """""""""""""""""""""""""""""""""""""
 
@@ -221,23 +224,6 @@ function! MyFoldText()
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""
 
-" Rspec stuff """"""""""""""""""""""""""""""""
-
-" Run Rspec for the current spec file
-function! RunRspec()
-ruby << EOF
-  buffer = VIM::Buffer.current
-  spec_file = VIM::Buffer.current.name
-  command = "ruby ~/.vim/bin/run_rspec.rb #{spec_file}"
-  print "Running Rspec for #{spec_file}. Results will be displayed in Firefox."
-  system(command)
-EOF
-endfunction
-
-map !s :call RunRspec()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""
-
 " Sets up SCMDiff with git as the source control
 let g:SCMDiffCommand = 'git'
 
@@ -250,6 +236,7 @@ let g:showmarks_enable=0
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Error coloring for the JSlint plugin
 let g:jslint_highlight_color="#6F2828"  
 
@@ -277,19 +264,8 @@ let g:syntastic_quiet_warnings=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Sign lines functionality """""""""""""""""""""""""
-function! SignLines() range
-  let n = a:firstline
-  execute(":sign define fixme text=!! texthl=Todo")
-  while n <= a:lastline
-    if getline(n) =~ '\(TODO\|FIXME\)'
-      execute(":sign place ".n." line=".n." name=fixme file=".expand("%:p"))
-    endif
-    let n = n + 1
-  endwhile  
-endfunction
-map <silent> <leader>sl :call SignLines()<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set up the yankring history location
+let g:yankring_history_dir = "~/tmp/vim/"
 
 " Set up the SyntaxAttr.vim plugin
 " autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'

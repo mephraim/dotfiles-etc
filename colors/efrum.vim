@@ -50,13 +50,12 @@ hi Special      guifg=#e7f6da gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
 hi Tag          gui=underline
 
-" fooo"
 if has("gui_running")
   set guifont=Monaco:h13 
 endif 
 
 " Diff highlighting
 hi DiffAdd    guibg=#D1FFB6 guifg=#080C06 
-hi DiffChange guibg=#49615C guifg=#FAFFFE 
-hi DiffText   guifg=#97B191 guibg=#242424 
+hi DiffChange guibg=#0F1308 guifg=NONE
+hi DiffText   guibg=#D1FFB6 guifg=#080C06  
 hi DiffDelete guibg=#290700 guifg=#FC5B3B
