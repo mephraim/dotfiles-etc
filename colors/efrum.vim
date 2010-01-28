@@ -1,6 +1,5 @@
-" Maintainer:   Lars H. Nielsen (dengmao@gmail.com)
-" Last Change By Lars:  January 22 2007
-" Further Changed By: Matt Ephraim
+" Maintainer: Matt Ephraim
+" Based On: wombat.vim
 
 set background=dark
 
@@ -10,7 +9,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "wombat"
+let colors_name = "efrum"
 
 " Vim >= 7.0 specific colors
 if version >= 700

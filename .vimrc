@@ -1,4 +1,4 @@
-colorscheme wombat
+colorscheme efrum
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -292,4 +292,4 @@ map <silent> <leader>sl :call SignLines()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up the SyntaxAttr.vim plugin
-autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
+" autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
