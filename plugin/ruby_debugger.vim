@@ -7,7 +7,7 @@ map <Leader>fr    :call g:RubyDebugger.open_frames()<CR>
 
 
 map <Leader>ss    :call g:RubyDebugger.step()<CR>
-map <Leader>ff    :call g:RubyDebugger.finish()<CR>
+map <Leader>fin   :call g:RubyDebugger.finish()<CR>
 map <Leader>nn    :call g:RubyDebugger.next()<CR>
 map <Leader>cc    :call g:RubyDebugger.continue()<CR>
 map <Leader>xx    :call g:RubyDebugger.exit()<CR>
