@@ -37,15 +37,15 @@ hi SpecialKey   guifg=#808080 guibg=#131313 gui=none
 " Syntax highlighting
 hi Comment      guifg=#A7A7A7 gui=italic
 hi Todo         guibg=#131313 guifg=#F1F13A gui=underline
-hi Constant     guifg=#e5786d gui=none
+hi Constant     guifg=#E04331 gui=none
 hi String       guifg=#95e454 gui=italic
 hi Identifier   guifg=#cae682 gui=none
 hi Function     guifg=#cae682 gui=none
-hi Type         guifg=#cae682 gui=none
+hi Type         guifg=#D4EB9C gui=none
 hi Statement    guifg=#8ac6f2 gui=none
 hi Keyword      guifg=#8ac6f2 gui=none
-hi PreProc      guifg=#e5786d gui=none
-hi Number       guifg=#e5786d gui=none
+hi PreProc      guifg=#81BDCC gui=none
+hi Number       guifg=#F5773C gui=none
 hi Special      guifg=#e7f6da gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
 hi Tag          gui=underline
