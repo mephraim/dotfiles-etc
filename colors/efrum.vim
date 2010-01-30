@@ -30,13 +30,15 @@ hi StatusLineNC guifg=#857b6f guibg=#181B22 gui=none
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
 hi Folded       guibg=#272727 guifg=#E1F3FA gui=none
 hi FoldColumn   guifg=#444444 guibg=#080808
+hi SignColumn   guibg=#0A0A0A
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
-hi SpecialKey   guifg=#808080 guibg=#131313 gui=none
+hi SpecialKey   guifg=#808080 guibg=#0A0A0A gui=none
+hi Search       guibg=#E4F565 guifg=#000000
 
 " Syntax highlighting
 hi Comment      guifg=#A7A7A7 gui=italic
-hi Todo         guibg=#131313 guifg=#F1F13A gui=underline
+hi Todo         guibg=bg guifg=#F1F13A gui=underline
 hi Constant     guifg=#E04331 gui=none
 hi String       guifg=#95e454 gui=italic
 hi Identifier   guifg=#cae682 gui=none
@@ -48,6 +50,7 @@ hi PreProc      guifg=#81BDCC gui=none
 hi Number       guifg=#F5773C gui=none
 hi Special      guifg=#e7f6da gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
+hi Warning      guifg=#e7f6da guibg=#3A0505
 hi Tag          gui=underline
 
 if has("gui_running")

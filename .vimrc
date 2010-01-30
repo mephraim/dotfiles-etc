@@ -43,6 +43,9 @@ set hlsearch        " Use search highlighting
 set incsearch       " do incremental searching
 set ignorecase      " search ignoring case
 
+" Search recursively for the tags file
+set tags=tags;/
+
 " Spell checking
 if v:version >= 700
   " Enable spell check for text files
@@ -180,8 +183,12 @@ nnoremap <silent> <leader>te :TagExplorer<CR>
 " Quickly generate some lorem ipsum text
 map <leader>lorem :Loremipsum<CR>
 
-" Show the syntax rules being applied to the current word
-map <leader>attr :call SyntaxAttr()<CR>
+" Quickly turn wrapping on and off
+map <leader>wr :set wrap!<CR>
+
+" Quickly turn invisibles on and off
+map <leader>li :set list!<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
