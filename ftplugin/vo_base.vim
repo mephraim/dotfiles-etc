@@ -285,9 +285,9 @@ function MakeDashes(count)
 	return MakeChars(a:count,"-")
 endfunction
 "}}}2
-" MyFoldText() {{{2
+" VOFoldText() {{{2
 " Create string used for folded text blocks
-function MyFoldText()
+function VOFoldText()
 	let l:MySpaces = MakeSpaces(&sw)
 	let l:line = getline(v:foldstart)
 	let l:bodyTextFlag=0
@@ -540,7 +540,7 @@ endif
 "}}}2
 " This should be a setlocal but that doesn't work when switching to a new .otl file
 " within the same buffer. Using :e has demonstrates this.
-set foldtext=MyFoldText()
+set foldtext=VOFoldText()
 
 setlocal fillchars=|, 
 
