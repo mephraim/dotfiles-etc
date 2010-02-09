@@ -6,7 +6,7 @@ hi VertSplit guifg=white guibg=black	ctermfg=white ctermbg=black
 hi OL1 guifg=white	ctermfg=white   gui=underline
 hi OL2 guifg=#60C2D8	ctermfg=red
 hi OL3 guifg=#95DABE	ctermfg=lightblue
-hi OL4 guifg=violet	ctermfg=magenta
+hi OL4 guifg=#BEEBA4 	ctermfg=magenta
 hi OL5 guifg=white	ctermfg=white
 hi OL6 guifg=red	ctermfg=red
 hi OL7 guifg=lightblue	ctermfg=lightblue
