@@ -135,6 +135,7 @@ map <leader>n :NERDTreeToggle<CR>
 " Quick buffer stuff
 map <leader>bd :bd<CR>
 map <leader>bdd :bd!<CR>
+map <leader>q :q<CR>
 
 " Quickly get rid of highlighting
 map <leader>nh :noh<CR>
