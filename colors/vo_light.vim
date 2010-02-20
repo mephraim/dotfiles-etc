@@ -1,12 +1,17 @@
 let g:colors_name="VO Light"
-hi normal guifg=black guibg=white	ctermfg=white ctermbg=black
+
+set nonumber
+set foldcolumn=0
+hi clear
+
+hi normal guifg=black guibg=#F8F6BB	ctermfg=white ctermbg=black
 hi StatusLine guifg=black guibg=white	ctermfg=white ctermbg=black
 hi StatusLineNC guifg=black guibg=white	ctermfg=white ctermbg=black
 hi VertSplit guifg=black guibg=white	ctermfg=white ctermbg=black
-hi OL1 guifg=black	ctermfg=black
-hi OL2 guifg=red	ctermfg=red
-hi OL3 guifg=blue	ctermfg=blue
-hi OL4 guifg=darkviolet	ctermfg=magenta
+hi OL1 guifg=black	ctermfg=black gui=underline
+hi OL2 guifg=black	ctermfg=red
+hi OL3 guifg=black	ctermfg=lightblue
+hi OL4 guifg=black 	ctermfg=magenta
 hi OL5 guifg=black	ctermfg=black
 hi OL6 guifg=red	ctermfg=red
 hi OL7 guifg=blue	ctermfg=blue
@@ -17,15 +22,15 @@ hi OL9 guifg=black	ctermfg=black
 hi outlTags guifg=darkred	ctermfg=darkred
 
 " color for body text
-hi BT1 guifg=darkgreen	ctermfg=green
-hi BT2 guifg=darkgreen	ctermfg=green
-hi BT3 guifg=darkgreen	ctermfg=green
-hi BT4 guifg=darkgreen	ctermfg=green
-hi BT5 guifg=darkgreen	ctermfg=green
-hi BT6 guifg=darkgreen	ctermfg=green
-hi BT7 guifg=darkgreen	ctermfg=green
-hi BT8 guifg=darkgreen	ctermfg=green
-hi BT9 guifg=darkgreen	ctermfg=green
+hi BT1 guifg=black ctermfg=green
+hi BT2 guifg=black ctermfg=green
+hi BT3 guifg=black ctermfg=green
+hi BT4 guifg=black ctermfg=green
+hi BT5 guifg=black ctermfg=green
+hi BT6 guifg=black ctermfg=green
+hi BT7 guifg=black ctermfg=green
+hi BT8 guifg=black ctermfg=green
+hi BT9 guifg=black ctermfg=green
 
 " color for pre-formatted text
 hi PT1 guifg=darkblue	ctermfg=cyan
@@ -72,10 +77,19 @@ hi UB8 guifg=darkgray	ctermfg=cyan
 hi UB9 guifg=darkgray	ctermfg=cyan
 
 " colors for folded sections
-hi Folded guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
-hi FoldColumn guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
+hi Folded guifg=white guibg=#44443F	ctermfg=cyan ctermbg=white
+hi FoldColumn guifg=white guibg=bg	ctermfg=cyan ctermbg=white
 
 " colors for experimental spelling error highlighting
 " this only works for spellfix.vim with will be cease to exist soon
 hi spellErr gui=underline guifg=darkred cterm=underline ctermfg=darkred
 hi BadWord gui=underline guifg=darkred cterm=underline ctermfg=darkred
+
+hi LineNr guifg=black guibg=white gui=none
+hi NonText guifg=#F8F6BB	
+
+hi Visual guifg=#f6f3e8 guibg=#1F4457 gui=none
+
+if has("gui_running")
+  set guifont=Monaco:h13 
+endif 
