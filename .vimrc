@@ -190,6 +190,11 @@ map <leader>wr :set wrap!<CR>
 " Quickly turn invisibles on and off
 map <leader>li :set list!<CR>
 
+" Encode HTML entities 
+map <leader>enc :HTMLSpecialChars<CR>
+
+" Unencode HTML entities
+map <leader>uenc :HTMLSpecialCharsDecode<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 

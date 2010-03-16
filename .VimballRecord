@@ -2,3 +2,4 @@ tComment.vba: call delete('/Users/mephraim/.vim/doc/tComment.txt')|call delete('
 Align.vba: call delete('/Users/mephraim/.vim/plugin/AlignPlugin.vim')|call delete('/Users/mephraim/.vim/plugin/AlignMapsPlugin.vim')|call delete('/Users/mephraim/.vim/plugin/cecutil.vim')|call delete('/Users/mephraim/.vim/doc/Align.txt')|call delete('/Users/mephraim/.vim/autoload/Align.vim')|call delete('/Users/mephraim/.vim/autoload/AlignMaps.vim')
 supertab.vba: call delete('/Users/mephraim/.vim/doc/supertab.txt')|call delete('/Users/mephraim/.vim/plugin/supertab.vim')
 loremipsum.vba: call delete('/Users/mephraim/.vim/autoload/loremipsum.vim')|call delete('/Users/mephraim/.vim/autoload/loremipsum.txt')|call delete('/Users/mephraim/.vim/plugin/loremipsum.vim')|call delete('/Users/mephraim/.vim/doc/loremipsum.txt')
+htmlspecialchars.vba: call delete('/Users/mephraim/.vim/ftplugin/html/htmlspecialchars.vim')|call delete('/Users/mephraim/.vim/doc/htmlspecialchars.txt')
