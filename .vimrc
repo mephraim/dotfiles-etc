@@ -169,6 +169,12 @@ map <leader>sh :split<CR>
 " Quick full screen toggle
 map <leader>fs :set invfullscreen<CR>
 
+" Quickly set up for word processing type stuff 
+map <leader>wp :set linebreak <CR> :set display+=lastline <CR> :set wrap <CR> :setlocal spell spelllang=en_gb <CR> 
+
+" Turn off word processing stuff
+map <leader>nwp :set nowrap <CR> :set nospell <CR> 
+
 " For Ruby focused testing """"""""""""""""""""""""""
 map <silent> <leader>rb :RunAllRubyTests<CR>
 map <silent> <leader>rc :RunRubyFocusedContext<CR>
@@ -279,3 +285,6 @@ let g:yankring_history_dir = "~/tmp/vim/"
 " autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
 
 let g:ruby_debugger_progname = 'mvim'
+
+" rsense setup
+let g:rsenseHome = "$RSENSE_HOME"
