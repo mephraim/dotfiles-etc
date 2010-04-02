@@ -201,6 +201,10 @@ map <leader>enc :HTMLSpecialChars<CR>
 
 " Unencode HTML entities
 map <leader>uenc :HTMLSpecialCharsDecode<CR>
+
+" Turn expandtab on and off
+map <silent> <leader>tab :set expandtab!<CR>:set tabstop=2<CR>
+map <silent> <leader>untab :set expandtab<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
