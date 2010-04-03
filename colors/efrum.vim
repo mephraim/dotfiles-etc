@@ -62,3 +62,7 @@ hi DiffAdd    guibg=#D1FFB6 guifg=#080C06
 hi DiffChange guibg=#0F1308 guifg=NONE
 hi DiffText   guibg=#D1FFB6 guifg=#080C06  
 hi DiffDelete guibg=#290700 guifg=#FC5B3B
+
+" Syntastic
+hi SyntasticError guibg=bg guifg=#F11818
+hi SyntasticWarning guibg=bg guifg=#F1F13A
