@@ -17,10 +17,11 @@ set visualbell
 set hidden          " allow buffer switching without saving
 
 set expandtab       " set up spaces as tabs
+set tabstop=2
 set sts=2           " 2 spaces
 set shiftwidth=2
 set smarttab
-
+"
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
@@ -80,6 +81,9 @@ if has("autocmd")
 
   autocmd FileType mkd,wiki,txt UniCycleOn
   
+  " Automatically detect tabs
+  autocmd BufReadPost * :DetectIndent 
+
   augroup END
 else
 
@@ -203,8 +207,8 @@ map <leader>enc :HTMLSpecialChars<CR>
 map <leader>uenc :HTMLSpecialCharsDecode<CR>
 
 " Turn expandtab on and off
-map <silent> <leader>tab :set expandtab!<CR>:set tabstop=2<CR>
-map <silent> <leader>untab :set expandtab<CR>
+map <silent> <leader>tabon :set expandtab!<CR>
+map <silent> <leader>taboff :set expandtab<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
@@ -297,3 +301,4 @@ let g:ruby_debugger_progname = 'mvim'
 
 " rsense setup
 let g:rsenseHome = "$RSENSE_HOME"
+
