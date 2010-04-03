@@ -21,7 +21,9 @@ set tabstop=2
 set sts=2           " 2 spaces
 set shiftwidth=2
 set smarttab
-"
+
+set smartindent     " Indent based on the previous line
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
