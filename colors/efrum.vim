@@ -51,6 +51,7 @@ hi Number       guifg=#F5773C gui=none
 hi Special      guifg=#e7f6da gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
 hi Warning      guifg=#e7f6da guibg=#3A0505
+hi WarningMsg   guifg=#F11818 guibg=bg
 hi Tag          gui=underline
 
 if has("gui_running")
