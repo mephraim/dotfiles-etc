@@ -176,10 +176,10 @@ map <leader>sh :split<CR>
 map <leader>fs :set invfullscreen<CR>
 
 " Quickly set up for word processing type stuff 
-map <leader>wp :set linebreak <CR> :set display+=lastline <CR> :set wrap <CR> :setlocal spell spelllang=en_gb <CR> 
+map <leader>wp :set linebreak wrap <CR> :set display+=lastline <CR> :setlocal spell spelllang=en_gb <CR> 
 
 " Turn off word processing stuff
-map <leader>nwp :set nowrap <CR> :set nospell <CR> 
+map <leader>nwp :set wrap! linebreak! spell!<CR> 
 
 " For Ruby focused testing """"""""""""""""""""""""""
 map <silent> <leader>rb :RunAllRubyTests<CR>
@@ -211,6 +211,12 @@ map <leader>uenc :HTMLSpecialCharsDecode<CR>
 " Turn expandtab on and off
 map <silent> <leader>tabon :set expandtab!<CR>
 map <silent> <leader>taboff :set expandtab<CR>
+
+" Create a horizontal split screen with a ConqueTerm buffer 
+map <silent> <leader>csh :ConqueTermSplit bash<CR>
+
+" Create a vertical split screen with a ConqueTerm buffer 
+map <silent> <leader>csv :ConqueTermVSplit bash<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
@@ -303,4 +309,7 @@ let g:ruby_debugger_progname = 'mvim'
 
 " rsense setup
 let g:rsenseHome = "$RSENSE_HOME"
+
+" Continue ConqueTerm shell when it's not the current, focused buffer
+let g:ConqueTerm_ReadUnfocused = 1
 
