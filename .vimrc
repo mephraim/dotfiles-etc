@@ -305,3 +305,6 @@ let g:ruby_debugger_progname = 'mvim'
 " rsense setup
 let g:rsenseHome = "$RSENSE_HOME"
 
+" Tell the lusty plugins to be quiet about not having Ruby support in the
+" terminal
+let g:LustyJugglerSuppressRubyWarning = 1
