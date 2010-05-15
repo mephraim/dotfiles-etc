@@ -3,3 +3,4 @@ Align.vba: call delete('/Users/mephraim/.vim/plugin/AlignPlugin.vim')|call delet
 supertab.vba: call delete('/Users/mephraim/.vim/doc/supertab.txt')|call delete('/Users/mephraim/.vim/plugin/supertab.vim')
 loremipsum.vba: call delete('/Users/mephraim/.vim/autoload/loremipsum.vim')|call delete('/Users/mephraim/.vim/autoload/loremipsum.txt')|call delete('/Users/mephraim/.vim/plugin/loremipsum.vim')|call delete('/Users/mephraim/.vim/doc/loremipsum.txt')
 htmlspecialchars.vba: call delete('/Users/mephraim/.vim/ftplugin/html/htmlspecialchars.vim')|call delete('/Users/mephraim/.vim/doc/htmlspecialchars.txt')
+conque_term_1.0.vba: call delete('/Users/mephraim/.vim/autoload/conque_term.vim')|call delete('/Users/mephraim/.vim/doc/conque_term.txt')|call delete('/Users/mephraim/.vim/plugin/conque_term.vim')|call delete('/Users/mephraim/.vim/syntax/conque_term.vim')
