@@ -107,6 +107,45 @@ if has("gui_running")
   set guioptions-=T         " get rid of the toolbar
   set guicursor=a:blinkon0  " no blinking cursor
   set transparency=1        " a little transparency just for fun
+
+  " Customize tab labels so they show just the file name http://old.nabble.com/tabline-showing-only-the-basename-td20813639.html
+  set guitablabel=%{GuiTabLabel()}
+
+  " set up tab labels with tab number, buffer name, number of windows 
+  function! GuiTabLabel() 
+    let label = '' 
+    let bufnrlist = tabpagebuflist(v:lnum) 
+
+    " Add '+' if one of the buffers in the tab page is modified 
+    for bufnr in bufnrlist 
+      if getbufvar(bufnr, "&modified") 
+        let label = '+' 
+        break 
+      endif 
+    endfor 
+
+    " Append the tab number 
+    let label .= tabpagenr().': ' 
+
+    " Append the buffer name 
+    let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1]) 
+    if name == '' 
+      " give a name to no-name documents 
+      if &buftype=='quickfix' 
+        let name = '[Quickfix List]' 
+      else 
+        let name = '[No Name]' 
+      endif 
+    else 
+      " get only the file name 
+      let name = fnamemodify(name,":t") 
+    endif 
+    let label .= name 
+
+    " Append the number of windows in the tab page 
+    let wincount = tabpagewinnr(v:lnum, '$') 
+    return label . '  [' . wincount . ']' 
+  endfunction
 endif 
 
 " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
@@ -212,11 +251,14 @@ map <leader>uenc :HTMLSpecialCharsDecode<CR>
 map <silent> <leader>tabon :set expandtab!<CR>
 map <silent> <leader>taboff :set expandtab<CR>
 
-" Create a horizontal split screen with a ConqueTerm buffer 
-map <silent> <leader>csh :ConqueTermSplit bash<CR>
+" Create a ConqueTerm buffer shell  
+map <silent> <leader>cts :ConqueTerm bash<CR>
+"
+" Create a horizontal split screen with a ConqueTerm buffer shell
+map <silent> <leader>ctsh :ConqueTermSplit bash<CR>
 
-" Create a vertical split screen with a ConqueTerm buffer 
-map <silent> <leader>csv :ConqueTermVSplit bash<CR>
+" Create a vertical split screen with a ConqueTerm buffer shell
+map <silent> <leader>ctsv :ConqueTermVSplit bash<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
