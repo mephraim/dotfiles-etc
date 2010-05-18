@@ -86,6 +86,10 @@ if has("autocmd")
   " Automatically detect tabs
   autocmd BufReadPost * :DetectIndent 
 
+  autocmd FileType mkd,wiki,txt UniCycleOn
+
+  autocmd FileType rspec :let g:syntastic_quiet_warnings=1
+
   augroup END
 else
 
@@ -336,9 +340,6 @@ let g:tlWindowPosition = 1
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
-" Disable warnings for now. They're kind of annoying in rspec
-let g:syntastic_quiet_warnings=1
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up the yankring history location
@@ -351,6 +352,10 @@ let g:ruby_debugger_progname = 'mvim'
 
 " rsense setup
 let g:rsenseHome = "$RSENSE_HOME"
+
+" Tell the lusty plugins to be quiet about not having Ruby support in the
+" terminal
+let g:LustyJugglerSuppressRubyWarning = 1
 
 " Continue ConqueTerm shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
