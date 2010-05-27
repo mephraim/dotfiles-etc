@@ -160,6 +160,9 @@ set scrolloff=2
 
 " Status line """""""""""""""""""""""""""""""""""""
 
+set laststatus=2 " Always show the status line 
+set statusline=%f\ %y " Start with a basic status line
+
 " Syntastic errors
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
