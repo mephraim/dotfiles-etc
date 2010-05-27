@@ -67,3 +67,6 @@ hi DiffDelete guibg=#290700 guifg=#FC5B3B
 " Syntastic
 hi SyntasticError guibg=bg guifg=#F11818
 hi SyntasticWarning guibg=bg guifg=#F1F13A
+
+" Taglist
+hi MyTagListFileName guibg=bg guifg=#8ac6f2
