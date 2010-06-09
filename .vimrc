@@ -231,6 +231,7 @@ map <leader>nwp :set wrap! linebreak! spell!<CR>
 map <silent> <leader>rb :RunAllRubyTests<CR>
 map <silent> <leader>rc :RunRubyFocusedContext<CR>
 map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
+map <silent> <leader>rl :RunLastRubyTest<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Show the yankring """"""""""""""""""""""""""""""""" 
