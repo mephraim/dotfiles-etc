@@ -266,6 +266,9 @@ map <silent> <leader>ctsh :ConqueTermSplit bash<CR>
 
 " Create a vertical split screen with a ConqueTerm buffer shell
 map <silent> <leader>ctsv :ConqueTermVSplit bash<CR>
+
+" Open the command + T browser window
+map <silent> <leader>ct :CommandT<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
