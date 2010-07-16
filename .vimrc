@@ -13,7 +13,7 @@ set showcmd         " display incomplete commands
 set nowrap          " nowrap!
 set number          " gotta have my line numbers
 set noerrorbells    " no error bells
-set visualbell      
+set visualbell
 set hidden          " allow buffer switching without saving
 
 set expandtab       " set up spaces as tabs
@@ -85,9 +85,9 @@ if has("autocmd")
     \ endif
 
   autocmd FileType mkd,wiki,txt UniCycleOn
-  
+
   " Automatically detect tabs
-  autocmd BufReadPost * :DetectIndent 
+  autocmd BufReadPost * :DetectIndent
 
   autocmd FileType mkd,wiki,txt UniCycleOn
 
@@ -273,6 +273,9 @@ map <silent> <leader>ctsv :ConqueTermVSplit bash<CR>
 
 " Open the command + T browser window
 map <silent> <leader>ct :CommandT<CR>
+
+" Remove trailing whitespace
+map <leader>rmtws :%s/\s\+$//e<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
