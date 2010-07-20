@@ -29,7 +29,8 @@ if v:version < 700
   finish
 endif
 if !has("clientserver")
-  echoerr "RubyDebugger: This plugin requires +clientserver option"
+  " Don't show this error because it causes problems with the terminal
+  "echoerr "RubyDebugger: This plugin requires +clientserver option"
   finish
 endif
 if !executable("rdebug-ide")
