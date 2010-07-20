@@ -93,6 +93,9 @@ if has("autocmd")
 
   autocmd FileType rspec :let g:syntastic_quiet_warnings=1
 
+  " Auto source the vimrc file when it is updated
+  autocmd bufwritepost .vimrc source $MYVIMRC
+
   augroup END
 else
 
@@ -199,7 +202,7 @@ map <leader>nh :noh<CR>
 map <leader>tl :TlistToggle<CR>
 
 "Fast editing of .vimrc
-map <leader>vimrc :e! ~/.vimrc<CR>
+map <leader>vimrc :tabedit $MYVIMRC<CR>
 
 " Allow cursor movements during insert mode
 imap <C-h> <C-o>h
