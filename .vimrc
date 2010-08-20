@@ -321,9 +321,6 @@ function! MyFoldText()
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""
 
-" Sets up SCMDiff with git as the source control
-let g:SCMDiffCommand = 'git'
-
 " Showmarks config  """"""""""""""""""""""""""""""""
 
 " Turn showmarks off by default
