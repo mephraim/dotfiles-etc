@@ -159,7 +159,7 @@ if has("gui_running")
 endif 
 
 " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,extends:▶,precedes:◀
 
 " Show some context when scrolling
 set scrolloff=2
