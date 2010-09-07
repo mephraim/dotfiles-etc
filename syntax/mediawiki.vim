@@ -108,15 +108,7 @@ syn region htmlHead start="<head\>" end="</head>"me=e-7 end="<body\>"me=e-5 end=
 syn region htmlTitle start="<title\>" end="</title>"me=e-8 contains=htmlTag,htmlEndTag,htmlSpecialChar,htmlPreProc,htmlComment
 
 " wiki formatting
-"syn region wikiItalic start="\([^']\|\_^\)''[^']"hs=s+1 end="[^']''\([^']\|\_$\)"he=e-1 skip="<nowiki>.*</nowiki>" contains=wikiLink,wikiItalicBold
-"syn region wikiBold start="\([^']\|\_^\)'''[^']" end="[^']'''\([^']\|\_$\)" skip="<nowiki>.*</nowiki>" contains=wikiLink,wikiBoldItalic
-
-"syn region wikiBoldItalic contained start="\([^']\|\_^\)''[^']" end="[^']''\([^']\|\_$\)" skip="<nowiki>.*</nowiki>" contains=wikiLink
-"syn region wikiItalicBold contained start="\([^']\|\_^\)'''[^']" end="[^']'''\([^']\|\_$\)" skip="<nowiki>.*</nowiki>" contains=wikiLink
-
-"syn region wikiBoldAndItalic start="'''''" end="'''''" skip="<nowiki>.*</nowiki>" contains=wikiLink
-
-syn region wikiItalic			start=+'\@<!'''\@!+	end=+''+ contains=wikiLink,wikiItalicBold
+syn region wikiItalic			start=+''+	end=+''+ contains=wikiLink,wikiItalicBold
 syn region wikiBold				start=+'''+			end=+'''+ contains=wikiLink,wikiBoldItalic
 syn region wikiBoldAndItalic	start=+'''''+		end=+'''''+ contains=wikiLink
 
@@ -143,7 +135,6 @@ syn match wikiPre /^\ .*$/
 
 syn include @TeX syntax/tex.vim
 syntax region wikiTeX matchgroup=htmlTag start="<math>" end="</math>" skip="<nowiki>.*</nowiki>" contains=@TeX 
-
 
 " HTML highlighting
 
