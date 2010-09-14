@@ -55,7 +55,7 @@ hi WarningMsg   guifg=#F11818 guibg=bg
 hi Tag          gui=underline
 
 if has("gui_running")
-  set guifont=Monaco:h13 
+  set guifont=Inconsolata:h16
 endif 
 
 " Diff highlighting
