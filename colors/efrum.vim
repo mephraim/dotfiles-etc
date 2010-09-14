@@ -85,3 +85,7 @@ hi wikiH5 guifg=#8ac6f2 gui=underline
 hi wikiH6 guifg=#8ac6f2 gui=underline
 
 hi wikiLink guifg=#95e454 gui=underline
+
+" HTML
+hi htmlBold guifg=#E04331
+hi htmlUnderline gui=underline
