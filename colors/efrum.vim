@@ -31,6 +31,7 @@ hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
 hi Folded       guibg=#272727 guifg=#E1F3FA gui=none
 hi FoldColumn   guifg=#444444 guibg=#080808
 hi SignColumn   guibg=#0A0A0A
+hi ColorColumn  guibg=#130707
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
 hi SpecialKey   guifg=#808080 guibg=#0A0A0A gui=none
