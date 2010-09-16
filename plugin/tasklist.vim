@@ -373,4 +373,3 @@ endif
 nnoremap <unique> <script> <Plug>TaskList :TaskList<CR>
 
 " vim:fdm=marker:tw=75:ff=unix:
-
