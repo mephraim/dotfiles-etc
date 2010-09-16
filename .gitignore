@@ -4,4 +4,6 @@ tags
 tags_exclude
 .DS_Store
 tmp
-GetLatest
+GetLatest/*.dist
+GetLatest/Installed
+GetLatest/*.gz
