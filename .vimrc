@@ -174,6 +174,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" Fugitive
+set statusline+=\ %{fugitive#statusline()}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Leader stuff """""""""""""""""""""""""""""""""""""
