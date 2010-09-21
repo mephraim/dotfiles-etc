@@ -20,6 +20,7 @@ set expandtab       " set up spaces as tabs
 set tabstop=2
 set sts=2           " 2 spaces
 set shiftwidth=2
+set shiftround      " when at 3 spaces, and I hit > ... go to 4, not 5
 set smarttab
 
 set smartindent     " Indent based on the previous line
