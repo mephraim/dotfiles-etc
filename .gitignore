@@ -8,3 +8,5 @@ tmp/*
 GetLatest/*.dist
 GetLatest/Installed
 GetLatest/*.gz
+.netrwhist
+
