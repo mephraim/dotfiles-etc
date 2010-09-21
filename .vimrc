@@ -24,6 +24,7 @@ set smarttab
 
 set smartindent     " Indent based on the previous line
 
+
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
@@ -178,6 +179,15 @@ set statusline+=%*
 set statusline+=\ %{fugitive#statusline()}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set up persistent undo for versions of vim that support it
+if v:version >= 703
+  set undodir=~/.vim/undodir
+  set undofile
+  set undolevels=1000
+  set undoreload=1000
+endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Leader stuff """""""""""""""""""""""""""""""""""""
 let mapleader = ","
