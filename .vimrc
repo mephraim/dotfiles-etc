@@ -166,6 +166,9 @@ endif
 " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
 set listchars=trail:·,tab:▸\ ,eol:¬,extends:…,precedes:…
 
+" Show ↪ at the beginning of wrapped lines.
+let &sbr = nr2char(8618).' '
+ 
 " Show some context when scrolling
 set scrolloff=2
 
