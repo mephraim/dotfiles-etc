@@ -5,6 +5,7 @@ ScriptID SourceID Filename
 1343 12473 :AutoInstall: autotag.vim
 52 12959 :AutoInstall: calendar.vim
 1066 7618 :AutoInstall: cecutil.vim
+3014 12621 :AutoInstall: colorx.vim
 2771 13071 :AutoInstall: conque_term.vim
 2386 9299 :AutoInstall: endwise.vim
 1984 11852 :AutoInstall: FuzzyFinder
