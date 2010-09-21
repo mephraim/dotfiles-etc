@@ -293,7 +293,7 @@ map <silent> <leader>ctsv :ConqueTermVSplit bash<CR>
 map <silent> <leader>ct :CommandT<CR>
 
 " Remove trailing whitespace
-map <leader>rmtws :%s/\s\+$//e<CR>
+map <leader>rmtws :%s/\s\+$//<cr>:let @/=''<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
