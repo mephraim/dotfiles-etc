@@ -24,6 +24,7 @@ set smarttab
 
 set smartindent     " Indent based on the previous line
 
+set directory=~/.vim/tmp " Keep all swap files in the tmp directory
 
 " Don't use Ex mode, use Q for formatting
 map Q gq

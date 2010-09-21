@@ -3,7 +3,8 @@
 tags
 tags_exclude
 .DS_Store
-tmp
+tmp/*
+!tmp/.gitignore
 GetLatest/*.dist
 GetLatest/Installed
 GetLatest/*.gz
