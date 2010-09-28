@@ -8,7 +8,7 @@ ScriptID SourceID Filename
 3014 12621 :AutoInstall: colorx.vim
 2771 13071 :AutoInstall: conque_term.vim
 2386 9299 :AutoInstall: endwise.vim
-1984 11852 :AutoInstall: FuzzyFinder
+1984 13949 :AutoInstall: FuzzyFinder
 2975 12673 :AutoInstall: fugitive.vim
 3037 12790 :AutoInstall: indent-object.vim
 1491 10728 :AutoInstall: javascript.vim
@@ -20,7 +20,7 @@ ScriptID SourceID Filename
 2136 8206 :AutoInstall: repeat.vim
 474 1388 :AutoInstall: searchcomplete.vim
 2540 11006 :AutoInstall: snipMate.vim
-1643 11853 :AutoInstall: supertab.vim
+1643 13928 :AutoInstall: supertab.vim
 1697 12566 :AutoInstall: surround.vim
 2736 11908 :AutoInstall: syntastic.vim
 483 1584 :AutoInstall: tagexplorer.vim
