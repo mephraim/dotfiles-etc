@@ -12,6 +12,7 @@ ScriptID SourceID Filename
 2975 12673 :AutoInstall: fugitive.vim
 3037 12790 :AutoInstall: indent-object.vim
 1491 10728 :AutoInstall: javascript.vim
+3252 13948 :AutoInstall: l9.vim
 2289 8922 :AutoInstall: loremipsum.vim
 1890 13373 :AutoInstall: lusty-explorer.vim
 39 8196 :AutoInstall: matchit.vim
