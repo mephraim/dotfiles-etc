@@ -51,6 +51,7 @@ hi Statement    guifg=#8ac6f2 gui=none
 hi Keyword      guifg=#8ac6f2 gui=none
 hi PreProc      guifg=#81BDCC gui=none
 hi Number       guifg=#F5773C gui=none
+hi Boolean      guifg=#E04331 gui=underline
 hi Special      guifg=#e7f6da gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
 hi Warning      guifg=#e7f6da guibg=#3A0505
