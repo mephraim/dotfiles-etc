@@ -15,7 +15,7 @@ let colors_name = "efrum"
 if version >= 700
   hi CursorLine   guibg=#263133
   hi CursorColumn guibg=#2d2d2d
-  hi MatchParen   guifg=#f6f3e8 guibg=#857b6f gui=bold
+  hi MatchParen   guifg=#F11818 guibg=bg
   hi Pmenu        guifg=#f6f3e8 guibg=#242829
   hi PmenuSel     guifg=#000000 guibg=#cae682
 endif
