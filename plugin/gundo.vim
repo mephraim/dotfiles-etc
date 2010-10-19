@@ -8,6 +8,10 @@
 "
 " ============================================================================
 
+" Check for Python before trying to load
+if !has("python")
+    finish
+endif
 
 "{{{ Init
 "if exists('loaded_gundo') || &cp
