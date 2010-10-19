@@ -6,5 +6,6 @@ Align.vba: call delete('/Users/mephraim/.vim/plugin/AlignPlugin.vim')|call delet
 cecutil.vba: call delete('/Users/mephraim/.vim/plugin/cecutil.vim')|call delete('/Users/mephraim/.vim/doc/cecutil.txt')
 conque_1.1.vba: call delete('/Users/mephraim/.vim/autoload/conque_term.vim')|call delete('/Users/mephraim/.vim/doc/conque_term.txt')|call delete('/Users/mephraim/.vim/plugin/conque_term.vim')|call delete('/Users/mephraim/.vim/syntax/conque_term.vim')
 loremipsum.vba: call delete('/Users/mephraim/.vim/autoload/loremipsum.vim')|call delete('/Users/mephraim/.vim/autoload/loremipsum.txt')|call delete('/Users/mephraim/.vim/plugin/loremipsum.vim')|call delete('/Users/mephraim/.vim/doc/loremipsum.txt')
-tcomment.vba: call delete('/Users/mephraim/.vim/doc/tcomment.txt')|call delete('/Users/mephraim/.vim/plugin/tcomment.vim')|call delete('/Users/mephraim/.vim/autoload/tcomment.vim')
 supertab.vba: call delete('/Users/mephraim/.vim/doc/supertab.txt')|call delete('/Users/mephraim/.vim/plugin/supertab.vim')
+conque_1.2.vba: call delete('/Users/mephraim/.vim/autoload/conque_term.vim')|call delete('/Users/mephraim/.vim/doc/conque_term.txt')|call delete('/Users/mephraim/.vim/plugin/conque_term.vim')|call delete('/Users/mephraim/.vim/syntax/conque_term.vim')
+tcomment.vba: call delete('/Users/mephraim/.vim/doc/tcomment.txt')|call delete('/Users/mephraim/.vim/plugin/tcomment.vim')|call delete('/Users/mephraim/.vim/autoload/tcomment.vim')
