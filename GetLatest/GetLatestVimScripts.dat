@@ -19,7 +19,6 @@ ScriptID SourceID Filename
 2540 11006 :AutoInstall: snipMate.vim
 1697 12566 :AutoInstall: surround.vim
 2736 11908 :AutoInstall: syntastic.vim
-273 7701 :AutoInstall: taglist.vim
 2607 10388 :AutoInstall: tasklist.vim
 1384 4689 :AutoInstall: unicycle.vim
 1502 11981 :AutoInstall: vimball.vim
