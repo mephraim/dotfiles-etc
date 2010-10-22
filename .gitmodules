@@ -37,3 +37,6 @@
 [submodule "bundle/conque"]
 	path = bundle/conque
 	url = http://github.com/rson/vim-conque.git
+[submodule "bundle/colorx"]
+	path = bundle/colorx
+	url = http://github.com/vim-scripts/ColorX.git
