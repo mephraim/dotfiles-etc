@@ -43,3 +43,6 @@
 [submodule "bundle/cecutil"]
 	path = bundle/cecutil
 	url = http://github.com/vim-scripts/cecutil.git
+[submodule "bundle/calendar"]
+	path = bundle/calendar
+	url = http://github.com/vim-scripts/calendar.vim--Matsumoto.git
