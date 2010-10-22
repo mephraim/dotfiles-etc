@@ -348,17 +348,6 @@ let g:jslint_highlight_color="#6F2828"
 " Disable jslint for now"
 let g:jslint_disabled=1
 
-
-" Tasklist stuff """"""""""""""""""""""""""""""""""""
-
-" Show the tasklist
-map <leader>todo <Plug>TaskList
-
-" Show the tasklist on the bottom
-let g:tlWindowPosition = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Syntastic stuff """""""""""""""""""""""""""""""""""
 
 let g:syntastic_enable_signs=1
