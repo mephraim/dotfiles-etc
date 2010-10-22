@@ -34,3 +34,6 @@
 [submodule "bundle/endwise"]
 	path = bundle/endwise
 	url = http://github.com/michaeljsmith/vim-indent-object.git
+[submodule "bundle/conque"]
+	path = bundle/conque
+	url = http://github.com/rson/vim-conque.git
