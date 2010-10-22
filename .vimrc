@@ -266,9 +266,6 @@ map <silent> <leader>rl :RunLastRubyTest<CR>
 " Show the yankring """"""""""""""""""""""""""""""""" 
 map <leader>yr :YRShow<cr>
 
-" Show the tag explorer
-nnoremap <silent> <leader>te :TagExplorer<CR>
-
 " Quickly generate some lorem ipsum text
 map <leader>lorem :Loremipsum<CR>
 

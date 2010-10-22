@@ -21,7 +21,6 @@ ScriptID SourceID Filename
 1643 13928 :AutoInstall: supertab.vim
 1697 12566 :AutoInstall: surround.vim
 2736 11908 :AutoInstall: syntastic.vim
-483 1584 :AutoInstall: tagexplorer.vim
 273 7701 :AutoInstall: taglist.vim
 2607 10388 :AutoInstall: tasklist.vim
 1173 13972 :AutoInstall: tComment.vim
