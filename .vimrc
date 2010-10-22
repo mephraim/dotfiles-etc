@@ -203,12 +203,7 @@ endif
 let mapleader = ","
 
 " Ack for the current word
-map <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR> 
-
-" Fuzzfinder stuff
-map <leader>fb :FufBuffer<CR>
-map <leader>ff :FufFile<CR>
-map <leader>fd :FufDir<CR>
+map <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR>
 
 " NERDTree
 map <leader>n :NERDTreeToggle<CR>
