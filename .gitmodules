@@ -40,3 +40,6 @@
 [submodule "bundle/colorx"]
 	path = bundle/colorx
 	url = http://github.com/vim-scripts/ColorX.git
+[submodule "bundle/cecutil"]
+	path = bundle/cecutil
+	url = http://github.com/vim-scripts/cecutil.git
