@@ -1,3 +1,6 @@
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 colorscheme efrum
 
 " Use Vim settings, rather then Vi settings (much better!).
