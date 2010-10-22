@@ -10,3 +10,6 @@
 [submodule "bundle/yankring"]
 	path = bundle/yankring
 	url = http://github.com/chrismetcalf/vim-yankring.git
+[submodule "bundle/lusty"]
+	path = bundle/lusty
+	url = http://github.com/sjbach/lusty.git
