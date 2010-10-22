@@ -92,12 +92,8 @@ if has("autocmd")
     \   exe "normal! g`\"" |
     \ endif
 
-  autocmd FileType mkd,wiki,txt UniCycleOn
-
   " Automatically detect tabs
   autocmd BufReadPost * :DetectIndent
-
-  autocmd FileType mkd,wiki,txt UniCycleOn
 
   autocmd FileType rspec :let g:syntastic_quiet_warnings=1
 
