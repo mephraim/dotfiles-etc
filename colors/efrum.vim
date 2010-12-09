@@ -25,7 +25,7 @@ hi Cursor       guifg=NONE    guibg=#656565 gui=none
 hi Normal       guifg=#f6f3e8 guibg=#0A0A0A gui=none
 hi NonText      guifg=#A7A7A7 guibg=#090909 gui=none
 hi LineNr       guifg=#857b6f guibg=#000000 gui=none
-hi StatusLine   guifg=#f6f3e8 guibg=#2B4133 gui=italic
+hi StatusLine   guifg=#f6f3e8 guibg=#2B4133 gui=none
 hi StatusLineNC guifg=#857b6f guibg=#181B22 gui=none
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
 hi Folded       guibg=#272727 guifg=#E1F3FA gui=none
@@ -59,8 +59,8 @@ hi WarningMsg   guifg=#F11818 guibg=bg
 hi Tag          gui=underline
 
 if has("gui_running")
-  set guifont=Inconsolata:h16
-endif 
+  set guifont=Inconsolata\ Medium\ 15
+endif
 
 " Diff highlighting
 hi DiffAdd    guibg=#D1FFB6 guifg=#080C06 

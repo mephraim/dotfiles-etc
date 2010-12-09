@@ -120,7 +120,11 @@ if has("gui_running")
   set lines=150 columns=230 " Maximize gvim window.
   set guioptions-=T         " get rid of the toolbar
   set guicursor=a:blinkon0  " no blinking cursor
-  set transparency=1        " a little transparency just for fun
+
+  if has("transparency")
+    set transparency=1        " a little transparency just for fun
+  endif
+
 
   " Customize tab labels so they show just the file name http://old.nabble.com/tabline-showing-only-the-basename-td20813639.html
   set guitablabel=%{GuiTabLabel()}
@@ -356,7 +360,7 @@ let g:syntastic_auto_loc_list=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up the yankring history location
-let g:yankring_history_dir = "~/tmp/vim/"
+let g:yankring_history_dir = "~/tmp/vim"
 
 " Set up the SyntaxAttr.vim plugin
 " autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
