@@ -10,3 +10,7 @@ GetLatest/Installed
 GetLatest/*.gz
 .netrwhist
 
+# some extra stuff for work
+.vimrc_work_extras
+
+
