@@ -365,8 +365,6 @@ let g:yankring_history_dir = "~/tmp/vim"
 " Set up the SyntaxAttr.vim plugin
 " autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
 
-let g:ruby_debugger_progname = 'mvim'
-
 " rsense setup
 let g:rsenseHome = "$RSENSE_HOME"
 
