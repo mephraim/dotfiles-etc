@@ -378,4 +378,6 @@ let g:LustyJugglerSuppressRubyWarning = 1
 let g:ConqueTerm_ReadUnfocused = 1
 
 " Load in any extra configuration for work
-source ~/.vim/.vimrc_work_extras
+if filereadable("~/.vim/.vimrc_work_extras")
+  source ~/.vim/.vimrc_work_extras
+endif

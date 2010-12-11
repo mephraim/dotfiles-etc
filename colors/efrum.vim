@@ -59,7 +59,11 @@ hi WarningMsg   guifg=#F11818 guibg=bg
 hi Tag          gui=underline
 
 if has("gui_running")
-  set guifont=Inconsolata\ Medium\ 15
+  if has("gui_macvim")
+    set guifont=Inconsolata:h16
+  else
+    set guifont=Inconsolata\ Medium\ 15
+  endif
 endif
 
 " Diff highlighting
