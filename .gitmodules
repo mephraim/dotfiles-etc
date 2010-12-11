@@ -4,9 +4,6 @@
 [submodule "bundle/NERD_tree"]
 	path = bundle/NERD_tree
 	url = http://github.com/scrooloose/nerdtree.git
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = http://github.com/ervandew/supertab.git
 [submodule "bundle/yankring"]
 	path = bundle/yankring
 	url = http://github.com/chrismetcalf/vim-yankring.git
@@ -55,3 +52,6 @@
 [submodule "bundle/haml-vim"]
 	path = bundle/haml-vim
 	url = http://github.com/tpope/vim-haml.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = http://github.com/ervandew/supertab.git
