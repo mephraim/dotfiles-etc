@@ -360,7 +360,7 @@ let g:syntastic_auto_loc_list=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up the yankring history location
-let g:yankring_history_dir = "~/tmp/vim"
+let g:yankring_history_dir = "~/.vim/tmp/yankring"
 
 " Set up the SyntaxAttr.vim plugin
 " autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
