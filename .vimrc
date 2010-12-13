@@ -118,12 +118,20 @@ endif
 " Gui stuff
 if has("gui_running")
   set lines=150 columns=230 " Maximize gvim window.
-  set guioptions-=T         " get rid of the toolbar
+
+  set guioptions-=T " get rid of the toolbar
+
+  " get rid of the menus in gvim
+  if !has("gui_macvim")
+    set guioptions-=m
+  end
+
   set guicursor=a:blinkon0  " no blinking cursor
 
   if has("transparency")
     set transparency=1        " a little transparency just for fun
   endif
+
 
 
   " Customize tab labels so they show just the file name http://old.nabble.com/tabline-showing-only-the-basename-td20813639.html
@@ -372,7 +380,4 @@ let g:LustyJugglerSuppressRubyWarning = 1
 " Continue ConqueTerm shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
 
-" Load in any extra configuration for work
-if filereadable("~/.vim/.vimrc_work_extras")
-  source ~/.vim/.vimrc_work_extras
-endif
+source ~/.vim/work_extras/*.vim
