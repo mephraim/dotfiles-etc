@@ -385,4 +385,7 @@ let g:LustyJugglerSuppressRubyWarning = 1
 " Continue ConqueTerm shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
 
-source ~/.vim/work_extras/*.vim
+" Read in extra work files if they're thre
+if filereadable(expand("~/.vim/work_extras/*.vim"))
+  source ~/.vim/work_extras/*.vim
+endif
