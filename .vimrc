@@ -121,9 +121,14 @@ if has("gui_running")
 
   set guioptions-=T " get rid of the toolbar
 
-  " get rid of the menus in gvim
+  " if there's a gui and it's not Macvim, assume it's something like gvim
   if !has("gui_macvim")
-    set guioptions-=m
+    set guioptions-=m "Get rid of the menu bar (almost as good as full screen)
+
+    " Set up copy and paste so they work more like other apps
+    nmap <C-V> "+gP
+    imap <C-V> <ESC><C-V>i
+    vmap <C-C> "+y
   end
 
   set guicursor=a:blinkon0  " no blinking cursor

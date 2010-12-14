@@ -32,6 +32,7 @@ hi Folded       guibg=#272727 guifg=#E1F3FA gui=none
 hi FoldColumn   guifg=#444444 guibg=#080808
 hi SignColumn   guibg=#0A0A0A
 hi ColorColumn  guibg=#130707
+hi LineNr       ctermfg=darkgrey
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
 hi SpecialKey   guifg=#808080 guibg=#0A0A0A gui=none
@@ -40,17 +41,17 @@ hi Conceal      guibg=#272727 guifg=#E1F3FA gui=none
 hi Directory    guifg=#8ac6f2
 
 " Syntax highlighting
-hi Comment      guifg=#A7A7A7 gui=italic
+hi Comment      guifg=#A7A7A7 gui=italic ctermfg=lightgrey
 hi Todo         guibg=bg guifg=#F1F13A gui=underline
-hi Constant     guifg=#E04331 gui=none
-hi String       guifg=#95e454 gui=italic
-hi Identifier   guifg=#cae682 gui=none
-hi Function     guifg=#cae682 gui=none
-hi Type         guifg=#D4EB9C gui=none
-hi Statement    guifg=#8ac6f2 gui=none
-hi Keyword      guifg=#8ac6f2 gui=none
-hi PreProc      guifg=#81BDCC gui=none
-hi Number       guifg=#F5773C gui=none
+hi Constant     guifg=#E04331 gui=none 
+hi String       guifg=#95e454 gui=italic 
+hi Identifier   guifg=#cae682 gui=none 
+hi Function     guifg=#cae682 gui=none ctermfg=lightgrey
+hi Type         guifg=#D4EB9C gui=none ctermfg=lightblue
+hi Statement    guifg=#8ac6f2 gui=none ctermfg=lightred
+hi Keyword      guifg=#8ac6f2 gui=none 
+hi PreProc      guifg=#81BDCC gui=none ctermfg=lightgrey
+hi Number       guifg=#F5773C gui=none ctermfg=lightgreen
 hi Boolean      guifg=#E04331 gui=underline
 hi Special      guifg=#e7f6da gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
