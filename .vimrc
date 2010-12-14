@@ -1,7 +1,14 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-colorscheme efrum
+if has("gui_running")
+  colorscheme efrum
+
+  " Display a warning for trailing whitespace
+  match Warning /\s\+$/
+else
+  colorscheme efrum_terminal
+end
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -48,9 +55,6 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
 endif
-
-" Display a warning for trailing whitespace
-match Warning /\s\+$/
 
 " Search stuff
 set hlsearch        " Use search highlighting
@@ -374,9 +378,6 @@ let g:syntastic_auto_loc_list=1
 
 " Set up the yankring history location
 let g:yankring_history_dir = "~/.vim/tmp/yankring"
-
-" Set up the SyntaxAttr.vim plugin
-" autocmd FuncUndefined * exe 'runtime autoload/' . expand('<afile>') . '.vim'
 
 " Tell the lusty plugins to be quiet about not having Ruby support in the
 " terminal
