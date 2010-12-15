@@ -40,7 +40,7 @@ hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
 
 " Syntax highlighting
 hi Boolean      guifg=#E04331 gui=underline
-hi Comment      guifg=#A7A7A7 gui=italic
+hi Comment      guifg=#A7A7A7
 hi Constant     guifg=#E04331 gui=none 
 hi Error        guifg=#e7f6da guibg=#3A0505
 hi Function     guifg=#cae682 gui=none
@@ -50,7 +50,7 @@ hi Number       guifg=#F5773C gui=none
 hi PreProc      guifg=#81BDCC gui=none
 hi Special      guifg=#e7f6da gui=none
 hi Statement    guifg=#8ac6f2 gui=none
-hi String       guifg=#95e454 gui=italic
+hi String       guifg=#95e454
 hi Tag          gui=underline
 hi Todo         guibg=bg guifg=#F1F13A gui=underline
 hi Type         guifg=#D4EB9C gui=none
