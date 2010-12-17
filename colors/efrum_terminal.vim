@@ -37,3 +37,8 @@ hi String       ctermfg=lightblue
 hi Todo         ctermfg=yellow ctermbg=black
 hi Type         ctermfg=lightblue
 
+" Diff highlighting
+hi diffAdded    ctermfg=green 
+hi diffRemoved  ctermfg=darkred
+hi diffNewFile  ctermfg=green
+
