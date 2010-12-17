@@ -23,7 +23,6 @@ set showcmd         " display incomplete commands
 set nowrap          " nowrap!
 set number          " gotta have my line numbers
 set noerrorbells    " no error bells
-set visualbell
 set hidden          " allow buffer switching without saving
 
 set expandtab       " set up spaces as tabs
@@ -130,8 +129,7 @@ if has("gui_running")
     set guioptions-=m "Get rid of the menu bar (almost as good as full screen)
 
     " Set up copy and paste so they work more like other apps
-    nmap <C-V> "+gP
-    imap <C-V> <ESC><C-V>i
+    imap <C-V> <ESC>"+gPi
     vmap <C-C> "+y
   end
 
@@ -140,8 +138,6 @@ if has("gui_running")
   if has("transparency")
     set transparency=1        " a little transparency just for fun
   endif
-
-
 
   " Customize tab labels so they show just the file name http://old.nabble.com/tabline-showing-only-the-basename-td20813639.html
   set guitablabel=%{GuiTabLabel()}
