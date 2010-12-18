@@ -42,3 +42,8 @@ hi diffAdded    ctermfg=green
 hi diffRemoved  ctermfg=darkred
 hi diffNewFile  ctermfg=green
 
+" Git commits
+hi gitcommitSummary ctermfg=lightblue
+hi gitcommitOverFlow ctermbg=darkred ctermfg=white
+hi gitcommitSelectedFile ctermfg=lightgreen
+
