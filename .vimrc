@@ -130,6 +130,7 @@ if has("gui_running")
 
     " Set up copy and paste so they work more like other apps
     imap <C-V> <ESC>"+gPi
+    cmap <C-V> <C-R>+
     vmap <C-C> "+y
   end
 
@@ -235,6 +236,15 @@ map <leader>tl :TlistToggle<CR>
 "Fast editing of .vimrc
 map <leader>vimrc :tabedit $MYVIMRC<CR>
 
+" Quickly create a new tab
+map <A-t> :tabnew<CR>
+
+" Move to the next tab right with the right arrow key
+map <C-right> :tabn<CR>
+
+" Move to the next tab left with the left arrow key
+map <C-left> :tabp<CR>
+
 " Allow cursor movements during insert mode
 imap <C-h> <C-o>h
 imap <C-j> <C-o>j
@@ -244,6 +254,9 @@ imap <C-d> <end>
 
 " hitting jj will jump out of insert mode
 imap jj <esc>
+
+" hitting kk will jump out of insert mode
+imap kk <esc>
 
 " Quickly add a semicolon to the end of the line (there's probably a much
 " better way to do this)
@@ -382,7 +395,3 @@ let g:LustyJugglerSuppressRubyWarning = 1
 " Continue ConqueTerm shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
 
-" Read in extra work files if they're thre
-if filereadable(expand("~/.vim/work_extras/*.vim"))
-  source ~/.vim/work_extras/*.vim
-endif
