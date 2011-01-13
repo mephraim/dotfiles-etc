@@ -34,6 +34,12 @@ set smarttab
 
 set smartindent     " Indent based on the previous line
 
+" Allow the cursor to move past the end of the line in visual block mode
+set virtualedit=block
+
+" Show a menu when I hit tab in command mode
+set wildmenu
+
 " ending with the double slash includes the full path in the filename
 " of the swap files to avoid conflicts
 set directory=~/.vim/tmp//
@@ -100,9 +106,6 @@ if has("autocmd")
 
   autocmd FileType rspec :let g:syntastic_quiet_warnings=1
 
-  " Auto source the vimrc file when it is updated
-  autocmd bufwritepost .vimrc source $MYVIMRC
-
   augroup END
 else
 
@@ -127,6 +130,7 @@ if has("gui_running")
   " if there's a gui and it's not Macvim, assume it's something like gvim
   if !has("gui_macvim")
     set guioptions-=m "Get rid of the menu bar (almost as good as full screen)
+    set guioptions-=e "Get rid of the GUI tabs (they cause problems with fullscreen)
 
     " Set up copy and paste so they work more like other apps
     imap <C-V> <ESC>"+gPi
@@ -143,55 +147,55 @@ if has("gui_running")
   " Customize tab labels so they show just the file name http://old.nabble.com/tabline-showing-only-the-basename-td20813639.html
   set guitablabel=%{GuiTabLabel()}
 
-  " set up tab labels with tab number, buffer name, number of windows 
-  function! GuiTabLabel() 
-    let label = '' 
-    let bufnrlist = tabpagebuflist(v:lnum) 
+  " set up tab labels with tab number, buffer name, number of windows
+  function! GuiTabLabel()
+    let label = ''
+    let bufnrlist = tabpagebuflist(v:lnum)
 
-    " Add '+' if one of the buffers in the tab page is modified 
-    for bufnr in bufnrlist 
-      if getbufvar(bufnr, "&modified") 
-        let label = '+' 
-        break 
-      endif 
-    endfor 
+    " Add '+' if one of the buffers in the tab page is modified
+    for bufnr in bufnrlist
+      if getbufvar(bufnr, "&modified")
+        let label = '+'
+        break
+      endif
+    endfor
 
-    " Append the tab number 
-    let label .= tabpagenr().': ' 
+    " Append the tab number
+    let label .= tabpagenr().': '
 
-    " Append the buffer name 
-    let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1]) 
-    if name == '' 
-      " give a name to no-name documents 
-      if &buftype=='quickfix' 
-        let name = '[Quickfix List]' 
-      else 
-        let name = '[No Name]' 
-      endif 
-    else 
-      " get only the file name 
-      let name = fnamemodify(name,":t") 
-    endif 
-    let label .= name 
+    " Append the buffer name
+    let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
+    if name == ''
+      " give a name to no-name documents
+      if &buftype=='quickfix'
+        let name = '[Quickfix List]'
+      else
+        let name = '[No Name]'
+      endif
+    else
+      " get only the file name
+      let name = fnamemodify(name,":t")
+    endif
+    let label .= name
 
-    " Append the number of windows in the tab page 
-    let wincount = tabpagewinnr(v:lnum, '$') 
-    return label . '  [' . wincount . ']' 
+    " Append the number of windows in the tab page
+    let wincount = tabpagewinnr(v:lnum, '$')
+    return label . '  [' . wincount . ']'
   endfunction
-endif 
+endif
 
 " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
 set listchars=trail:·,tab:▸\ ,eol:¬,extends:…,precedes:…
 
 " Show ↪ at the beginning of wrapped lines.
 let &sbr = nr2char(8618).' '
- 
+
 " Show some context when scrolling
 set scrolloff=2
 
 " Status line """""""""""""""""""""""""""""""""""""
 
-set laststatus=2 " Always show the status line 
+set laststatus=2 " Always show the status line
 set statusline=%f\ %y " Start with a basic status line
 
 " Syntastic errors
@@ -201,7 +205,6 @@ set statusline+=%*
 
 " Fugitive
 set statusline+=\ %{fugitive#statusline()}
-
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up persistent undo for versions of vim that support it
