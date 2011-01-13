@@ -101,9 +101,6 @@ if has("autocmd")
     \   exe "normal! g`\"" |
     \ endif
 
-  " Automatically detect tabs
-  autocmd BufReadPost * :DetectIndent
-
   autocmd FileType rspec :let g:syntastic_quiet_warnings=1
 
   augroup END
