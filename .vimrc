@@ -181,6 +181,60 @@ if has("gui_running")
   endfunction
 endif
 
+" Custom tabline
+function MyTabLine()
+  let tabline = ''
+  let highest_tab_num = tabpagenr('$')
+
+  " Loop over all of the current tabs
+  for i in range(highest_tab_num)
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let tabline .= '%#TabLineSel#'
+    else
+      let tabline .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let tabline .= '%' . (i + 1) . 'T'
+
+    " the label is made by MyTabLabel()
+    let tabline .= ' %{MyTabLabel(' . (i + 1) . ')} '
+
+    " If this isn't the last tab, put in a separator
+    if (i + 1) != highest_tab_num
+      let tabline .= '%#Normal#%T|'
+    endif
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let tabline .= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1
+    let tabline .= '%=%#TabLine#%999X ✖ '
+  endif
+
+  return tabline
+endfunction
+
+" Custom tab label
+function MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+
+  let bufname = bufname(buflist[winnr - 1])
+  if len(bufname) < 1
+    return '[No Name]'
+  else
+    let bufname_parts = split(bufname, '/')
+    return bufname_parts[-1]
+  endif
+endfunction
+
+" Set the custom tabline
+set tabline=%!MyTabLine()
+
 " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
 set listchars=trail:·,tab:▸\ ,eol:¬,extends:…,precedes:…
 
