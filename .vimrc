@@ -213,7 +213,7 @@ if v:version >= 703
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Leader stuff """""""""""""""""""""""""""""""""""""
+" Mappings """""""""""""""""""""""""""""""""""""
 let mapleader = ","
 
 " Ack for the current word
@@ -320,6 +320,9 @@ map <silent> <leader>ct :CommandT<CR>
 
 " Remove trailing whitespace
 map <leader>rmtws :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Maps the combination of w and % to expand the out to the current word
+cmap w% <c-r>=expand("<cword>")<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
