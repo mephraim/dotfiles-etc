@@ -34,13 +34,11 @@ hi SignColumn   guibg=#0A0A0A
 hi SpecialKey   guifg=#808080 guibg=#0A0A0A gui=none
 hi StatusLine   guifg=#f6f3e8 guibg=#2B4133 gui=none
 hi StatusLineNC guifg=#857b6f guibg=#181B22 gui=none
-hi TabLine      guifg=#A7A7A7 guibg=bg gui=none
-hi TabLineFill  guifg=bg
 hi TabLineSel   guifg=#D4EB9C
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
 hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
-hi WildMenu     guifg=#8ac6f2 guibg=#2B4133 gui=underline
+hi WildMenu     guifg=#E04331 guibg=#2B4133
 
 " Syntax highlighting
 hi Boolean      guifg=#E04331 gui=underline
@@ -99,3 +97,6 @@ hi wikiLink guifg=#95e454 gui=underline
 " HTML
 hi htmlBold guifg=#E04331
 hi htmlUnderline gui=underline
+
+" GitStatus
+hi GitStatusLine guifg=#D4EB9C guibg=bg

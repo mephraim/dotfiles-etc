@@ -19,8 +19,10 @@ endif
 
 " General colors
 hi Directory    ctermfg=white
+hi Folded       ctermfg=lightgrey
 hi LineNr       ctermfg=darkgrey
 hi NonText      ctermfg=darkgrey
+hi TabLineSel   ctermfg=green
 hi Title        ctermfg=green
 hi VertSplit    ctermbg=white
 hi Visual       ctermbg=darkgreen ctermfg=black
@@ -34,7 +36,7 @@ hi PreProc      ctermfg=lightgrey
 hi Special      ctermfg=lightblue
 hi Statement    ctermfg=darkred
 hi String       ctermfg=lightblue
-hi Todo         ctermfg=yellow ctermbg=black
+hi Todo         ctermfg=yellow ctermbg=none
 hi Type         ctermfg=lightblue
 
 " Diff highlighting
@@ -47,3 +49,5 @@ hi gitcommitSummary ctermfg=lightblue
 hi gitcommitOverFlow ctermbg=darkred ctermfg=white
 hi gitcommitSelectedFile ctermfg=lightgreen
 
+" GitStatus
+hi GitStatusLine ctermfg=black

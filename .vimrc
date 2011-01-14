@@ -182,7 +182,7 @@ if has("gui_running")
 endif
 
 " Custom tabline
-function MyTabLine()
+function! MyTabLine()
   let tabline = ''
   let highest_tab_num = tabpagenr('$')
 
@@ -192,7 +192,7 @@ function MyTabLine()
     if i + 1 == tabpagenr()
       let tabline .= '%#TabLineSel#'
     else
-      let tabline .= '%#TabLine#'
+      let tabline .= '%#Normal#'
     endif
 
     " set the tab page number (for mouse clicks)
@@ -208,18 +208,18 @@ function MyTabLine()
   endfor
 
   " after the last tab fill with TabLineFill and reset tab page nr
-  let tabline .= '%#TabLineFill#%T'
+  let tabline .= '%#Normal#%T'
 
   " right-align the label to close the current tab page
   if tabpagenr('$') > 1
-    let tabline .= '%=%#TabLine#%999X ✖ '
+    let tabline .= '%=%#Normal#%999X ✖ '
   endif
 
   return tabline
 endfunction
 
 " Custom tab label
-function MyTabLabel(n)
+function! MyTabLabel(n)
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
 
@@ -247,7 +247,7 @@ set scrolloff=2
 " Status line """""""""""""""""""""""""""""""""""""
 
 set laststatus=2 " Always show the status line
-set statusline=%f\ %y " Start with a basic status line
+set statusline=\ %f\ %y " Start with a basic status line
 
 " Syntastic errors
 set statusline+=%#warningmsg#
@@ -255,7 +255,10 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " Fugitive
-set statusline+=\ %{fugitive#statusline()}
+set statusline+=\ 
+set statusline+=%#GitStatusLine#
+set statusline+=%{fugitive#statusline()}
+set statusline+=%*
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up persistent undo for versions of vim that support it
