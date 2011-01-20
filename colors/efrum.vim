@@ -32,10 +32,6 @@ hi Normal       guifg=#f6f3e8 guibg=#0A0A0A gui=none
 hi Search       guibg=#E4F565 guifg=#000000
 hi SignColumn   guibg=#0A0A0A
 hi SpecialKey   guifg=#808080 guibg=#0A0A0A gui=none
-hi StatusLine   guifg=#D4EB9C gui=none
-hi StatusLineNC guifg=bg guibg=bg
-hi StatusLineFile guibg=bg
-hi StatusLineFileType guifg=#8ac6f2
 hi TabLineSel   guifg=#D4EB9C
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
@@ -69,14 +65,21 @@ if has("gui_running")
   endif
 endif
 
+" Status Line
+hi StatusLine         guifg=#95e454 guibg=#181B22 gui=none
+hi StatusLineNC       guifg=#181B22 guibg=#181B22
+hi StatusLineFile     guibg=#181B22
+hi StatusLineFileType guifg=#8ac6f2 guibg=bg
+hi StatusLineGit      guifg=#D4EB9C guibg=bg
+
 " Diff highlighting
-hi DiffAdd    guibg=#D1FFB6 guifg=#080C06 
+hi DiffAdd    guibg=#D1FFB6 guifg=#080C06
 hi DiffChange guibg=#0F1308 guifg=NONE
 hi DiffDelete guibg=#290700 guifg=#FC5B3B
-hi DiffText   guibg=#D1FFB6 guifg=#080C06  
+hi DiffText   guibg=#D1FFB6 guifg=#080C06
 
 " Syntastic
-hi SyntasticError guibg=bg guifg=#F11818
+hi SyntasticError   guibg=bg guifg=#F11818
 hi SyntasticWarning guibg=bg guifg=#F1F13A
 
 " Taglist
@@ -99,6 +102,3 @@ hi wikiLink guifg=#95e454 gui=underline
 " HTML
 hi htmlBold guifg=#E04331
 hi htmlUnderline gui=underline
-
-" GitStatus
-hi GitStatusLine guifg=#D4EB9C guibg=bg

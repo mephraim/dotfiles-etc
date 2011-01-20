@@ -22,13 +22,17 @@ hi Directory    ctermfg=white
 hi Folded       ctermfg=lightgrey
 hi LineNr       ctermfg=darkgrey
 hi NonText      ctermfg=darkgrey
-hi StatusLine   ctermfg=black ctermbg=darkgreen
-hi StatusLineNC ctermfg=black ctermbg=white
 hi TabLineSel   ctermfg=green
 hi Title        ctermfg=green
-hi VertSplit    ctermbg=white
+hi VertSplit    ctermfg=black ctermbg=black 
 hi Visual       ctermbg=darkgreen ctermfg=black
 hi WildMenu     ctermfg=black ctermbg=lightgreen
+
+" Status Line
+hi StatusLine         ctermfg=black ctermbg=green
+hi StatusLineNC       ctermfg=black ctermbg=black
+hi StatusLineFileType ctermfg=blue 
+hi StatusLineGit      ctermfg=darkgreen
 
 " Syntax highlighting
 hi Boolean      ctermfg=lightred
