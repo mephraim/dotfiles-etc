@@ -246,20 +246,24 @@ set scrolloff=2
 
 " Status line """""""""""""""""""""""""""""""""""""
 set laststatus=2  " Always show the status line
-set statusline=\ ●\ "Show an indicator for the current window
-set statusline+=%#StatusLineFile#[%f]    " Show the file path to start with
-set statusline+=%#StatusLineFileType#%y "Then show the file type
+set statusline=%!SetStatusLine()
 
-" Fugitive
-set statusline+=%#StatusLineGit#
-set statusline+=%{fugitive#statusline()}
+function! SetStatusLine()
+  set statusline=\ ●\ "Show an indicator for the current window
+  set statusline+=%#StatusLineFile#[%f]    " Show the file path to start with
+  set statusline+=%#StatusLineFileType#%y "Then show the file type
 
-" Syntastic errors
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+  " Fugitive
+  set statusline+=%#StatusLineGit#
+  set statusline+=%{fugitive#statusline()}
 
-set statusline+=%#*#
+  " Syntastic errors
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+
+  set statusline+=%#*#
+endfunction!
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up persistent undo for versions of vim that support it
