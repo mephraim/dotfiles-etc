@@ -454,3 +454,7 @@ let g:LustyJugglerSuppressRubyWarning = 1
 " Continue ConqueTerm shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
 
+" Setup indent guides
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+
