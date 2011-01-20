@@ -245,9 +245,10 @@ let &sbr = nr2char(8618).' '
 set scrolloff=2
 
 " Status line """""""""""""""""""""""""""""""""""""
-
-set laststatus=2 " Always show the status line
-set statusline=\ %f\ %y " Start with a basic status line
+set laststatus=2  " Always show the status line
+set statusline=\ ▶\  "Show an indicator for the current window
+set statusline+=%#StatusLineFile#%f\    " Show the file path to start with
+set statusline+=%#StatusLineFileType#%y "Then show the file type
 
 " Syntastic errors
 set statusline+=%#warningmsg#
@@ -255,10 +256,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " Fugitive
-set statusline+=\ 
 set statusline+=%#GitStatusLine#
 set statusline+=%{fugitive#statusline()}
-set statusline+=%*
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up persistent undo for versions of vim that support it

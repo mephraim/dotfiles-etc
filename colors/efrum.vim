@@ -32,8 +32,10 @@ hi Normal       guifg=#f6f3e8 guibg=#0A0A0A gui=none
 hi Search       guibg=#E4F565 guifg=#000000
 hi SignColumn   guibg=#0A0A0A
 hi SpecialKey   guifg=#808080 guibg=#0A0A0A gui=none
-hi StatusLine   guifg=#f6f3e8 guibg=#2B4133 gui=none
-hi StatusLineNC guifg=#857b6f guibg=#181B22 gui=none
+hi StatusLine   guifg=#D4EB9C gui=none
+hi StatusLineNC guifg=bg guibg=bg
+hi StatusLineFile guibg=bg
+hi StatusLineFileType guifg=#8ac6f2
 hi TabLineSel   guifg=#D4EB9C
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
