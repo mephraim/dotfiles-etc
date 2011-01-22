@@ -249,9 +249,10 @@ set laststatus=2  " Always show the status line
 set statusline=%!SetStatusLine()
 
 function! SetStatusLine()
-  set statusline=\ ●\ "Show an indicator for the current window
-  set statusline+=%#StatusLineFile#[%f]    " Show the file path to start with
-  set statusline+=%#StatusLineFileType#%y "Then show the file type
+  set statusline=\ ●\                     " Show an indicator for the current window
+  set statusline+=%#Warning#%m            " Show if the file has been modified
+  set statusline+=%#StatusLineFile#[%f]   " Show the file path to start with
+  set statusline+=%#StatusLineFileType#%y " Then show the file type
 
   " Fugitive
   set statusline+=%#StatusLineGit#
@@ -261,6 +262,13 @@ function! SetStatusLine()
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
+
+  " Right aligned items
+  set statusline+=%=
+  set statusline+=%<
+  set statusline+=%#Comment#   " Set the normal highlight color
+  set statusline+=[%l,%c]     " Show the current line and column
+  set statusline+=[%L\ lines] " Show the number of lines
 
   set statusline+=%#*#
 endfunction!
