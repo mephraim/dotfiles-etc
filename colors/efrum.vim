@@ -36,7 +36,7 @@ hi TabLineSel   guifg=#D4EB9C
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
 hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
-hi WildMenu     guifg=#E04331 guibg=#2B4133
+hi WildMenu     guifg=#E04331 guibg=#181B22
 
 " Syntax highlighting
 hi Boolean      guifg=#E04331 gui=underline
