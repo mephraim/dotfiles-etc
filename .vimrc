@@ -248,10 +248,18 @@ set scrolloff=2
 set laststatus=2  " Always show the status line
 set statusline=%!SetStatusLine()
 
+let g:showFullPathInStatusLine = 0
+
 function! SetStatusLine()
   set statusline=\ ●\                     " Show an indicator for the current window
   set statusline+=%#Warning#%m            " Show if the file has been modified
-  set statusline+=%#StatusLineFile#[%f]   " Show the file path to start with
+
+  if g:showFullPathInStatusLine
+    set statusline+=%#StatusLineFile#[%f]   " Show the full path to the file
+  else
+    set statusline+=%#StatusLineFile#[%t]   " Just show the file name
+  endif
+
   set statusline+=%#StatusLineFileType#%y " Then show the file type
 
   " Fugitive
@@ -272,6 +280,12 @@ function! SetStatusLine()
 
   set statusline+=%#*#
 endfunction!
+
+function! ToggleFullPathInStatusLine()
+  let g:showFullPathInStatusLine = !g:showFullPathInStatusLine
+  call SetStatusLine()
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up persistent undo for versions of vim that support it
@@ -281,10 +295,12 @@ if v:version >= 703
   set undolevels=1000
   set undoreload=1000
 endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Mappings """""""""""""""""""""""""""""""""""""
 let mapleader = ","
+
+" Toggle the full path showing in the status line
+map <silent> <leader>fp :call ToggleFullPathInStatusLine()<CR>
 
 " Ack for the current word
 map <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR>
