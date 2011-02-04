@@ -110,6 +110,12 @@ else
 
 endif " has("autocmd")
 
+if has("clipboard")
+  " Yanking to the unnamed buffer will always put the
+  " text on the system clipboard
+  set clipboard=unnamed
+endif
+
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
