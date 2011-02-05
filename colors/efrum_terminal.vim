@@ -19,13 +19,13 @@ endif
 
 " General colors
 hi Directory    ctermfg=white
-hi Folded       ctermfg=lightgrey
+hi Folded       ctermfg=black ctermbg=gray
 hi LineNr       ctermfg=darkgrey
 hi NonText      ctermfg=darkgrey
 hi TabLineSel   ctermfg=green
 hi Title        ctermfg=green
 hi VertSplit    ctermfg=black ctermbg=black 
-hi Visual       ctermbg=darkgreen ctermfg=black
+hi Visual       ctermfg=darkgreen ctermbg=black
 hi WildMenu     ctermfg=black ctermbg=lightgreen
 
 " Status Line

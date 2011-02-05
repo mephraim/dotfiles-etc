@@ -110,12 +110,6 @@ else
 
 endif " has("autocmd")
 
-if has("clipboard")
-  " Yanking to the unnamed buffer will always put the
-  " text on the system clipboard
-  set clipboard=unnamed
-endif
-
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -134,6 +128,12 @@ if has("gui_running")
   if !has("gui_macvim")
     set guioptions-=m "Get rid of the menu bar (almost as good as full screen)
     set guioptions-=e "Get rid of the GUI tabs (they cause problems with fullscreen)
+
+    set guioptions-=r "Get rid of the right scrollbar
+    set guioptions-=R "Get rid of the right scrollbar
+    set guioptions-=l "Get rid of the left scrollbar
+    set guioptions-=L "Get rid of the left scrollbar
+    set guioptions-=b "Get rid of the bottom scrollbar
 
     " Set up copy and paste so they work more like other apps
     imap <C-V> <ESC>"+gPi
@@ -280,8 +280,9 @@ function! SetStatusLine()
   " Right aligned items
   set statusline+=%=
   set statusline+=%<
-  set statusline+=%#Comment#   " Set the normal highlight color
+  set statusline+=%#Comment#
   set statusline+=[%l,%c]     " Show the current line and column
+  set statusline+=[%p%%]      " Show the current % through the file
   set statusline+=[%L\ lines] " Show the number of lines
 
   set statusline+=%#*#
