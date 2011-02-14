@@ -139,6 +139,9 @@ if has("gui_running")
     imap <C-V> <ESC>"+gPi
     cmap <C-V> <C-R>+
     vmap <C-C> "+y
+
+    " Adjust the columns and lines to make the page actually full screen
+    map <silent> <leader>fs :set columns+=1 lines+=1<CR>
   end
 
   set guicursor=a:blinkon0  " no blinking cursor
@@ -360,9 +363,6 @@ map <leader>sv :vsplit<CR>
 
 " quick horizontal split
 map <leader>sh :split<CR>
-
-" Quick full screen toggle
-map <leader>fs :set invfullscreen<CR>
 
 " Quickly set up for word processing type stuff 
 map <leader>wp :set linebreak wrap <CR> :set display+=lastline <CR> :setlocal spell spelllang=en_gb <CR> 
