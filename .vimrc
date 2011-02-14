@@ -458,16 +458,6 @@ function! MyFoldText()
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""
 
-" Showmarks config  """"""""""""""""""""""""""""""""
-
-" Turn showmarks off by default
-let g:showmarks_enable=0
-
-" Don't show automatic marks
-let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Error coloring for the JSlint plugin
 let g:jslint_highlight_color="#6F2828"  
 
