@@ -10,6 +10,8 @@ else
   colorscheme efrum_terminal
 end
 
+let mapleader = ","
+
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -141,7 +143,7 @@ if has("gui_running")
     vmap <C-C> "+y
 
     " Adjust the columns and lines to make the page actually full screen
-    map <silent> <leader>fs :set columns+=1 lines+=1<CR>
+    nmap <leader>full :set columns+=1 lines+=1<CR>
   end
 
   set guicursor=a:blinkon0  " no blinking cursor
@@ -307,7 +309,6 @@ if v:version >= 703
 endif
 
 " Mappings """""""""""""""""""""""""""""""""""""
-let mapleader = ","
 
 " Toggle the full path showing in the status line
 map <silent> <leader>fp :call ToggleFullPathInStatusLine()<CR>
