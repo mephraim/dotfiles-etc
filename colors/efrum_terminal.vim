@@ -24,7 +24,7 @@ hi LineNr       ctermfg=darkgrey
 hi NonText      ctermfg=darkgrey
 hi TabLineSel   ctermfg=green
 hi Title        ctermfg=green
-hi VertSplit    ctermfg=black ctermbg=black 
+hi VertSplit    ctermfg=white ctermbg=white 
 hi Visual       ctermfg=darkgreen ctermbg=black
 hi WildMenu     ctermfg=black ctermbg=lightgreen
 
