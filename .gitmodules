@@ -61,3 +61,6 @@
 [submodule "bundle/zencoding"]
 	path = bundle/zencoding
 	url = https://github.com/mattn/zencoding-vim.git
+[submodule "bundle/colorizer"]
+	path = bundle/colorizer
+	url = https://github.com/lilydjwg/colorizer.git
