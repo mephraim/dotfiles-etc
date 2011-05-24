@@ -124,18 +124,17 @@ endif
 if has("gui_running")
   set lines=150 columns=230 " Maximize gvim window.
 
-  set guioptions-=T " get rid of the toolbar
+  set guioptions-=T " Get rid of the toolbar
+  set guioptions-=e " Get rid of the GUI tabs
+  set guioptions-=r " Get rid of the right scrollbar
+  set guioptions-=R " Get rid of the right scrollbar
+  set guioptions-=l " Get rid of the left scrollbar
+  set guioptions-=L " Get rid of the left scrollbar
+  set guioptions-=b " Get rid of the bottom scrollbar
 
   " if there's a gui and it's not Macvim, assume it's something like gvim
   if !has("gui_macvim")
     set guioptions-=m "Get rid of the menu bar (almost as good as full screen)
-    set guioptions-=e "Get rid of the GUI tabs (they cause problems with fullscreen)
-
-    set guioptions-=r "Get rid of the right scrollbar
-    set guioptions-=R "Get rid of the right scrollbar
-    set guioptions-=l "Get rid of the left scrollbar
-    set guioptions-=L "Get rid of the left scrollbar
-    set guioptions-=b "Get rid of the bottom scrollbar
 
     " Set up copy and paste so they work more like other apps
     imap <C-V> <ESC>"+gPi
@@ -365,11 +364,35 @@ map <leader>sv :vsplit<CR>
 " quick horizontal split
 map <leader>sh :split<CR>
 
-" Quickly set up for word processing type stuff 
-map <leader>wp :set linebreak wrap <CR> :set display+=lastline <CR> :setlocal spell spelllang=en_gb <CR> 
+" Quick full screen toggle
+map <leader>fs :set invfullscreen<CR>
 
-" Turn off word processing stuff
-map <leader>nwp :set wrap! linebreak! spell!<CR> 
+" Set up for word processing """"""""""""""""""""""""
+
+map <silent> <leader>wp :call <SID>turnOnWordProcessing()<CR>
+function! s:turnOnWordProcessing()
+  setlocal linebreak wrap
+  setlocal display+=lastline
+  setlocal spell spelllang=en_gb
+  setlocal nonumber
+
+  setlocal columns=100
+
+  " Adds a little extra space on the left side
+  setlocal foldcolumn=3
+
+  map j gj
+  map k gk
+endfunction
+
+map <silent> <leader>nwp :call <SID>turnOffWordProcessing()<CR>
+function! s:turnOffWordProcessing()
+  set nowrap
+  set nolinebreak
+  set nospell
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " For Ruby focused testing """"""""""""""""""""""""""
 map <silent> <leader>rb :RunAllRubyTests<CR>
@@ -378,7 +401,7 @@ map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
 map <silent> <leader>rl :RunLastRubyTest<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Show the yankring """"""""""""""""""""""""""""""""" 
+" Show the yankring """""""""""""""""""""""""""""""""
 map <leader>yr :YRShow<cr>
 
 " Quickly generate some lorem ipsum text
@@ -390,7 +413,7 @@ map <leader>wr :set wrap!<CR>
 " Quickly turn invisibles on and off
 map <leader>li :set list!<CR>
 
-" Encode HTML entities 
+" Encode HTML entities
 map <leader>enc :HTMLSpecialChars<CR>
 
 " Unencode HTML entities
