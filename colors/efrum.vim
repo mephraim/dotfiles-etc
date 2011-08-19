@@ -61,7 +61,7 @@ if has("gui_running")
   if has("gui_macvim")
     set guifont=Inconsolata:h16
   else
-    set guifont=Inconsolata\ Medium\ 15
+    set guifont=Inconsolata\ Medium\ 14
   endif
 endif
 

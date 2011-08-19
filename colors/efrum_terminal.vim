@@ -43,7 +43,7 @@ hi Number       ctermfg=lightgreen
 hi PreProc      ctermfg=lightgrey
 hi Special      ctermfg=lightblue
 hi Statement    ctermfg=darkred
-hi String       ctermfg=lightblue
+hi String       ctermfg=lightgreen
 hi Todo         ctermfg=yellow ctermbg=none
 hi Type         ctermfg=lightblue
 
@@ -59,3 +59,7 @@ hi gitcommitSelectedFile ctermfg=lightgreen
 
 " GitStatus
 hi GitStatusLine ctermfg=green
+
+" Syntastic
+hi SyntasticError   ctermfg=yellow
+hi SyntasticWarning ctermfg=red
