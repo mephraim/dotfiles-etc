@@ -381,8 +381,10 @@ function! s:turnOnWordProcessing()
   " Adds a little extra space on the left side
   setlocal foldcolumn=3
 
-  map j gj
-  map k gk
+  map <buffer> j gj
+  map <buffer> k gk
+
+  set syntax=txt
 endfunction
 
 map <silent> <leader>nwp :call <SID>turnOffWordProcessing()<CR>
