@@ -130,12 +130,12 @@ if has("gui_running")
   set guioptions-=L " Get rid of the left scrollbar
   set guioptions-=b " Get rid of the bottom scrollbar
 
+
   " if there's a gui and it's not Macvim, assume it's something like gvim
   if !has("gui_macvim")
     set guioptions-=m "Get rid of the menu bar (almost as good as full screen)
-
     " Set up copy and paste so they work more like other apps
-    imap <C-V> <ESC>"+gPi
+    imap <C-V> <ESC>"+gpi
     cmap <C-V> <C-R>+
     vmap <C-C> "+y
 
