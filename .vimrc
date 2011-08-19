@@ -103,8 +103,6 @@ if has("autocmd")
     \   exe "normal! g`\"" |
     \ endif
 
-  autocmd FileType rspec :let g:syntastic_quiet_warnings=1
-
   augroup END
 else
 
@@ -275,11 +273,6 @@ function! SetStatusLine()
   " Fugitive
   set statusline+=%#StatusLineGit#
   set statusline+=%{fugitive#statusline()}
-
-  " Syntastic errors
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
 
   " Right aligned items
   set statusline+=%=
@@ -489,13 +482,6 @@ let g:jslint_highlight_color="#6F2828"
 
 " Disable jslint for now"
 let g:jslint_disabled=1
-
-" Syntastic stuff """""""""""""""""""""""""""""""""""
-
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up the yankring history location
 let g:yankring_history_dir = "~/.vim/tmp/yankring"
