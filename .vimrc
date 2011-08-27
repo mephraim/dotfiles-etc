@@ -360,35 +360,6 @@ map <leader>sh :split<CR>
 " Quick full screen toggle
 map <leader>fs :set invfullscreen<CR>
 
-" Set up for word processing """"""""""""""""""""""""
-
-map <silent> <leader>wp :call <SID>turnOnWordProcessing()<CR>
-function! s:turnOnWordProcessing()
-  setlocal linebreak wrap
-  setlocal display+=lastline
-  setlocal spell spelllang=en_gb
-  setlocal nonumber
-
-  setlocal columns=100
-
-  " Adds a little extra space on the left side
-  setlocal foldcolumn=3
-
-  map <buffer> j gj
-  map <buffer> k gk
-
-  set syntax=txt
-endfunction
-
-map <silent> <leader>nwp :call <SID>turnOffWordProcessing()<CR>
-function! s:turnOffWordProcessing()
-  set nowrap
-  set nolinebreak
-  set nospell
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " For Ruby focused testing """"""""""""""""""""""""""
 map <silent> <leader>rb :RunAllRubyTests<CR>
 map <silent> <leader>rc :RunRubyFocusedContext<CR>
