@@ -22,6 +22,7 @@ hi Directory    ctermfg=white
 hi Folded       ctermfg=black ctermbg=gray
 hi LineNr       ctermfg=darkgrey
 hi NonText      ctermfg=darkgrey
+hi Spellbad     cterm=underline
 hi TabLineSel   ctermfg=green
 hi Title        ctermfg=green
 hi VertSplit    ctermfg=white ctermbg=white 
