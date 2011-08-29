@@ -468,3 +468,5 @@ let g:ConqueTerm_ReadUnfocused = 1
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 
+" Turn off the pyflakes quickfix list
+let g:pyflakes_use_quickfix = 0
