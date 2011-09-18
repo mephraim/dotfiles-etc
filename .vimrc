@@ -4,8 +4,9 @@ call pathogen#helptags()
 if has("gui_running")
   colorscheme efrum
 
-  " Display a warning for trailing whitespace
-  match Warning /\s\+$/
+  " Highlight trailing whitespace
+  au InsertEnter * match Warning /\s\+\%#\@<!$/
+  au InsertLeave * match Warning /\s\+$/
 else
   colorscheme efrum_terminal
 end
