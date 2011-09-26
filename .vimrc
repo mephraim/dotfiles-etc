@@ -8,6 +8,7 @@ if has("gui_running")
   au InsertEnter * match Warning /\s\+\%#\@<!$/
   au InsertLeave * match Warning /\s\+$/
 else
+  let &t_Co=256
   colorscheme efrum_terminal
 end
 
