@@ -1,4 +1,21 @@
 " Maintainer: Matt Ephraim
+" Available 16 colors:
+" Black
+" DarkBlue
+" DarkGreen
+" DarkCyan
+" DarkRed
+" DarkMagenta
+" Brown, DarkYellow
+" LightGray, LightGrey, Gray, Grey
+" DarkGray, DarkGrey
+" Blue, LightBlue
+" Green, LightGreen
+" Cyan, LightCyan
+" Red, LightRed
+" Magenta, LightMagenta
+" Yellow, LightYellow
+" White
 
 set background=dark
 
