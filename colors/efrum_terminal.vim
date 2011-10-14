@@ -30,7 +30,7 @@ let colors_name = "efrum_terminal"
 " Vim >= 7.0 specific colors
 if version >= 700
   hi MatchParen ctermbg=black ctermbg=darkred
-  hi Pmenu      ctermbg=darkgray ctermfg=white
+  hi Pmenu      ctermbg=black ctermfg=darkgrey
   hi PmenuSel   ctermbg=darkgreen ctermfg=black
 endif
 
@@ -42,8 +42,8 @@ hi NonText      ctermfg=darkgrey
 hi Spellbad     cterm=underline ctermfg=black
 hi TabLineSel   ctermfg=green
 hi Title        ctermfg=green
-hi VertSplit    ctermfg=white ctermbg=white 
-hi Visual       ctermfg=darkgreen ctermbg=black
+hi VertSplit    ctermfg=darkgrey ctermbg=darkgrey
+hi Visual       ctermfg=black ctermbg=darkgreen
 hi WildMenu     ctermfg=black ctermbg=lightgreen
 
 " Status Line
@@ -56,7 +56,7 @@ hi StatusLineGit      ctermfg=green
 " Syntax highlighting
 hi Boolean      ctermfg=lightred
 hi Comment      ctermfg=darkgrey
-hi Function     ctermfg=lightblue
+hi Function     ctermfg=blue
 hi Number       ctermfg=lightgreen
 hi PreProc      ctermfg=lightgrey
 hi Special      ctermfg=lightblue

@@ -36,7 +36,7 @@ hi TabLineSel   guifg=#D4EB9C
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 hi VertSplit    guifg=#181B22 guibg=#181B22 gui=none
 hi Visual       guifg=#f6f3e8 guibg=#1F4457 gui=none
-hi WildMenu     guifg=#E04331 guibg=#181B22
+hi WildMenu     guifg=#E04331 guibg=bg
 
 " Syntax highlighting
 hi Boolean      guifg=#E04331 gui=underline
@@ -66,9 +66,9 @@ if has("gui_running")
 endif
 
 " Status Line
-hi StatusLine         guifg=#95e454 guibg=#181B22 gui=none
-hi StatusLineNC       guifg=#181B22 guibg=#181B22
-hi StatusLineFile     guibg=#181B22
+hi StatusLine         guifg=#95e454 guibg=bg gui=none
+hi StatusLineNC       guifg=bg guibg=bg
+hi StatusLineFile     guibg=bg
 hi StatusLineFileType guifg=#8ac6f2 guibg=bg
 hi StatusLineGit      guifg=#D4EB9C guibg=bg
 
