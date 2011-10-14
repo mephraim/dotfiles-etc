@@ -238,7 +238,13 @@ function! MyTabLabel(n)
     return '[No Name]'
   else
     let bufname_parts = split(bufname, '/')
-    return bufname_parts[-1]
+
+    let bufnum = bufnr(buflist[winnr - 1])
+    if getbufvar(bufnum, '&modified')
+      return '+ ' . bufname_parts[-1]
+    else
+      return bufname_parts[-1]
+    endif
   endif
 endfunction
 
@@ -275,6 +281,7 @@ function! SetStatusLine()
   " Fugitive
   set statusline+=%#StatusLineGit#
   set statusline+=%{fugitive#statusline()}
+  set statusline+=%#StatusLine#
 
   " Right aligned items
   set statusline+=%=
