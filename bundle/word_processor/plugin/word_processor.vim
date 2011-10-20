@@ -26,9 +26,24 @@ function! s:turnOnWordProcessing()
   " Add a little bit of extra linespacing
   setlocal linespace=3
 
+  " Clear out any special showbreak symbols
+  setlocal showbreak=
+
   " Make j and k work normally for soft wrapped lines
-  map <buffer> j gj
-  map <buffer> k gk
+  noremap <buffer> j gj
+  noremap <buffer> k gk
+
+  " Make line navigation work normally for soft wrapped lines
+  noremap <buffer> $ g$
+  noremap <buffer> 0 g0
+  noremap <buffer> ^ g^
+
+  " Make I and A work normally for soft wrapped lines
+  noremap <buffer> I g0i
+  noremap <buffer> A g$i
+
+  " Make visual line select work for soft wrapped lines
+  noremap <buffer> V g^vg$
 endfunction
 
 command! WordProcessorOn :call <SID>turnOnWordProcessing()
