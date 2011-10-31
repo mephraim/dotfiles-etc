@@ -147,10 +147,6 @@ if has("gui_running")
 
   set guicursor=a:blinkon0  " no blinking cursor
 
-  if has("transparency")
-    set transparency=1        " a little transparency just for fun
-  endif
-
   " Customize tab labels so they show just the file name http://old.nabble.com/tabline-showing-only-the-basename-td20813639.html
   set guitablabel=%{GuiTabLabel()}
 
