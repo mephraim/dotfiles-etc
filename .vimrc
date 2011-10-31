@@ -49,7 +49,7 @@ set wildmenu
 set directory=~/.vim/tmp//
 
 " Don't use Ex mode, use Q for formatting
-map Q gq
+noremap Q gq
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -137,12 +137,12 @@ if has("gui_running")
   if !has("gui_macvim")
     set guioptions-=m "Get rid of the menu bar (almost as good as full screen)
     " Set up copy and paste so they work more like other apps
-    imap <C-V> <ESC>"+gpi
-    cmap <C-V> <C-R>+
-    vmap <C-C> "+y
+    inoremap <C-V> <ESC>"+gpi
+    cnoremap <C-V> <C-R>+
+    vnoremap <C-C> "+y
 
     " Adjust the columns and lines to make the page actually full screen
-    nmap <leader>full :set columns+=1 lines+=1<CR>
+    nnoremap <leader>full :set columns+=1 lines+=1<CR>
   end
 
   set guicursor=a:blinkon0  " no blinking cursor
@@ -309,112 +309,112 @@ if v:version >= 703
   set undoreload=1000
 endif
 
-" Mappings """""""""""""""""""""""""""""""""""""
+" mappings """""""""""""""""""""""""""""""""""""
 
 " Toggle the full path showing in the status line
-map <silent> <leader>fp :call ToggleFullPathInStatusLine()<CR>
+noremap <silent> <leader>fp :call ToggleFullPathInStatusLine()<CR>
 
 " Ack for the current word
-map <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR>
+noremap <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR>
 
 " NERDTree
-map <leader>n :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 
 " Quick buffer stuff
-map <leader>bd :bd<CR>
-map <leader>bdd :bd!<CR>
-map <leader>q :q<CR>
+noremap <leader>bd :bd<CR>
+noremap <leader>bdd :bd!<CR>
+noremap <leader>q :q<CR>
 
 " Quickly get rid of highlighting
-map <leader>nh :noh<CR>
+noremap <leader>nh :noh<CR>
 
 " Taglist
-map <leader>tl :TlistToggle<CR>
+noremap <leader>tl :TlistToggle<CR>
 
 "Fast editing of .vimrc
-map <leader>vimrc :tabedit $MYVIMRC<CR>
+noremap <leader>vimrc :tabedit $MYVIMRC<CR>
 
 " Quickly create a new tab
-map <A-t> :tabnew<CR>
+noremap <A-t> :tabnew<CR>
 
 " Move to the next tab right with the right arrow key
-map <C-right> :tabn<CR>
+noremap <C-right> :tabn<CR>
 
 " Move to the next tab left with the left arrow key
-map <C-left> :tabp<CR>
+noremap <C-left> :tabp<CR>
 
 " Allow cursor movements during insert mode
-imap <C-h> <C-o>h
-imap <C-j> <C-o>j
-imap <C-k> <C-o>k
-imap <C-l> <C-o>l
-imap <C-d> <end>
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
+inoremap <C-d> <end>
 
 " hitting jj will jump out of insert mode
-imap jj <esc>
+inoremap jj <esc>
 
 " hitting kk will jump out of insert mode
-imap kk <esc>
+inoremap kk <esc>
 
 " Quickly add a semicolon to the end of the line (there's probably a much
 " better way to do this)
-map <silent> <leader>; mZ$A;<C-c>`Z:delmarks Z<CR>
+noremap <silent> <leader>; mZ$A;<C-c>`Z:delmarks Z<CR>
 
 " quick vertical split
-map <leader>sv :vsplit<CR>
+noremap <leader>sv :vsplit<CR>
 
 " quick horizontal split
-map <leader>sh :split<CR>
+noremap <leader>sh :split<CR>
 
 " Quick full screen toggle
-map <leader>fs :set invfullscreen<CR>
+noremap <leader>fs :set invfullscreen<CR>
 
 " For Ruby focused testing """"""""""""""""""""""""""
-map <silent> <leader>rb :RunAllRubyTests<CR>
-map <silent> <leader>rc :RunRubyFocusedContext<CR>
-map <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
-map <silent> <leader>rl :RunLastRubyTest<CR>
+noremap <silent> <leader>rb :RunAllRubyTests<CR>
+noremap <silent> <leader>rc :RunRubyFocusedContext<CR>
+noremap <silent> <leader>rf :RunRubyFocusedUnitTest<CR>
+noremap <silent> <leader>rl :RunLastRubyTest<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Show the yankring """""""""""""""""""""""""""""""""
-map <leader>yr :YRShow<cr>
+noremap <leader>yr :YRShow<cr>
 
 " Quickly generate some lorem ipsum text
-map <leader>lorem :Loremipsum<CR>
+noremap <leader>lorem :Loremipsum<CR>
 
 " Quickly turn wrapping on and off
-map <leader>wr :set wrap!<CR>
+noremap <leader>wr :set wrap!<CR>
 
 " Quickly turn invisibles on and off
-map <leader>li :set list!<CR>
+noremap <leader>li :set list!<CR>
 
 " Encode HTML entities
-map <leader>enc :HTMLSpecialChars<CR>
+noremap <leader>enc :HTMLSpecialChars<CR>
 
 " Unencode HTML entities
-map <leader>uenc :HTMLSpecialCharsDecode<CR>
+noremap <leader>uenc :HTMLSpecialCharsDecode<CR>
 
 " Turn expandtab on and off
-map <silent> <leader>tabon :set expandtab!<CR>
-map <silent> <leader>taboff :set expandtab<CR>
+noremap <silent> <leader>tabon :set expandtab!<CR>
+noremap <silent> <leader>taboff :set expandtab<CR>
 
 " Create a ConqueTerm buffer shell  
-map <silent> <leader>cts :ConqueTerm bash<CR>
+noremap <silent> <leader>cts :ConqueTerm bash<CR>
 "
 " Create a horizontal split screen with a ConqueTerm buffer shell
-map <silent> <leader>ctsh :ConqueTermSplit bash<CR>
+noremap <silent> <leader>ctsh :ConqueTermSplit bash<CR>
 
 " Create a vertical split screen with a ConqueTerm buffer shell
-map <silent> <leader>ctsv :ConqueTermVSplit bash<CR>
+noremap <silent> <leader>ctsv :ConqueTermVSplit bash<CR>
 
 " Open the command + T browser window
-map <silent> <leader>ct :CommandT<CR>
+noremap <silent> <leader>ct :CommandT<CR>
 
 " Remove trailing whitespace
-map <leader>rmtws :%s/\s\+$//<cr>:let @/=''<CR>
+noremap <leader>rmtws :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Maps the combination of w and % to expand the out to the current word
-cmap w% <c-r>=expand("<cword>")<CR>
+cnoremap w% <c-r>=expand("<cword>")<CR>
 
 " Pulse the cursorline when navigation search matches
 nnoremap n n:call PulseCursorLine#Pulse()<CR>
