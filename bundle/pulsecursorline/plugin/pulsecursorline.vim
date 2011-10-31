@@ -1,6 +1,6 @@
 " Pulses the cursorline
 " Inspired by Steve Losh: https://bitbucket.org/sjl/dotfiles/src/372c5316463a/vim/.vimrc#cl-1458
-function! PulseCursorLine#Pulse()
+function! pulsecursorline#Pulse()
   setlocal cursorline
   let old_hi = s:GetCurrentHighlight()
 
@@ -37,5 +37,5 @@ endfunction
 function! s:PulseColor(color)
   exec "hi CursorLine guibg=" . a:color
   redraw
-  sleep 1m
+  sleep 15m
 endfunction

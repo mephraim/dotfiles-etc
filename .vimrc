@@ -413,8 +413,8 @@ noremap <leader>rmtws :%s/\s\+$//<cr>:let @/=''<CR>
 cnoremap w% <c-r>=expand("<cword>")<CR>
 
 " Pulse the cursorline when navigation search matches
-nnoremap n n:call PulseCursorLine#Pulse()<CR>
-nnoremap N N:call PulseCursorLine#Pulse()<CR>
+nnoremap n n:call pulsecursorline#Pulse()<CR>
+nnoremap N N:call pulsecursorline#Pulse()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
