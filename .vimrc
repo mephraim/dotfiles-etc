@@ -415,6 +415,10 @@ map <leader>rmtws :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Maps the combination of w and % to expand the out to the current word
 cmap w% <c-r>=expand("<cword>")<CR>
+
+" Pulse the cursorline when navigation search matches
+nnoremap n n:call PulseCursorLine#Pulse()<CR>
+nnoremap N N:call PulseCursorLine#Pulse()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 
@@ -479,3 +483,6 @@ let g:indent_guides_guide_size=1
 
 " Turn off the pyflakes quickfix list
 let g:pyflakes_use_quickfix = 0
+
+
+
