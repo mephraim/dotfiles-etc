@@ -40,7 +40,7 @@ function! s:turnOnWordProcessing()
 
   " Make I and A work normally for soft wrapped lines
   noremap <buffer> I g0i
-  noremap <buffer> A g$i
+  noremap <buffer> A g$a
 
   " Make visual line select work for soft wrapped lines
   noremap <buffer> V g^vg$
