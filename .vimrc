@@ -365,6 +365,20 @@ noremap <leader>sh :split<CR>
 " Quick full screen toggle
 noremap <leader>fs :set invfullscreen<CR>
 
+" Search for selected text, forwards or backwards. (http://vim.wikia.com/wiki/VimTip171)
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " For Ruby focused testing """"""""""""""""""""""""""
 noremap <silent> <leader>rb :RunAllRubyTests<CR>
 noremap <silent> <leader>rc :RunRubyFocusedContext<CR>
