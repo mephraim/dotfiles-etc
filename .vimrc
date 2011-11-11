@@ -494,5 +494,6 @@ let g:indent_guides_guide_size=1
 " Turn off the pyflakes quickfix list
 let g:pyflakes_use_quickfix = 0
 
-
+" Let supertab figure out the context for certain file types
+autocmd BufNewFile,BufRead *.js,*.py,*.rb let g:SuperTabDefaultCompletionType = "context"
 
