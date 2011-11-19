@@ -106,6 +106,9 @@ if has("autocmd")
     \ endif
 
   augroup END
+
+  " Resize splits when the window is resized
+  au VimResized * exe "normal! \<c-w>="
 else
 
   set autoindent " always set autoindenting on
@@ -185,6 +188,14 @@ if has("gui_running")
     let wincount = tabpagewinnr(v:lnum, '$')
     return label . '  [' . wincount . ']'
   endfunction
+
+  " Change the color of the status line when in insert mode
+  augroup ft_statuslinecolor
+    au!
+
+    au InsertEnter * hi StatusLine guifg=#F5773C
+    au InsertLeave * hi StatusLine guifg=#95e454
+  augroup END
 endif
 
 " Custom tabline
@@ -429,6 +440,9 @@ cnoremap w% <c-r>=expand("<cword>")<CR>
 " Pulse the cursorline when navigation search matches
 nnoremap n n:call pulsecursorline#Pulse()<CR>
 nnoremap N N:call pulsecursorline#Pulse()<CR>
+
+" Format the selected section to wrap at 80 chars
+vnoremap <silent> f80 <esc>:set textwidth=80<CR>gvgq :set textwidth=0<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Folding stuff """""""""""""""""""""""""""""" 

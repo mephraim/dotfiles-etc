@@ -50,7 +50,7 @@ hi WildMenu     ctermfg=black ctermbg=lightgreen
 hi StatusLine         ctermfg=black ctermbg=green
 hi StatusLineNC       ctermfg=black ctermbg=black
 hi StatusLineFile     ctermfg=white
-hi StatusLineFileType ctermfg=blue 
+hi StatusLineFileType ctermfg=blue
 hi StatusLineGit      ctermfg=green
 
 " Syntax highlighting
