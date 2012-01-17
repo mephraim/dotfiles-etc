@@ -44,6 +44,12 @@ function! s:turnOnWordProcessing()
 
   " Make visual line select work for soft wrapped lines
   noremap <buffer> V g^vg$
+
+  " Add some mappings that will automatically add more frequent undo points
+  inoremap . .<C-g>u
+  inoremap ! !<C-g>u
+  inoremap ? ?<C-g>u
+  inoremap : :<C-g>u
 endfunction
 
 command! WordProcessorOn :call <SID>turnOnWordProcessing()
