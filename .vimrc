@@ -437,10 +437,6 @@ noremap <leader>rmtws :%s/\s\+$//<cr>:let @/=''<CR>
 " Maps the combination of w and % to expand the out to the current word
 cnoremap w% <c-r>=expand("<cword>")<CR>
 
-" Pulse the cursorline when navigation search matches
-nnoremap n n:call pulsecursorline#Pulse()<CR>
-nnoremap N N:call pulsecursorline#Pulse()<CR>
-
 " Format the selected section to wrap at 80 chars
 vnoremap <silent> f80 <esc>:set textwidth=80<CR>gvgq :set textwidth=0<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -507,7 +503,4 @@ let g:indent_guides_guide_size=1
 
 " Turn off the pyflakes quickfix list
 let g:pyflakes_use_quickfix = 0
-
-" Let supertab figure out the context for certain file types
-autocmd BufNewFile,BufRead *.js,*.py,*.rb let g:SuperTabDefaultCompletionType = "context"
 
