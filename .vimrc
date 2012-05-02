@@ -198,14 +198,6 @@ if has("gui_running")
     let wincount = tabpagewinnr(v:lnum, '$')
     return label . '  [' . wincount . ']'
   endfunction
-
-  " Change the color of the status line when in insert mode
-  augroup ft_statuslinecolor
-    au!
-
-    au InsertEnter * hi StatusLine guifg=#F5773C
-    au InsertLeave * hi StatusLine guifg=#95e454
-  augroup END
 endif
 
 " Custom tabline
@@ -277,48 +269,9 @@ let &sbr = nr2char(8618).' '
 " Show some context when scrolling
 set scrolloff=2
 
-" Status line """""""""""""""""""""""""""""""""""""
+" Statusline setup """""""""""""""""""""""""""""""""
 set laststatus=2  " Always show the status line
-set statusline=%!SetStatusLine()
 
-let g:showFullPathInStatusLine = 0
-
-function! SetStatusLine()
-  set statusline=\ ●\                     " Show an indicator for the current window
-  set statusline+=%#Warning#%m            " Show if the file has been modified
-
-  if g:showFullPathInStatusLine
-    set statusline+=%#StatusLineFile#[%f]   " Show the full path to the file
-  else
-    set statusline+=%#StatusLineFile#[%t]   " Just show the file name
-  endif
-
-  set statusline+=%#StatusLineFileType#%y " Then show the file type
-
-  " Fugitive
-  set statusline+=%#StatusLineGit#
-  set statusline+=%{fugitive#statusline()}
-  set statusline+=%#StatusLine#
-
-  " Right aligned items
-  set statusline+=%=
-  set statusline+=%<
-  set statusline+=%#Comment#
-  set statusline+=[%l,%c]     " Show the current line and column
-  set statusline+=[%p%%]      " Show the current % through the file
-  set statusline+=[%L\ lines] " Show the number of lines
-
-  set statusline+=%#*#
-endfunction!
-
-function! ToggleFullPathInStatusLine()
-  let g:showFullPathInStatusLine = !g:showFullPathInStatusLine
-  call SetStatusLine()
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Powerline setup """""""""""""""""""""""""""""""""
 let g:Powerline_symbols = 'fancy'
 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -332,9 +285,6 @@ if v:version >= 703
 endif
 
 " mappings """""""""""""""""""""""""""""""""""""
-
-" Toggle the full path showing in the status line
-noremap <silent> <leader>fp :call ToggleFullPathInStatusLine()<CR>
 
 " Ack for the current word
 noremap <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR>
