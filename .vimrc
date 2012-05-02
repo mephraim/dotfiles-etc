@@ -318,6 +318,11 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Powerline setup """""""""""""""""""""""""""""""""
+let g:Powerline_symbols = 'fancy'
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Set up persistent undo for versions of vim that support it
 if v:version >= 703
   set undodir=~/.vim/undodir
