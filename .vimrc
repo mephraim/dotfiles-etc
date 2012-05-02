@@ -1,4 +1,18 @@
-call pathogen#runtime_append_all_bundles()
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" Make sure pathogen ftplugins are properly installed by disabling then
+" re-enabling file type plugins.
+filetype off
+
+" Enable auto-loading of per-directory plugins in ~/.vim/bundle
+call pathogen#infect()
+
+" Do the same for machine local viles in ~/.vim_local/bundle
+call pathogen#infect('~/.vim_local/bundle')
+
+" Generate helptags for all of the above plugins
 call pathogen#helptags()
 
 if has("gui_running")
@@ -13,10 +27,6 @@ else
 end
 
 let mapleader = ","
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
