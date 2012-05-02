@@ -23,7 +23,7 @@ if has("gui_running")
   au InsertLeave * match Warning /\s\+$/
 else
   let &t_Co=256
-  colorscheme efrum_terminal
+  colorscheme twilight256
 end
 
 let mapleader = ","
