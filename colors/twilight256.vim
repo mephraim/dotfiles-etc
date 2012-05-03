@@ -246,14 +246,15 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "DiffDelete
     "DiffText
     "ErrorMsg
-    "call <SID>X("VertSplit", "c2bfa5", "7f7f7f", "reverse")
-    "call <SID>X("Folded", "ffd700", "4d4d4d", "")
+    call <SID>X("VertSplit", "828282", "828282", "")
+    call <SID>X("Folded", "000000", "777777", "")
+    call <SID>X("TablineSel", "8F9D6A", "", "")
     "call <SID>X("FoldColumn", "d2b48c", "4d4d4d", "")
     "call <SID>X("IncSearch", "708090", "f0e68c", "")
     call <SID>X("LineNr", "CCCCCC", "", "")
     "call <SID>X("ModeMsg", "D4D4D4", "", "")
     "call <SID>X("MoreMsg", "2e8b57", "", "")
-    "call <SID>X("NonText", "addbe7", "000000", "bold")
+    call <SID>X("NonText", "555555", "000000", "")
     "call <SID>X("Question", "00ff7f", "", "")
     "call <SID>X("Search", "f5deb3", "cd853f", "")
     "call <SID>X("SpecialKey", "9acd32", "", "")
