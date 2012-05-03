@@ -273,7 +273,6 @@ set scrolloff=2
 set laststatus=2  " Always show the status line
 
 let g:Powerline_symbols = 'fancy'
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set up persistent undo for versions of vim that support it
