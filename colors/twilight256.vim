@@ -246,12 +246,21 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "DiffDelete
     "DiffText
     "ErrorMsg
+
+    " NERD_tree stuff
+    call <SID>X("treeCWD", "9B703F", "000000", "")
+    call <SID>X("treePart", "000000", "000000", "")
+    call <SID>X("TreeOpenable", "8F9D6A", "000000", "")
+    call <SID>X("treeDir", "127CA5", "000000", "")
+    call <SID>X("treeDirSlash", "127CA5", "000000", "")
+
+    call <SID>X("ColorColumn", "611012", "611012", "")
     call <SID>X("VertSplit", "828282", "828282", "")
     call <SID>X("Folded", "000000", "777777", "")
     call <SID>X("TablineSel", "8F9D6A", "", "")
     "call <SID>X("FoldColumn", "d2b48c", "4d4d4d", "")
     "call <SID>X("IncSearch", "708090", "f0e68c", "")
-    call <SID>X("LineNr", "CCCCCC", "", "")
+    call <SID>X("LineNr", "828282", "", "")
     "call <SID>X("ModeMsg", "D4D4D4", "", "")
     "call <SID>X("MoreMsg", "2e8b57", "", "")
     call <SID>X("NonText", "555555", "000000", "")
@@ -283,7 +292,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "Underlined
     call <SID>X("Ignore", "666666", "", "")
     "Error
-    call <SID>X("Todo", "ff4500", "eeee00", "")
+    call <SID>X("Todo", "eeee00", "000000", "underline")
 
     " delete functions {{{
     delf <SID>X
