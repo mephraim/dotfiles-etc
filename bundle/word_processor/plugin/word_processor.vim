@@ -1,3 +1,5 @@
+" Make vim a little more usable for word processing stuff
+
 function! s:turnOnWordProcessing()
   " Turn on softwrapping
   setlocal wrap
@@ -37,13 +39,19 @@ function! s:turnOnWordProcessing()
   noremap <buffer> $ g$
   noremap <buffer> 0 g0
   noremap <buffer> ^ g^
+  noremap <buffer> G G$
 
-  " Make I and A work normally for soft wrapped lines
+  " Make I, A, O work normally for soft wrapped lines
   noremap <buffer> I g0i
   noremap <buffer> A g$a
 
   " Make visual line select work for soft wrapped lines
   noremap <buffer> V g^vg$
+
+  " Make delete work for soft wrapped lines
+  noremap <buffer> dd g^dg$
+  noremap <buffer> D dg$i<cr><esc>
+  noremap <buffer> C dg$i<cr>
 
   " Add some mappings that will automatically add more frequent undo points
   inoremap . .<C-g>u
