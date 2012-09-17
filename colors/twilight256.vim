@@ -254,7 +254,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("treeDir", "127CA5", "000000", "")
     call <SID>X("treeDirSlash", "127CA5", "000000", "")
 
-    call <SID>X("ColorColumn", "611012", "611012", "")
+    call <SID>X("ColorColumn", "", "1C1F1E", "")
     call <SID>X("VertSplit", "828282", "828282", "")
     call <SID>X("Folded", "000000", "777777", "")
     call <SID>X("TablineSel", "8F9D6A", "", "")
@@ -264,16 +264,19 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "call <SID>X("ModeMsg", "D4D4D4", "", "")
     "call <SID>X("MoreMsg", "2e8b57", "", "")
     call <SID>X("NonText", "555555", "000000", "")
+    call <SID>X("Pmenu", "f6f3e8", "242829", "")
+    call <SID>X("PmenuSel", "000000", "cae682", "")
+    call <SID>X("Signcolumn", "", "000000", "")
     "call <SID>X("Question", "00ff7f", "", "")
     "call <SID>X("Search", "f5deb3", "cd853f", "")
     "call <SID>X("SpecialKey", "9acd32", "", "")
     "call <SID>X("StatusLine", "c2bfa5", "000000", "reverse")
     "call <SID>X("StatusLineNC", "c2bfa5", "7f7f7f", "reverse")
     "call <SID>X("Title", "cd5c5c", "", "")
-    call <SID>X("Visual", "D3D3D3", "3E3E3E", "reverse")
+
+    call <SID>X("WildMenu", "000000", "8F9D6A", "")
     "VisualNOS
-    "call <SID>X("WarningMsg", "fa8072", "", "")
-    "WildMenu
+    call <SID>X("WarningMsg", "fa8072", "", "")
     "Menu
     "Scrollbar
     "Tooltip

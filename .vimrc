@@ -289,7 +289,7 @@ endif
 noremap <leader>aw :Ack <c-r>=expand("<cword>")<CR><CR>
 
 " NERDTree
-noremap <leader>n :NERDTreeToggle<CR>
+noremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " Quick buffer stuff
 noremap <leader>bd :bd<CR>
@@ -487,3 +487,5 @@ let g:indent_guides_guide_size=1
 " Turn off the pyflakes quickfix list
 let g:pyflakes_use_quickfix = 0
 
+command! -nargs=1 CreateGutter :exec 'setlocal colorcolumn=' . join(range(<args>, 500), ',')
+command! RemoveGutter :setlocal colorcolumn=

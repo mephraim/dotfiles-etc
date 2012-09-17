@@ -61,7 +61,7 @@ if has("gui_running")
   if has("gui_macvim")
     set guifont=Inconsolata-dz\ for\ Powerline:h14
   else
-    set guifont=\Inconsolata-dz\ for\ Powerline\ Medium\ 12
+    set guifont=\Inconsolata-dz\ for\ Powerline\ Medium\ 13
   endif
 endif
 
