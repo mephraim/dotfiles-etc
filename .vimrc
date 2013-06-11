@@ -118,11 +118,12 @@ if has("autocmd")
   augroup END
 
   " Resize splits when the window is resized
-  au VimResized * exe "normal! \<c-w>="
+  autocmd VimResized * exe "normal! \<c-w>="
+
+  " Automatically check if the file has been changed outside vim
+  autocmd CursorHold,CursorMoved * checktime
 else
-
   set autoindent " always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -465,7 +466,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""
 
 " Error coloring for the JSlint plugin
-let g:jslint_highlight_color="#6F2828"  
+let g:jslint_highlight_color="#6F2828"
 
 " Disable jslint for now"
 let g:jslint_disabled=1
@@ -487,5 +488,10 @@ let g:indent_guides_guide_size=1
 " Turn off the pyflakes quickfix list
 let g:pyflakes_use_quickfix = 0
 
+" Creates a visual gutter starting at the column passed in.
+" For example to start a gutter at 80 chars:
+"   :CreateGutter 80
 command! -nargs=1 CreateGutter :exec 'setlocal colorcolumn=' . join(range(<args>, 500), ',')
+
+" Removes the visual gutter.
 command! RemoveGutter :setlocal colorcolumn=
