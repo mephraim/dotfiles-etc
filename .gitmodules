@@ -86,10 +86,6 @@
 	path = bundle/pyflakes
 	url = git://github.com/kevinw/pyflakes-vim.git
   ignore = dirty
-[submodule "bundle/tagbar"]
-	path = bundle/tagbar
-	url = git://github.com/majutsushi/tagbar.git
-  ignore = dirty
 [submodule "bundle/CSSMinister"]
 	path = bundle/CSSMinister
 	url = git://github.com/vim-scripts/CSSMinister.git
