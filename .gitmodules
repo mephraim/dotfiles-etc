@@ -42,10 +42,6 @@
 	path = bundle/endwise
 	url = http://github.com/michaeljsmith/vim-indent-object.git
   ignore = dirty
-[submodule "bundle/conque"]
-	path = bundle/conque
-	url = http://github.com/rson/vim-conque.git
-  ignore = dirty
 [submodule "bundle/colorx"]
 	path = bundle/colorx
 	url = http://github.com/vim-scripts/ColorX.git
@@ -105,8 +101,4 @@
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
-  ignore = dirty
-[submodule "bundle/MatchTagAlways"]
-	path = bundle/MatchTagAlways
-	url = https://github.com/Valloric/MatchTagAlways.git
   ignore = dirty
