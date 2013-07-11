@@ -68,8 +68,8 @@ set nocompatible
 
   " Search stuff
   set hlsearch        " Use search highlighting
-  set incsearch       " do incremental searching
-  set ignorecase      " search ignoring case
+  set ignorecase      " Search ignoring case
+  set incsearch       " Do incremental searching
 
   " Allow backspacing over everything in insert mode
   set backspace=indent,eol,start
@@ -81,25 +81,16 @@ set nocompatible
   " of the swap files to avoid conflicts
   set directory=~/.vim/tmp//
 
-  " In many terminal emulators the mouse works just fine, thus enable it.
+  " In many terminal emulators the mouse works just fine, thus enable it
   if has('mouse')
     set mouse=a
   endif
 
-  " Use the same symbols as TextMate for tabstops and EOLs (thanks vimcasts.org)
+  " Use nicer symbols for listchars
   set listchars=trail:·,tab:▸\ ,eol:¬,extends:…,precedes:…
 
-  " Show ↪ at the beginning of wrapped lines.
-  "
-  " Note: I use this syntax instead of "set showbreak=↪"
-  " because it will allow me to add an extra space after
-  " the arrow.  Concatenation doesn't seem to work using
-  " the other syntax.
-  let &showbreak = nr2char(8618).' '
-
-  " Set visualbell (no audio bells)
-  set vb
-  set t_vb=
+  " Show ↪ at the beginning of wrapped lines
+  set showbreak=↪\ " <= Extra whitespace intentional
 
   " Set up persistent undo for versions of vim that support it
   if v:version >= 703
@@ -112,7 +103,7 @@ set nocompatible
   " GUI only {{{2
   if has("gui_running")
     " Maximize gvim window.
-    set lines=150 columns=230 
+    set lines=150 columns=230
 
     set guioptions-=T " Get rid of the toolbar
     set guioptions-=e " Get rid of the GUI tabs
@@ -125,11 +116,11 @@ set nocompatible
     " If there's a gui and it's not Macvim, assume it's something like gvim
     if has("gui_running") && !has("gui_macvim")
       " Get rid of the menu bar (almost as good as full screen)
-      set guioptions-=m 
+      set guioptions-=m
     end
 
     " No blinking cursor
-    set guicursor=a:blinkon0  
+    set guicursor=a:blinkon0
   endif
   " End GUI only
   " }}}2
@@ -145,17 +136,17 @@ set nocompatible
 
       " Loop over all of the current tabs
       for i in range(highest_tab_num)
-        " select the highlighting
+        " Select the highlighting
         if i + 1 == tabpagenr()
           let tabline .= '%#TabLineSel#'
         else
           let tabline .= '%#Normal#'
         endif
 
-        " set the tab page number (for mouse clicks)
+        " Set the tab page number (for mouse clicks)
         let tabline .= '%' . (i + 1) . 'T'
 
-        " the label is made by MyTabLabel()
+        " The label is made by MyTabLabel()
         let tabline .= ' %{MyTabLabel(' . (i + 1) . ')} '
 
         " If this isn't the last tab, put in a separator
@@ -164,10 +155,10 @@ set nocompatible
         endif
       endfor
 
-      " after the last tab fill with TabLineFill and reset tab page nr
+      " After the last tab fill with TabLineFill and reset tab page nr
       let tabline .= '%#Normal#%T'
 
-      " right-align the label to close the current tab page
+      " Right-align the label to close the current tab page
       if tabpagenr('$') > 1
         let tabline .= '%=%#Normal#%999X ✖ '
       endif
@@ -206,7 +197,7 @@ set nocompatible
     " http://old.nabble.com/tabline-showing-only-the-basename-td20813639.html
     set guitablabel=%{GuiTabLabel()}
 
-    " set up tab labels with tab number, buffer name, number of windows
+    " Set up tab labels with tab number, buffer name, number of windows
     function! GuiTabLabel()
       let label = ''
       let bufnrlist = tabpagebuflist(v:lnum)
@@ -337,16 +328,16 @@ set nocompatible
   inoremap <C-l> <C-o>l
   inoremap <C-d> <end>
 
-  " hitting jj will jump out of insert mode
+  " Hitting jj will jump out of insert mode
   inoremap jj <esc>
 
-  " hitting kk will jump out of insert mode
+  " Hitting kk will jump out of insert mode
   inoremap kk <esc>
 
-  " quick vertical split
+  " Quick vertical split
   noremap <leader>sv :vsplit<CR>
 
-  " quick horizontal split
+  " Quick horizontal split
   noremap <leader>sh :split<CR>
 
   " Quick full screen toggle
@@ -438,7 +429,7 @@ set nocompatible
     augroup END
   else
     set autoindent " always set autoindenting on
-  endif 
+  endif
 " End autocommands
 " }}}1
 
@@ -472,5 +463,5 @@ set nocompatible
 
   " Use fancy symbols with the Powerline plugin.
   let g:Powerline_symbols = 'fancy'
-" End plugin configuration 
+" End plugin configuration
 " }}}1
