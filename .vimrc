@@ -36,6 +36,9 @@ set nocompatible
     " Use a nice 256 color colorscheme
     colorscheme twilight256
   endif
+
+  " Load in any customizations to the stock colorschemes
+  runtime! colors/custom/*.vim
 " End syntax and colorscheme
 " }}}1
 
