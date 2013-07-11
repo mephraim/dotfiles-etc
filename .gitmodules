@@ -98,3 +98,6 @@
 	path = bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
   ignore = dirty
+[submodule "bundle/vim-signify"]
+	path = bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify
