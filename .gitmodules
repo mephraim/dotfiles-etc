@@ -14,10 +14,6 @@
 	path = bundle/lusty
 	url = http://github.com/sjbach/lusty.git
   ignore = dirty
-[submodule "bundle/Syntastic"]
-	path = bundle/Syntastic
-	url = http://github.com/vim-scripts/Syntastic.git
-  ignore = dirty
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = http://github.com/tpope/vim-surround.git
@@ -65,10 +61,6 @@
 [submodule "bundle/indent-guides"]
 	path = bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
-  ignore = dirty
-[submodule "bundle/zencoding"]
-	path = bundle/zencoding
-	url = https://github.com/mattn/zencoding-vim.git
   ignore = dirty
 [submodule "bundle/colorizer"]
 	path = bundle/colorizer
