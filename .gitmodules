@@ -54,10 +54,6 @@
 	path = bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
   ignore = dirty
-[submodule "bundle/colorizer"]
-	path = bundle/colorizer
-	url = https://github.com/lilydjwg/colorizer.git
-  ignore = dirty
 [submodule "bundle/pyflakes"]
 	path = bundle/pyflakes
 	url = git://github.com/kevinw/pyflakes-vim.git
