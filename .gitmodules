@@ -90,10 +90,6 @@
 	path = bundle/CSSMinister
 	url = git://github.com/vim-scripts/CSSMinister.git
   ignore = dirty
-[submodule "bundle/tabman"]
-	path = bundle/tabman
-	url = git://github.com/kien/tabman.vim.git
-  ignore = dirty
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
