@@ -482,5 +482,8 @@ set nocompatible
 
   " Run ctrlp in mixed mode by default
   let g:ctrlp_cmd = 'CtrlPMixed'
+
+  " Add a custom highlight group for the NarrowRegion plugin
+  let g:nrrw_rgn_hl = 'NarrowRegion'
 " End plugin configuration
 " }}}1
