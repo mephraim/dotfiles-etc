@@ -38,10 +38,6 @@
 	path = bundle/cecutil
 	url = http://github.com/vim-scripts/cecutil.git
   ignore = dirty
-[submodule "bundle/calendar"]
-	path = bundle/calendar
-	url = http://github.com/vim-scripts/calendar.vim--Matsumoto.git
-  ignore = dirty
 [submodule "bundle/bufexplorer"]
 	path = bundle/bufexplorer
 	url = http://github.com/vim-scripts/bufexplorer.zip.git
