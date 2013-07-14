@@ -453,6 +453,11 @@ set nocompatible
   " Set up the yankring history location
   let g:yankring_history_dir = "~/.vim/tmp/yankring"
 
+  " Override the default yankring cycling keys
+  " This prevents a conflict with the ctrlp plugin
+  let g:yankring_replace_n_pkey = '<m-p>'
+  let g:yankring_replace_n_nkey = '<m-n>'
+
   " Tell the lusty plugins to be quiet about not having Ruby support in the
   " terminal
   let g:LustyJugglerSuppressRubyWarning = 1
@@ -472,5 +477,8 @@ set nocompatible
   let g:signify_sign_change            = '≈'
   let g:signify_sign_delete            = '✗'
   let g:signify_sign_delete_first_line = '✗'
+
+  " Run ctrlp in mixed mode by default
+  let g:ctrlp_cmd = 'CtrlPMixed'
 " End plugin configuration
 " }}}1
