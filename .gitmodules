@@ -58,10 +58,6 @@
 	path = bundle/pyflakes
 	url = git://github.com/kevinw/pyflakes-vim.git
   ignore = dirty
-[submodule "bundle/CSSMinister"]
-	path = bundle/CSSMinister
-	url = git://github.com/vim-scripts/CSSMinister.git
-  ignore = dirty
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
