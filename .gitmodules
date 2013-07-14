@@ -34,10 +34,6 @@
 	path = bundle/indent-object
 	url = http://github.com/michaeljsmith/vim-indent-object.git
   ignore = dirty
-[submodule "bundle/cecutil"]
-	path = bundle/cecutil
-	url = http://github.com/vim-scripts/cecutil.git
-  ignore = dirty
 [submodule "bundle/bufexplorer"]
 	path = bundle/bufexplorer
 	url = http://github.com/vim-scripts/bufexplorer.zip.git
