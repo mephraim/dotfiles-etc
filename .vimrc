@@ -463,20 +463,22 @@ set nocompatible
   let g:LustyJugglerSuppressRubyWarning = 1
 
   " Setup indent guides
-  let g:indent_guides_start_level=2
-  let g:indent_guides_guide_size=1
-
-  " Turn off the pyflakes quickfix list
   let g:pyflakes_use_quickfix = 0
 
   " Use fancy symbols with the Powerline plugin.
   let g:Powerline_symbols = 'fancy'
 
-  " Set up the signify plugin
-  let g:signify_sign_add               = '✚'
+  " Customize the signify signs
+  let g:signify_sign_add               = '+'
   let g:signify_sign_change            = '≈'
   let g:signify_sign_delete            = '✗'
   let g:signify_sign_delete_first_line = '✗'
+
+  " Tell signify to only look for git changes
+  let g:signify_vcs_list = ['git']
+
+  " Tell signify to always highlight changed lines
+  let g:signify_line_highlight = 1
 
   " Run ctrlp in mixed mode by default
   let g:ctrlp_cmd = 'CtrlPMixed'
