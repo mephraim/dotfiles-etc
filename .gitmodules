@@ -71,3 +71,6 @@
 [submodule "bundle/NrrwRgn"]
 	path = bundle/NrrwRgn
 	url = https://github.com/chrisbra/NrrwRgn
+[submodule "bundle/vim-easymotion"]
+	path = bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion
