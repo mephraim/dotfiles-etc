@@ -393,10 +393,10 @@ set nocompatible
       set nolist
 
       " This will force any other NonText characters to be invisible
-      hi NonText guifg=bg
+      hi NonText guifg=bg ctermfg=black
     else
       set list
-      hi NonText guifg=#A7A7A7
+      hi NonText guifg=#A7A7A7 ctermfg=lightgrey
     endif
   endfunction
 
