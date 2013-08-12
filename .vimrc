@@ -383,7 +383,22 @@ set nocompatible
   noremap <leader>lorem :Loremipsum<CR>
 
   " Quickly turn invisibles on and off
-  noremap <leader>li :set list!<CR>
+  noremap <silent><leader>li :call <SID>ToggleNonText()<CR>
+
+  " Toggle non text character visibility and highlighting
+  " This toggles both listchars and the ~ that shows up for
+  " empty lines.
+  function! s:ToggleNonText()
+    if &list
+      set nolist
+
+      " This will force any other NonText characters to be invisible
+      hi NonText guifg=bg
+    else
+      set list
+      hi NonText guifg=#A7A7A7
+    endif
+  endfunction
 
   " Format the selected section to wrap at 80 chars
   vnoremap <silent> f80 <esc>:set textwidth=80<CR>gvgq :set textwidth=0<CR>

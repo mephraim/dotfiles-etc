@@ -27,7 +27,7 @@ hi Directory    guifg=#8ac6f2
 hi FoldColumn   guifg=#444444 guibg=#080808
 hi Folded       guibg=#272727 guifg=#E1F3FA gui=none
 hi LineNr       guifg=#857b6f guibg=#000000 gui=none
-hi NonText      guifg=#A7A7A7 guibg=#090909 gui=none
+hi NonText      guifg=bg
 hi Normal       guifg=#f6f3e8 guibg=#0A0A0A gui=none
 hi Search       guibg=#E4F565 guifg=#000000
 hi SignColumn   guibg=#0A0A0A
