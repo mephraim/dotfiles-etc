@@ -498,6 +498,12 @@ set nocompatible
   " Run ctrlp in mixed mode by default
   let g:ctrlp_cmd = 'CtrlPMixed'
 
+  " Don't clear the ctrlp cache on exit
+  let g:ctrlp_clear_cache_on_exit = 0
+
+  " Don't limit the number of files to look for
+  let g:ctrlp_max_files = 0
+
   " Add a custom highlight group for the NarrowRegion plugin
   let g:nrrw_rgn_hl = 'NarrowRegion'
 " End plugin configuration
