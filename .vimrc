@@ -506,5 +506,12 @@ set nocompatible
 
   " Add a custom highlight group for the NarrowRegion plugin
   let g:nrrw_rgn_hl = 'NarrowRegion'
+
+  " Add mappings for the configure the dragvisuals plugin
+  vmap  <expr>  <LEFT>   DVB_Drag('left')
+  vmap  <expr>  <RIGHT>  DVB_Drag('right')
+  vmap  <expr>  <DOWN>   DVB_Drag('down')
+  vmap  <expr>  <UP>     DVB_Drag('up')
+  vmap  <expr>  D        DVB_Duplicate()
 " End plugin configuration
 " }}}1
