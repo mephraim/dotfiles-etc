@@ -484,10 +484,10 @@ set nocompatible
   let g:Powerline_symbols = 'fancy'
 
   " Customize the signify signs
-  let g:signify_sign_add               = '+'
-  let g:signify_sign_change            = '≈'
-  let g:signify_sign_delete            = '✗'
-  let g:signify_sign_delete_first_line = '✗'
+  let g:signify_sign_add               = '▎'
+  let g:signify_sign_change            = '▎'
+  let g:signify_sign_delete            = '▎'
+  let g:signify_sign_delete_first_line = '▎'
 
   " Tell signify to only look for git changes
   let g:signify_vcs_list = ['git']
@@ -497,10 +497,10 @@ set nocompatible
 
   " Run ctrlp in mixed mode by default
   let g:ctrlp_cmd = 'CtrlPMixed'
-
+ 
   " Don't clear the ctrlp cache on exit
   let g:ctrlp_clear_cache_on_exit = 0
-
+ 
   " Don't limit the number of files to look for
   let g:ctrlp_max_files = 0
 
