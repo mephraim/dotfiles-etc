@@ -516,5 +516,10 @@ set nocompatible
   vmap  <expr>  <DOWN>   DVB_Drag('down')
   vmap  <expr>  <UP>     DVB_Drag('up')
   vmap  <expr>  D        DVB_Duplicate()
+
+
+  " Customize syntastic
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_enable_signs = 0
 " End plugin configuration
 " }}}1
