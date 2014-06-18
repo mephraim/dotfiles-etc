@@ -120,6 +120,9 @@ set nocompatible
     if has("gui_running") && !has("gui_macvim")
       " Get rid of the menu bar (almost as good as full screen)
       set guioptions-=m
+    else
+      " Turn of the annoying beeping when hitting escape in Macvim
+      set visualbell
     end
 
     " No blinking cursor
@@ -481,7 +484,7 @@ set nocompatible
   let g:pyflakes_use_quickfix = 0
 
   " Use fancy symbols with the Powerline plugin.
-  let g:Powerline_symbols = 'fancy'
+  let g:Powerline_symbols = 'compatible'
 
   " Customize the signify signs
   let g:signify_sign_add               = '⎸'
