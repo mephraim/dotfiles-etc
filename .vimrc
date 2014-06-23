@@ -405,6 +405,9 @@ set nocompatible
 
   " Format the selected section to wrap at 80 chars
   vnoremap <silent> f80 <esc>:set textwidth=80<CR>gvgq :set textwidth=0<CR>
+
+  " Quickly type console.log
+  inoremap ccc console.log
 " End custom mappings
 " }}}1
 
