@@ -22,7 +22,7 @@ endif
 " General colors
 hi ColorColumn  guibg=#130707
 hi Conceal      guibg=#272727 guifg=#E1F3FA gui=none
-hi Cursor       guifg=NONE    guibg=#656565 gui=none
+hi Cursor       guifg=bg    guibg=#F5773c gui=none
 hi Directory    guifg=#8ac6f2
 hi FoldColumn   guifg=#444444 guibg=#080808
 hi Folded       guibg=#272727 guifg=#E1F3FA gui=none
