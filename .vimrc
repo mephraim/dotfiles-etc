@@ -408,6 +408,13 @@ set nocompatible
 
   " Quickly type console.log
   inoremap ccc console.log
+
+  " Always place a found match at the center of the screen.
+  nnoremap n nzzzv
+  nnoremap N Nzzzv
+
+  " Don't jump around so much when matching with *
+  nnoremap * *<c-o>
 " End custom mappings
 " }}}1
 
@@ -447,8 +454,8 @@ set nocompatible
 
       if has("gui_running")
         " Highlight trailing whitespace
-        autocmd InsertEnter * match Warning /\s\+\%#\@<!$/
-        autocmd InsertLeave * match Warning /\s\+$/
+        autocmd BufRead * match Warning /\s\+\%#\@<!$/
+        autocmd BufRead * match Warning /\s\+$/
       endif
     augroup END
   else
