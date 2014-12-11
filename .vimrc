@@ -490,12 +490,6 @@ set nocompatible
   " terminal
   let g:LustyJugglerSuppressRubyWarning = 1
 
-  " Setup indent guides
-  let g:pyflakes_use_quickfix = 0
-
-  " Use fancy symbols with the Powerline plugin.
-  let g:Powerline_symbols = 'compatible'
-
   " Customize the signify signs
   let g:signify_sign_add               = '⎸'
   let g:signify_sign_change            = '⎸'
@@ -527,9 +521,35 @@ set nocompatible
   vmap  <expr>  <UP>     DVB_Drag('up')
   vmap  <expr>  D        DVB_Duplicate()
 
-
   " Customize syntastic
   let g:syntastic_auto_loc_list = 1
   let g:syntastic_enable_signs = 0
+
+  " Customize airline
+
+  " The default theme doesn't look very good in the terminal.
+  if !has("gui_running")
+    let g:airline_theme="simple"
+  endif
+
+  " Don't show any separators
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
+
+  let g:airline#extensions#branch#enabled = 1
+  let g:airline#extensions#hunks#enabled = 0
+
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_buffers = 0
+  let g:airline#extensions#tabline#show_tab_nr = 0
+  let g:airline#extensions#tabline#show_tab_type = 0
+  let g:airline#extensions#tabline#tab_min_count = 2
+
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+
+  let g:airline_symbols.branch = '⎇ '
+
 " End plugin configuration
 " }}}1
