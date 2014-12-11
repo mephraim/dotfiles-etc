@@ -82,3 +82,7 @@
 	path = bundle/selective-undo
 	url = https://github.com/jaxbot/selective-undo.vim.git
   ignore = dirty
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = git://github.com/bling/vim-airline
+  ignore = dirty
