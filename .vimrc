@@ -555,5 +555,10 @@ set nocompatible
 
   let g:airline_symbols.branch = '⎇ '
 
+  " Vimroom configuration
+  let g:vimroom_background = "#0A0A0A"
+  let g:vimroom_sidebar_height = 0
+  let g:vimroom_width = 100
+
 " End plugin configuration
 " }}}1
