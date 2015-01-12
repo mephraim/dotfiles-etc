@@ -67,6 +67,7 @@ set nocompatible
   set scrolloff=2       " Show some context when scrolling
   set showcmd           " Display incomplete commands
   set tags=tags;/       " Search recursively for the tags file
+  set visualbell        " Get rid of the annoying beep
   set wildmenu          " Show a menu when I hit tab in command mode
 
   " Search stuff
@@ -120,9 +121,6 @@ set nocompatible
     if has("gui_running") && !has("gui_macvim")
       " Get rid of the menu bar (almost as good as full screen)
       set guioptions-=m
-    else
-      " Turn of the annoying beeping when hitting escape in Macvim
-      set visualbell
     end
 
     " No blinking cursor
@@ -525,20 +523,26 @@ set nocompatible
   let g:syntastic_auto_loc_list = 1
   let g:syntastic_enable_signs = 0
 
-  " Customize airline
+  " Show [No Name] buffers, to make them easier to delete.
+  let g:bufExplorerShowNoName = 1
 
-  " The default theme doesn't look very good in the terminal.
-  if !has("gui_running")
-    let g:airline_theme="simple"
-  endif
+  " Customize airline
 
   " Don't show any separators
   let g:airline_left_sep=''
   let g:airline_right_sep=''
 
+  " Show the branch name, but not the number of changes
   let g:airline#extensions#branch#enabled = 1
   let g:airline#extensions#hunks#enabled = 0
 
+  " Enable trailing whitespace warnings
+  let g:airline#extensions#whitespace#enabled = 1
+  let g:airline#extensions#whitespace#symbol = ''
+  let g:airline#extensions#whitespace#trailing_format = '⎵  [%s]'
+  let g:airline#extensions#whitespace#mixed_indent_format = '▸ [%s]'
+
+  " Customize the airline tabline
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#show_buffers = 0
   let g:airline#extensions#tabline#show_tab_nr = 0
