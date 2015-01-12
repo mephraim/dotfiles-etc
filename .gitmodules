@@ -86,3 +86,6 @@
 	path = bundle/vim-airline
 	url = git://github.com/bling/vim-airline
   ignore = dirty
+[submodule "bundle/vimroom"]
+	path = bundle/vimroom
+	url = https://github.com/mikewest/vimroom.git
