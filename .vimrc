@@ -56,7 +56,7 @@ set nocompatible
 
 
 " Assorted configuration options {{{1
-  set foldmethod=syntax " Use the syntax file to create folds
+  set fillchars=fold:━ " Customize the fill character for folds
   set hidden            " Allow buffer switching without saving
   set history=50        " Keep 50 lines of command line history
   set laststatus=2      " Always show the status line
@@ -243,43 +243,22 @@ set nocompatible
 " }}}1
 
 
-" Custom folding {{{1
-  " A nicer foldtext function via:
-  " http://vim.wikia.com/wiki/Customize_text_for_closed_folds
-  set foldtext=MyFoldText()
-  function! MyFoldText()
-    let line = getline(v:foldstart)
-    if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
-      let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
-      let linenum = v:foldstart + 1
-      while linenum < v:foldend
-        let line = getline( linenum )
-        let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
-        if comment_content != ''
-          break
-        endif
-        let linenum = linenum + 1
-      endwhile
-      let sub = initial . ' ' . comment_content
-    else
-      let sub = line
-      let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
-      if startbrace == '{'
-        let line = getline(v:foldend)
-        let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
-        if endbrace == '}'
-          let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
-        endif
-      endif
-    endif
-    let n = v:foldend - v:foldstart + 1
-    let info = " " . n . " lines"
-    let sub = sub . "                                                                                                                  "
-    let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
-    let fold_w = getwinvar( 0, '&foldcolumn' )
-    let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
-    return sub . info
+" Folding {{{1
+  " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
+  set foldtext=NiceFoldText()
+  function! NiceFoldText() "{{{2
+    let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+    let lines_count = v:foldend - v:foldstart + 1
+    let lines_count_text = '┫' . printf("%10s", lines_count . ' lines') . '┣ '
+    let foldchar = matchstr(&fillchars, 'fold:\zs.')
+    let foldtextstart = strpart('┠' . repeat(foldchar, v:foldlevel*2) . ' ' . line . '… ', 0, (winwidth(0)*2)/3)
+    let foldtextend = lines_count_text . repeat(foldchar, 8)
+    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+    return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
   endfunction
+
+  set foldlevel=1 " Start folding at level 1, rather than 0
+  set foldmethod=syntax " Use the indent level to create folds
   " End custom folding
 " }}}1
 
