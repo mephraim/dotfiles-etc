@@ -434,6 +434,9 @@ set nocompatible
         autocmd BufRead * match Warning /\s\+\%#\@<!$/
         autocmd BufRead * match Warning /\s\+$/
       endif
+
+      " Setup JavaScript folding from vim-javascript-syntax
+      au FileType javascript call JavaScriptFold()
     augroup END
   else
     set autoindent " always set autoindenting on
