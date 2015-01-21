@@ -245,21 +245,56 @@ set nocompatible
 
 " Folding {{{1
   " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
-  set foldtext=NiceFoldText()
-  function! NiceFoldText() "{{{2
-    let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-    let lines_count = v:foldend - v:foldstart + 1
-    let lines_count_text = ' ' . printf("%10s", lines_count . ' lines') . ' '
+  set foldtext=GetFoldText()
+  function! GetFoldText() "{{{2
     let foldchar = matchstr(&fillchars, 'fold:\zs.')
-    let foldtextstart = strpart(repeat(foldchar, v:foldlevel) . ' ' . line, 0, (winwidth(0) * 2) / 3)
-    let foldtextend = lines_count_text . repeat(foldchar, 8)
-    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-    return foldtextstart . repeat(foldchar, winwidth(0) - foldtextlength) . foldtextend
+
+    let foldPreRepeat = v:foldlevel - 1
+    if foldPreRepeat < 1
+      let foldPreRepeat = 1
+    end
+
+    let foldPre = repeat(foldchar, foldPreRepeat)
+    let foldExcerpt = GetFoldCodeExcerpt(foldchar)
+    let foldTextStart = strpart(foldPre . '  ' . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
+
+    let linesCountText = GetLineFoldLineCountText()
+    let foldTextEnd = linesCountText . repeat(foldchar, 8)
+    let foldTextLength = strlen(substitute(foldTextStart . foldTextEnd, '.', 'x', 'g')) + &foldcolumn
+    return foldTextStart . repeat(foldchar, winwidth(0) - foldTextLength) . foldTextEnd
+  endfunction
+
+  " Returns the excerpt of the line that will be displayed as part of the
+  " the fold.
+  function! GetFoldCodeExcerpt(foldchar)
+    let lineCleanupPattern = '\v^\s*'
+    let firstLine = getline(v:foldstart)
+    let lastLine = getline(v:foldend)
+
+    " Remove some junk we don't want to show from the first and last lines.
+    let firstLineSnippet = substitute(firstLine, lineCleanupPattern, '', 'g')
+    let lastLineSnippet = substitute(lastLine, lineCleanupPattern, '', 'g')
+
+    " Check for lines where the method name + parameters list is longer than
+    " can be displayed. For these, collapse the parameter list.
+    let methodAndParamsPattern = '\v(\w+)\(([^\(]*)\)'
+    if len(matchstr(firstLineSnippet, methodAndParamsPattern)) > 60
+      let firstLineSnippet = substitute(firstLineSnippet, methodAndParamsPattern, '\1(...)', 'g')
+    end
+
+    return firstLineSnippet . ' ' . a:foldchar . '  ' . lastLineSnippet
+  endfunction
+
+  " Returns the line count that will be displayed on the right side of
+  " the fold.
+  function! GetLineFoldLineCountText()
+    let lines_count = v:foldend - v:foldstart + 1
+    return ' ' . printf("%10s", lines_count . ' lines') . ' '
   endfunction
 
   set foldlevelstart=1 " Start folding at level 1, rather than 0
   set foldmethod=syntax " Use the indent level to create folds
-  set foldminlines=4 " Don't fold groups that are smaller than this
+  set foldminlines=3 " Don't fold groups that are smaller than this
   " End custom folding
 " }}}1
 
