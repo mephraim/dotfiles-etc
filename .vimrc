@@ -249,14 +249,20 @@ set nocompatible
   function! GetFoldText() "{{{2
     let foldchar = matchstr(&fillchars, 'fold:\zs.')
 
-    let foldPreRepeat = v:foldlevel - 1
-    if foldPreRepeat < 1
-      let foldPreRepeat = 1
+    " Create a space before the fold that represents the fold level.
+    let foldPre = ''
+    if v:foldlevel > 1
+      let foldPreChar = '─'
+
+      " Each foldlevel adds 2 spaces. Fill the space with the pre character
+      " but leave one extra spot for a space between the code excerpt and the
+      " fold pre text.
+      let foldPreRepeat = ((v:foldlevel - 1) * 2) - 1
+      let foldPre = repeat(foldPreChar, foldPreRepeat) . ' '
     end
 
-    let foldPre = repeat(foldchar, foldPreRepeat)
-    let foldExcerpt = GetFoldCodeExcerpt(foldchar)
-    let foldTextStart = strpart(foldPre . '  ' . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
+    let foldExcerpt = GetFoldCodeExcerpt()
+    let foldTextStart = strpart(foldPre . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
 
     let linesCountText = GetLineFoldLineCountText()
     let foldTextEnd = linesCountText . repeat(foldchar, 8)
@@ -266,12 +272,12 @@ set nocompatible
 
   " Returns the excerpt of the line that will be displayed as part of the
   " the fold.
-  function! GetFoldCodeExcerpt(foldchar)
-    let lineCleanupPattern = '\v^\s*'
+  function! GetFoldCodeExcerpt()
     let firstLine = getline(v:foldstart)
     let lastLine = getline(v:foldend)
 
     " Remove some junk we don't want to show from the first and last lines.
+    let lineCleanupPattern = '\v^\s*'
     let firstLineSnippet = substitute(firstLine, lineCleanupPattern, '', 'g')
     let lastLineSnippet = substitute(lastLine, lineCleanupPattern, '', 'g')
 
@@ -282,7 +288,8 @@ set nocompatible
       let firstLineSnippet = substitute(firstLineSnippet, methodAndParamsPattern, '\1(...)', 'g')
     end
 
-    return firstLineSnippet . ' ' . a:foldchar . '  ' . lastLineSnippet
+    let collapsedChar = '≓'
+    return firstLineSnippet . ' ' . collapsedChar . ' ' . lastLineSnippet
   endfunction
 
   " Returns the line count that will be displayed on the right side of
