@@ -247,27 +247,16 @@ set nocompatible
   " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
   set foldtext=GetFoldText()
   function! GetFoldText() "{{{2
-    let foldchar = matchstr(&fillchars, 'fold:\zs.')
+    let foldChar = matchstr(&fillchars, 'fold:\zs.')
 
-    " Create a space before the fold that represents the fold level.
-    let foldPre = ''
-    if v:foldlevel > 1
-      let foldPreChar = '─'
-
-      " Each foldlevel adds 2 spaces. Fill the space with the pre character
-      " but leave one extra spot for a space between the code excerpt and the
-      " fold pre text.
-      let foldPreRepeat = ((v:foldlevel - 1) * 2) - 1
-      let foldPre = repeat(foldPreChar, foldPreRepeat) . ' '
-    end
-
+    let foldIndent = repeat(' ', indent(v:foldstart))
     let foldExcerpt = GetFoldCodeExcerpt()
-    let foldTextStart = strpart(foldPre . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
+    let foldTextStart = strpart(foldIndent . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
 
     let linesCountText = GetLineFoldLineCountText()
-    let foldTextEnd = linesCountText . repeat(foldchar, 8)
+    let foldTextEnd = linesCountText . repeat(foldChar, 8)
     let foldTextLength = strlen(substitute(foldTextStart . foldTextEnd, '.', 'x', 'g')) + &foldcolumn
-    return foldTextStart . repeat(foldchar, winwidth(0) - foldTextLength) . foldTextEnd
+    return foldTextStart . repeat(foldChar, winwidth(0) - foldTextLength) . foldTextEnd
   endfunction
 
   " Returns the excerpt of the line that will be displayed as part of the
