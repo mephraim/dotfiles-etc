@@ -6,10 +6,6 @@
 	path = bundle/NERD_tree
 	url = https://github.com/scrooloose/nerdtree.git
   ignore = dirty
-[submodule "bundle/yankring"]
-	path = bundle/yankring
-	url = https://github.com/chrismetcalf/vim-yankring.git
-  ignore = dirty
 [submodule "bundle/lusty"]
 	path = bundle/lusty
 	url = https://github.com/sjbach/lusty.git
@@ -101,3 +97,7 @@
 [submodule "bundle/vim-bunder"]
 	path = bundle/vim-bunder
 	url = git://github.com/tpope/vim-bundler.git
+[submodule "bundle/YankRing"]
+	path = bundle/YankRing
+	url = https://github.com/vim-scripts/YankRing.vim.git
+  ignore = dirty
