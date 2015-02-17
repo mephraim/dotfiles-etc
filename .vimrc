@@ -572,7 +572,7 @@ set nocompatible
   " Vimroom configuration
   let g:vimroom_background = "#0A0A0A"
   let g:vimroom_sidebar_height = 0
-  let g:vimroom_width = 100
+  let g:vimroom_width = 80
 
 " End plugin configuration
 " }}}1

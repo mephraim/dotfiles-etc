@@ -1,6 +1,8 @@
 au BufRead,BufNewFile *.fountain call s:fountainSetup()
 
 function! s:fountainSetup()
+  let g:textplay_path = '~/Code/Textplay/textplay'
+
   " These settings have only been tested in Macvim
   if !has("gui_running")
     return
@@ -47,4 +49,14 @@ function! s:fountainSetup()
 
   " Use vimroom
   execute 'VimroomToggle'
+
+  " Turn off signify
+  let g:signify_disable_by_default = 1
+
+  command! Preview :call s:preview()
+endfunction
+
+function! s:preview()
+  let filename = tempname()
+  echo system(g:textplay_path . ' < ' . expand('%') . ' > ' . filename . ' && open ' . filename)
 endfunction

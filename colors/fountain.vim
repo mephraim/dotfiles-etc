@@ -45,7 +45,7 @@ function! s:highlight(group, fg, bg, gui)
   execute 'hi ' . a:group . ' guifg=' . a:fg . ' guibg='. a:bg . ' gui=' . a:gui
 endfunction
 
-call s:highlight('Normal', s:white, s:darkgrey, 'none')
+call s:highlight('Normal', s:grey_blue, s:darkgrey, 'none')
 call s:highlight('Comment', s:mid_grey_blue, s:darkgrey, 'italic')
 
 call s:highlight('fountainBold', s:white, s:darkgrey, 'bold')
@@ -56,7 +56,7 @@ call s:highlight('fountainUnderlined', s:white, s:darkgrey, 'underline')
 call s:highlight('fountainBoneyard', s:lightgrey, s:grey, 'italic')
 call s:highlight('fountainCentered', s:light_orange, s:darkgrey, 'none')
 call s:highlight('fountainCharacter', s:lightgreen, s:darkgrey, 'none')
-call s:highlight('fountainDialog', s:white, s:darkgrey, 'none')
+call s:highlight('fountainDialogue', s:white, s:darkgrey, 'none')
 call s:highlight('fountainHeader', s:light_orange, s:darkgrey, 'underline')
 call s:highlight('fountainPagebreak', s:red, s:darkgrey, 'bold,underline')
 call s:highlight('fountainParenthetical', s:violet, s:darkgrey, 'none')
