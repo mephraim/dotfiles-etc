@@ -90,9 +90,6 @@
 	path = bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
   ignore = dirty
-[submodule "bundle/vim-bunder"]
-	path = bundle/vim-bunder
-	url = git://github.com/tpope/vim-bundler.git
 [submodule "bundle/YankRing"]
 	path = bundle/YankRing
 	url = https://github.com/vim-scripts/YankRing.vim.git
