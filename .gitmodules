@@ -78,10 +78,6 @@
 	path = bundle/selective-undo
 	url = https://github.com/jaxbot/selective-undo.vim.git
   ignore = dirty
-[submodule "bundle/vim-airline"]
-	path = bundle/vim-airline
-	url = git://github.com/bling/vim-airline
-  ignore = dirty
 [submodule "bundle/vimroom"]
 	path = bundle/vimroom
 	url = https://github.com/mikewest/vimroom.git
@@ -101,3 +97,6 @@
 	path = bundle/YankRing
 	url = https://github.com/vim-scripts/YankRing.vim.git
   ignore = dirty
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline
