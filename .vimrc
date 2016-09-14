@@ -485,6 +485,15 @@ set nocompatible
 
   " Removes the visual gutter.
   command! RemoveGutter :setlocal colorcolumn=
+
+  " Generates a list of emojis in the current buffer
+  function! EmojiList()
+    for e in emoji#list()
+      call append(line('$'), printf('%s (%s)', emoji#for(e), e))
+    endfor
+  endfunction
+
+  command! EmojiList call EmojiList()
 " End custom commands
 " }}}1
 
@@ -555,13 +564,6 @@ set nocompatible
   let g:airline#extensions#whitespace#symbol = ''
   let g:airline#extensions#whitespace#trailing_format = '⎵  [%s]'
   let g:airline#extensions#whitespace#mixed_indent_format = '▸ [%s]'
-
-  " Customize the airline tabline
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#show_buffers = 0
-  let g:airline#extensions#tabline#show_tab_nr = 0
-  let g:airline#extensions#tabline#show_tab_type = 0
-  let g:airline#extensions#tabline#tab_min_count = 2
 
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}

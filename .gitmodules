@@ -94,3 +94,11 @@
 	path = bundle/vim-rails
 	url = https://github.com/tpope/vim-rails
   ignore = dirty
+[submodule "bundle/vim-emoji"]
+	path = bundle/vim-emoji
+	url = https://github.com/junegunn/vim-emoji
+  ignore = dirty
+[submodule "bundle/vim-cucumber"]
+	path = bundle/vim-cucumber
+	url = https://github.com/tpope/vim-cucumber
+  ignore = dirty
