@@ -2,7 +2,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-
 " Pathogen setup {{{1
   " Make sure pathogen ftplugins are properly installed by disabling then
   " re-enabling file type plugins.
@@ -69,11 +68,13 @@ set nocompatible
   set tags=tags;/       " Search recursively for the tags file
   set visualbell        " Get rid of the annoying beep
   set wildmenu          " Show a menu when I hit tab in command mode
+  set wildignore +=*/node_modules/*,*/private/* " Ignore these directories when navigating files
 
   " Search stuff
   set hlsearch        " Use search highlighting
   set ignorecase      " Search ignoring case
   set incsearch       " Do incremental searching
+
 
   " Allow backspacing over everything in insert mode
   set backspace=indent,eol,start
@@ -125,6 +126,8 @@ set nocompatible
 
     " No blinking cursor
     set guicursor=a:blinkon0
+
+    set signcolumn=yes " We use the sign column diffs and syntax warnings so turn it on
   endif
   " End GUI only
   " }}}2
@@ -544,7 +547,19 @@ set nocompatible
 
   " Customize syntastic
   let g:syntastic_auto_loc_list = 1
-  let g:syntastic_enable_signs = 0
+  let g:syntastic_check_on_open = 1
+
+  let g:syntastic_enable_signs = 1
+  let g:syntastic_error_symbol = "❗"
+  let g:syntastic_warning_symbol = "❕"
+
+  let g:syntastic_javascript_checkers = ['eslint']
+
+  " Use the local node module version of eslint if it exists
+  " (there may be more specific plugins available as local node modules)
+  if executable('node_modules/.bin/eslint')
+    let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
+  endif
 
   " Show [No Name] buffers, to make them easier to delete.
   let g:bufExplorerShowNoName = 1
