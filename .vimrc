@@ -68,7 +68,6 @@ set nocompatible
   set tags=tags;/       " Search recursively for the tags file
   set visualbell        " Get rid of the annoying beep
   set wildmenu          " Show a menu when I hit tab in command mode
-  set wildignore +=*/node_modules/*,*/private/* " Ignore these directories when navigating files
 
   " Search stuff
   set hlsearch        " Use search highlighting
