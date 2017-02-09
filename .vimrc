@@ -26,8 +26,8 @@ set nocompatible
     syntax on
   endif
 
-  if has("gui_running")
-    colorscheme efrum
+ if has("gui_running")
+    colorscheme twilight256
   else
     " Tell the terminal to use 256 colors
     let &t_Co=256
@@ -133,6 +133,18 @@ set nocompatible
 " End assorted configuration
 " }}}1
 
+" Custom colorscheme overrides {{{1
+  augroup ColorOverrides
+    au!
+    au ColorScheme * call OverrideColors()
+  augroup END
+
+  function! OverrideColors()
+    for color_file in split(glob('~/.vim/colors/custom/*.vim'), '\n')
+        exe 'source' color_file
+    endfor
+  endfunction
+" }}}1
 
 " Customize the tab line {{{1
   " Terminal tab labels {{{2
@@ -463,14 +475,8 @@ set nocompatible
         autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown setlocal spell spelllang=en
       endif
 
-      if has("gui_running")
-        " Highlight trailing whitespace
-        autocmd BufRead * match Warning /\s\+\%#\@<!$/
-        autocmd BufRead * match Warning /\s\+$/
-      endif
-
       " Setup JavaScript folding from vim-javascript-syntax
-      au FileType javascript call JavaScriptFold()
+      " au FileType javascript call JavaScriptFold()
     augroup END
   else
     set autoindent " always set autoindenting on
