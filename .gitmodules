@@ -118,3 +118,7 @@
 	path = bundle/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
   ignore = dirty
+[submodule "bundle/vim-airline-themes"]
+	path = bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+  ignore = dirty

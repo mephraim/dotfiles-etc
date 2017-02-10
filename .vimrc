@@ -614,6 +614,8 @@ set nocompatible
 
   let g:airline_symbols.branch = "\uE725"
 
+  let g:airline_theme = 'molokai'
+
   " Vimroom configuration
   let g:vimroom_background = "#0A0A0A"
   let g:vimroom_sidebar_height = 0
