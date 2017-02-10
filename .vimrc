@@ -205,7 +205,8 @@ set nocompatible
     endfunction
 
     " Set the custom tabline
-    set tabline=%!MyTabLine()
+    " Disabled for now (trying the airline tabline)
+    " set tabline=%!MyTabLine()
   " End terminal tab labels
   " }}}2
 
@@ -571,9 +572,31 @@ set nocompatible
 
   " Customize airline
 
-  " Don't show any separators
-  let g:airline_left_sep=''
-  let g:airline_right_sep=''
+
+  if has("gui_running")
+    " Show rounded separators
+    " See supported separators here: https://github.com/ryanoasis/powerline-extra-symbols
+    let g:airline_left_sep = "\uE0B4"
+    let g:airline_right_sep = "\uE0B6"
+  else
+    let g:airline_left_sep = ""
+    let g:airline_right_sep = ""
+  endif
+
+  " Customize the tabline
+  let g:airline#extensions#tabline#enabled = 1
+
+  if has("gui_running")
+    let g:airline#extensions#tabline#left_sep = "\uE0B0"
+    let g:airline#extensions#tabline#left_alt_sep = "\uE0B2"
+  endif
+
+  let g:airline#extensions#tabline#buffer_idx_mode = 0
+  let g:airline#extensions#tabline#buffer_nr_show = 0
+  let g:airline#extensions#tabline#show_buffers = 0
+  let g:airline#extensions#tabline#show_splits = 0
+  let g:airline#extensions#tabline#show_tab_nr = 0
+  let g:airline#extensions#tabline#tab_min_count = 0
 
   " Show the branch name, but not the number of changes
   let g:airline#extensions#branch#enabled = 1
@@ -589,7 +612,7 @@ set nocompatible
     let g:airline_symbols = {}
   endif
 
-  let g:airline_symbols.branch = '⎇ '
+  let g:airline_symbols.branch = "\uE725"
 
   " Vimroom configuration
   let g:vimroom_background = "#0A0A0A"
