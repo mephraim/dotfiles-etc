@@ -596,5 +596,8 @@ set nocompatible
   let g:vimroom_sidebar_height = 0
   let g:vimroom_width = 80
 
+  let g:jsx_ext_required = 0
+  au BufNewFile,BufRead *.js6 set filetype=javascript
+
 " End plugin configuration
 " }}}1

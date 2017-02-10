@@ -78,10 +78,6 @@
 	path = bundle/vimroom
 	url = https://github.com/mikewest/vimroom.git
   ignore = dirty
-[submodule "bundle/vim-javascript-syntax"]
-	path = bundle/vim-javascript-syntax
-	url = https://github.com/jelera/vim-javascript-syntax.git
-  ignore = dirty
 [submodule "bundle/YankRing"]
 	path = bundle/YankRing
 	url = https://github.com/vim-scripts/YankRing.vim.git
@@ -102,3 +98,9 @@
 	path = bundle/vim-cucumber
 	url = https://github.com/tpope/vim-cucumber
   ignore = dirty
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "bundle/vim-jsx"]
+	path = bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
