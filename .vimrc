@@ -596,8 +596,14 @@ set nocompatible
   let g:vimroom_sidebar_height = 0
   let g:vimroom_width = 80
 
+  " Configure JavaScript syntax highlighting
   let g:jsx_ext_required = 0
   au BufNewFile,BufRead *.js6 set filetype=javascript
+
+  " Configure dev-icons
+  let g:DevIconsEnableFolderExtensionPatternMatching = 1
+  let g:DevIconsEnableFoldersOpenClose = 1
+  let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " End plugin configuration
 " }}}1

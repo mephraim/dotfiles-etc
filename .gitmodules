@@ -52,7 +52,7 @@
   ignore = dirty
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
   ignore = dirty
 [submodule "bundle/NrrwRgn"]
 	path = bundle/NrrwRgn
@@ -101,6 +101,20 @@
 [submodule "bundle/vim-javascript"]
 	path = bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+  ignore = dirty
 [submodule "bundle/vim-jsx"]
 	path = bundle/vim-jsx
 	url = https://github.com/mxw/vim-jsx.git
+  ignore = dirty
+[submodule "bundle/vim-devicons"]
+	path = bundle/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
+  ignore = dirty
+[submodule "vim-nerdtree-syntax-highlight"]
+	path = vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+  ignore = dirty
+[submodule "bundle/vim-nerdtree-syntax-highlight"]
+	path = bundle/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+  ignore = dirty
