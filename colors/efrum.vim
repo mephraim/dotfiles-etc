@@ -18,7 +18,6 @@ hi SpecialKey   guifg=#808080 guibg=#0A0A0A gui=none
 hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 
 " Syntax highlighting
-hi Boolean      guifg=#E04331 gui=underline
 hi Comment      guifg=#A7A7A7
 hi Constant     guifg=#E04331 gui=none
 hi Error        guifg=#e7f6da guibg=#3A0505
@@ -33,13 +32,6 @@ hi String       guifg=#95e454
 hi Tag          gui=underline
 hi Todo         guibg=bg guifg=#F1F13A gui=underline
 hi Type         guifg=#D4EB9C gui=none
-
-" Status Line
-hi StatusLine         guifg=#95e454 guibg=bg gui=none
-hi StatusLineNC       guifg=bg guibg=bg
-hi StatusLineFile     guibg=bg
-hi StatusLineFileType guifg=#8ac6f2 guibg=bg
-hi StatusLineGit      guifg=#D4EB9C guibg=bg
 
 " HTML
 hi htmlBold guifg=#E04331
