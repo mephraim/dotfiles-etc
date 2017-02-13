@@ -113,3 +113,6 @@
 [submodule "bundle/vim-colors-pencil"]
 	path = bundle/vim-colors-pencil
 	url = https://github.com/reedes/vim-colors-pencil.git
+[submodule "bundle/vim-gitgutter"]
+	path = bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git

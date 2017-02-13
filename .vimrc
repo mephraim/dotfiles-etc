@@ -524,17 +524,14 @@ set nocompatible
   " terminal
   let g:LustyJugglerSuppressRubyWarning = 1
 
-  " Customize the signify signs
-  let g:signify_sign_add               = '⎸'
-  let g:signify_sign_change            = '⎸'
-  let g:signify_sign_delete            = '⎸'
-  let g:signify_sign_delete_first_line = '⎸'
+  " Customize git gutter signs
+  let g:gitgutter_sign_added = '⎸'
+  let g:gitgutter_sign_modified = '⎸'
+  let g:gitgutter_sign_removed = '⎸'
+  let g:gitgutter_sign_removed_first_line = '⎸'
+  let g:gitgutter_sign_modified_removed = '⎸'
 
-  " Tell signify to only look for git changes
-  let g:signify_vcs_list = ['git']
-
-  " Tell signify to always highlight changed lines
-  let g:signify_line_highlight = 1
+  let g:gitgutter_highlight_lines = 1
 
   " Run ctrlp in mixed mode by default
   let g:ctrlp_cmd = 'CtrlPMixed'
