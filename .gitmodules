@@ -14,10 +14,6 @@
 	path = bundle/surround
 	url = https://github.com/tpope/vim-surround.git
   ignore = dirty
-[submodule "bundle/SearchComplete"]
-	path = bundle/SearchComplete
-	url = https://github.com/vim-scripts/SearchComplete.git
-  ignore = dirty
 [submodule "bundle/repeat"]
 	path = bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
