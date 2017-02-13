@@ -55,7 +55,7 @@ set nocompatible
 
 
 " Assorted configuration options {{{1
-  set fillchars=fold:┈  " Customize the fill character for folds
+  set fillchars=fold:┈,vert:⎸ " Customize the fill character for folds
   set hidden            " Allow buffer switching without saving
   set history=50        " Keep 50 lines of command line history
   set laststatus=2      " Always show the status line
@@ -134,15 +134,19 @@ set nocompatible
 " }}}1
 
 " Custom colorscheme overrides {{{1
+  let g:disable_color_overrides = 0
+
   augroup ColorOverrides
     au!
     au ColorScheme * call OverrideColors()
   augroup END
 
   function! OverrideColors()
-    for color_file in split(glob('~/.vim/colors/custom/*.vim'), '\n')
+    if g:disable_color_overrides != 1
+      for color_file in split(glob('~/.vim/colors/custom/*.vim'), '\n')
         exe 'source' color_file
-    endfor
+      endfor
+    endif
   endfunction
 " }}}1
 
@@ -585,6 +589,7 @@ set nocompatible
 
   " Customize the tabline
   let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#fnamemod = ':t'
 
   if has("gui_running")
     let g:airline#extensions#tabline#left_sep = "\uE0B0"
@@ -614,12 +619,7 @@ set nocompatible
 
   let g:airline_symbols.branch = "\uE725"
 
-  let g:airline_theme = 'molokai'
-
-  " Vimroom configuration
-  let g:vimroom_background = "#0A0A0A"
-  let g:vimroom_sidebar_height = 0
-  let g:vimroom_width = 80
+  let g:airline_theme = 'base16_twilight'
 
   " Configure JavaScript syntax highlighting
   let g:jsx_ext_required = 0
@@ -631,4 +631,49 @@ set nocompatible
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " End plugin configuration
+" }}}1
+
+" Word Processor configuration {{{1
+  " Vimroom configuration
+  let g:vimroom_sidebar_height = 0
+  let g:vimroom_width = 105
+
+  function! EnableWordProccesor()
+    set showtabline=0
+
+    " Hide the statusline
+    set noshowmode
+    set noruler
+    set laststatus=0
+    set noshowcmd
+
+    " Hide numbers
+    set nonumber
+
+    let g:airline_theme = 'pencil'
+    normal :AirlineRefresh
+
+    " Turn off the automatic custom color overrides group before setting the
+    " colorscheme
+    let g:disable_color_overrides = 1
+
+    " Customize the pencil colorscheme
+    let g:pencil_higher_contrast_ui = 0
+    let g:pencil_neutral_code_bg = 0
+    let g:pencil_spell_undercurl = 1
+
+    set background=dark
+    colorscheme pencil
+
+    " A few colorscheme overrides
+    set guifont=\Inconsolata\ for\ Powerline\ Nerd\ Font\ \Complete\ Mono:h23
+    hi NonText   guifg=bg guibg=bg
+    hi VertSplit guifg=bg guibg=bg gui=none
+
+    " Don't show the break character
+    set showbreak=
+  endfunction
+
+  command! EnableWordProcessor :call EnableWordProccesor()
+" End word processor configuration
 " }}}1
