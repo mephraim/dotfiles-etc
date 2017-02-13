@@ -54,10 +54,6 @@
 	path = bundle/NrrwRgn
 	url = https://github.com/chrisbra/NrrwRgn
   ignore = dirty
-[submodule "bundle/vim-easymotion"]
-	path = bundle/vim-easymotion
-	url = https://github.com/Lokaltog/vim-easymotion
-  ignore = dirty
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
