@@ -115,3 +115,6 @@
 [submodule "updated_ctrlp_repo"]
 	path = bundle/ctrlp
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "bundle/vim-jst"]
+	path = bundle/vim-jst
+	url = https://github.com/briancollins/vim-jst.git
