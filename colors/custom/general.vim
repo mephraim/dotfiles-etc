@@ -40,7 +40,7 @@ hi StatusLineGit      guifg=#D4EB9C guibg=bg
 if version >= 700
   hi CursorColumn guibg=#2d2d2d
   hi CursorLine   guibg=#263133
-  hi MatchParen   guifg=#F11818 guibg=bg
+  hi MatchParen   guifg=#E04331 guibg=bg
   hi Pmenu        guifg=#f6f3e8 guibg=#242829
   hi PmenuSel     guifg=#000000 guibg=#cae682
 endif

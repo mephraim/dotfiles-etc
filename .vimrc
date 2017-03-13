@@ -562,6 +562,13 @@ set nocompatible
 
   let g:syntastic_javascript_checkers = ['eslint']
 
+  " Ignore "proprietary" errors related to custom Angular attributes and " elements
+  let g:syntastic_html_tidy_ignore_errors = [
+    \ 'discarding unexpected',
+    \ 'proprietary attribute',
+    \ 'is not recognized'
+    \ ]
+
   " Use the local node module version of eslint if it exists
   " (there may be more specific plugins available as local node modules)
   if executable('node_modules/.bin/eslint')
@@ -626,6 +633,18 @@ set nocompatible
   let g:DevIconsEnableFolderExtensionPatternMatching = 1
   let g:DevIconsEnableFoldersOpenClose = 1
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+  " Configure YouCompleteMe
+  let g:ycm_autoclose_preview_window_after_completion = 1
+
+  " MatchTagAlways settings
+  let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'eruby' : 1,
+    \ 'javascript' : 1
+  \}
 
 " End plugin configuration
 " }}}1
