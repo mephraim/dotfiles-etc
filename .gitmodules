@@ -125,3 +125,6 @@
 	path = bundle/MatchTagAlways
 	url = https://github.com/Valloric/MatchTagAlways.git
   ignore = dirty
+[submodule "bundle/vim-sleuth"]
+	path = bundle/vim-sleuth
+	url = https://github.com/tpope/vim-sleuth.git
