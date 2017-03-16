@@ -337,6 +337,7 @@ set nocompatible
 
   " NERDTree
   noremap <silent> <leader>n :NERDTreeToggle<CR>
+  let NERDTreeHijackNetrw=1
 
   " Quick buffer stuff
   noremap <leader>bd :bd<CR>
@@ -533,6 +534,8 @@ set nocompatible
 
   let g:gitgutter_highlight_lines = 1
 
+  " Customize CtrlP
+
   " Run ctrlp in mixed mode by default
   let g:ctrlp_cmd = 'CtrlPMixed'
 
@@ -566,7 +569,8 @@ set nocompatible
   let g:syntastic_html_tidy_ignore_errors = [
     \ 'discarding unexpected',
     \ 'proprietary attribute',
-    \ 'is not recognized'
+    \ 'is not recognized',
+    \ 'unescaped & which should be written as'
     \ ]
 
   " Use the local node module version of eslint if it exists
@@ -575,11 +579,12 @@ set nocompatible
     let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
   endif
 
+  " Customize bufExplorer
+
   " Show [No Name] buffers, to make them easier to delete.
   let g:bufExplorerShowNoName = 1
 
   " Customize airline
-
 
   if has("gui_running")
     " Show rounded separators
@@ -635,7 +640,18 @@ set nocompatible
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
   " Configure YouCompleteMe
+
+  " Automatically close the little preview window that pops up for documentation
   let g:ycm_autoclose_preview_window_after_completion = 1
+
+  " Use YouCompleteMe, even inside comments
+  let g:ycm_complete_in_comments = 1
+
+  " Look inside strings and comments for identifiers as well
+  let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+  " Seed the identifier database with the keywords for the current language
+  let g:ycm_seed_identifiers_with_syntax = 1
 
   " MatchTagAlways settings
   let g:mta_filetypes = {
