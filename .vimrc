@@ -662,6 +662,12 @@ set nocompatible
     \ 'javascript' : 1
   \}
 
+  " Use grip for markdown previews
+  let vim_markdown_preview_github=1
+
+  " Change the markdown preview hotkey
+  let vim_markdown_preview_hotkey='<C-m>'
+
 " End plugin configuration
 " }}}1
 
