@@ -50,6 +50,7 @@ set nocompatible
   Plugin 'tpope/vim-sleuth'
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
+  Plugin 'w0rp/ale'
 
   call vundle#end()
 " End Vundle setup
@@ -591,29 +592,25 @@ set nocompatible
   vmap  <expr>  <UP>     DVB_Drag('up')
   vmap  <expr>  D        DVB_Duplicate()
 
-  " Customize syntastic
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
+  " Customize Ale
 
-  let g:syntastic_enable_signs = 1
-  let g:syntastic_error_symbol = "✸"
-  let g:syntastic_warning_symbol = "✸"
+  " Open a quickfix window for Ale errors
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 1
+  let g:ale_open_list = 1
 
-  let g:syntastic_javascript_checkers = ['eslint']
+  " Set Ale signs
+  let g:ale_sign_error = "✸"
+  let g:ale_sign_warning = "✸"
 
-  " Ignore "proprietary" errors related to custom Angular attributes and " elements
-  let g:syntastic_html_tidy_ignore_errors = [
-    \ 'discarding unexpected',
-    \ 'proprietary attribute',
-    \ 'is not recognized',
-    \ 'unescaped & which should be written as'
-    \ ]
+  " Enable the Ale airline plugin
+  let g:airline#extensions#ale#enabled = 1
 
-  " Use the local node module version of eslint if it exists
-  " (there may be more specific plugins available as local node modules)
-  if executable('node_modules/.bin/eslint')
-    let g:syntastic_javascript_eslint_exec = 'node_modules/.bin/eslint'
-  endif
+  " Set the height of the Ale window to be only 4 lines tall
+  let g:ale_list_window_size = 4
+
+  " Only run Ale when the file has been saved
+  let g:ale_lint_on_text_changed = 'never'
 
   " Customize bufExplorer
 
