@@ -2,20 +2,57 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Pathogen setup {{{1
-  " Make sure pathogen ftplugins are properly installed by disabling then
+" Vundle setup {{{1
+  " Make sure Vundle ftplugins are properly installed by disabling then
   " re-enabling file type plugins.
   filetype off
 
-  " Enable auto-loading of per-directory plugins in ~/.vim/bundle
-  call pathogen#infect()
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
 
-  " Do the same for machine local viles in ~/.vim_local/bundle
-  call pathogen#infect('~/.vim_local/bundle')
+  " Vundle manages itself
+  Plugin 'VundleVim/Vundle.vim'
 
-  " Generate helptags for all of the above plugins
-  call pathogen#helptags()
-" End pathogen setup
+  " Hosted plugins
+  Plugin 'JamshedVesuna/vim-markdown-preview'
+  Plugin 'LustyExplorer'
+  Plugin 'LustyJuggler'
+  Plugin 'SyntaxAttr.vim'
+  Plugin 'Valloric/MatchTagAlways'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'YankRing.vim'
+  Plugin 'airblade/vim-gitgutter'
+  Plugin 'briancollins/vim-jst'
+  Plugin 'bufexplorer.zip'
+  Plugin 'chrisbra/NrrwRgn'
+  Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'jaxbot/selective-undo.vim'
+  Plugin 'junegunn/vim-emoji'
+  Plugin 'loremipsum'
+  Plugin 'matchit.zip'
+  Plugin 'michaeljsmith/vim-indent-object'
+  Plugin 'mikewest/vimroom'
+  Plugin 'mileszs/ack.vim'
+  Plugin 'mxw/vim-jsx'
+  Plugin 'nathanaelkane/vim-indent-guides'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'repeat.vim'
+  Plugin 'ruby.vim'
+  Plugin 'ryanoasis/vim-devicons'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'shinokada/dragvisuals.vim'
+  Plugin 'surround.vim'
+  Plugin 'tComment'
+  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plugin 'tpope/vim-cucumber'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-rails'
+  Plugin 'tpope/vim-sleuth'
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
+
+  call vundle#end()
+" End Vundle setup
 " }}}1
 
 
