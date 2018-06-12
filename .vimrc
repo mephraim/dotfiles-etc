@@ -55,7 +55,6 @@ set nocompatible
 " End Vundle setup
 " }}}1
 
-
 " Syntax and colorscheme {{{1
   " Switch syntax highlighting on when the terminal has colors
   " or when a GUI is running.
