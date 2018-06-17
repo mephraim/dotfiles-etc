@@ -31,6 +31,7 @@ set nocompatible
   Plugin 'junegunn/vim-emoji'
   Plugin 'kablamo/vim-git-log'
   Plugin 'loremipsum'
+  Plugin 'markonm/traces.vim'
   Plugin 'matchit.zip'
   Plugin 'michaeljsmith/vim-indent-object'
   Plugin 'mikewest/vimroom'
