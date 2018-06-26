@@ -687,6 +687,9 @@ set nocompatible
   " Seed the identifier database with the keywords for the current language
   let g:ycm_seed_identifiers_with_syntax = 1
 
+  " Pull identifiers from tags files
+  let g:ycm_collect_identifiers_from_tags_files = 1
+
   " MatchTagAlways settings
   let g:mta_filetypes = {
     \ 'html' : 1,
