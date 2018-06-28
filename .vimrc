@@ -26,6 +26,7 @@ set nocompatible
   Plugin 'bufexplorer.zip'
   Plugin 'chrisbra/NrrwRgn'
   Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'dyng/ctrlsf.vim'
   Plugin 'gregsexton/gitv'
   Plugin 'jaxbot/selective-undo.vim'
   Plugin 'junegunn/vim-emoji'
@@ -704,6 +705,12 @@ set nocompatible
 
   " Change the markdown preview hotkey
   let vim_markdown_preview_hotkey='<C-m>'
+
+  " CtrlSF configuration
+  let g:ctrlsf_auto_close = {
+    \ "normal" : 0,
+    \ "compact": 0
+  \}
 
 " End plugin configuration
 " }}}1
