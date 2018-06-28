@@ -22,6 +22,7 @@ set nocompatible
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'YankRing.vim'
   Plugin 'airblade/vim-gitgutter'
+  Plugin 'ap/vim-css-color'
   Plugin 'briancollins/vim-jst'
   Plugin 'bufexplorer.zip'
   Plugin 'chrisbra/NrrwRgn'
