@@ -55,6 +55,7 @@ set nocompatible
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'w0rp/ale'
+  Plugin 'zefei/vim-colortuner'
 
   call vundle#end()
 " End Vundle setup
