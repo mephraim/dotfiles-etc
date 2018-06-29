@@ -33,6 +33,7 @@ set nocompatible
   Plugin 'junegunn/vim-emoji'
   Plugin 'kablamo/vim-git-log'
   Plugin 'loremipsum'
+  Plugin 'machakann/vim-highlightedyank'
   Plugin 'markonm/traces.vim'
   Plugin 'matchit.zip'
   Plugin 'michaeljsmith/vim-indent-object'
@@ -713,6 +714,9 @@ set nocompatible
     \ "normal" : 0,
     \ "compact": 0
   \}
+
+  " Set the highlight duration for the highlighted yank plugin
+  let g:highlightedyank_highlight_duration = 3000
 
 " End plugin configuration
 " }}}1
