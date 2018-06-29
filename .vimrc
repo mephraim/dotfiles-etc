@@ -22,7 +22,6 @@ set nocompatible
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'YankRing.vim'
   Plugin 'airblade/vim-gitgutter'
-  Plugin 'ap/vim-css-color'
   Plugin 'briancollins/vim-jst'
   Plugin 'bufexplorer.zip'
   Plugin 'chrisbra/NrrwRgn'
@@ -58,6 +57,7 @@ set nocompatible
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'w0rp/ale'
   Plugin 'zefei/vim-colortuner'
+  Plugin 'chrisbra/Colorizer'
 
   call vundle#end()
 " End Vundle setup
@@ -717,6 +717,9 @@ set nocompatible
 
   " Set the highlight duration for the highlighted yank plugin
   let g:highlightedyank_highlight_duration = 3000
+
+  " Automatically run the colorizer plugin for certain filetypes
+  let g:colorizer_auto_filetype='css,html,scss'
 
 " End plugin configuration
 " }}}1
