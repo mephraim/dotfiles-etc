@@ -14,7 +14,6 @@ set nocompatible
   Plugin 'VundleVim/Vundle.vim'
 
   " Hosted plugins
-  Plugin 'JamshedVesuna/vim-markdown-preview'
   Plugin 'LustyExplorer'
   Plugin 'LustyJuggler'
   Plugin 'SyntaxAttr.vim'
@@ -24,11 +23,14 @@ set nocompatible
   Plugin 'airblade/vim-gitgutter'
   Plugin 'briancollins/vim-jst'
   Plugin 'bufexplorer.zip'
+  Plugin 'chrisbra/Colorizer'
   Plugin 'chrisbra/NrrwRgn'
   Plugin 'ctrlpvim/ctrlp.vim'
   Plugin 'dyng/ctrlsf.vim'
+  Plugin 'godlygeek/tabular'
   Plugin 'gregsexton/gitv'
   Plugin 'jaxbot/selective-undo.vim'
+  Plugin 'junegunn/goyo.vim'
   Plugin 'junegunn/vim-emoji'
   Plugin 'kablamo/vim-git-log'
   Plugin 'loremipsum'
@@ -36,15 +38,18 @@ set nocompatible
   Plugin 'markonm/traces.vim'
   Plugin 'matchit.zip'
   Plugin 'michaeljsmith/vim-indent-object'
-  Plugin 'mikewest/vimroom'
   Plugin 'mileszs/ack.vim'
   Plugin 'mxw/vim-jsx'
   Plugin 'nathanaelkane/vim-indent-guides'
   Plugin 'pangloss/vim-javascript'
+  Plugin 'plasticboy/vim-markdown'
+  Plugin 'reedes/vim-colors-pencil'
+  Plugin 'reedes/vim-pencil'
   Plugin 'repeat.vim'
   Plugin 'ruby.vim'
   Plugin 'ryanoasis/vim-devicons'
   Plugin 'scrooloose/nerdtree'
+  Plugin 'shime/vim-livedown'
   Plugin 'shinokada/dragvisuals.vim'
   Plugin 'surround.vim'
   Plugin 'tComment'
@@ -57,7 +62,6 @@ set nocompatible
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'w0rp/ale'
   Plugin 'zefei/vim-colortuner'
-  Plugin 'chrisbra/Colorizer'
 
   call vundle#end()
 " End Vundle setup
@@ -488,6 +492,13 @@ set nocompatible
 
   " Don't jump around so much when matching with *
   nnoremap * *<c-o>
+
+  " In terminal mode, use the esc key to switch to normal mode,
+  " which lets you move around the terminal window using the usual
+  " normal mode keys
+  tnoremap <Esc> <C-W>N
+  set notimeout ttimeout timeoutlen=100
+
 " End custom mappings
 " }}}1
 
@@ -703,11 +714,11 @@ set nocompatible
     \ 'javascript' : 1
   \}
 
-  " Use grip for markdown previews
-  let vim_markdown_preview_github=1
+  " Livedown (markdown preview) binding
+  nmap <leader>lm :LivedownToggle<CR>
 
-  " Change the markdown preview hotkey
-  let vim_markdown_preview_hotkey='<C-m>'
+  " Open the Livedown window automatically
+  let g:livedown_open = 1
 
   " CtrlSF configuration
   let g:ctrlsf_auto_close = {
@@ -725,25 +736,7 @@ set nocompatible
 " }}}1
 
 " Word Processor configuration {{{1
-  " Vimroom configuration
-  let g:vimroom_sidebar_height = 0
-  let g:vimroom_width = 105
-
-  function! EnableWordProccesor()
-    set showtabline=0
-
-    " Hide the statusline
-    set noshowmode
-    set noruler
-    set laststatus=0
-    set noshowcmd
-
-    " Hide numbers
-    set nonumber
-
-    let g:airline_theme = 'pencil'
-    normal :AirlineRefresh
-
+  function! s:goyo_enter()
     " Turn off the automatic custom color overrides group before setting the
     " colorscheme
     let g:disable_color_overrides = 1
@@ -763,8 +756,20 @@ set nocompatible
 
     " Don't show the break character
     set showbreak=
+
+    " Enable Pencil
+    call pencil#init()
+
+    " replace common punctuation
+    iabbrev <buffer> -- –
+    iabbrev <buffer> --- —
+    iabbrev <buffer> << «
+    iabbrev <buffer> >> »
+
+    " open most folds
+    setlocal foldlevel=6
   endfunction
 
-  command! EnableWordProcessor :call EnableWordProccesor()
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
 " End word processor configuration
 " }}}1

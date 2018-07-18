@@ -1,6 +1,6 @@
 " Make vim a little more usable for word processing stuff
 
-function! s:turnOnWordProcessing()
+function! s:turnOnWordProcessing_OLD()
   " Turn on softwrapping
   setlocal wrap
 
@@ -58,6 +58,36 @@ function! s:turnOnWordProcessing()
   inoremap ! !<C-g>u
   inoremap ? ?<C-g>u
   inoremap : :<C-g>u
+endfunction
+
+function! s:turnOnWordProcessing()
+  " Turn on softwrapping
+  setlocal wrap
+
+  " Wrap at spaces, rather than at any character
+  setlocal linebreak
+
+  " Display as much as possible of the last line
+  setlocal display+=lastline
+
+  " Add a little bit of extra linespacing
+  setlocal linespace=3
+
+  " Clear out any special showbreak symbols
+  setlocal showbreak=
+
+  " Make line navigation work normally for soft wrapped lines
+  noremap <buffer> $ g$
+  noremap <buffer> 0 g0
+  noremap <buffer> ^ g^
+  noremap <buffer> G G$
+
+  " Make I, A, O work normally for soft wrapped lines
+  noremap <buffer> I g0i
+  noremap <buffer> A g$a
+
+  " Make visual line select work for soft wrapped lines
+  noremap <buffer> V g^vg$
 endfunction
 
 command! WordProcessorOn :call <SID>turnOnWordProcessing()
