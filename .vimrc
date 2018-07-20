@@ -21,6 +21,7 @@ set nocompatible
   Plug 'godlygeek/tabular'
   Plug 'gregsexton/gitv'
   Plug 'jaxbot/selective-undo.vim'
+  Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/vim-emoji'
   Plug 'kablamo/vim-git-log'
@@ -489,8 +490,11 @@ set nocompatible
   " In terminal mode, use the esc key to switch to normal mode,
   " which lets you move around the terminal window using the usual
   " normal mode keys
-  tnoremap <Esc> <C-W>N
+  tnoremap <C-Esc> <C-W>N
   set notimeout ttimeout timeoutlen=100
+
+  " Open the fzf file explorer with the space bar
+  nmap <Space> :Files<CR>
 
 " End custom mappings
 " }}}1
