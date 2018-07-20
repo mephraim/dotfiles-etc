@@ -9,6 +9,7 @@ GetLatest/*.dist
 GetLatest/Installed
 GetLatest/*.gz
 .netrwhist
+plugged
 
 # some extra stuff for work
 .vimrc_work_extras

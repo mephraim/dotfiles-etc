@@ -2,68 +2,61 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Vundle setup {{{1
+" Plug setup {{{1
   " Make sure Vundle ftplugins are properly installed by disabling then
   " re-enabling file type plugins.
   filetype off
 
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
-
-  " Vundle manages itself
-  Plugin 'VundleVim/Vundle.vim'
+  call plug#begin('~/.vim/plugged')
 
   " Hosted plugins
-  Plugin 'LustyExplorer'
-  Plugin 'LustyJuggler'
-  Plugin 'SyntaxAttr.vim'
-  Plugin 'Valloric/MatchTagAlways'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'YankRing.vim'
-  Plugin 'airblade/vim-gitgutter'
-  Plugin 'briancollins/vim-jst'
-  Plugin 'bufexplorer.zip'
-  Plugin 'chrisbra/Colorizer'
-  Plugin 'chrisbra/NrrwRgn'
-  Plugin 'ctrlpvim/ctrlp.vim'
-  Plugin 'dyng/ctrlsf.vim'
-  Plugin 'godlygeek/tabular'
-  Plugin 'gregsexton/gitv'
-  Plugin 'jaxbot/selective-undo.vim'
-  Plugin 'junegunn/goyo.vim'
-  Plugin 'junegunn/vim-emoji'
-  Plugin 'kablamo/vim-git-log'
-  Plugin 'loremipsum'
-  Plugin 'machakann/vim-highlightedyank'
-  Plugin 'markonm/traces.vim'
-  Plugin 'matchit.zip'
-  Plugin 'michaeljsmith/vim-indent-object'
-  Plugin 'mileszs/ack.vim'
-  Plugin 'mxw/vim-jsx'
-  Plugin 'nathanaelkane/vim-indent-guides'
-  Plugin 'pangloss/vim-javascript'
-  Plugin 'plasticboy/vim-markdown'
-  Plugin 'reedes/vim-colors-pencil'
-  Plugin 'reedes/vim-pencil'
-  Plugin 'repeat.vim'
-  Plugin 'ruby.vim'
-  Plugin 'ryanoasis/vim-devicons'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'shime/vim-livedown'
-  Plugin 'shinokada/dragvisuals.vim'
-  Plugin 'surround.vim'
-  Plugin 'tComment'
-  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-  Plugin 'tpope/vim-cucumber'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'tpope/vim-rails'
-  Plugin 'tpope/vim-sleuth'
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-  Plugin 'w0rp/ale'
-  Plugin 'zefei/vim-colortuner'
+  Plug 'Valloric/MatchTagAlways'
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+  Plug 'airblade/vim-gitgutter'
+  Plug 'briancollins/vim-jst'
+  Plug 'chrisbra/Colorizer'
+  Plug 'chrisbra/NrrwRgn'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'dyng/ctrlsf.vim'
+  Plug 'godlygeek/tabular'
+  Plug 'gregsexton/gitv'
+  Plug 'jaxbot/selective-undo.vim'
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/vim-emoji'
+  Plug 'kablamo/vim-git-log'
+  Plug 'machakann/vim-highlightedyank'
+  Plug 'markonm/traces.vim'
+  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'mileszs/ack.vim'
+  Plug 'mxw/vim-jsx'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'pangloss/vim-javascript'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'reedes/vim-colors-pencil'
+  Plug 'reedes/vim-pencil'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
+  Plug 'shime/vim-livedown'
+  Plug 'shinokada/dragvisuals.vim'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
+  Plug 'tpope/vim-cucumber'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-sleuth'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-scripts/SyntaxAttr.vim'
+  Plug 'vim-scripts/YankRing.vim'
+  Plug 'vim-scripts/bufexplorer.zip'
+  Plug 'vim-scripts/loremipsum'
+  Plug 'vim-scripts/matchit.zip'
+  Plug 'vim-scripts/repeat.vim'
+  Plug 'vim-scripts/ruby.vim'
+  Plug 'vim-scripts/surround.vim'
+  Plug 'w0rp/ale'
+  Plug 'zefei/vim-colortuner'
 
-  call vundle#end()
+  call plug#end()
 " End Vundle setup
 " }}}1
 
@@ -575,10 +568,6 @@ set nocompatible
   " This prevents a conflict with the ctrlp plugin
   let g:yankring_replace_n_pkey = '<m-p>'
   let g:yankring_replace_n_nkey = '<m-n>'
-
-  " Tell the lusty plugins to be quiet about not having Ruby support in the
-  " terminal
-  let g:LustyJugglerSuppressRubyWarning = 1
 
   " Customize git gutter signs
   let g:gitgutter_sign_added = '⎸'
