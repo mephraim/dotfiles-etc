@@ -30,6 +30,7 @@ set nocompatible
   Plug 'reedes/vim-pencil'
   Plug 'ryanoasis/vim-devicons'
   Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
+  Plug 'sheerun/vim-polyglot'
   Plug 'shime/vim-livedown'
   Plug 'shinokada/dragvisuals.vim'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
