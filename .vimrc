@@ -40,6 +40,7 @@ set nocompatible
   Plug 'shime/vim-livedown'
   Plug 'shinokada/dragvisuals.vim'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
+  Plug 'tomtom/tcomment_vim'
   Plug 'tpope/vim-cucumber'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
