@@ -13,14 +13,12 @@ set nocompatible
   Plug 'Valloric/MatchTagAlways'
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
   Plug 'airblade/vim-gitgutter'
-  Plug 'briancollins/vim-jst'
   Plug 'chrisbra/Colorizer'
-  Plug 'chrisbra/NrrwRgn'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'dyng/ctrlsf.vim'
+  Plug 'chrisbra/NrrwRgn', { 'on': 'NarrowRegion' }
+  Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
   Plug 'jaxbot/selective-undo.vim'
   Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/vim-emoji'
   Plug 'machakann/vim-highlightedyank'
   Plug 'markonm/traces.vim'
@@ -43,12 +41,12 @@ set nocompatible
   Plug 'vim-scripts/SyntaxAttr.vim'
   Plug 'vim-scripts/YankRing.vim'
   Plug 'vim-scripts/bufexplorer.zip'
-  Plug 'vim-scripts/loremipsum'
+  Plug 'vim-scripts/loremipsum', { 'on': 'Loremipsum' }
   Plug 'vim-scripts/matchit.zip'
   Plug 'vim-scripts/repeat.vim'
   Plug 'vim-scripts/surround.vim'
   Plug 'w0rp/ale'
-  Plug 'zefei/vim-colortuner'
+  Plug 'zefei/vim-colortuner', { 'on': 'Colortuner' }
 
   call plug#end()
 " End Vundle setup
