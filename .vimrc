@@ -2,54 +2,250 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Plug setup {{{1
-  " Make sure Vundle ftplugins are properly installed by disabling then
-  " re-enabling file type plugins.
-  filetype off
+" Set the mapleader before doing anything else, so that any leader mappings will
+" have the correct leader key.
+let mapleader = ","
 
+" Plugin setup {{{1
   call plug#begin('~/.vim/plugged')
 
-  " Hosted plugins
-  Plug 'Valloric/MatchTagAlways'
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-  Plug 'airblade/vim-gitgutter'
-  Plug 'chrisbra/Colorizer'
-  Plug 'chrisbra/NrrwRgn', { 'on': 'NarrowRegion' }
-  Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
   Plug 'jaxbot/selective-undo.vim'
-  Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/vim-emoji'
-  Plug 'machakann/vim-highlightedyank'
   Plug 'markonm/traces.vim'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'reedes/vim-colors-pencil'
   Plug 'reedes/vim-pencil'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
-  Plug 'sheerun/vim-polyglot'
-  Plug 'shime/vim-livedown'
-  Plug 'shinokada/dragvisuals.vim'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
   Plug 'tomtom/tcomment_vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-sleuth'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
   Plug 'vim-scripts/SyntaxAttr.vim'
-  Plug 'vim-scripts/YankRing.vim'
-  Plug 'vim-scripts/bufexplorer.zip'
-  Plug 'vim-scripts/loremipsum', { 'on': 'Loremipsum' }
   Plug 'vim-scripts/matchit.zip'
   Plug 'vim-scripts/repeat.vim'
   Plug 'vim-scripts/surround.vim'
-  Plug 'w0rp/ale'
   Plug 'zefei/vim-colortuner', { 'on': 'Colortuner' }
 
+  " Airline {{{2
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    if has("gui_running")
+      " Show rounded separators
+      " See supported separators here: https://github.com/ryanoasis/powerline-extra-symbols
+      let g:airline_left_sep = "\uE0B4"
+      let g:airline_right_sep = "\uE0B6"
+    else
+      let g:airline_left_sep = ""
+      let g:airline_right_sep = ""
+    endif
+
+    " Customize the tabline
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#fnamemod = ':t'
+
+    if has("gui_running")
+      let g:airline#extensions#tabline#left_sep = "\uE0B0"
+      let g:airline#extensions#tabline#left_alt_sep = "\uE0B2"
+    endif
+
+    let g:airline#extensions#tabline#buffer_idx_mode = 0
+    let g:airline#extensions#tabline#buffer_nr_show = 0
+    let g:airline#extensions#tabline#show_buffers = 0
+    let g:airline#extensions#tabline#show_splits = 0
+    let g:airline#extensions#tabline#show_tab_nr = 0
+    let g:airline#extensions#tabline#tab_min_count = 0
+
+    " Show the branch name, but not the number of changes
+    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#hunks#enabled = 0
+
+    " Enable trailing whitespace warnings
+    let g:airline#extensions#whitespace#enabled = 1
+    let g:airline#extensions#whitespace#symbol = ''
+    let g:airline#extensions#whitespace#trailing_format = '⎵  [%s]'
+    let g:airline#extensions#whitespace#mixed_indent_format = '▸ [%s]'
+
+    if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+    endif
+
+    let g:airline_symbols.branch = "\uE725"
+
+    let g:airline_theme = 'base16_twilight'
+  " }}}2
+
+  " Ale {{{2
+    Plug 'w0rp/ale'
+
+    " Open a quickfix window for Ale errors
+    let g:ale_open_list = 1
+
+    " Set Ale signs
+    let g:ale_sign_error = "✸"
+    let g:ale_sign_warning = "✸"
+
+    " Enable the Ale airline plugin
+    let g:airline#extensions#ale#enabled = 1
+
+    " Set the height of the Ale window to be only 4 lines tall
+    let g:ale_list_window_size = 4
+
+    " Only run Ale when the file has been saved
+    let g:ale_lint_on_text_changed = 'never'
+  " }}}2
+
+  " BufExplorer {{{2
+    Plug 'vim-scripts/bufexplorer.zip'
+
+    " Show [No Name] buffers, to make them easier to delete.
+    let g:bufExplorerShowNoName = 1
+  " }}}2
+
+  " Colorizer {{{2
+    Plug 'chrisbra/Colorizer'
+    let g:colorizer_auto_filetype='css,html,scss'
+  " }}}2
+
+  " CtrlSF {{{2
+    Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
+    let g:ctrlsf_auto_close = {
+      \ "normal" : 0,
+      \ "compact": 0
+    \}
+  " }}}2
+
+  " Devicons {{{2
+    Plug 'ryanoasis/vim-devicons'
+
+    let g:DevIconsEnableFolderExtensionPatternMatching = 1
+    let g:DevIconsEnableFoldersOpenClose = 1
+    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+  " }}}2
+
+  " DragVisuals {{{2
+    Plug 'shinokada/dragvisuals.vim'
+
+    " Add mappings for the configure the dragvisuals plugin
+    vmap  <expr>  <LEFT>   DVB_Drag('left')
+    vmap  <expr>  <RIGHT>  DVB_Drag('right')
+    vmap  <expr>  <DOWN>   DVB_Drag('down')
+    vmap  <expr>  <UP>     DVB_Drag('up')
+    vmap  <expr>  D        DVB_Duplicate()
+  " }}}2
+
+  " fzf {{{2
+    Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
+
+    " Open the fzf file explorer with the space bar
+    nmap <Space> :Files<CR>
+  " }}}2
+
+  " Gitgutter {{{2
+    Plug 'airblade/vim-gitgutter'
+
+    " Customize git gutter signs
+    let g:gitgutter_sign_added = '⎸'
+    let g:gitgutter_sign_modified = '⎸'
+    let g:gitgutter_sign_removed = '⎸'
+    let g:gitgutter_sign_removed_first_line = '⎸'
+    let g:gitgutter_sign_modified_removed = '⎸'
+
+    let g:gitgutter_highlight_lines = 1
+  " }}}2
+
+  " Highlightedyank {{{2
+    Plug 'machakann/vim-highlightedyank'
+    " Set the highlight duration for the highlighted yank plugin
+    let g:highlightedyank_highlight_duration = 3000
+  " }}}2
+
+  " Livedown {{{2
+    Plug 'shime/vim-livedown'
+
+    " Livedown (markdown preview) binding
+    nmap <leader>lm :LivedownToggle<CR>
+
+    " Open the Livedown window automatically
+    let g:livedown_open = 1
+  " }}}2
+
+  " Loremipsum {{{2
+    Plug 'vim-scripts/loremipsum', { 'on': 'Loremipsum' }
+    " Quickly generate some lorem ipsum text
+    noremap <leader>lorem :Loremipsum<CR>
+  " }}}2
+
+  " MatchTagAlways {{{2
+    Plug 'Valloric/MatchTagAlways'
+
+    let g:mta_filetypes = {
+      \ 'html' : 1,
+      \ 'xhtml' : 1,
+      \ 'xml' : 1,
+      \ 'eruby' : 1,
+      \ 'javascript' : 1
+    \}
+  " }}}2
+
+  " NarrowRegion {{{2
+    Plug 'chrisbra/NrrwRgn', { 'on': 'NarrowRegion' }
+    let g:nrrw_rgn_hl = 'NarrowRegion'
+  " }}}2
+
+  " NERDTree {{{2
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
+
+    noremap <silent> <leader>n :NERDTreeToggle<CR>
+    let NERDTreeHijackNetrw=1
+  " }}}2
+
+  " Polyglot {{{2
+    Plug 'sheerun/vim-polyglot'
+
+    " Configure JavaScript syntax highlighting
+    let g:jsx_ext_required = 0
+    au BufNewFile,BufRead *.js6 set filetype=javascript
+  " }}}2
+
+  " YankRing {{{2
+    Plug 'vim-scripts/YankRing.vim'
+
+    " Set up the yankring history location
+    let g:yankring_history_dir = "~/.vim/tmp/yankring"
+
+    " Override the default yankring cycling keys
+    " This prevents a conflict with the ctrlp plugin
+    let g:yankring_replace_n_pkey = '<m-p>'
+    let g:yankring_replace_n_nkey = '<m-n>'
+
+    " Show the yankring
+    noremap <leader>yr :YRShow<cr>
+  " }}}2
+
+  " YouCompleteMe {{{2
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+    " Automatically close the little preview window that pops up for documentation
+    let g:ycm_autoclose_preview_window_after_completion = 1
+
+    " Use YouCompleteMe, even inside comments
+    let g:ycm_complete_in_comments = 1
+
+    " Look inside strings and comments for identifiers as well
+    let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+    " Seed the identifier database with the keywords for the current language
+    let g:ycm_seed_identifiers_with_syntax = 1
+
+    " Pull identifiers from tags files
+    let g:ycm_collect_identifiers_from_tags_files = 1
+  " }}}2
+
   call plug#end()
-" End Vundle setup
+" End Plugin setup
 " }}}1
 
 " Syntax and colorscheme {{{1
@@ -74,7 +270,6 @@ set nocompatible
 " End syntax and colorscheme
 " }}}1
 
-
 " Tab and indent related settings {{{1
   set expandtab       " Set up spaces as tabs
   set shiftround      " When at 3 spaces, and I hit > ... go to 4, not 5
@@ -85,7 +280,6 @@ set nocompatible
   set tabstop=2       " 1 tab will count for 2 spaces
 " End tab and indent related settings
 " }}}1
-
 
 " Assorted configuration options {{{1
   set fillchars=fold:┈,vert:⎸ " Customize the fill character for folds
@@ -294,7 +488,6 @@ set nocompatible
 " End customize the tab line
 " }}}1
 
-
 " Folding {{{1
   " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
   set foldtext=GetFoldText()
@@ -346,10 +539,7 @@ set nocompatible
   " End custom folding
 " }}}1
 
-
 " Custom mappings {{{1
-  let mapleader = ","
-
   " Don't use Ex mode, use Q for formatting
   noremap Q gq
 
@@ -368,10 +558,6 @@ set nocompatible
     nnoremap <leader>full :set columns+=1 lines+=1<CR>
   end
 
-  " NERDTree
-  noremap <silent> <leader>n :NERDTreeToggle<CR>
-  let NERDTreeHijackNetrw=1
-
   " Quick buffer stuff
   noremap <leader>bd :bd<CR>
   noremap <leader>bdd :bd!<CR>
@@ -382,12 +568,6 @@ set nocompatible
 
   "Fast editing of .vimrc
   noremap <leader>vimrc :tabedit $MYVIMRC<CR>
-
-  " Move to the next tab right with the right arrow key
-  noremap <C-right> :tabn<CR>
-
-  " Move to the next tab left with the left arrow key
-  noremap <C-left> :tabp<CR>
 
   " Allow cursor movements during insert mode
   inoremap <C-h> <C-o>h
@@ -441,12 +621,6 @@ set nocompatible
   vnoremap <silent> / :<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>
   vnoremap <silent> ? :<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>
 
-  " Show the yankring
-  noremap <leader>yr :YRShow<cr>
-
-  " Quickly generate some lorem ipsum text
-  noremap <leader>lorem :Loremipsum<CR>
-
   " Quickly turn invisibles on and off
   noremap <silent><leader>li :call <SID>ToggleNonText()<CR>
 
@@ -477,19 +651,8 @@ set nocompatible
 
   " Don't jump around so much when matching with *
   nnoremap * *<c-o>
-
-  " In terminal mode, use the esc key to switch to normal mode,
-  " which lets you move around the terminal window using the usual
-  " normal mode keys
-  tnoremap <C-Esc> <C-W>N
-  set notimeout ttimeout timeoutlen=100
-
-  " Open the fzf file explorer with the space bar
-  nmap <Space> :Files<CR>
-
 " End custom mappings
 " }}}1
-
 
 " Autocommands {{{1
   if has("autocmd")
@@ -524,15 +687,14 @@ set nocompatible
         autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown setlocal spell spelllang=en
       endif
 
-      " Setup JavaScript folding from vim-javascript-syntax
-      " au FileType javascript call JavaScriptFold()
+      " For vim files, use markers as the foldmethod and collapse everything
+      autocmd Filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
     augroup END
   else
     set autoindent " always set autoindenting on
   endif
 " End autocommands
 " }}}1
-
 
 " Custom commands {{{1
   " Creates a visual gutter starting at the column passed in.
@@ -552,171 +714,6 @@ set nocompatible
 
   command! EmojiList call EmojiList()
 " End custom commands
-" }}}1
-
-
-" Plugin configuration {{{1
-  " Set up the yankring history location
-  let g:yankring_history_dir = "~/.vim/tmp/yankring"
-
-  " Override the default yankring cycling keys
-  " This prevents a conflict with the ctrlp plugin
-  let g:yankring_replace_n_pkey = '<m-p>'
-  let g:yankring_replace_n_nkey = '<m-n>'
-
-  " Customize git gutter signs
-  let g:gitgutter_sign_added = '⎸'
-  let g:gitgutter_sign_modified = '⎸'
-  let g:gitgutter_sign_removed = '⎸'
-  let g:gitgutter_sign_removed_first_line = '⎸'
-  let g:gitgutter_sign_modified_removed = '⎸'
-
-  let g:gitgutter_highlight_lines = 1
-
-  " Customize CtrlP
-
-  " Run ctrlp in mixed mode by default
-  let g:ctrlp_cmd = 'CtrlPMixed'
-
-  " Don't clear the ctrlp cache on exit
-  let g:ctrlp_clear_cache_on_exit = 0
-
-  " Don't limit the number of files to look for
-  let g:ctrlp_max_files = 0
-
-  " Add a custom highlight group for the NarrowRegion plugin
-  let g:nrrw_rgn_hl = 'NarrowRegion'
-
-  " Add mappings for the configure the dragvisuals plugin
-  vmap  <expr>  <LEFT>   DVB_Drag('left')
-  vmap  <expr>  <RIGHT>  DVB_Drag('right')
-  vmap  <expr>  <DOWN>   DVB_Drag('down')
-  vmap  <expr>  <UP>     DVB_Drag('up')
-  vmap  <expr>  D        DVB_Duplicate()
-
-  " Customize Ale
-
-  " Open a quickfix window for Ale errors
-  let g:ale_open_list = 1
-
-  " Set Ale signs
-  let g:ale_sign_error = "✸"
-  let g:ale_sign_warning = "✸"
-
-  " Enable the Ale airline plugin
-  let g:airline#extensions#ale#enabled = 1
-
-  " Set the height of the Ale window to be only 4 lines tall
-  let g:ale_list_window_size = 4
-
-  " Only run Ale when the file has been saved
-  let g:ale_lint_on_text_changed = 'never'
-
-  " Customize bufExplorer
-
-  " Show [No Name] buffers, to make them easier to delete.
-  let g:bufExplorerShowNoName = 1
-
-  " Customize airline
-
-  if has("gui_running")
-    " Show rounded separators
-    " See supported separators here: https://github.com/ryanoasis/powerline-extra-symbols
-    let g:airline_left_sep = "\uE0B4"
-    let g:airline_right_sep = "\uE0B6"
-  else
-    let g:airline_left_sep = ""
-    let g:airline_right_sep = ""
-  endif
-
-  " Customize the tabline
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#fnamemod = ':t'
-
-  if has("gui_running")
-    let g:airline#extensions#tabline#left_sep = "\uE0B0"
-    let g:airline#extensions#tabline#left_alt_sep = "\uE0B2"
-  endif
-
-  let g:airline#extensions#tabline#buffer_idx_mode = 0
-  let g:airline#extensions#tabline#buffer_nr_show = 0
-  let g:airline#extensions#tabline#show_buffers = 0
-  let g:airline#extensions#tabline#show_splits = 0
-  let g:airline#extensions#tabline#show_tab_nr = 0
-  let g:airline#extensions#tabline#tab_min_count = 0
-
-  " Show the branch name, but not the number of changes
-  let g:airline#extensions#branch#enabled = 1
-  let g:airline#extensions#hunks#enabled = 0
-
-  " Enable trailing whitespace warnings
-  let g:airline#extensions#whitespace#enabled = 1
-  let g:airline#extensions#whitespace#symbol = ''
-  let g:airline#extensions#whitespace#trailing_format = '⎵  [%s]'
-  let g:airline#extensions#whitespace#mixed_indent_format = '▸ [%s]'
-
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-
-  let g:airline_symbols.branch = "\uE725"
-
-  let g:airline_theme = 'base16_twilight'
-
-  " Configure JavaScript syntax highlighting
-  let g:jsx_ext_required = 0
-  au BufNewFile,BufRead *.js6 set filetype=javascript
-
-  " Configure dev-icons
-  let g:DevIconsEnableFolderExtensionPatternMatching = 1
-  let g:DevIconsEnableFoldersOpenClose = 1
-  let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-  " Configure YouCompleteMe
-
-  " Automatically close the little preview window that pops up for documentation
-  let g:ycm_autoclose_preview_window_after_completion = 1
-
-  " Use YouCompleteMe, even inside comments
-  let g:ycm_complete_in_comments = 1
-
-  " Look inside strings and comments for identifiers as well
-  let g:ycm_collect_identifiers_from_comments_and_strings = 1
-
-  " Seed the identifier database with the keywords for the current language
-  let g:ycm_seed_identifiers_with_syntax = 1
-
-  " Pull identifiers from tags files
-  let g:ycm_collect_identifiers_from_tags_files = 1
-
-  " MatchTagAlways settings
-  let g:mta_filetypes = {
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'eruby' : 1,
-    \ 'javascript' : 1
-  \}
-
-  " Livedown (markdown preview) binding
-  nmap <leader>lm :LivedownToggle<CR>
-
-  " Open the Livedown window automatically
-  let g:livedown_open = 1
-
-  " CtrlSF configuration
-  let g:ctrlsf_auto_close = {
-    \ "normal" : 0,
-    \ "compact": 0
-  \}
-
-  " Set the highlight duration for the highlighted yank plugin
-  let g:highlightedyank_highlight_duration = 3000
-
-  " Automatically run the colorizer plugin for certain filetypes
-  let g:colorizer_auto_filetype='css,html,scss'
-
-" End plugin configuration
 " }}}1
 
 " Word Processor configuration {{{1
