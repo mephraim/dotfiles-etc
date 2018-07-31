@@ -136,7 +136,11 @@ let mapleader = ","
   " }}}2
 
   " fzf {{{2
-    Plug 'junegunn/fzf', { 'do': './install --bin' } | Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': './install --bin' }
+    Plug 'junegunn/fzf.vim'
+
+    " Open the explorer for the bottom 20% of the screen
+    let g:fzf_layout = { 'down': '~20%' }
 
     " Open the fzf file explorer with the space bar
     nmap <Space> :Files<CR>
