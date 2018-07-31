@@ -17,6 +17,7 @@ let mapleader = ","
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'reedes/vim-colors-pencil'
   Plug 'reedes/vim-pencil'
+  Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
   Plug 'tomtom/tcomment_vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
@@ -212,6 +213,11 @@ let mapleader = ","
     " Configure JavaScript syntax highlighting
     let g:jsx_ext_required = 0
     au BufNewFile,BufRead *.js6 set filetype=javascript
+  " }}}2
+
+  " vim-test {{{2
+    Plug 'janko-m/vim-test'
+    let test#strategy = 'vimterminal'
   " }}}2
 
   " YankRing {{{2
