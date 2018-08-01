@@ -219,11 +219,13 @@ let mapleader = ","
   " }}}2
 
   " Snippets {{{2
-    " Track the engine.
     Plug 'SirVer/ultisnips'
 
-    " Snippets are separated from the engine. Add this if you want them:
+    " Snippets are separated from the snippet engine
     Plug 'honza/vim-snippets'
+
+    " Override the default expansion since we're also using YouCompleteMe
+    let g:UltiSnipsExpandTrigger = '<s-tab>'
   " }}}2
 
   " vim-test {{{2
