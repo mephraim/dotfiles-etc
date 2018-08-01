@@ -145,6 +145,9 @@ let mapleader = ","
 
     " Open the fzf file explorer with the space bar
     nmap <Space> :Files<CR>
+
+    " Open the fzf buffer explorer with ctrl + space
+    nmap <C-Space> :Buffers<CR>
   " }}}2
 
   " Gitgutter {{{2
@@ -213,6 +216,14 @@ let mapleader = ","
     " Configure JavaScript syntax highlighting
     let g:jsx_ext_required = 0
     au BufNewFile,BufRead *.js6 set filetype=javascript
+  " }}}2
+
+  " Snippets {{{2
+    " Track the engine.
+    Plug 'SirVer/ultisnips'
+
+    " Snippets are separated from the engine. Add this if you want them:
+    Plug 'honza/vim-snippets'
   " }}}2
 
   " vim-test {{{2
@@ -354,8 +365,13 @@ let mapleader = ","
     set guioptions-=L " Get rid of the left scrollbar
     set guioptions-=b " Get rid of the bottom scrollbar
 
+    " Always start Macvim fullscreen
+    if has("gui_macvim")
+      set fullscreen
+    end
+
     " If there's a gui and it's not Macvim, assume it's something like gvim
-    if has("gui_running") && !has("gui_macvim")
+    if !has("gui_macvim")
       " Get rid of the menu bar (almost as good as full screen)
       set guioptions-=m
     end
