@@ -346,13 +346,10 @@ let mapleader = ","
   " Show ↪ at the beginning of wrapped lines
   set showbreak=↪\ " <= Extra whitespace intentional
 
-  " Set up persistent undo for versions of vim that support it
-  if v:version >= 703
-    set undodir=~/.vim/undodir
-    set undofile
-    set undolevels=1000
-    set undoreload=1000
-  endif
+  set undodir=~/.vim/undodir
+  set undofile
+  set undolevels=1000
+  set undoreload=1000
 
   " GUI only {{{2
   if has("gui_running")
@@ -598,11 +595,8 @@ let mapleader = ","
       " Automatically check if the file has been changed outside vim
       autocmd CursorHold,CursorMoved * checktime
 
-      " Spell checking
-      if v:version >= 700
-        " Enable spell check for text files
-        autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown setlocal spell spelllang=en
-      endif
+      " Enable spell check for text files
+      autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown setlocal spell spelllang=en
 
       " For vim files, use markers as the foldmethod and collapse everything
       autocmd Filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
