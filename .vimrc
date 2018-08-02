@@ -12,6 +12,7 @@ let mapleader = ","
   Plug 'jaxbot/selective-undo.vim'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/vim-emoji'
+  Plug 'justinmk/vim-sneak'
   Plug 'markonm/traces.vim'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'nathanaelkane/vim-indent-guides'
