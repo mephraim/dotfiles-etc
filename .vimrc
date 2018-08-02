@@ -205,9 +205,10 @@ let mapleader = ","
   " NERDTree {{{2
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
+    Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
     noremap <silent> <leader>n :NERDTreeToggle<CR>
-    let NERDTreeHijackNetrw=1
+    let NERDTreeHijackNetrw = 1
   " }}}2
 
   " Polyglot {{{2
@@ -225,7 +226,7 @@ let mapleader = ","
     Plug 'honza/vim-snippets'
 
     " Override the default expansion since we're also using YouCompleteMe
-    let g:UltiSnipsExpandTrigger = '<s-tab>'
+    let g:UltiSnipsExpandTrigger = '<C-Space>'
   " }}}2
 
   " vim-test {{{2
