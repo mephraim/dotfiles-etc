@@ -19,6 +19,7 @@ let mapleader = ","
   Plug 'reedes/vim-colors-pencil'
   Plug 'reedes/vim-pencil'
   Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
+  Plug 'tommcdo/vim-exchange'
   Plug 'tomtom/tcomment_vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rails'
