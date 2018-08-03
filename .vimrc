@@ -210,6 +210,20 @@ let mapleader = ","
 
     noremap <silent> <leader>n :NERDTreeToggle<CR>
     let NERDTreeHijackNetrw = 1
+
+    " Custom git indicators
+    let g:NERDTreeIndicatorMapCustom = {
+          \ "Modified"  : "🔺",
+          \ "Staged"    : "👍",
+          \ "Untracked" : "+",
+          \ "Renamed"   : "➜",
+          \ "Unmerged"  : "═",
+          \ "Deleted"   : "❌",
+          \ "Dirty"     : "🔺",
+          \ "Clean"     : "✔︎",
+          \ 'Ignored'   : '☒',
+          \ "Unknown"   : "?"
+          \ }
   " }}}2
 
   " Polyglot {{{2
