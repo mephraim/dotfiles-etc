@@ -12,7 +12,6 @@ let mapleader = ","
   Plug 'jaxbot/selective-undo.vim'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/vim-emoji'
-  Plug 'justinmk/vim-sneak'
   Plug 'markonm/traces.vim'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'nathanaelkane/vim-indent-guides'
@@ -415,6 +414,13 @@ let mapleader = ","
       for color_file in split(glob('~/.vim/colors/custom/*.vim'), '\n')
         exe 'source' color_file
       endfor
+
+      " Refresh devicons after reloading colorschemes
+      " Check to make sure that NERDTree exists before doing this, otherwise it
+      " may cause an error, because NERDTree is lazy loaded.
+      if exists("g:loaded_webdevicons") && exists("g:NERDTree")
+        call webdevicons#refresh()
+      endif
     endif
   endfunction
 " }}}1
