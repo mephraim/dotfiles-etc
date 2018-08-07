@@ -588,6 +588,13 @@ let mapleader = ","
 
   " Don't jump around so much when matching with *
   nnoremap * *<c-o>
+
+  " Run a ruby test
+  autocmd Filetype ruby noremap <buffer> <leader>rt :terminal ++rows=10 bundle exec rspec %<CR><C-W><C-W>
+
+  " Run a ruby for the current line
+  autocmd Filetype ruby noremap <buffer> <leader>rtl :execute 'terminal ++rows=10 bundle exec rspec %:' . line('.')<CR><C-W><C-W>
+
 " End custom mappings
 " }}}1
 
