@@ -630,6 +630,9 @@ let mapleader = ","
 
       " For vim files, use markers as the foldmethod and collapse everything
       autocmd Filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
+
+      " For html and eruby files using indent level for folding
+      autocmd Filetype html,eruby setlocal foldmethod=indent | setlocal foldlevel=1
     augroup END
   else
     set autoindent " always set autoindenting on
