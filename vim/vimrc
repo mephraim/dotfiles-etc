@@ -7,7 +7,7 @@ set nocompatible
 let mapleader = ","
 
 " Plugin setup {{{1
-  call plug#begin('~/.vim/plugged')
+  call plug#begin('~/dotfiles/vim/plugged')
 
   Plug 'jaxbot/selective-undo.vim'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -253,7 +253,7 @@ let mapleader = ","
     Plug 'vim-scripts/YankRing.vim'
 
     " Set up the yankring history location
-    let g:yankring_history_dir = "~/.vim/tmp/yankring"
+    let g:yankring_history_dir = "~/dotfiles/vim/tmp/yankring"
 
     " Override the default yankring cycling keys
     " This prevents a conflict with the ctrlp plugin
@@ -349,7 +349,7 @@ let mapleader = ","
 
   " Ending with the double slash includes the full path in the filename
   " of the swap files to avoid conflicts
-  set directory=~/.vim/tmp//
+  set directory=~/dotfiles/vim/tmp//
 
   " In many terminal emulators the mouse works just fine, thus enable it
   if has('mouse')
@@ -362,7 +362,7 @@ let mapleader = ","
   " Show ↪ at the beginning of wrapped lines
   set showbreak=↪\ " <= Extra whitespace intentional
 
-  set undodir=~/.vim/undodir
+  set undodir=~/dotfiles/vim/undodir
   set undofile
   set undolevels=1000
   set undoreload=1000
@@ -411,7 +411,7 @@ let mapleader = ","
 
   function! OverrideColors()
     if g:disable_color_overrides != 1
-      for color_file in split(glob('~/.vim/colors/custom/*.vim'), '\n')
+      for color_file in split(glob('~/dotfiles/vim/colors/custom/*.vim'), '\n')
         exe 'source' color_file
       endfor
 
