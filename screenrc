@@ -1,0 +1,32 @@
+# Quick bindings for resizing the screen
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind ^| resize max
+
+# Get rid of annoying startup message
+startup_message off
+
+# Restore the previous screen when a fullscreen
+# program (like vim) exits.
+altscreen on
+
+# Set up the caption at the bottom
+caption string "%{wk}%-w%{kB} %t %{wk}%+w"
+caption always
+
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+termcapinfo xterm-256color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+
+term xterm-256color
+
+# erase background with current bg color
+defbce "on"
+
+# Increase scrollback lines
+defscrollback 10000

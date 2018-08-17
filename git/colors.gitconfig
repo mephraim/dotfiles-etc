@@ -1,0 +1,21 @@
+# Common git colors
+
+[color]
+	diff = auto
+	branch = auto
+	status = auto
+	interactive = auto
+	ui = true
+[color "status"]
+	added = green
+	changed = red
+	untracked = red
+[color "branch"]
+	current = yellow
+	local = white
+	remote = green
+[color "diff"]
+	meta = white
+	frag = magenta
+	old = red
+	new = green
