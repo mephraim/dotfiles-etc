@@ -9,6 +9,7 @@ let mapleader = ","
 " Plugin setup {{{1
   call plug#begin('~/dotfiles-etc/vim/plugged')
 
+  Plug 'bogado/file-line'
   Plug 'jaxbot/selective-undo.vim'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/vim-emoji'
