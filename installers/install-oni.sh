@@ -1,14 +1,17 @@
 #!/bin/sh
 
 install_oni() {
-  brew update
-  brew cask install oni
+  if command -v oni >/dev/null 2>&1; then
+    echo "Oni is already installed"
+  else
+    brew update
+    brew cask install oni
 
-  mkdir -p ~/.config/oni/
-  ln -s ~/dotfiles-etc/oni ~/.config/oni
+    mkdir -p "$HOME/.config/oni/"
+    ln -s "$DOTFILES_ETC_LOCATION/oni" "$HOME/.config/oni"
 
-  defaults write com.extropy.oni ApplePressAndHoldEnabled -bool false
+    defaults write com.extropy.oni ApplePressAndHoldEnabled -bool false
+  fi
 }
 
-# Install oni if it's not installed yet
-command -v oni >/dev/null 2>&1 || install_oni
+install_oni
