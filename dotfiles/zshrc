@@ -1,0 +1,119 @@
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+export ZSH_THEME="efrum"
+
+export DISABLE_AUTO_TITLE="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Use the git tools installed by homebrew.
+export PATH="/usr/local/Cellar/git/2.2.1/bin/:$PATH"
+
+# 10 second wait if you do something that will delete everything.
+setopt RM_STAR_WAIT
+
+# Don't do partial globs, just assume the first part of the completion is correct
+zstyle ':completion:*' accept-exact '*(N)'
+
+# Cache tab completion results
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Disable hostname completion
+zstyle ':completion:*' hosts off
+
+# Insert unambiguous completions automatically
+zstyle ':completion:*' insert-unambiguous true
+
+# Use colors in the completions
+zstyle ':completion:*' list-colors ''
+
+zstyle ':completion:*' completer _complete _ignored
+
+# Use man files when doing completions
+zstyle ':completion:*:manuals'    separate-sections true
+zstyle ':completion:*:manuals.*'  insert-sections   true
+zstyle ':completion:*:man:*'      menu yes select
+
+# Bigger history
+export HISTSIZE=10000
+
+# Erase history duplicates
+export HISTCONTROL=erasedups
+
+# Fish style syntax highlighting
+source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Initialize rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# This allows rake tasks with parameters
+unsetopt nomatch
+
+# Always reload rails models
+export RELOAD_MODELS=1
+
+# Colorize man pages
+# via: http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
+function man() {
+	env \
+		LESS_TERMCAP_md=$'\e[1;36m' \
+		LESS_TERMCAP_me=$'\e[0m' \
+		LESS_TERMCAP_se=$'\e[0m' \
+		LESS_TERMCAP_so=$'\e[1;40;92m' \
+		LESS_TERMCAP_ue=$'\e[0m' \
+		LESS_TERMCAP_us=$'\e[1;32m' \
+			man "$@"
+}
+
+function open_branch_on_github() {
+  open "https://git.corp.adobe.com/typekit/typekit/tree/$(get_current_branch_name)"
+}
+
+function compare_branch_on_github() {
+  open "https://git.corp.adobe.com/typekit/typekit/compare/$(get_current_branch_name)"
+}
+
+function get_current_branch_name() {
+  git rev-parse --abbrev-ref HEAD
+}
+
+# Bundle exec whatever is in the user clipboard (check before running).
+function bundle_exec_clipboard() {
+  local color_green=$(tput setaf 2)
+  local color_normal=$(tput sgr0)
+
+  printf "Should I run ${color_green}bundle exec $(pbpaste)?${color_normal} y[n]? > "
+  read should_execute_pbpaste
+
+  if [ "$should_execute_pbpaste" == "y" ]; then
+    bundle exec $(pbpaste)
+  fi
+}
+
+# Set the NVM directory
+export NVM_DIR="$HOME/.nvm"
+
+# Setup nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# This will prevent KLAM from prefixing all of your AWS environments with KLAM-
+# (see: https://git.corp.adobe.com/typekit/typekit-ops/wiki/Onboarding-to-KLAM-for-AWS-CLI-API-Console-Access)
+export KLAM_EXT_PROFILE_PREFIX=''
+
+# Use fzf to show a file browser and then edit the selected file in mvim
+alias e='mvim $(fzf)'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
