@@ -18,7 +18,7 @@ endif
 hi Boolean     guifg=#E04331 gui=underline
 hi ColorColumn guibg=#130707
 hi Cursor      guifg=bg      guibg=#F5773c gui=none
-hi Directory   guifg=#88AAAA
+hi Directory   guifg=#CFCFCF
 hi Folded      guibg=bg guifg=#434343 gui=italic
 hi FoldColumn  guifg=#444444 guibg=#080808
 hi Normal      guibg=#0A0A0A gui=none
