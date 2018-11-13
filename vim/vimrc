@@ -106,11 +106,6 @@ let mapleader = ","
     let g:bufExplorerShowNoName = 1
   " }}}2
 
-  " Colorizer {{{2
-    Plug 'chrisbra/Colorizer'
-    let g:colorizer_auto_filetype='css,html,scss'
-  " }}}2
-
   " CtrlSF {{{2
     Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
     let g:ctrlsf_auto_close = {
