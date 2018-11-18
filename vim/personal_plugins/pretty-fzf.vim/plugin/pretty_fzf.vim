@@ -9,7 +9,7 @@ endif
 
 " Files + devicons
 function! s:Files()
-  let l:fzf_files_options = '--preview "bat --theme="zenburn" --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
+  let l:fzf_files_options = '--preview "bat --theme="zenburn" --style=numbers,changes --color always {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all'
 
   function! s:files()
     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
@@ -27,15 +27,23 @@ function! s:Files()
     return l:result
   endfunction
 
-  function! s:edit_file(item)
-    let l:pos = stridx(a:item, ' ')
-    let l:file_path = a:item[pos+1:-1]
-    execute 'silent e' l:file_path
+  function! s:edit_file(lines)
+    if len(a:lines) < 2 | return | endif
+
+    let l:cmd = get({'ctrl-x': 'split',
+                   \ 'ctrl-v': 'vertical split',
+                   \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
+
+    for l:item in a:lines[1:]
+      let l:pos = stridx(l:item, ' ')
+      let l:file_path = l:item[pos+1:-1]
+      execute 'silent '. l:cmd . ' ' . l:file_path
+    endfor
   endfunction
 
   call fzf#run({
         \ 'source': <sid>files(),
-        \ 'sink':   function('s:edit_file'),
+        \ 'sink*':   function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
         \ 'down':    '40%' })
 endfunction
