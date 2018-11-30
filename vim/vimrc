@@ -137,15 +137,10 @@ let mapleader = ","
     Plug 'junegunn/fzf', { 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 
-    " Required to use the pretty-fzf plugin
-    Plug 'jremmen/vim-ripgrep', { 'do': 'brew install ripgrep' }
-    Plug '~/.vim/personal_plugins/pretty-fzf.vim', { 'do': 'brew install bat' }
-
-    " Open the explorer for the bottom 20% of the screen
+    nmap <silent> <Space> :PrettyFzfFiles<CR>
     let g:fzf_layout = { 'down': '~20%' }
 
-    " Open the customized fzf file explorer with the space bar
-    nmap <silent> <Space> :PrettyFzfFiles<CR>
+    nmap <silent> <Space> :Files<CR>
 
     " Open the fzf buffer explorer with ctrl + space
     nmap <silent> <C-Space> :Buffers<CR>
