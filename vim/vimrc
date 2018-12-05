@@ -22,6 +22,7 @@ let mapleader = ","
   Plug 'tommcdo/vim-exchange'
   Plug 'tomtom/tcomment_vim'
   Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-sleuth'
   Plug 'vim-scripts/SyntaxAttr.vim'
   Plug 'vim-scripts/matchit.zip'
