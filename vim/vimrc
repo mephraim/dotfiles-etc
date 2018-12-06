@@ -381,7 +381,6 @@ let mapleader = ","
   set ignorecase      " Search ignoring case
   set incsearch       " Do incremental searching
 
-
   " Allow backspacing over everything in insert mode
   set backspace=indent,eol,start
 
@@ -407,6 +406,10 @@ let mapleader = ","
   set undofile
   set undolevels=1000
   set undoreload=1000
+
+  " Use the patience algorithm for diffs
+  " (explanation here: https://vimways.org/2018/the-power-of-diff/)
+  set diffopt+=algorithm:patience
 
   " GUI only {{{2
   if has("gui_running")
