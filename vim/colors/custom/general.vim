@@ -25,7 +25,7 @@ hi Normal      guibg=#0A0A0A gui=none
 hi NonText     guifg=bg guibg=#0A0A0A
 hi SignColumn  guibg=#0A0A0A
 hi TabLineSel  guifg=#D4EB9C
-hi VertSplit   guifg=#181B22 guibg=bg gui=none
+hi VertSplit   ctermfg=black ctermbg=black guifg=#181B22 guibg=bg gui=none
 hi Visual      guifg=#f6f3e8 guibg=#1F4457 gui=none
 hi WildMenu    guifg=#E04331 guibg=bg
 

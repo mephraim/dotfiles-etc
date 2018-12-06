@@ -76,7 +76,11 @@ let mapleader = ","
 
     let g:airline_symbols.branch = "\uE725"
 
-    let g:airline_theme = 'base16_twilight'
+    if has("gui_running")
+      let g:airline_theme = 'base16_twilight'
+    else
+      let g:airline_theme = 'dark'
+    endif
   " }}}2
 
   " Ale {{{2
@@ -148,7 +152,28 @@ let mapleader = ","
 
   " Git {{{2
     Plug 'tpope/vim-fugitive'
+
+    " Better git commit log navigation
     Plug 'gregsexton/gitv'
+
+    " Better git commit message display
+    Plug 'rhysd/committia.vim'
+
+    let g:committia_hooks = {}
+    function! g:committia_hooks.edit_open(info)
+      " Additional settings
+      setlocal spell
+
+      " If no commit message, start with insert mode
+      if a:info.vcs ==# 'git' && getline(1) ==# ''
+        startinsert
+      endif
+
+      " Scroll the diff window from insert mode
+      " Map <C-n> and <C-p>
+      imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+      imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+    endfunction
 
     " Automatically show the quickfix window for any of the commands that use
     " `grep` (e.g. Glog).
@@ -314,15 +339,11 @@ let mapleader = ","
     syntax on
   endif
 
- if has("gui_running")
-    colorscheme twilight256
-  else
-    " Tell the terminal to use 256 colors
-    let &t_Co=256
+  " Tell the terminal to use 256 colors
+  let &t_Co=256
 
-    " Use a nice 256 color colorscheme
-    colorscheme twilight256
-  endif
+  " Use a nice 256 color colorscheme
+  colorscheme twilight256
 
   " Load in any customizations to the stock colorschemes
   runtime! colors/custom/*.vim
