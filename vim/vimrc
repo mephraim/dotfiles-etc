@@ -148,6 +148,7 @@ let mapleader = ","
 
   " Git {{{2
     Plug 'tpope/vim-fugitive'
+    Plug 'gregsexton/gitv'
 
     " Automatically show the quickfix window for any of the commands that use
     " `grep` (e.g. Glog).
