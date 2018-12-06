@@ -284,6 +284,7 @@ let mapleader = ","
 
   " Tags {{{2
     Plug 'ludovicchabant/vim-gutentags'
+    let g:gutentags_cache_dir = "~/.vim/tags"
 
     Plug 'majutsushi/tagbar'
     let g:tagbar_left = 1
