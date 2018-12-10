@@ -34,8 +34,13 @@ function! word_processor#ToggleWordProcessing()
 
     let g:word_processing_on = 1
   else
-    " Toggle Goyo off
+    let g:disable_color_overrides = 1
+
+    " Turn Goyo off
     Goyo!
+
+    " Turn Limelight off
+    Limelight!
 
     " Reset everything else back to the default
     source $MYVIMRC
