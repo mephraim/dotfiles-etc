@@ -22,7 +22,7 @@ hi Directory   guifg=#CFCFCF
 hi Folded      ctermfg=59 ctermbg=16 guibg=bg guifg=#434343 gui=italic
 hi FoldColumn  guifg=#444444 guibg=#080808
 hi Normal      guibg=#0A0A0A gui=none
-hi NonText     guifg=bg guibg=#0A0A0A
+hi NonText     ctermfg=16 guifg=bg guibg=#0A0A0A
 hi SignColumn  guibg=#0A0A0A
 hi TabLineSel  guifg=#D4EB9C
 hi VertSplit   ctermfg=black ctermbg=black guifg=#181B22 guibg=bg gui=none
