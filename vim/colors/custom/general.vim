@@ -53,3 +53,6 @@ hi DiffText   guibg=#D1FFB6 guifg=#080C06
 
 " Terminal colors
 hi Terminal guibg=#111720 guifg=fg
+
+" Spelling
+hi SpellBad guifg=red gui=undercurl
