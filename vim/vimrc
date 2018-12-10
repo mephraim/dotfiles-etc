@@ -11,13 +11,10 @@ let mapleader = ","
 
   Plug 'bogado/file-line'
   Plug 'jaxbot/selective-undo.vim'
-  Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/vim-emoji'
   Plug 'markonm/traces.vim'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'nathanaelkane/vim-indent-guides'
-  Plug 'reedes/vim-colors-pencil'
-  Plug 'reedes/vim-pencil'
   Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
   Plug 'tommcdo/vim-exchange'
   Plug 'tomtom/tcomment_vim'
@@ -261,6 +258,15 @@ let mapleader = ","
     " Configure JavaScript syntax highlighting
     let g:jsx_ext_required = 0
     au BufNewFile,BufRead *.js6 set filetype=javascript
+  " }}}2
+
+  " Prose {{{2
+    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+    Plug 'junegunn/limelight.vim'
+    Plug 'reedes/vim-colors-pencil'
+    Plug 'reedes/vim-pencil'
+
+    Plug '~/.vim/personal_plugins/word_processor'
   " }}}2
 
   " Snippets {{{2
@@ -703,43 +709,4 @@ let mapleader = ","
 
   command! EmojiList call EmojiList()
 " End custom commands
-" }}}1
-
-" Word Processor configuration {{{1
-  function! s:goyo_enter()
-    " Turn off the automatic custom color overrides group before setting the
-    " colorscheme
-    let g:disable_color_overrides = 1
-
-    " Customize the pencil colorscheme
-    let g:pencil_higher_contrast_ui = 0
-    let g:pencil_neutral_code_bg = 0
-    let g:pencil_spell_undercurl = 1
-
-    set background=dark
-    colorscheme pencil
-
-    " A few colorscheme overrides
-    set guifont=\Inconsolata\ for\ Powerline\ Nerd\ Font\ \Complete\ Mono:h23
-    hi NonText   guifg=bg guibg=bg
-    hi VertSplit guifg=bg guibg=bg gui=none
-
-    " Don't show the break character
-    set showbreak=
-
-    " Enable Pencil
-    call pencil#init()
-
-    " replace common punctuation
-    iabbrev <buffer> -- –
-    iabbrev <buffer> --- —
-    iabbrev <buffer> << «
-    iabbrev <buffer> >> »
-
-    " open most folds
-    setlocal foldlevel=6
-  endfunction
-
-  autocmd! User GoyoEnter nested call <SID>goyo_enter()
-" End word processor configuration
 " }}}1
