@@ -10,6 +10,7 @@ let mapleader = ","
   call plug#begin('~/dotfiles-etc/vim/plugged')
 
   Plug 'bogado/file-line'
+  Plug 'elzr/vim-json'
   Plug 'jaxbot/selective-undo.vim'
   Plug 'junegunn/vim-emoji'
   Plug 'markonm/traces.vim'
@@ -653,6 +654,9 @@ let mapleader = ","
 
   " Run a ruby for the current line
   autocmd Filetype ruby noremap <buffer> <leader>rtl :execute 'terminal ++rows=10 bundle exec rspec %:' . line('.')<CR><C-W><C-W>
+
+  " JSON Pretty format the current buffer.
+  noremap <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
 
 " End custom mappings
 " }}}1
