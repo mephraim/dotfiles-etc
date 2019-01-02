@@ -108,6 +108,66 @@ let mapleader = ","
     let g:bufExplorerShowNoName = 1
   " }}}2
 
+  " Completion {{{2
+    " LanguageClient {{{3
+      " Language client wires up the language servers with vim
+
+      " This will run after the plugin has been installed or updated
+      function! InstallLanguageClientDependencies(info)
+        if a:info.status == 'installed' || a:info.force
+          " Finish setting up the language client plugin
+          !bash ./install.sh
+
+          " CSS language server for CSS and SCSS
+          !npm install -g vscode-css-languageserver-bin
+
+          " Typekit language server for JavaScript completion
+          !npm install -g javascript-typescript-langserver
+
+          " Solargraph for Ruby completion
+          !gem install solargraph
+        endif
+      endfunction
+
+      Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': function('InstallLanguageClientDependencies'),
+            \ }
+
+      " Tell the language client where to find the language servers
+      let g:LanguageClient_serverCommands = {
+        \ 'css': ['css-languageserver', '--stdio'],
+        \ 'eruby': ['solargraph', 'stdio'],
+        \ 'javascript': ['javascript-typescript-stdio'],
+        \ 'javascript.jsx': ['javascript-typescript-stdio'],
+        \ 'ruby': ['solargraph', 'stdio'],
+        \ 'scss': ['css-languageserver', '--stdio']
+      \ }
+
+      function SetupLanguageClientMappings()
+        " Only set mappings for buffers that contain a supported language
+        if has_key(g:LanguageClient_serverCommands, &filetype)
+          nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+        endif
+      endfunction
+
+      autocmd FileType * call SetupLanguageClientMappings()
+    " }}}3
+
+    " Deoplete {{{3
+      " Required plugins for deoplete to work
+      Plug 'Shougo/deoplete.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+
+      let g:deoplete#enable_at_startup = 1
+
+      " Setup the tab key to move through the suggested items
+      inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+      inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+    " }}}3
+  " }}}2
+
   " CtrlSF {{{2
     Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
     let g:ctrlsf_auto_close = {
@@ -279,7 +339,7 @@ let mapleader = ","
     " Snippets are separated from the snippet engine
     Plug 'honza/vim-snippets'
 
-    " Override the default expansion since we're also using YouCompleteMe
+    " Override the default expansion since we're also using tab for completion
     let g:UltiSnipsExpandTrigger = '<C-Space>'
   " }}}2
 
@@ -318,25 +378,6 @@ let mapleader = ","
 
     " Show the yankring
     noremap <leader>yr :YRShow<cr>
-  " }}}2
-
-  " YouCompleteMe {{{2
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
-    " Automatically close the little preview window that pops up for documentation
-    let g:ycm_autoclose_preview_window_after_completion = 1
-
-    " Use YouCompleteMe, even inside comments
-    let g:ycm_complete_in_comments = 1
-
-    " Look inside strings and comments for identifiers as well
-    let g:ycm_collect_identifiers_from_comments_and_strings = 1
-
-    " Seed the identifier database with the keywords for the current language
-    let g:ycm_seed_identifiers_with_syntax = 1
-
-    " Pull identifiers from tags files
-    let g:ycm_collect_identifiers_from_tags_files = 1
   " }}}2
 
   call plug#end()
