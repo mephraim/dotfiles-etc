@@ -29,6 +29,16 @@ function! word_processor#ToggleWordProcessing()
     let g:pencil_spell_undercurl = 1
     SoftPencil
 
+    " Turn off deoplete autocompletion in favor of manually triggering it for
+    " spelling suggestions
+    call deoplete#custom#option({
+    \ 'auto_complete': v:false,
+    \ 'smart_case': v:true,
+    \ })
+
+    " Allow deoplete spelling completion to be triggered with ctrl + space
+    inoremap <buffer><silent><expr> <C-Space> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+
     " Enable Goyo
     Goyo 80x45
 
@@ -49,5 +59,10 @@ function! word_processor#ToggleWordProcessing()
     setlocal linespace=1
 
     let g:word_processing_on = 0
+
+    " Turn deoplete back on
+    call deoplete#custom#option({
+    \ 'auto_complete': v:true,
+    \ })
  endif
 endfunction
