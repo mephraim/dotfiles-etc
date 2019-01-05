@@ -108,7 +108,7 @@ let mapleader = ","
     let g:bufExplorerShowNoName = 1
   " }}}2
 
-  " Completion {{{2
+  " Completion/Language Client integration {{{2
     " LanguageClient {{{3
       " Language client wires up the language servers with vim
 
@@ -117,6 +117,9 @@ let mapleader = ","
         if a:info.status == 'installed' || a:info.force
           " Finish setting up the language client plugin
           !bash ./install.sh
+
+          " Bash language server
+          !npm i -g bash-language-server
 
           " CSS language server
           !npm install -g vscode-css-languageserver-bin
@@ -139,6 +142,7 @@ let mapleader = ","
 
       " Tell the language client where to find the language servers
       let g:LanguageClient_serverCommands = {
+        \ 'sh': ['bash-language-server', 'start'],
         \ 'css': ['css-languageserver', '--stdio'],
         \ 'eruby': ['solargraph', 'stdio'],
         \ 'javascript': ['javascript-typescript-stdio'],
