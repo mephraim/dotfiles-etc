@@ -19,6 +19,7 @@ let mapleader = ","
   Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
   Plug 'tommcdo/vim-exchange'
   Plug 'tomtom/tcomment_vim'
+  Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-rhubarb'
