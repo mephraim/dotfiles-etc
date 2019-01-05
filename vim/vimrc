@@ -195,8 +195,6 @@ let mapleader = ","
           nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
         endif
       endfunction
-
-      autocmd FileType * call SetupLanguageClientMappings()
     " }}}3
 
     " Deoplete {{{3
@@ -214,6 +212,18 @@ let mapleader = ","
       else
         echoerr "Couldn't install deoplete because python3 wasn't installed"
       endif
+    " }}}3
+
+    " Autocommands {{{3
+      augroup vimrcCompletionAutoCommands
+        au!
+
+        " Setup any custom mappings for LanguageClient
+        autocmd FileType * call SetupLanguageClientMappings()
+
+        " Hide the preview window after a completion is done
+        autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+      augroup END
     " }}}3
   " }}}2
 
