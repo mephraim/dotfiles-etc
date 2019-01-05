@@ -420,7 +420,20 @@ let mapleader = ","
 
   " Tags {{{2
     Plug 'ludovicchabant/vim-gutentags'
-    let g:gutentags_cache_dir = "~/.vim/tags"
+
+    " Store the tags files in a central location so we don't have ignore them
+    " in specific projects
+    let g:gutentags_cache_dir = "~/.vim/tag_files"
+
+    " These directories don't need to be scanned for tags
+    let g:gutentags_ctags_exclude = ['node_modules', 'plugged']
+
+    " Make sure gutentags updates the status line as soon as it's done
+    augroup MyGutentagsStatusLineRefresher
+      autocmd!
+      autocmd User GutentagsUpdating call airline#update_statusline()
+      autocmd User GutentagsUpdated call airline#update_statusline()
+    augroup END
 
     Plug 'majutsushi/tagbar'
     let g:tagbar_left = 1
