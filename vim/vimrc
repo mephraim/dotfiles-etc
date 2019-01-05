@@ -127,6 +127,9 @@ let mapleader = ","
           " Dockerfile language server
           !npm install -g dockerfile-language-server-nodejs
 
+          " HTML language server
+          !npm install --global vscode-html-languageserver-bin
+
           " JSON language server
           !npm install -g vscode-json-languageserver
 
@@ -149,6 +152,7 @@ let mapleader = ","
         \ 'css': ['css-languageserver', '--stdio'],
         \ 'Dockerfile': ['docker-langserver', '--stdio'],
         \ 'eruby': ['solargraph', 'stdio'],
+        \ 'html': ['html-languageserver', '--stdio'],
         \ 'javascript': ['javascript-typescript-stdio'],
         \ 'javascript.jsx': ['javascript-typescript-stdio'],
         \ 'json': ['vscode-json-languageserver', '--stdio'],
