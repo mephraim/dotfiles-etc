@@ -204,6 +204,12 @@ let mapleader = ","
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
 
+        " Display spelling suggestions in the autocomplete menu using deoplete
+        Plug 'deathlyfrantic/deoplete-spell'
+
+        " Display emoji suggestions using deoplete
+        Plug 'fszymanski/deoplete-emoji'
+
         let g:deoplete#enable_at_startup = 1
 
         " Setup the tab key to move through the suggested items
@@ -380,10 +386,6 @@ let mapleader = ","
     Plug 'junegunn/limelight.vim'
     Plug 'reedes/vim-colors-pencil'
     Plug 'reedes/vim-pencil'
-
-    " Displaying spelling suggestions in the autocomplete menu using a deoplete
-    " extension
-    Plug 'deathlyfrantic/deoplete-spell'
 
     let g:pandoc#syntax#conceal#urls = 1
     Plug 'vim-pandoc/vim-pandoc-syntax'
