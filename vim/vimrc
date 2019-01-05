@@ -155,16 +155,20 @@ let mapleader = ","
     " }}}3
 
     " Deoplete {{{3
-      " Required plugins for deoplete to work
-      Plug 'Shougo/deoplete.nvim'
-      Plug 'roxma/nvim-yarp'
-      Plug 'roxma/vim-hug-neovim-rpc'
+      if has('python3')
+        " Required plugins for deoplete to work
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
 
-      let g:deoplete#enable_at_startup = 1
+        let g:deoplete#enable_at_startup = 1
 
-      " Setup the tab key to move through the suggested items
-      inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-      inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+        " Setup the tab key to move through the suggested items
+        inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+        inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+      else
+        echoerr "Couldn't install deoplete because python3 wasn't installed"
+      endif
     " }}}3
   " }}}2
 

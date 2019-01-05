@@ -10,6 +10,9 @@ install_neovim() {
     # Add Python support for neovim
     brew install python
     brew install python3
+    brew postinstall python3
+    pip3 install --user pynvim
+
     pip2 install neovim --upgrade
     pip3 install neovim --upgrade
   fi
