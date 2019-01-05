@@ -118,8 +118,11 @@ let mapleader = ","
           " Finish setting up the language client plugin
           !bash ./install.sh
 
-          " CSS language server for CSS and SCSS
+          " CSS language server
           !npm install -g vscode-css-languageserver-bin
+
+          " JSON language server
+          !npm install -g vscode-json-languageserver
 
           " Typekit language server for JavaScript completion
           !npm install -g javascript-typescript-langserver
@@ -140,6 +143,7 @@ let mapleader = ","
         \ 'eruby': ['solargraph', 'stdio'],
         \ 'javascript': ['javascript-typescript-stdio'],
         \ 'javascript.jsx': ['javascript-typescript-stdio'],
+        \ 'json': ['vscode-json-languageserver', '--stdio'],
         \ 'ruby': ['solargraph', 'stdio'],
         \ 'scss': ['css-languageserver', '--stdio']
       \ }
