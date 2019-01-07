@@ -83,7 +83,27 @@ let mapleader = ","
   " }}}2
 
   " Ale {{{2
-    Plug 'w0rp/ale'
+    function! AfterAleInstall(info)
+      if a:info.status == 'installed' || a:info.force
+        call InstallLinters()
+      endif
+    endfunction
+
+    " Installs all of the required linters
+    function! InstallLinters()
+      " Shellscript linter
+      !brew install shellcheck
+
+      " Alex linter for prose
+      !npm install alex --global
+
+      " Vimscript lint
+      !pip3 install vim-vint
+    endfunction
+
+    command! InstallLinters call InstallLinters()
+
+    Plug 'w0rp/ale', { 'do': function('AfterAleInstall') }
 
     " Open a quickfix window for Ale errors
     let g:ale_open_list = 1
@@ -96,7 +116,7 @@ let mapleader = ","
     let g:airline#extensions#ale#enabled = 1
 
     " Set the height of the Ale window to be only 4 lines tall
-    let g:ale_list_window_size = 4
+    let g:ale_list_window_size = 5
 
     " Only run Ale when the file has been saved
     let g:ale_lint_on_text_changed = 'never'
@@ -113,7 +133,7 @@ let mapleader = ","
     " LanguageClient {{{3
       " Language client wires up the language servers with vim
 
-      function AfterLanguageClientPluginInstall(info)
+      function! AfterLanguageClientPluginInstall(info)
         if a:info.status == 'installed' || a:info.force
           " Finish setting up the language client plugin
           !bash ./install.sh
