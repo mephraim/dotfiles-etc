@@ -113,38 +113,44 @@ let mapleader = ","
     " LanguageClient {{{3
       " Language client wires up the language servers with vim
 
-      " This will run after the plugin has been installed or updated
-      function! InstallLanguageClientDependencies(info)
+      function AfterLanguageClientPluginInstall(info)
         if a:info.status == 'installed' || a:info.force
           " Finish setting up the language client plugin
           !bash ./install.sh
 
-          " Bash language server
-          !npm i -g bash-language-server
-
-          " CSS language server
-          !npm install -g vscode-css-languageserver-bin
-
-          " Dockerfile language server
-          !npm install -g dockerfile-language-server-nodejs
-
-          " HTML language server
-          !npm install --global vscode-html-languageserver-bin
-
-          " JSON language server
-          !npm install -g vscode-json-languageserver
-
-          " Typekit language server for JavaScript completion
-          !npm install -g javascript-typescript-langserver
-
-          " Solargraph for Ruby completion
-          !gem install solargraph
+          call InstallLanguageServers()
         endif
       endfunction
 
+      " Installs all of the required language servers
+      function! InstallLanguageServers()
+        " Bash language server
+        !npm i -g bash-language-server
+
+        " CSS language server
+        !npm install -g vscode-css-languageserver-bin
+
+        " Dockerfile language server
+        !npm install -g dockerfile-language-server-nodejs
+
+        " HTML language server
+        !npm install --global vscode-html-languageserver-bin
+
+        " JSON language server
+        !npm install -g vscode-json-languageserver
+
+        " Typekit language server for JavaScript completion
+        !npm install -g javascript-typescript-langserver
+
+        " Solargraph for Ruby completion
+        !gem install solargraph
+      endfunction
+
+      command! InstallLanguageServers call InstallLanguageServers()
+
       Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
-            \ 'do': function('InstallLanguageClientDependencies'),
+            \ 'do': function('AfterLanguageClientPluginInstall'),
             \ }
 
       " Tell the language client where to find the language servers
@@ -212,6 +218,7 @@ let mapleader = ","
         Plug 'fszymanski/deoplete-emoji'
 
         let g:deoplete#enable_at_startup = 1
+        let g:deoplete#max_list = 20
 
         " Setup the tab key to move through the suggested items
         inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
