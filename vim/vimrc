@@ -407,6 +407,8 @@ let mapleader = ","
 
     " Configure JavaScript syntax highlighting
     let g:jsx_ext_required = 0
+    let g:javascript_plugin_jsdoc = 1
+
     au BufNewFile,BufRead *.js6 set filetype=javascript
   " }}}2
 
