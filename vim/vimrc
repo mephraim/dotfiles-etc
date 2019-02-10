@@ -363,6 +363,9 @@ let mapleader = ","
   " }}}2
 
   " MatchTagAlways {{{2
+    Plug 'alvan/vim-closetag'
+    let g:closetag_filetypes = 'eruby,html,javascript.jsx,xhtml'
+
     Plug 'Valloric/MatchTagAlways'
 
     let g:mta_filetypes = {
