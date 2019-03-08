@@ -529,6 +529,7 @@ let mapleader = ","
   set fillchars=fold:┈,vert:⎸ " Customize the fill character for folds
   set hidden            " Allow buffer switching without saving
   set history=50        " Keep 50 lines of command line history
+  set iskeyword+=-      " Add "-" to the iskeyword setting for CSS classes and ids
   set laststatus=2      " Always show the status line
   set noerrorbells      " No error bells
   set nowrap            " Don't wrap
