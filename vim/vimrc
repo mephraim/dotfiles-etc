@@ -100,6 +100,9 @@ let mapleader = ","
 
       " Vimscript lint
       !pip3 install vim-vint
+
+      " Sass lint
+      !npm install sass-lint --global
     endfunction
 
     command! InstallLinters call InstallLinters()
@@ -131,130 +134,39 @@ let mapleader = ","
   " }}}2
 
   " Completion/Language Client integration {{{2
-    " LanguageClient {{{3
-      " Language client wires up the language servers with vim
-
-      function! AfterLanguageClientPluginInstall(info)
+    " COC {{{3
+      function! AfterCocInstall(info)
         if a:info.status == 'installed' || a:info.force
-          " Finish setting up the language client plugin
-          !bash ./install.sh
-
-          call InstallLanguageServers()
+          call coc#util#install()
+          call InstallCocCompleters()
         endif
       endfunction
 
-      " Installs all of the required language servers
-      function! InstallLanguageServers()
-        " Bash language server
-        !npm i -g bash-language-server
-
-        " CSS language server
-        !npm install -g vscode-css-languageserver-bin
-
-        " Dockerfile language server
-        !npm install -g dockerfile-language-server-nodejs
-
-        " HTML language server
-        !npm install --global vscode-html-languageserver-bin
-
-        " JSON language server
-        !npm install -g vscode-json-languageserver
-
-        " Typekit language server for JavaScript completion
-        !npm install -g javascript-typescript-langserver
-
-        " Solargraph for Ruby completion
-        !gem install solargraph
+      function! InstallCocCompleters()
+        :CocInstall coc-emoji
+        :CocInstall coc-json
+        :CocInstall coc-solargraph
+        :CocInstall coc-tsserver
+        :CocInstall coc-ultisnips
+        :CocInstall coc-yaml
       endfunction
 
-      command! InstallLanguageServers call InstallLanguageServers()
+      Plug 'neoclide/coc.nvim', {'tag': '*', 'do': function('AfterCocInstall')}
 
-      Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': function('AfterLanguageClientPluginInstall'),
-            \ }
-
-      " Tell the language client where to find the language servers
-      let g:LanguageClient_serverCommands = {
-        \ 'sh': ['bash-language-server', 'start'],
-        \ 'css': ['css-languageserver', '--stdio'],
-        \ 'Dockerfile': ['docker-langserver', '--stdio'],
-        \ 'eruby': ['solargraph', 'stdio'],
-        \ 'html': ['html-languageserver', '--stdio'],
-        \ 'javascript': ['javascript-typescript-stdio'],
-        \ 'javascript.jsx': ['javascript-typescript-stdio'],
-        \ 'json': ['vscode-json-languageserver', '--stdio'],
-        \ 'ruby': ['solargraph', 'stdio'],
-        \ 'scss': ['css-languageserver', '--stdio']
-      \ }
-
-      " Customize the signs for the sign column
-      " (this will match the ALE signs)
-      let g:LanguageClient_diagnosticsDisplay = {
-            \   1: {
-            \      "name": "Error",
-            \      "texthl": "ALEError",
-            \      "signText": "✸",
-            \      "signTexthl": "ALEErrorSign",
-            \   },
-            \   2: {
-            \       "name": "Warning",
-            \       "texthl": "ALEWarning",
-            \       "signText": "✸",
-            \       "signTexthl": "ALEWarningSign",
-            \   },
-            \   3: {
-            \       "name": "Information",
-            \       "texthl": "ALEInfo",
-            \       "signText": "ℹ",
-            \       "signTexthl": "ALEInfoSign",
-            \   },
-            \   4: {
-            \       "name": "Hint",
-            \       "texthl": "ALEInfo",
-            \       "signText": "➤",
-            \       "signTexthl": "ALEInfoSign",
-            \   }
-            \ }
-
-      function SetupLanguageClientMappings()
-        " Only set mappings for buffers that contain a supported language
-        if has_key(g:LanguageClient_serverCommands, &filetype)
-          nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-        endif
-      endfunction
-    " }}}3
-
-    " Deoplete {{{3
-      if has('python3')
-        " Required plugins for deoplete to work
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-
-        " Display spelling suggestions in the autocomplete menu using deoplete
-        Plug 'deathlyfrantic/deoplete-spell'
-
-        " Display emoji suggestions using deoplete
-        Plug 'fszymanski/deoplete-emoji'
-
-        let g:deoplete#enable_at_startup = 1
-        let g:deoplete#max_list = 20
-
-        " Setup the tab key to move through the suggested items
-        inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-        inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
-      else
-        echoerr "Couldn't install deoplete because python3 wasn't installed"
-      endif
+      " Setup the tab key to move through the suggested items
+      inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+      inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
     " }}}3
 
     " Autocommands {{{3
+      function! SetupCocMappings()
+        nmap gd <Plug>(coc-definition)
+      endfunction
+
       augroup vimrcCompletionAutoCommands
         au!
 
-        " Setup any custom mappings for LanguageClient
-        autocmd FileType * call SetupLanguageClientMappings()
+        autocmd BufEnter * call SetupCocMappings()
 
         " Hide the preview window after a completion is done
         autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif

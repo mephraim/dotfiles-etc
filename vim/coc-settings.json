@@ -1,0 +1,8 @@
+{
+	"diagnostic.enable": false,
+	"diagnostic.errorSign": "✸",
+	"diagnostic.warningSign": "✸",
+	"diagnostic.infoSign": "✸",
+	"suggest.snippetIndicator": " ✏ ",
+	"suggest.enablePreview": true
+}
