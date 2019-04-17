@@ -22,7 +22,7 @@ install_neovim() {
   fi
 
   if [ ! -e "$HOME/.config/nvim/init.vim" ]; then
-    ln -s "$DOTFILES_ETC_LOCATION/vim/init.vim" "$HOME/.config/nvim/init.vim"
+    ln -s "$DOTFILES_ETC_LOCATION/nvim/" "$HOME/.config/nvim/"
   fi
 }
 

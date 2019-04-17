@@ -1,8 +1,26 @@
 {
-	"diagnostic.enable": false,
-	"diagnostic.errorSign": "✸",
-	"diagnostic.warningSign": "✸",
-	"diagnostic.infoSign": "✸",
-	"suggest.snippetIndicator": " ✏ ",
-	"suggest.enablePreview": true
+  "diagnostic.enable": false,
+  "diagnostic.errorSign": "✸",
+  "diagnostic.infoSign": "✸",
+  "diagnostic.warningSign": "✸",
+  "suggest.enablePreview": true,
+  "suggest.snippetIndicator": " ✏ ",
+
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
+    },
+    "docker": {
+      "command": "docker-langserver",
+      "args": ["--stdio"],
+      "filetypes": ["Dockerfile"]
+    },
+    "erb": {
+      "command": "solargraph",
+      "args": ["stdio"],
+      "filetypes": ["eruby"]
+    }
+  }
 }

@@ -139,16 +139,32 @@ let mapleader = ","
         if a:info.status == 'installed' || a:info.force
           call coc#util#install()
           call InstallCocCompleters()
+          call InstallLanguageServers()
         endif
       endfunction
 
+      " Install the special Coc versions of any completers that are available.
       function! InstallCocCompleters()
         :CocInstall coc-emoji
         :CocInstall coc-json
         :CocInstall coc-solargraph
         :CocInstall coc-tsserver
         :CocInstall coc-ultisnips
-        :CocInstall coc-yaml
+      endfunction
+
+      " Install any additional language servers that need custom setup.
+      function! InstallLanguageServers()
+        " Bash language server
+        !npm i -g bash-language-server
+
+        " Dockerfile language server
+        !npm install -g dockerfile-language-server-nodejs
+
+        " HTML language server
+        !npm install --global vscode-html-languageserver-bin
+
+        " Solargraph for Ruby completion
+        !gem install solargraph
       endfunction
 
       Plug 'neoclide/coc.nvim', {'tag': '*', 'do': function('AfterCocInstall')}
@@ -156,11 +172,15 @@ let mapleader = ","
       " Setup the tab key to move through the suggested items
       inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
       inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+      " Setup the return key to select the current item
+      inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
     " }}}3
 
     " Autocommands {{{3
       function! SetupCocMappings()
         nmap gd <Plug>(coc-definition)
+        nmap <leader>rn <Plug>(coc-rename)
       endfunction
 
       augroup vimrcCompletionAutoCommands
@@ -352,6 +372,9 @@ let mapleader = ","
 
     " Override the default expansion since we're also using tab for completion
     let g:UltiSnipsExpandTrigger = '<C-Space>'
+
+    " Set a custom snippets directory
+    let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
   " }}}2
 
   " Supercollider {{{2
@@ -486,7 +509,9 @@ let mapleader = ","
 
   " Use the patience algorithm for diffs
   " (explanation here: https://vimways.org/2018/the-power-of-diff/)
-  set diffopt+=algorithm:patience
+  if has("patch-8.1.0360")
+    set diffopt+=algorithm:patience
+  end
 
   " GUI only {{{2
   if has("gui_running")
@@ -757,6 +782,9 @@ let mapleader = ","
 
       " For html and eruby files using indent level for folding
       autocmd Filetype html,eruby setlocal foldmethod=indent | setlocal foldlevel=1
+
+      " Turn on listchars when in visual mode
+      autocmd CursorMoved * if mode() =~# "[vV\<C-v>]" | set list | else | set nolist | endif
     augroup END
   else
     set autoindent " always set autoindenting on
