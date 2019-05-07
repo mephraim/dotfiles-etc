@@ -785,6 +785,9 @@ let mapleader = ","
 
       " Turn on listchars when in visual mode
       autocmd CursorMoved * if mode() =~# "[vV\<C-v>]" | set list | else | set nolist | endif
+
+      " Set a few JavaScript related *rc filetypes to JSON
+      autocmd BufNewFile,BufRead .babelrc,.eslintrc setlocal spell filetype=json
     augroup END
   else
     set autoindent " always set autoindenting on
