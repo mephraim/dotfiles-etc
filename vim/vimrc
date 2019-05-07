@@ -11,7 +11,6 @@ let mapleader = ","
 
   Plug 'bogado/file-line'
   Plug 'elzr/vim-json'
-  Plug 'janko-m/vim-test'
   Plug 'jaxbot/selective-undo.vim'
   Plug 'junegunn/vim-emoji'
   Plug 'markonm/traces.vim'
@@ -208,17 +207,6 @@ let mapleader = ","
     let g:DevIconsEnableFolderExtensionPatternMatching = 1
     let g:DevIconsEnableFoldersOpenClose = 1
     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-  " }}}2
-
-  " DragVisuals {{{2
-    Plug 'shinokada/dragvisuals.vim'
-
-    " Add mappings for the configure the dragvisuals plugin
-    vmap  <expr>  <LEFT>   DVB_Drag('left')
-    vmap  <expr>  <RIGHT>  DVB_Drag('right')
-    vmap  <expr>  <DOWN>   DVB_Drag('down')
-    vmap  <expr>  <UP>     DVB_Drag('up')
-    vmap  <expr>  D        DVB_Duplicate()
   " }}}2
 
   " fzf {{{2
