@@ -21,12 +21,12 @@ hi Cursor      guifg=bg      guibg=#F5773c gui=none
 hi Directory   guifg=#CFCFCF
 hi Folded      ctermfg=59 ctermbg=16 guibg=bg guifg=#434343 gui=italic
 hi FoldColumn  guifg=#444444 guibg=#080808
-hi Normal      guibg=#0A0A0A gui=none
+hi Normal      guibg=#0A0A0A gui=none ctermbg=16
 hi NonText     ctermfg=16 guifg=bg guibg=#0A0A0A
 hi SignColumn  guibg=#0A0A0A
 hi TabLineSel  guifg=#D4EB9C
 hi VertSplit   ctermfg=black ctermbg=black guifg=#181B22 guibg=bg gui=none
-hi Visual      guifg=#f6f3e8 guibg=#1F4457 gui=none
+hi Visual      guifg=#f6f3e8 guibg=#1F4457 gui=none ctermbg=green ctermfg=bg
 hi WildMenu    guifg=#E04331 guibg=bg
 
 " Status Line
@@ -40,7 +40,7 @@ hi StatusLineGit      guifg=#D4EB9C guibg=bg
 if version >= 700
   hi CursorColumn guibg=#2d2d2d
   hi CursorLine   guibg=#263133
-  hi MatchParen   guifg=#E04331 guibg=bg
+  hi MatchParen   guifg=#E04331 guibg=bg ctermfg=red ctermbg=black
   hi Pmenu        guifg=#f6f3e8 guibg=#242829
   hi PmenuSel     guifg=#000000 guibg=#cae682
 endif
