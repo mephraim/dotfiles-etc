@@ -16,11 +16,6 @@
       "command": "docker-langserver",
       "args": ["--stdio"],
       "filetypes": ["Dockerfile"]
-    },
-    "erb": {
-      "command": "solargraph",
-      "args": ["stdio"],
-      "filetypes": ["eruby"]
     }
   }
 }
