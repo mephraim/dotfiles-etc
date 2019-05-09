@@ -30,3 +30,7 @@ defbce "on"
 
 # Increase scrollback lines
 defscrollback 10000
+
+# Fixes esc weirdness in vim and neovim
+# https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
+maptimeout 10
