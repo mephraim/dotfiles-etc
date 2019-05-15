@@ -12,6 +12,7 @@ let mapleader = ","
   Plug 'bogado/file-line'
   Plug 'elzr/vim-json'
   Plug 'jaxbot/selective-undo.vim'
+  Plug 'jparise/vim-graphql'
   Plug 'junegunn/vim-emoji'
   Plug 'markonm/traces.vim'
   Plug 'michaeljsmith/vim-indent-object'
@@ -135,21 +136,22 @@ let mapleader = ","
 
   " Completion/Language Client integration {{{2
     " COC {{{3
+      let g:coc_global_extensions = [
+        \ 'coc-css',
+        \ 'coc-emoji',
+        \ 'coc-json',
+        \ 'coc-pyls',
+        \ 'coc-solargraph',
+        \ 'coc-tsserver',
+        \ 'coc-ultisnips',
+        \ 'coc-yaml'
+      \ ]
+
       function! AfterCocInstall(info)
         if a:info.status == 'installed' || a:info.force
           call coc#util#install()
-          call InstallCocCompleters()
           call InstallLanguageServers()
         endif
-      endfunction
-
-      " Install the special Coc versions of any completers that are available.
-      function! InstallCocCompleters()
-        :CocInstall coc-emoji
-        :CocInstall coc-json
-        :CocInstall coc-solargraph
-        :CocInstall coc-tsserver
-        :CocInstall coc-ultisnips
       endfunction
 
       " Install any additional language servers that need custom setup.
@@ -450,7 +452,14 @@ let mapleader = ","
 " }}}1
 
 " Assorted configuration options {{{1
-  set fillchars=fold:┈,vert:⎸ " Customize the fill character for folds
+"
+  " Customize the fill character for folds
+  if has("gui_running")
+    set fillchars=fold:┈,vert:⎸
+  else
+    set fillchars=fold:┈
+  endif
+
   set hidden            " Allow buffer switching without saving
   set history=50        " Keep 50 lines of command line history
   set iskeyword+=-      " Add "-" to the iskeyword setting for CSS classes and ids
