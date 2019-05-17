@@ -114,8 +114,8 @@ let mapleader = ","
     let g:ale_open_list = 1
 
     " Set Ale signs
-    let g:ale_sign_error = "✸"
-    let g:ale_sign_warning = "✸"
+    let g:ale_sign_error = " ×"
+    let g:ale_sign_warning = " ×"
 
     " Enable the Ale airline plugin
     let g:airline#extensions#ale#enabled = 1
@@ -125,6 +125,12 @@ let mapleader = ","
 
     " Only run Ale when the file has been saved
     let g:ale_lint_on_text_changed = 'never'
+
+    " Turn on virtual text when it's available
+    let g:ale_virtualtext_cursor = 1
+
+    " Add a custom prefix to the virtual warnings
+    let g:ale_virtualtext_prefix = '↢ '
   " }}}2
 
   " BufExplorer {{{2
