@@ -29,7 +29,6 @@ let mapleader = ","
   Plug 'tpope/vim-surround'
   Plug 'vim-scripts/SyntaxAttr.vim'
   Plug 'vim-scripts/matchit.zip'
-  Plug 'zefei/vim-colortuner', { 'on': 'Colortuner' }
 
   " Airline {{{2
     Plug 'vim-airline/vim-airline'
