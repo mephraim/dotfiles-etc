@@ -1,2 +1,2 @@
 " Color customizations for the narrow region plugin
-hi NarrowRegion ctermfg=darkyellow ctermbg=233 guibg=#8ac6f2 guifg=#000000
+hi NarrowRegion ctermfg=none cterm=none ctermbg=238 guibg=#8ac6f2 guifg=#000000
