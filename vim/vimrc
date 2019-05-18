@@ -221,8 +221,22 @@ let mapleader = ","
     Plug 'junegunn/fzf', { 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 
-    " Open the file explorer with space in normal mode
-    nmap <silent> <Space> :Files<CR>
+    " If ripgrep is installed, use it as the default fzf commnad
+    " (it's very fast!)
+    if executable('rg')
+      let $FZF_DEFAULT_COMMAND = 'rg --hidden -l ""'
+    end
+
+    " Open the file explorer with space in normal mode.
+    "
+    " If this is neovim, and rg and bat are installed, use the version that
+    " includes dev icons and a preview. Otherwise fallback on the default :Files
+    " version.
+    if has('nvim') && executable('rg') && executable('bat')
+      nmap <silent> <Space> :call FZFWithDevIcons()<CR>
+    else
+      nmap <silent> <Space> :Files<CR>
+    end
 
     " Open the fzf buffer explorer with ctrl + space
     nmap <silent> <C-Space> :Buffers<CR>
@@ -258,6 +272,57 @@ let mapleader = ","
         call nvim_open_win(buf, v:true, opts)
       endfunction 
     end
+
+    " Bring up a version of the FZF file browser that has devicons and a
+    " preview window added (requires that $FZF_DEFAULT_COMMAND is set
+    " and the `bat` binary is installed).
+    "
+    " Inspired by this thread:
+    " https://github.com/ryanoasis/vim-devicons/issues/106
+    function! FZFWithDevIcons()
+      let l:fzf_files_options = ' -m --bind ctrl-f:preview-page-down,ctrl-b:preview-page-up --preview "bat --color always --theme zenburn --style numbers {2..}"'
+
+      function! s:fzf_dev_icons_files()
+        let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+        return s:fzf_dev_icons_prepend_icon(l:files)
+      endfunction
+
+      function! s:fzf_dev_icons_prepend_icon(candidates)
+        let result = []
+
+        for candidate in a:candidates
+          let filename = fnamemodify(candidate, ':p:t')
+          let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
+          call add(result, printf("%s %s", icon, candidate))
+        endfor
+
+        return result
+      endfunction
+
+      function! s:fzf_dev_icons_edit_file(items)
+        let items = a:items
+        let i = 1
+        let ln = len(items)
+
+        while i < ln
+          let item = items[i]
+          let parts = split(item, ' ')
+          let file_path = get(parts, 1, '')
+          let items[i] = file_path
+          let i += 1
+        endwhile
+
+        call s:Sink(items)
+      endfunction
+
+      let opts = fzf#wrap({})
+      let opts.source = <sid>fzf_dev_icons_files()
+      let s:Sink = opts['sink*']
+      let opts['sink*'] = function('s:fzf_dev_icons_edit_file')
+      let opts.options .= l:fzf_files_options
+
+      call fzf#run(opts)
+    endfunction
   " }}}2
 
   " Git {{{2
