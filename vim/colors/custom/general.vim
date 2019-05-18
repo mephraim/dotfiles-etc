@@ -56,3 +56,5 @@ hi Terminal guibg=#111720 guifg=fg
 
 " Spelling
 hi SpellBad guifg=red gui=undercurl
+
+hi QuickFixLine ctermbg=52
