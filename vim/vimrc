@@ -113,8 +113,8 @@ let mapleader = ","
     let g:ale_open_list = 1
 
     " Set Ale signs
-    let g:ale_sign_error = " ×"
-    let g:ale_sign_warning = " ×"
+    let g:ale_sign_error = " × "
+    let g:ale_sign_warning = " × "
 
     " Enable the Ale airline plugin
     let g:airline#extensions#ale#enabled = 1
@@ -221,13 +221,43 @@ let mapleader = ","
     Plug 'junegunn/fzf', { 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 
-    nmap <silent> <Space> :PrettyFzfFiles<CR>
-    let g:fzf_layout = { 'down': '~20%' }
-
+    " Open the file explorer with space in normal mode
     nmap <silent> <Space> :Files<CR>
 
     " Open the fzf buffer explorer with ctrl + space
     nmap <silent> <C-Space> :Buffers<CR>
+
+    " Store per command history
+    let g:fzf_history_dir = '~/dotfiles-etc/vim/tmp/fzf-history'
+
+    " Set the fzf window to the bottom 20% of the screen
+    let g:fzf_layout = { 'down': '~20%' }
+
+    " In neovim, open the fzf browser as a floating window
+    " (source: https://github.com/junegunn/fzf.vim/issues/664)
+    if has('nvim')
+      let $FZF_DEFAULT_OPTS='--layout=reverse'
+      let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+      function! FloatingFZF()
+        let buf = nvim_create_buf(v:false, v:true)
+        call setbufvar(buf, '&signcolumn', 'no')
+
+        let height = &lines - 20
+        let width = float2nr(&columns - (&columns * 2 / 10))
+        let col = float2nr((&columns - width) / 2)
+
+        let opts = {
+              \ 'relative': 'editor',
+              \ 'row': 8,
+              \ 'col': col,
+              \ 'width': width,
+              \ 'height': height
+              \ }
+
+        call nvim_open_win(buf, v:true, opts)
+      endfunction 
+    end
   " }}}2
 
   " Git {{{2
@@ -543,7 +573,13 @@ let mapleader = ","
     " No blinking cursor
     set guicursor=a:blinkon0
 
-    set signcolumn=yes " We use the sign column diffs and syntax warnings so turn it on
+    " We use the sign column diffs and syntax warnings so turn it on with
+    " extra features for nvim
+    if has('nvim')
+      set signcolumn='yes:[1-4]'
+    else
+      set signcolumn=yes
+    end
   endif
   " End GUI only
   " }}}2
