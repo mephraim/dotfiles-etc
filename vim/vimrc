@@ -230,8 +230,11 @@ let mapleader = ","
     Plug 'junegunn/fzf', { 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 
+    " Allow disabling the fancy version of FZF if necessary
+    let g:disable_fzf_with_dev_icons = 0
+
     " Map the spacebar in normal mode to a custom FZF command
-    nmap <silent> <Space> :call OpenFzfFiles()<CR>
+    nmap <silent> <Space> :call <sid>OpenFzfFiles()<CR>
 
     " Open the fzf buffer explorer with ctrl + space
     nmap <silent> <C-Space> :Buffers<CR>
@@ -268,6 +271,22 @@ let mapleader = ","
       endfunction 
     end
 
+    " Should we use the fancy version of FZF with dev icons and a file
+    " preview?
+    function! s:ShouldUseFzfWithDevIcons()
+      return has('nvim') && executable('rg') && executable('bat') && isdirectory('.git') && !g:disable_fzf_with_dev_icons
+    endfunction
+
+    " Set the fancy of version of fzf to enabled
+    function! EnableFzfWithDevIcons()
+      let g:disable_fzf_with_dev_icons = 0
+    endfunction
+
+    " Set the fancy of version of fzf to disabled
+    function! DisableFzfWithDevIcons()
+      let g:disable_fzf_with_dev_icons = 1
+    endfunction
+
     " Open the fzf list of files, but add some extra fanciness under the
     " right conditions.
     "
@@ -277,9 +296,9 @@ let mapleader = ","
     " Also, check if it looks like the cwd is a project directory by checking
     " for the presence of a ".git" directory. This extra fanciness is too slow
     " for large directories (e.g. ~ or /).
-    function! OpenFzfFiles()
-      if has('nvim') && executable('rg') && executable('bat') && isdirectory('.git')
-        call OpenFzfWithDevIcons()
+    function! s:OpenFzfFiles()
+      if <sid>ShouldUseFzfWithDevIcons()
+        call <sid>OpenFzfWithDevIcons()
       else
         :Files
       end
@@ -290,7 +309,7 @@ let mapleader = ","
     "
     " Inspired by this thread:
     " https://github.com/ryanoasis/vim-devicons/issues/106
-    function! OpenFzfWithDevIcons()
+    function! s:OpenFzfWithDevIcons()
       let l:fzf_files_options = ' -m --bind ctrl-f:preview-page-down,ctrl-b:preview-page-up --preview "bat --color always --theme zenburn --style numbers {2..}"'
 
       function! s:fzf_dev_icons_files()
