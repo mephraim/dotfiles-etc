@@ -933,9 +933,18 @@ let mapleader = ","
         call system('tmux rename-window "' . a:window_name . '"')
       endfunction
 
+      " Get a new name for the current tmux window 
+      function! s:GetTmuxWindowName()
+        if &filetype ==# 'gitcommit'
+          return ' ' . fnamemodify(getcwd(), ':t')
+        endif
+
+        return ' ' . fnamemodify(getcwd(), ':t')
+      endfunction
+
       " When vim loads or when the directory changes, update the tmux window
       " name to the name of the current working directory
-      autocmd VimEnter,DirChanged * call s:SetTmuxWindowName(' ' . fnamemodify(getcwd(), ':t'))
+      autocmd VimEnter,DirChanged * call s:SetTmuxWindowName(s:GetTmuxWindowName())
 
       " When vim leaves, set the window name back to the actual current
       " directory (just in case 'cd' was called inside vim)
