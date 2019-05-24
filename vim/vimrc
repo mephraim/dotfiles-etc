@@ -60,7 +60,7 @@ let mapleader = ","
     let g:airline#extensions#tabline#show_tab_count = 0
     let g:airline#extensions#tabline#show_tab_nr = 0
     let g:airline#extensions#tabline#tab_min_count = 0
-    let g:airline#extensions#tabline#tabs_label = '  '
+    let g:airline#extensions#tabline#tabs_label = '  '
     let g:airline#extensions#tabline#show_close_button = 0
 
     " Show the branch name, but not the number of changes
@@ -936,10 +936,10 @@ let mapleader = ","
       " Get a new name for the current tmux window 
       function! s:GetTmuxWindowName()
         if &filetype ==# 'gitcommit'
-          return ' ' . fnamemodify(getcwd(), ':t')
+          return ' ' . fnamemodify(getcwd(), ':t')
         endif
 
-        return ' ' . fnamemodify(getcwd(), ':t')
+        return ' ' . fnamemodify(getcwd(), ':t')
       endfunction
 
       " When vim loads or when the directory changes, update the tmux window
