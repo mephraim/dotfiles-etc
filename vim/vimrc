@@ -57,8 +57,11 @@ let mapleader = ","
     let g:airline#extensions#tabline#buffer_nr_show = 0
     let g:airline#extensions#tabline#show_buffers = 0
     let g:airline#extensions#tabline#show_splits = 0
+    let g:airline#extensions#tabline#show_tab_count = 0
     let g:airline#extensions#tabline#show_tab_nr = 0
     let g:airline#extensions#tabline#tab_min_count = 0
+    let g:airline#extensions#tabline#tabs_label = '  '
+    let g:airline#extensions#tabline#show_close_button = 0
 
     " Show the branch name, but not the number of changes
     let g:airline#extensions#branch#enabled = 1
@@ -563,6 +566,11 @@ let mapleader = ","
   " Tell the terminal to use 256 colors
   let &t_Co=256
 
+  " Setup truecolors
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+
   " Use a nice 256 color colorscheme
   colorscheme twilight256
 
@@ -787,13 +795,6 @@ let mapleader = ","
   "Fast editing of .vimrc
   noremap <leader>vimrc :tabedit $MYVIMRC<CR>
 
-  " Allow cursor movements during insert mode
-  inoremap <C-h> <C-o>h
-  inoremap <C-j> <C-o>j
-  inoremap <C-k> <C-o>k
-  inoremap <C-l> <C-o>l
-  inoremap <C-d> <end>
-
   " Hitting jj will jump out of insert mode
   inoremap jj <esc>
 
@@ -923,6 +924,22 @@ let mapleader = ","
 
       " Set a few JavaScript related *rc filetypes to JSON
       autocmd BufNewFile,BufRead .babelrc,.eslintrc setlocal spell filetype=json
+
+      " Store the original window name so we can set it back when vim exits
+      let g:tmux_original_window_name = system('tmux display-message -p "#W"')[:-2]
+
+      " Set the name of the tmux window
+      function! s:SetTmuxWindowName(window_name)
+        call system('tmux rename-window "' . a:window_name . '"')
+      endfunction
+
+      " When vim loads or when the directory changes, update the tmux window
+      " name to the name of the current working directory
+      autocmd VimEnter,DirChanged * call s:SetTmuxWindowName(' ' . fnamemodify(getcwd(), ':t'))
+
+      " When vim leaves, set the window name back to the actual current
+      " directory (just in case 'cd' was called inside vim)
+      autocmd VimLeavePre * call s:SetTmuxWindowName(g:tmux_original_window_name)
     augroup END
   else
     set autoindent " always set autoindenting on
