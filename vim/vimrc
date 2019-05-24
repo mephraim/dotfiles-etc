@@ -78,12 +78,7 @@ let mapleader = ","
     endif
 
     let g:airline_symbols.branch = "\uE725"
-
-    if has("gui_running")
-      let g:airline_theme = 'base16_twilight'
-    else
-      let g:airline_theme = 'dark'
-    endif
+    let g:airline_theme = 'base16_twilight'
   " }}}2
 
   " Ale {{{2
