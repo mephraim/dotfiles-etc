@@ -1,25 +1,22 @@
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.oh-my-zsh
+# Use antigen for managing zsh plugins
+source $HOME/dotfiles-etc/zsh/antigen.zsh
 
-export ZSH_CUSTOM=$HOME/dotfiles-etc/zsh
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(emoji git gitfast npm rails rake themes vi-mode)
+# Setup plugins
+antigen bundle emoji
+antigen bundle git
+antigen bundle gitfast
+antigen bundle rails
+antigen bundle rake
+antigen bundle themes
+antigen bundle vi-mode
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
 
-source $ZSH/oh-my-zsh.sh
+# Use custom theme
+antigen bundle $HOME/dotfiles-etc/zsh/themes efrum.zsh-theme --no-local-clone
+antigen theme efrum
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-export ZSH_THEME="efrum"
-
-export DISABLE_AUTO_TITLE="true"
-# Fish style syntax highlighting
-[ -f ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Fish like auto suggest
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-export ZSH_AUTOSUGGEST_STRATEGY='match_prev_cmd'
-[ -f ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+antigen apply

@@ -1,21 +1,4 @@
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.oh-my-zsh
-
-export ZSH_CUSTOM=$HOME/dotfiles-etc/zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-export ZSH_THEME="efrum"
-
-export DISABLE_AUTO_TITLE="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(emoji git gitfast npm rails rake themes vi-mode)
-
-source $ZSH/oh-my-zsh.sh
+source $HOME/dotfiles-etc/zsh/.zshrc_plugins
 
 # Set the terminal to one that supports truecolor and italics
 export TERM=xterm-256color-italic
@@ -68,14 +51,6 @@ export HISTSIZE=10000
 
 # Erase history duplicates
 export HISTCONTROL=erasedups
-
-# Fish style syntax highlighting
-[ -f ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Fish like auto suggest
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-export ZSH_AUTOSUGGEST_STRATEGY='match_prev_cmd'
-[ -f ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

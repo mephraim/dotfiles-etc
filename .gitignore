@@ -11,5 +11,9 @@ GetLatest/*.gz
 .netrwhist
 plugged
 
+# Files created by antigen
+*.zwc
+*.antigen-compat
+
 # some extra stuff for work
 .vimrc_work_extras
