@@ -70,7 +70,12 @@ export HISTSIZE=10000
 export HISTCONTROL=erasedups
 
 # Fish style syntax highlighting
-source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Fish like auto suggest
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_STRATEGY='match_prev_cmd'
+[ -f ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
