@@ -11,9 +11,20 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(bundler emoji emoji-clock git gitfast npm rails rake themes)
 
 source $ZSH/oh-my-zsh.sh
+
+# Set the terminal to one that supports truecolor and italics
+export TERM=xterm-256color-italic
+
+# Use neovim as the git editor if it exists
+if hash nvim 2>/dev/null; then
+  export GIT_EDITOR='nvim'
+# Otherwise use vim
+else
+  export GIT_EDITOR='vim'
+fi
 
 # Customize to your needs...
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -23,6 +34,9 @@ export PATH="/usr/local/Cellar/git/2.2.1/bin/:$PATH"
 
 # 10 second wait if you do something that will delete everything.
 setopt RM_STAR_WAIT
+
+# This allows rake tasks with parameters
+unsetopt nomatch
 
 # Don't do partial globs, just assume the first part of the completion is correct
 zstyle ':completion:*' accept-exact '*(N)'
@@ -59,61 +73,35 @@ source ~/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# This allows rake tasks with parameters
-unsetopt nomatch
-
-# Always reload rails models
-export RELOAD_MODELS=1
-
 # Colorize man pages
 # via: http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
 function man() {
-	env \
-		LESS_TERMCAP_md=$'\e[1;36m' \
-		LESS_TERMCAP_me=$'\e[0m' \
-		LESS_TERMCAP_se=$'\e[0m' \
-		LESS_TERMCAP_so=$'\e[1;40;92m' \
-		LESS_TERMCAP_ue=$'\e[0m' \
-		LESS_TERMCAP_us=$'\e[1;32m' \
-			man "$@"
-}
-
-function open_branch_on_github() {
-  open "https://git.corp.adobe.com/typekit/typekit/tree/$(get_current_branch_name)"
-}
-
-function compare_branch_on_github() {
-  open "https://git.corp.adobe.com/typekit/typekit/compare/$(get_current_branch_name)"
-}
-
-function get_current_branch_name() {
-  git rev-parse --abbrev-ref HEAD
-}
-
-# Bundle exec whatever is in the user clipboard (check before running).
-function bundle_exec_clipboard() {
-  local color_green=$(tput setaf 2)
-  local color_normal=$(tput sgr0)
-
-  printf "Should I run ${color_green}bundle exec $(pbpaste)?${color_normal} y[n]? > "
-  read should_execute_pbpaste
-
-  if [ "$should_execute_pbpaste" == "y" ]; then
-    bundle exec $(pbpaste)
-  fi
+  env \
+    LESS_TERMCAP_md=$'\e[1;36m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[1;40;92m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[1;32m' \
+      man "$@"
 }
 
 # Set the NVM directory
 export NVM_DIR="$HOME/.nvm"
 
 # Setup nvm
-source $(brew --prefix nvm)/nvm.sh
+[ -f $(brew --prefix nvm)/nvm.sh ] && source $(brew --prefix nvm)/nvm.sh
 
-# This will prevent KLAM from prefixing all of your AWS environments with KLAM-
-# (see: https://git.corp.adobe.com/typekit/typekit-ops/wiki/Onboarding-to-KLAM-for-AWS-CLI-API-Console-Access)
-export KLAM_EXT_PROFILE_PREFIX=''
-
-# Use fzf to show a file browser and then edit the selected file in mvim
-alias e='mvim $(fzf)'
-
+# Setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Load the local zsh settings if available
+[ -f ~/.zshrc_local ] && source ~/.zshrc_local
+
+# Use fzf to show a file browser and then edit the selected file in nvim
+alias e='nvim $(fzf)'
+
+# Fixes an issue where the webcam freezes up
+function fix_camera() {
+  sudo killall AppleCameraAssistant
+}
