@@ -36,8 +36,8 @@ function __pwd() {
 }
 
 function __get_zsh_prompt() {
-  echo "╭  ${host}%u$(__pwd)$(git_prompt_info)
-╰ ▻ "
+  echo "╭ ${host}%u$(__pwd)$(git_prompt_info)
+╰▻ "
 }
 
 PROMPT='$(__get_zsh_prompt)'
