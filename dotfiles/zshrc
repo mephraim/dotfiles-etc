@@ -1,5 +1,3 @@
-source $HOME/dotfiles-etc/zsh/.zshrc_plugins
-
 # Set the terminal to one that supports truecolor and italics
 export TERM=xterm-256color-italic
 
@@ -91,3 +89,10 @@ alias e='nvim $(fzf)'
 function fix_camera() {
   sudo killall AppleCameraAssistant
 }
+
+# Is the current terminal is running inside a vim instance?
+function is_terminal_running_inside_vim() {
+  [ $(env | grep -c VIMRUNTIME) -gt 0 ]
+}
+
+source $HOME/dotfiles-etc/zsh/.zshrc_plugins

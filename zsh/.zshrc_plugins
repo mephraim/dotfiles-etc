@@ -4,56 +4,58 @@ source $HOME/dotfiles-etc/zsh/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Setup plugins
-antigen bundle emoji
-antigen bundle git
-antigen bundle gitfast
-antigen bundle rails
-antigen bundle rake
-antigen bundle themes
-antigen bundle vi-mode
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
+# If the terminal is running inside of vim, skip most of the fanciness and just
+# run a simplified theme.
+if is_terminal_running_inside_vim ; then
+  antigen bundle $HOME/dotfiles-etc/zsh/themes efrum.zsh-theme --no-local-clone
+  antigen theme efrum
+else
+  # Setup plugins
+  antigen bundle emoji
+  antigen bundle git
+  antigen bundle gitfast
+  antigen bundle rails
+  antigen bundle rake
+  antigen bundle themes
+  antigen bundle vi-mode
+  antigen bundle zsh-users/zsh-autosuggestions
+  antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme romkatv/powerlevel10k
+  antigen theme romkatv/powerlevel10k
 
-# Split the prompt into 2 lines
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭ "
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰▻ "
+  POWERLEVEL9K_MODE='nerdfont-complete'
 
-# Also add an extra newline before the prompt
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+  # Split the prompt into 2 lines
+  POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+  POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='╭ '
+  POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='╰▻ '
 
-# Basic segment configuration
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs vi_mode)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
-POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
-POWERLEVEL9K_SHORTEN_DIR_LENGTH='2'
+  # Also add an extra newline before the prompt
+  POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-# Style the vcs status segment
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='darkseagreen'
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
+  # Basic segment configuration
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs vi_mode)
+  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rvm nvm)
 
-# Style the insert mode segment
-POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-POWERLEVEL9K_VI_COMMAND_MODE_STRING=' Mode'
+  POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
+  POWERLEVEL9K_SHORTEN_DIR_LENGTH='2'
 
-# Style the vim insert mode segment
-POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='black'
-POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='green'
+  # Style the vcs status segment
+  POWERLEVEL9K_SHOW_CHANGESET=true
+  POWERLEVEL9K_VCS_CLEAN_FOREGROUND='darkseagreen'
+  POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
+  POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
+  POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
+  POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
+  POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
 
-# Style the status segment
-POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND='black'
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND='red'
+  # Style the insert mode segment
+  POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+  POWERLEVEL9K_VI_COMMAND_MODE_STRING=' Mode'
 
-# Use custom theme
-# antigen bundle $HOME/dotfiles-etc/zsh/themes efrum.zsh-theme --no-local-clone
-# antigen theme efrum
+  # Style the vim insert mode segment
+  POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='black'
+  POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='green'
+fi
 
 antigen apply
