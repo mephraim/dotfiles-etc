@@ -12,11 +12,11 @@ if is_terminal_running_inside_vim ; then
 else
   # Setup plugins
   antigen bundle emoji
+  antigen bundle fzf
   antigen bundle git
   antigen bundle gitfast
   antigen bundle rails
   antigen bundle rake
-  antigen bundle themes
   antigen bundle vi-mode
   antigen bundle zsh-users/zsh-autosuggestions
   antigen bundle zsh-users/zsh-syntax-highlighting

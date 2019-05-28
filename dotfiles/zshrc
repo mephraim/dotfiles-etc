@@ -44,10 +44,6 @@ zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
 
-# Search through the history with the up and down arrows
-bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
-bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
-
 # Bigger history
 export HISTSIZE=10000
 
@@ -76,9 +72,6 @@ export NVM_DIR="$HOME/.nvm"
 # Setup nvm
 [ -f $(brew --prefix nvm)/nvm.sh ] && source $(brew --prefix nvm)/nvm.sh
 
-# Setup fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # Load the local zsh settings if available
 [ -f ~/.zshrc_local ] && source ~/.zshrc_local
 
@@ -96,3 +89,15 @@ function is_terminal_running_inside_vim() {
 }
 
 source $HOME/dotfiles-etc/zsh/.zshrc_plugins
+
+# Keybindings
+#
+# Do this after plugins have loaded, in case any of the plugins define
+# their own widgets.
+
+# Search through the history with the up and down arrows
+bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+
+# Use the fzf history search widget
+bindkey '^R' fzf-history-widget
