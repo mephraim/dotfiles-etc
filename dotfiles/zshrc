@@ -99,5 +99,17 @@ bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 # Use the fzf history search widget
 bindkey '^R' fzf-history-widget
 
+# Create a precmd_functions list if one doesn't exist already.
+[[ -z $precmd_functions ]] && precmd_functions=()
+
 # Load other helpers
-source $HOME/dotfiles-etc/zsh/tmux_helpers.zsh
+source $HOME/dotfiles-etc/zsh/tmux_window_renamer.zsh
+
+# Register any hooks here that should be run right before a command is executed.
+function preexec() {
+  # Register the window renamer so it can rename windows based on the command
+  # being run.
+  if [[ ! -z "$1" ]]; then
+    tmux_window_renamer::rename_based_on_command $1
+  fi
+}
