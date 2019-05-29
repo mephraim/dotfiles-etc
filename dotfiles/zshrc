@@ -1,6 +1,3 @@
-# Set the terminal to one that supports truecolor and italics
-export TERM=xterm-256color-italic
-
 # Use neovim as the git editor if it exists
 if hash nvim 2>/dev/null; then
   export GIT_EDITOR='nvim'
@@ -101,3 +98,6 @@ bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 
 # Use the fzf history search widget
 bindkey '^R' fzf-history-widget
+
+# Load other helpers
+source $HOME/dotfiles-etc/zsh/tmux_helpers.zsh
