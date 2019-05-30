@@ -102,14 +102,16 @@ bindkey '^R' fzf-history-widget
 # Create a precmd_functions list if one doesn't exist already.
 [[ -z $precmd_functions ]] && precmd_functions=()
 
-# Load other helpers
-source $HOME/dotfiles-etc/zsh/tmux_window_renamer.zsh
+# If we're running inside of a tmux session, load some extra functionality
+if [[ -n "$TMUX" ]]; then
+  source $HOME/dotfiles-etc/zsh/tmux_window_renamer.zsh
 
-# Register any hooks here that should be run right before a command is executed.
-function preexec() {
-  # Register the window renamer so it can rename windows based on the command
-  # being run.
-  if [[ ! -z "$1" ]]; then
-    tmux_window_renamer::rename_based_on_command $1
-  fi
-}
+  # Register any hooks here that should be run right before a command is executed.
+  function preexec() {
+    # Register the window renamer so it can rename windows based on the command
+    # being run.
+    if [[ ! -z "$1" ]]; then
+      tmux_window_renamer::rename_based_on_command $1
+    fi
+  }
+fi

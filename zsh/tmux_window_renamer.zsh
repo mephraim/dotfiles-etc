@@ -7,7 +7,7 @@ WINDOW_NAME_ICONS[deploy]=''
 WINDOW_NAME_ICONS[diff]=''
 WINDOW_NAME_ICONS[git]=''
 WINDOW_NAME_ICONS[git_commit]=' '
-WINDOW_NAME_ICONS[git_diff]=' '
+WINDOW_NAME_ICONS[git_diff]=' '
 WINDOW_NAME_ICONS[git_log]=' '
 WINDOW_NAME_ICONS[git_pull]='↓'
 WINDOW_NAME_ICONS[git_push]='↑'
@@ -63,4 +63,5 @@ function tmux_window_renamer::rename_based_on_command() {
 function rename_window_precmd() {
   tmux_window_renamer::rename_window_with_icon 'terminal'
 }
+
 precmd_functions=($precmd_functions rename_window_precmd)
