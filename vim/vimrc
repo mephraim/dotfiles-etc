@@ -147,6 +147,7 @@ let mapleader = ","
         \ 'coc-solargraph',
         \ 'coc-tsserver',
         \ 'coc-ultisnips',
+        \ 'coc-vimlsp',
         \ 'coc-yaml'
       \ ]
 
