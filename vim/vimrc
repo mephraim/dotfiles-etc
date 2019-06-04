@@ -586,6 +586,10 @@ let mapleader = ","
     set fillchars=fold:┈
   endif
 
+  " Turn off modeline. I never use it and it's a vulnerability:
+  " https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md
+  set nomodeline
+
   set hidden            " Allow buffer switching without saving
   set history=50        " Keep 50 lines of command line history
   set iskeyword+=-      " Add "-" to the iskeyword setting for CSS classes and ids
