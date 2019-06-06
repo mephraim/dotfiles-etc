@@ -432,7 +432,12 @@ let mapleader = ","
     Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
     noremap <silent> <leader>n :NERDTreeToggle<CR>
+
+    " Show NERDTree when opening what would normally be a Netrw window
     let NERDTreeHijackNetrw = 1
+
+    " Hide the default "Press help for ?" at the top
+    let NERDTreeMinimalUI = 1
 
     " Custom git indicators
     let g:NERDTreeIndicatorMapCustom = {
