@@ -1,30 +1,64 @@
-# This is a collection of methods that can be used to rename tmux windows based
-# on the type of command being run.
+# Tmux Window Renamer
 #
-# Icons that can be used when renaming windows
-declare -A WINDOW_NAME_ICONS
-WINDOW_NAME_ICONS[deploy]=''
-WINDOW_NAME_ICONS[diff]=''
-WINDOW_NAME_ICONS[git]=''
-WINDOW_NAME_ICONS[git_commit]=' '
-WINDOW_NAME_ICONS[git_diff]=' '
-WINDOW_NAME_ICONS[git_log]=' '
-WINDOW_NAME_ICONS[git_pull]='↓'
-WINDOW_NAME_ICONS[git_push]='↑'
-WINDOW_NAME_ICONS[javascript]=''
-WINDOW_NAME_ICONS[man]=''
-WINDOW_NAME_ICONS[npm]=''
-WINDOW_NAME_ICONS[rails]=''
-WINDOW_NAME_ICONS[redis]=''
-WINDOW_NAME_ICONS[ruby]=''
-WINDOW_NAME_ICONS[ssh]=''
-WINDOW_NAME_ICONS[terminal]=''
-WINDOW_NAME_ICONS[text]=''
-WINDOW_NAME_ICONS[vim]=''
+# This set of functions will automatically rename the current tmux window based
+# on the command currently being run in the window.
+#
+# The automatic renaming functionality will be disabled if the user manually
+# renames a window.
+#
+# Nerd Font Icons that will be used when renaming windows
+declare -A TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[deploy]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[diff]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git_commit]=' '
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git_diff]=' '
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git_log]=' '
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git_pull]='↓'
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git_push]='↑'
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[javascript]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[man]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[npm]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[rails]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[redis]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[ruby]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[ssh]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[terminal]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[text]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[vim]=''
+
+# Initialize the tmux window renamer
+function tmux_window_renamer::init() {
+  tmux_window_renamer::bind_custom_rename
+
+  # Register a custom precmd, while keeping any existing precmds
+  precmd_functions=($precmd_functions tmux_window_renamer::rename_window_precmd)
+}
+
+# Bind the window rename key to a custom command that stores a variable
+# indicating that window has been renamed so the automatic renamer doesn't
+# rename it.
+function tmux_window_renamer::bind_custom_rename() {
+  local lock_window_env_name="LOCK_WINDOW_NAME_$(tmux display-message -p '#I')"
+
+  # Clear the window lock variable if it already exists
+  tmux set-environment -u $lock_window_env_name
+
+  # Unbind the default rename key because we'll be replacing it with a custom one
+  tmux unbind -T prefix ","
+
+  # Whenever the user renames a window, store a session local env variable for the window indicating the name is locked
+  tmux bind-key -T prefix "," command-prompt -I "#W" "rename-window -- '%%'; set-environment $lock_window_env_name yes"
+}
+
+# Was the name of this window locked by the user changing the window name manually?
+function tmux_window_renamer::is_window_name_locked() {
+  [ $(tmux show-environment | grep -c LOCK_WINDOW_NAME_$(tmux display-message -p '#I')) -eq 1 ]
+}
 
 # Rename the tmux window with a nerdfont icon and an optional string.
 function tmux_window_renamer::rename_window_with_icon() {
-  local icon="$WINDOW_NAME_ICONS[$1]"
+  local icon="$TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[$1]"
   local name="$icon"
   if [ ! -z "$2" ]; then
     local name="$name $2"
@@ -34,6 +68,13 @@ function tmux_window_renamer::rename_window_with_icon() {
   # process is running in. This will prevent other windows from getting renamed
   # when the current process is not in focus.
   tmux rename-window -t${TMUX_PANE} "$name"
+}
+
+# Automatically rename the window if the window name hasn't been changed manually
+function tmux_window_renamer::rename() {
+  if ! tmux_window_renamer::is_window_name_locked; then
+    tmux_window_renamer::rename_based_on_command $1
+  fi
 }
 
 # Rename the current tmux window based on the name of the command and the
@@ -60,8 +101,8 @@ function tmux_window_renamer::rename_based_on_command() {
 }
 
 # Add a function for renaming window after the command executes.
-function rename_window_precmd() {
-  tmux_window_renamer::rename_window_with_icon 'terminal'
+function tmux_window_renamer::rename_window_precmd() {
+  if ! tmux_window_renamer::is_window_name_locked; then
+    tmux_window_renamer::rename_window_with_icon 'terminal'
+  fi
 }
-
-precmd_functions=($precmd_functions rename_window_precmd)
