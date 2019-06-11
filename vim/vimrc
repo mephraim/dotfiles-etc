@@ -781,6 +781,12 @@ let mapleader = ","
   " Don't use Ex mode, use Q for formatting
   noremap Q gq
 
+  " Set visual yank so that it always copies to the system clipboard.
+  "
+  " I'm using this instad of set clipboard=unnamed, because I don't
+  " want every deletion to also get sent to the system clipboard.
+  xnoremap y "*y
+
   " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
   " so that you can undo CTRL-U after inserting a line break.
   inoremap <C-U> <C-G>u<C-U>
