@@ -261,10 +261,30 @@ let mapleader = ","
       endfunction 
     end
 
+    " Get the total number of files in the project (ignore a few directories
+    " like `node_modules` and `.git`.
+    function! s:GetProjectFileCount()
+      let find_cmd = "find . -type f | grep -v -e './node_modules' -e './.git' -e './build' -e './dist' | wc -l"
+      return str2nr(system(find_cmd))
+    endfunction
+
     " Should we use the fancy version of FZF with dev icons and a file
     " preview?
+    "
+    " Check to make sure that the required dependencies are installed, and
+    " that the fancy version hasn't be manually disabled.
+    "
+    " Also, the first time this function is run, check to see what the total
+    " number of files in the project is. Right now, the devicon fanciness
+    " doesn't work that well with large projects, so we need to disable it
+    " for those projects.
     function! s:ShouldUseFzfWithDevIcons()
-      return has('nvim') && executable('rg') && executable('bat') && isdirectory('.git') && !g:disable_fzf_with_dev_icons
+      if !exists('g:project_file_count')
+        let g:project_file_count = s:GetProjectFileCount()
+      endif
+
+      let max_file_count = 200
+      return has('nvim') && executable('rg') && executable('bat') && g:project_file_count < max_file_count && !g:disable_fzf_with_dev_icons
     endfunction
 
     " Set the fancy of version of fzf to enabled
@@ -282,10 +302,6 @@ let mapleader = ","
     "
     " The "fancy" version requires neovim, ripgrep and bat, so make sure those
     " are installed first.
-    "
-    " Also, check if it looks like the cwd is a project directory by checking
-    " for the presence of a ".git" directory. This extra fanciness is too slow
-    " for large directories (e.g. ~ or /).
     function! s:OpenFzfFiles()
       if <sid>ShouldUseFzfWithDevIcons()
         call <sid>OpenFzfWithDevIcons()
