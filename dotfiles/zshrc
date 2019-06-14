@@ -1,8 +1,10 @@
 # Use neovim as the git editor if it exists
 if hash nvim 2>/dev/null; then
+  export EDITOR='nvim'
   export GIT_EDITOR='nvim'
 # Otherwise use vim
 else
+  export EDITOR='vim'
   export GIT_EDITOR='vim'
 fi
 
