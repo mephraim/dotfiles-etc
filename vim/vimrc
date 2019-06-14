@@ -540,11 +540,6 @@ let mapleader = ","
     let g:tagbar_left = 1
   " }}}2
 
-  " vim-test {{{2
-    Plug 'janko-m/vim-test'
-    let test#strategy = 'vimterminal'
-  " }}}2
-
   " YankRing {{{2
     Plug 'vim-scripts/YankRing.vim'
 
