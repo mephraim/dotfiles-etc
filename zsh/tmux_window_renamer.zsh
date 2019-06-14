@@ -10,6 +10,7 @@
 declare -A TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS
 TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[deploy]=''
 TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[diff]=''
+TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[docker]=''
 TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git]=''
 TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git_commit]=' '
 TMUX_WINDOW_RENAMER_WINDOW_NAME_ICONS[git_diff]=' '
@@ -51,6 +52,12 @@ function tmux_window_renamer::bind_custom_rename() {
   tmux bind-key -T prefix "," command-prompt -I "#W" "rename-window -- '%%'; set-environment $lock_window_env_name yes"
 }
 
+# Is the current pane the first pane in the window?
+function tmux_window_renamer::is_first_pane() {
+  local pane_number="$(tmux display -pt "${TMUX_PANE:?}" '#{pane_index}')"
+  [ $pane_number -eq 0 ]
+}
+
 # Was the name of this window locked by the user changing the window name manually?
 function tmux_window_renamer::is_window_name_locked() {
   [ $(tmux show-environment | grep -c LOCK_WINDOW_NAME_$(tmux display-message -p '#I')) -eq 1 ]
@@ -72,7 +79,7 @@ function tmux_window_renamer::rename_window_with_icon() {
 
 # Automatically rename the window if the window name hasn't been changed manually
 function tmux_window_renamer::rename() {
-  if ! tmux_window_renamer::is_window_name_locked; then
+  if tmux_window_renamer::should_auto_rename; then
     tmux_window_renamer::rename_based_on_command $1
   fi
 }
@@ -83,6 +90,7 @@ function tmux_window_renamer::rename_based_on_command() {
   case "$1" in
     *bat*|*less*|*more*) tmux_window_renamer::rename_window_with_icon 'text';;
     *cap*deploy*) tmux_window_renamer::rename_window_with_icon 'deploy';;
+    docker*) tmux_window_renamer::rename_window_with_icon 'docker';;
     git*commit*) tmux_window_renamer::rename_window_with_icon 'git_commit';;
     git*diff*) tmux_window_renamer::rename_window_with_icon 'git_diff';;
     git*log*) tmux_window_renamer::rename_window_with_icon 'git_log';;
@@ -102,7 +110,16 @@ function tmux_window_renamer::rename_based_on_command() {
 
 # Add a function for renaming window after the command executes.
 function tmux_window_renamer::rename_window_precmd() {
-  if ! tmux_window_renamer::is_window_name_locked; then
+  if tmux_window_renamer::should_auto_rename; then
     tmux_window_renamer::rename_window_with_icon 'terminal'
   fi
+}
+
+# Should the renamer automatically rename the window?
+#
+# If the window name has been changed by the user, don't rename it. Only rename
+# the window if the current pane is the first pane. Otherwise, don't let any
+# other panes automatically rename the window.
+function tmux_window_renamer::should_auto_rename() {
+  ! tmux_window_renamer::is_window_name_locked && tmux_window_renamer::is_first_pane
 }
