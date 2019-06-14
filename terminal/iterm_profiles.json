@@ -399,7 +399,7 @@
       },
       "Cursor Type" : 2,
       "Blur" : false,
-      "Normal Font" : "inconsolataNerdFontCompleteM-nerd-font-complete-mono-with-ligatures 18",
+      "Normal Font" : "inconsolataNerdFontCompleteM-nerd-font-complete-mono-with-ligatures 22",
       "Vertical Spacing" : 1.0146452317754906,
       "Use Underline Color" : false,
       "Disable Printing" : false,
@@ -438,7 +438,7 @@
       "Bound Hosts" : [
 
       ],
-      "Non Ascii Font" : "inconsolataNerdFontComplete-nerd-font-complete-mono-with-ligatures 18",
+      "Non Ascii Font" : "inconsolataNerdFontComplete-nerd-font-complete-mono-with-ligatures 22",
       "Ansi 13 Color" : {
         "Green Component" : 0.86099404096603394,
         "Blue Component" : 0.55795210599899292,
