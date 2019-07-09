@@ -529,6 +529,10 @@ let mapleader = ","
     " These directories don't need to be scanned for tags
     let g:gutentags_ctags_exclude = ['node_modules', 'plugged']
 
+    " Gutentags throws an error after saving a commit message, so disable it
+    " for commits
+    let g:gutentags_exclude_filetypes = ['gitcommit', 'gitrebase']
+
     Plug 'majutsushi/tagbar'
     let g:tagbar_left = 1
   " }}}2
