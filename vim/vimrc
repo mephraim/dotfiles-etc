@@ -173,7 +173,7 @@ let mapleader = ","
         !gem install solargraph
       endfunction
 
-      Plug 'neoclide/coc.nvim', {'tag': '*', 'do': function('AfterCocInstall')}
+      Plug 'neoclide/coc.nvim', {'do': function('AfterCocInstall')}
 
       " Setup the tab key to move through the suggested items
       inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
