@@ -20,7 +20,6 @@ let mapleader = ","
   Plug 'rhysd/git-messenger.vim'
   Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
   Plug 'tomtom/tcomment_vim'
-  Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-characterize'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-repeat'
@@ -532,9 +531,6 @@ let mapleader = ","
     " Gutentags throws an error after saving a commit message, so disable it
     " for commits
     let g:gutentags_exclude_filetypes = ['gitcommit', 'gitrebase']
-
-    Plug 'majutsushi/tagbar'
-    let g:tagbar_left = 1
   " }}}2
 
   " YankRing {{{2
