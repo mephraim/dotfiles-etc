@@ -5,13 +5,15 @@ import PropTypes from 'prop-types';
 import './$1.scss';
 
 function ${1:`!p snip.rv = snip.fn.replace('.js', '')`}(props) {
-	return <div className="${2:${1/([a-z]*)([A-Z]+)/(?1:$1-)\L$2\E/g}}">
-		$0
-	</div>;
+	return (
+	  <div className="${2:${1/([a-z]*)([A-Z]+)/(?1:$1-)\L$2\E/g}}">
+		  $0
+	  </div>
+	);
 }
 
 $1.propTypes = {
-	${3:${4:property}: PropTypes.${5:property}}
+	${3:${4:property}: PropTypes.${5:string}}
 };
 
 export default $1;
