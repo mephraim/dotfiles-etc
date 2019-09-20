@@ -245,7 +245,14 @@ let mapleader = ","
         call setbufvar(buf, '&signcolumn', 'no')
 
         let height = &lines - 20
-        let width = float2nr(&columns - (&columns * 2 / 10))
+
+        " For smaller screens, use a wider floating window
+        if &columns < 150
+          let width = float2nr(&columns * 0.9)
+        else
+          let width = float2nr(&columns * 0.6)
+        end
+
         let col = float2nr((&columns - width) / 2)
 
         let opts = {
@@ -648,6 +655,12 @@ let mapleader = ","
   " (explanation here: https://vimways.org/2018/the-power-of-diff/)
   if has("patch-8.1.0360")
     set diffopt+=algorithm:patience
+  end
+
+  " Set popup menu and window blending in neovim
+  if has('nvim')
+    set pumblend=6
+    set winblend=4
   end
 
   " GUI only {{{2
