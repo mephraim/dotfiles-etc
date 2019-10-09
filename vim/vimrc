@@ -660,7 +660,7 @@ let mapleader = ","
   " Set popup menu and window blending in neovim
   if has('nvim')
     set pumblend=6
-    set winblend=4
+    set winblend=8
   end
 
   " GUI only {{{2
