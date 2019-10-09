@@ -17,20 +17,20 @@ endif
 " UI Elements
 hi Boolean     guifg=#E04331 gui=underline
 hi ColorColumn guibg=#130707
-hi Cursor      guifg=bg      guibg=#F5773c gui=none
-hi Directory   guifg=#CFCFCF ctermfg=lightgray cterm=none
+hi Cursor      guifg=bg      guibg=#F5773c gui=NONE
+hi Directory   guifg=#CFCFCF ctermfg=lightgray cterm=NONE
 hi Folded      ctermfg=59 ctermbg=16 guibg=bg guifg=#434343 gui=italic
 hi FoldColumn  guifg=#444444 guibg=#080808
-hi Normal      guibg=#0A0A0A gui=none ctermbg=16
-hi NonText     ctermfg=bg guifg=bg guibg=none
+hi Normal      guibg=#0A0A0A gui=NONE ctermbg=16
+hi NonText     ctermfg=bg guifg=bg guibg=NONE
 hi SignColumn  guibg=#0A0A0A
 hi TabLineSel  guifg=#D4EB9C
-hi VertSplit   ctermfg=16 ctermbg=16 guifg=#181B22 guibg=bg gui=none
-hi Visual      guifg=none guibg=#1F4457 gui=none ctermbg=green ctermfg=bg
+hi VertSplit   ctermfg=16 ctermbg=16 guifg=#181B22 guibg=bg gui=NONE
+hi Visual      guifg=NONE guibg=#1F4457 gui=none ctermbg=green ctermfg=bg
 hi WildMenu    guifg=#E04331 guibg=bg
 
 " Status Line
-hi StatusLine         guifg=#95e454 guibg=bg gui=none
+hi StatusLine         guifg=#95e454 guibg=bg gui=NONE
 hi StatusLineNC       guifg=bg guibg=bg
 hi StatusLineFile     guibg=bg
 hi StatusLineFileType guifg=#8ac6f2 guibg=bg
@@ -39,7 +39,7 @@ hi StatusLineGit      guifg=#D4EB9C guibg=bg
 " Vim >= 7.0 specific colors
 if version >= 700
   hi CursorColumn guibg=#2d2d2d
-  hi CursorLine   guibg=black ctermbg=black cterm=none gui=bold
+  hi CursorLine   guibg=black ctermbg=black cterm=NONE gui=bold
   hi MatchParen   guifg=#E04331 guibg=bg ctermfg=124 ctermbg=16
   hi Pmenu        guifg=#f6f3e8 guibg=#242829
   hi PmenuSel     guifg=#000000 guibg=#cae682
