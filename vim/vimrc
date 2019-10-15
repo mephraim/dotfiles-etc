@@ -29,6 +29,8 @@ let mapleader = ","
   Plug 'vim-scripts/SyntaxAttr.vim'
   Plug 'vim-scripts/matchit.zip'
 
+  Plug '~/.vim/personal_plugins/floating_terminal'
+
   " Airline {{{2
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
