@@ -476,6 +476,23 @@ let mapleader = ","
           \ 'Ignored'   : '☒',
           \ "Unknown"   : "?"
           \ }
+
+    augroup nerdTreeAutoCommands
+      au!
+
+      " Refresh the NERDTree when entering the NERDTree buffer
+      " From here: https://bluz71.github.io/2017/05/21/vim-plugins-i-like.html
+      function! NERDTreeRefresh()
+        if &filetype ==? 'nerdtree'
+          " For some reason, the refresh needs to be performed twice to get
+          " all of the icons to render correctly
+          silent exe substitute(mapcheck('R'), '<CR>', '', '')
+          silent exe substitute(mapcheck('R'), '<CR>', '', '')
+        endif
+      endfunction
+
+      autocmd BufEnter * call NERDTreeRefresh()
+    augroup END
   " }}}2
 
   " Polyglot {{{2
