@@ -45,6 +45,7 @@ zstyle ':completion:*:man:*'      menu yes select
 
 # Bigger history
 export HISTSIZE=10000
+export SAVEHIST=10000
 
 # Erase history duplicates
 export HISTCONTROL=erasedups
