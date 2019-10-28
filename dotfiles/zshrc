@@ -75,12 +75,6 @@ export NVM_DIR="$HOME/.nvm"
 # Load the local zsh settings if available
 [ -f ~/.zshrc_local ] && source ~/.zshrc_local
 
-# Use fzf to show a file browser and then edit the selected file in nvim
-alias e='nvim $(fzf)'
-
-# Setup the default FZF command and always ignore node_modules
-export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
-
 # Fixes an issue where the webcam freezes up
 function fix_camera() {
   sudo killall AppleCameraAssistant
@@ -101,9 +95,6 @@ source $HOME/dotfiles-etc/zsh/.zshrc_plugins
 # Search through the history with the up and down arrows
 bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
-
-# Use the fzf history search widget
-bindkey '^R' fzf-history-widget
 
 # Create a precmd_functions list if one doesn't exist already.
 [[ -z $precmd_functions ]] && precmd_functions=()
@@ -126,4 +117,14 @@ fi
 # Load iterm integration if it exists
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Setup the default FZF command and always ignore node_modules
+export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
+
+# Source fzf completion
+source /usr/local/opt/fzf/shell/completion.zsh
+
+# Source fzf zsh keybindings
+source /usr/local/opt/fzf/shell/key-bindings.zsh
+
+# Source my custom fzf key bindings
 source "${HOME}/dotfiles-etc/zsh/custom-widgets.zsh"
