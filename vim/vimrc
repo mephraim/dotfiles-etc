@@ -29,8 +29,6 @@ let mapleader = ","
   Plug 'vim-scripts/SyntaxAttr.vim'
   Plug 'vim-scripts/matchit.zip'
 
-  Plug '~/.vim/personal_plugins/floating_terminal'
-
   " Airline {{{2
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -221,11 +219,8 @@ let mapleader = ","
     Plug 'junegunn/fzf', { 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 
-    " Allow disabling the fancy version of FZF if necessary
-    let g:disable_fzf_with_dev_icons = 0
-
     " Map the spacebar in normal mode to a custom FZF command
-    nmap <silent> <Space> :call <sid>OpenFzfFiles()<CR>
+    nmap <silent> <Space> :call pretty_fzf#OpenFiles()<CR>
 
     " Open the fzf buffer explorer with ctrl + space
     nmap <silent> <C-Space> :Buffers<CR>
@@ -237,139 +232,12 @@ let mapleader = ","
     let g:fzf_layout = { 'down': '~20%' }
 
     " In neovim, open the fzf browser as a floating window
+    " with some extra customized settings.
+    "
     " (source: https://github.com/junegunn/fzf.vim/issues/664)
     if has('nvim')
-      let $FZF_DEFAULT_OPTS='--layout=reverse --margin=1,2 '
-      let $FZF_DEFAULT_OPTS.= '--color fg:188,hl:103,fg+:222,bg+:-1,hl+:104 --color info:183,prompt:110,spinner:107,pointer:167,marker:215'
-
-      let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-      function! FloatingFZF()
-        let buf = nvim_create_buf(v:false, v:true)
-        call setbufvar(buf, '&signcolumn', 'no')
-
-        let height = &lines - 20
-
-        " For smaller screens, use a wider floating window
-        if &columns < 150
-          let width = float2nr(&columns * 0.9)
-        else
-          let width = float2nr(&columns * 0.6)
-        end
-
-        let col = float2nr((&columns - width) / 2)
-
-        let opts = {
-              \ 'relative': 'editor',
-              \ 'row': 8,
-              \ 'col': col,
-              \ 'width': width,
-              \ 'height': height
-              \ }
-
-        call nvim_open_win(buf, v:true, opts)
-      endfunction 
+      Plug $HOME . '/.vim/personal_plugins/pretty_fzf'
     end
-
-    " Get the total number of files in the project (ignore a few directories
-    " like `node_modules` and `.git`.
-    function! s:GetProjectFileCount()
-      let find_cmd = "find . -type f | grep -v -e './node_modules' -e './.git' -e './build' -e './dist' | wc -l"
-      return str2nr(system(find_cmd))
-    endfunction
-
-    " Should we use the fancy version of FZF with dev icons and a file
-    " preview?
-    "
-    " Check to make sure that the required dependencies are installed, and
-    " that the fancy version hasn't be manually disabled.
-    "
-    " Also, the first time this function is run, check to see what the total
-    " number of files in the project is. Right now, the devicon fanciness
-    " doesn't work that well with large projects, so we need to disable it
-    " for those projects.
-    function! s:ShouldUseFzfWithDevIcons()
-      if !exists('g:project_file_count')
-        let g:project_file_count = s:GetProjectFileCount()
-      endif
-
-      let max_file_count = 200
-      return has('nvim') && executable('rg') && executable('bat') && g:project_file_count < max_file_count && !g:disable_fzf_with_dev_icons
-    endfunction
-
-    " Set the fancy of version of fzf to enabled
-    function! EnableFzfWithDevIcons()
-      let g:disable_fzf_with_dev_icons = 0
-    endfunction
-
-    " Set the fancy of version of fzf to disabled
-    function! DisableFzfWithDevIcons()
-      let g:disable_fzf_with_dev_icons = 1
-    endfunction
-
-    " Open the fzf list of files, but add some extra fanciness under the
-    " right conditions.
-    "
-    " The "fancy" version requires neovim, ripgrep and bat, so make sure those
-    " are installed first.
-    function! s:OpenFzfFiles()
-      if <sid>ShouldUseFzfWithDevIcons()
-        call <sid>OpenFzfWithDevIcons()
-      else
-        :Files
-      end
-    endfunction
-
-    " Bring up a version of the FZF file browser that has devicons and a
-    " preview window added (requires that the `bat` binary is installed).
-    "
-    " Inspired by this thread:
-    " https://github.com/ryanoasis/vim-devicons/issues/106
-    function! s:OpenFzfWithDevIcons()
-      let l:fzf_files_options = ' -m --bind ctrl-f:preview-page-down,ctrl-b:preview-page-up --preview "bat --color always --theme zenburn --style numbers {2..}"'
-
-      function! s:fzf_dev_icons_files()
-        let l:fzf_command = 'rg --hidden -l ""'
-        let l:files = split(system(l:fzf_command), '\n')
-        return s:fzf_dev_icons_prepend_icon(l:files)
-      endfunction
-
-      function! s:fzf_dev_icons_prepend_icon(candidates)
-        let result = []
-
-        for candidate in a:candidates
-          let filename = fnamemodify(candidate, ':p:t')
-          let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-          call add(result, printf("%s %s", icon, candidate))
-        endfor
-
-        return result
-      endfunction
-
-      function! s:fzf_dev_icons_edit_file(items)
-        let items = a:items
-        let i = 1
-        let ln = len(items)
-
-        while i < ln
-          let item = items[i]
-          let parts = split(item, ' ')
-          let file_path = get(parts, 1, '')
-          let items[i] = file_path
-          let i += 1
-        endwhile
-
-        call s:Sink(items)
-      endfunction
-
-      let opts = fzf#wrap({})
-      let opts.source = <sid>fzf_dev_icons_files()
-      let s:Sink = opts['sink*']
-      let opts['sink*'] = function('s:fzf_dev_icons_edit_file')
-      let opts.options .= l:fzf_files_options
-
-      call fzf#run(opts)
-    endfunction
   " }}}2
 
   " Git {{{2
@@ -524,7 +392,7 @@ let mapleader = ","
       au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
     augroup END
 
-    Plug '~/.vim/personal_plugins/word_processor'
+    Plug $HOME . '/.vim/personal_plugins/word_processor'
   " }}}2
 
   " Snippets {{{2
