@@ -239,7 +239,9 @@ let mapleader = ","
     " In neovim, open the fzf browser as a floating window
     " (source: https://github.com/junegunn/fzf.vim/issues/664)
     if has('nvim')
-      let $FZF_DEFAULT_OPTS='--layout=reverse'
+      let $FZF_DEFAULT_OPTS='--layout=reverse --margin=1,2 '
+      let $FZF_DEFAULT_OPTS.= '--color fg:188,hl:103,fg+:222,bg+:-1,hl+:104 --color info:183,prompt:110,spinner:107,pointer:167,marker:215'
+
       let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
       function! FloatingFZF()
@@ -462,6 +464,9 @@ let mapleader = ","
 
     " Hide the default "Press help for ?" at the top
     let NERDTreeMinimalUI = 1
+
+    " Always show hidden files
+    let NERDTreeShowHidden=1
 
     " Custom git indicators
     let g:NERDTreeIndicatorMapCustom = {
