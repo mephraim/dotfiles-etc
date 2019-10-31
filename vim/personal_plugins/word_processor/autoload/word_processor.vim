@@ -1,3 +1,9 @@
+let s:DEFAULT_FONT = 'inconsolataNerdFontCompleteM-nerd-font-complete-mono-with-ligatures 22'
+let s:WORD_PROCESSOR_FONT = 'Courier 22'
+let s:ITERM_PYTHON_BIN = '~/Library/ApplicationSupport/iTerm2/iterm2env/versions/3.7.2/bin/python3'
+let s:ITERM_CHANGE_FONT_SCRIPT = '~/dotfiles-etc/vim/personal_plugins/word_processor/scripts/set_terminal_font.py'
+let s:ITERM_CHANGE_FONT_CMD = s:ITERM_PYTHON_BIN . ' ' . s:ITERM_CHANGE_FONT_SCRIPT
+
 " Make vim a little more usable for prose
 function! word_processor#ToggleWordProcessing()
   if g:word_processing_on  != 1
@@ -24,23 +30,22 @@ function! word_processor#ToggleWordProcessing()
     setlocal showbreak=
 
     " Enable Pencil
-    let g:pencil_higher_contrast_ui = 0
+    let g:pencil_higher_contrast_ui = 1
     let g:pencil_neutral_code_bg = 0
     let g:pencil_spell_undercurl = 1
     SoftPencil
 
-    " Turn off deoplete autocompletion in favor of manually triggering it for
-    " spelling suggestions
-    call deoplete#custom#option({
-    \ 'auto_complete': v:false,
-    \ 'smart_case': v:true,
-    \ })
-
-    " Allow deoplete spelling completion to be triggered with ctrl + space
-    inoremap <buffer><silent><expr> <C-Space> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-
     " Enable Goyo
-    Goyo 80x45
+    Goyo 80x40
+
+    " Turn off ALE
+    ALEDisable
+
+    " Change the iTerm font to the word processor font
+    call system(s:ITERM_CHANGE_FONT_CMD . ' "' . s:WORD_PROCESSOR_FONT . '"')
+
+    " Turn off the tmux status line for a real fullscreen experience
+    call system('tmux set -g status off')
 
     let g:word_processing_on = 1
   else
@@ -52,17 +57,21 @@ function! word_processor#ToggleWordProcessing()
     " Turn Limelight off
     Limelight!
 
+    " Turn ALE back on
+    ALEEnable
+
     " Reset everything else back to the default
     source $MYVIMRC
 
     " Reset linespacing
     setlocal linespace=1
 
-    let g:word_processing_on = 0
+    " Change the iTerm font back to the default font
+    call system(s:ITERM_CHANGE_FONT_CMD . ' "' . s:DEFAULT_FONT . '"')
 
-    " Turn deoplete back on
-    call deoplete#custom#option({
-    \ 'auto_complete': v:true,
-    \ })
+    " Turn the tmux status line back on
+    call system('tmux set -g status on')
+
+    let g:word_processing_on = 0
  endif
 endfunction
