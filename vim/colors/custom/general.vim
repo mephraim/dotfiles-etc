@@ -21,9 +21,9 @@ hi Cursor      guifg=bg      guibg=#F5773c gui=NONE
 hi Directory   guifg=#CFCFCF ctermfg=lightgray cterm=NONE
 hi Folded      ctermfg=59 ctermbg=16 guibg=bg guifg=#434343 gui=italic
 hi FoldColumn  guifg=#444444 guibg=#080808
-hi Normal      guibg=#0A0A0A gui=NONE ctermbg=16
+hi Normal      guibg=#1D1D1D gui=NONE ctermbg=16
 hi NonText     ctermfg=bg guifg=bg guibg=NONE
-hi SignColumn  guibg=#0A0A0A
+hi SignColumn  guibg=#1D1D1D
 hi TabLineSel  guifg=#D4EB9C
 hi VertSplit   ctermfg=16 ctermbg=16 guifg=#181B22 guibg=bg gui=NONE
 hi Visual      guifg=NONE guibg=#1F4457 gui=none ctermbg=green ctermfg=bg
