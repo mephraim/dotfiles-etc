@@ -128,3 +128,18 @@ source /usr/local/opt/fzf/shell/key-bindings.zsh
 
 # Source my custom fzf key bindings
 source "${HOME}/dotfiles-etc/zsh/custom-widgets.zsh"
+
+# Set $EDITOR to be the man pager
+export MANPAGER="USING_VIM_MANPAGER=true /bin/sh -c \"unset PAGER;col -b -x | \
+    $EDITOR -R +HandsomeMan -\""
+
+# Open a split pane in tmux and run the command in the pane
+side() {
+  local cmd=$@
+  tmux split-window -h "tmux resize-pane -x 80 && ${cmd}"
+}
+
+# Open a man page in a split tmux window
+sman() {
+  side "USING_VIM_MANPAGER=true man ${@}"
+}

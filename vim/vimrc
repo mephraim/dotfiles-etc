@@ -859,5 +859,36 @@ let mapleader = ","
   endfunction
 
   command! EmojiList call EmojiList()
+
+  " Create a custom "handsome" version of the man command
+  " (for use when vim is being used as a MANPAGER)
+  function! HandsomeMan()
+    " Don't let the man plugin define the mappings
+    " I want to manually define them so I can customize the mappings
+    " (specifically, I want to q to quit everything)
+    let g:no_man_maps = 1
+
+    " Turn on folding for the man ft plugin
+    let g:ft_man_folding_enable = 1
+
+    set filetype=man
+    nnoremap <silent> <esc> :qall!<CR>
+    nnoremap <silent> q :qall!<CR>
+    nnoremap <silent> <SPACE> <C-D>
+    nnoremap <silent> b <C-U>
+    nnoremap <silent> t :call man#show_toc()<CR>
+    nnoremap <silent> <buffer> <C-]> :Man<CR>
+    nnoremap <silent> <buffer> <C-T> :call man#pop_tag()<CR>
+
+    Pencil
+
+    augroup handsomeMan
+      au!
+
+      autocmd FocusGained,FocusLost * Goyo 80
+    augroup END
+  endfunction
+
+  command! HandsomeMan call HandsomeMan()
 " End custom commands
 " }}}1
