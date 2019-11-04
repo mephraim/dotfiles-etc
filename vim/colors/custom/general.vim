@@ -37,9 +37,9 @@ hi StatusLineFileType guifg=#8ac6f2 guibg=bg
 hi StatusLineGit      guifg=#D4EB9C guibg=bg
 
 " Vim >= 7.0 specific colors
-if version >= 700
+if v:version >= 700
   hi CursorColumn guibg=#2d2d2d
-  hi CursorLine   guibg=black ctermbg=black cterm=NONE gui=bold
+  hi CursorLine   guibg=#1F4457 ctermbg=black cterm=NONE gui=bold
   hi MatchParen   guifg=#E04331 guibg=bg ctermfg=124 ctermbg=16
   hi Pmenu        guifg=#f6f3e8 guibg=#242829
   hi PmenuSel     guifg=#000000 guibg=#cae682
