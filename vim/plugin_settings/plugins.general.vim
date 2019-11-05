@@ -25,6 +25,9 @@ Plug 'vim-scripts/matchit.zip'
 
   " Show [No Name] buffers, to make them easier to delete.
   let g:bufExplorerShowNoName = 1
+
+  " Don't show the help screen at the top
+  let g:bufExplorerDefaultHelp = 0
 " }}}1
 
 " CtrlSF {{{1
