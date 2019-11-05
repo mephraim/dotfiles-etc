@@ -157,80 +157,80 @@ let mapleader = ','
   " End assorted configuration
   " }}}1
 
-  " Custom colorscheme overrides {{{1
-  let g:disable_color_overrides = 0
+" Custom colorscheme overrides {{{1
+let g:disable_color_overrides = 0
 
-  augroup ColorOverrides
-    au!
-    au ColorScheme * call OverrideColors()
-  augroup END
+augroup ColorOverrides
+  au!
+  au ColorScheme * call OverrideColors()
+augroup END
 
-  function! OverrideColors()
-    if g:disable_color_overrides != 1
-      for color_file in split(glob('~/dotfiles-etc/vim/colors/custom/*.vim'), '\n')
-        exe 'source' color_file
-      endfor
+function! OverrideColors()
+  if g:disable_color_overrides != 1
+    for color_file in split(glob('~/dotfiles-etc/vim/colors/custom/*.vim'), '\n')
+      exe 'source' color_file
+    endfor
 
-      " Refresh devicons after reloading colorschemes
-      " Check to make sure that NERDTree exists before doing this, otherwise it
-      " may cause an error, because NERDTree is lazy loaded.
-      if exists('g:loaded_webdevicons') && exists('g:NERDTree')
-        call webdevicons#refresh()
-      endif
+    " Refresh devicons after reloading colorschemes
+    " Check to make sure that NERDTree exists before doing this, otherwise it
+    " may cause an error, because NERDTree is lazy loaded.
+    if exists('g:loaded_webdevicons') && exists('g:NERDTree')
+      call webdevicons#refresh()
     endif
-  endfunction
-  " }}}1
+  endif
+endfunction
+" }}}1
 
-  " Folding {{{1
-  " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
-  set foldtext=GetFoldText()
-  function! GetFoldText() "{{{2
-    let foldChar = matchstr(&fillchars, 'fold:\zs.')
+" Folding {{{1
+" Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
+set foldtext=GetFoldText()
+function! GetFoldText() "{{{2
+  let foldChar = matchstr(&fillchars, 'fold:\zs.')
 
-    let foldIndent = repeat(' ', indent(v:foldstart))
-    let foldExcerpt = GetFoldCodeExcerpt()
-    let foldTextStart = strpart(foldIndent . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
+  let foldIndent = repeat(' ', indent(v:foldstart))
+  let foldExcerpt = GetFoldCodeExcerpt()
+  let foldTextStart = strpart(foldIndent . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
 
-    let linesCountText = GetLineFoldLineCountText()
-    let foldTextEnd = linesCountText . repeat(foldChar, 8)
-    let foldTextLength = strlen(substitute(foldTextStart . foldTextEnd, '.', 'x', 'g')) + &foldcolumn
-    return foldTextStart . repeat(foldChar, winwidth(0) - foldTextLength) . foldTextEnd
-  endfunction
+  let linesCountText = GetLineFoldLineCountText()
+  let foldTextEnd = linesCountText . repeat(foldChar, 8)
+  let foldTextLength = strlen(substitute(foldTextStart . foldTextEnd, '.', 'x', 'g')) + &foldcolumn
+  return foldTextStart . repeat(foldChar, winwidth(0) - foldTextLength) . foldTextEnd
+endfunction
 
-  " Returns the excerpt of the line that will be displayed as part of the
-  " the fold.
-  function! GetFoldCodeExcerpt()
-    let firstLine = getline(v:foldstart)
-    let lastLine = getline(v:foldend)
+" Returns the excerpt of the line that will be displayed as part of the
+" the fold.
+function! GetFoldCodeExcerpt()
+  let firstLine = getline(v:foldstart)
+  let lastLine = getline(v:foldend)
 
-    " Remove some junk we don't want to show from the first and last lines.
-    let lineCleanupPattern = '\v^\s*'
-    let firstLineSnippet = substitute(firstLine, lineCleanupPattern, '', 'g')
-    let lastLineSnippet = substitute(lastLine, lineCleanupPattern, '', 'g')
+  " Remove some junk we don't want to show from the first and last lines.
+  let lineCleanupPattern = '\v^\s*'
+  let firstLineSnippet = substitute(firstLine, lineCleanupPattern, '', 'g')
+  let lastLineSnippet = substitute(lastLine, lineCleanupPattern, '', 'g')
 
-    " Check for lines where the method name + parameters list is longer than
-    " can be displayed. For these, collapse the parameter list.
-    let methodAndParamsPattern = '\v(\w+)\(([^\(]*)\)'
-    if len(matchstr(firstLineSnippet, methodAndParamsPattern)) > 60
-      let firstLineSnippet = substitute(firstLineSnippet, methodAndParamsPattern, '\1(...)', 'g')
-    end
+  " Check for lines where the method name + parameters list is longer than
+  " can be displayed. For these, collapse the parameter list.
+  let methodAndParamsPattern = '\v(\w+)\(([^\(]*)\)'
+  if len(matchstr(firstLineSnippet, methodAndParamsPattern)) > 60
+    let firstLineSnippet = substitute(firstLineSnippet, methodAndParamsPattern, '\1(...)', 'g')
+  end
 
-    let collapsedChar = '≓'
-    return firstLineSnippet . ' ' . collapsedChar . ' ' . lastLineSnippet
-  endfunction
+  let collapsedChar = '≓'
+  return firstLineSnippet . ' ' . collapsedChar . ' ' . lastLineSnippet
+endfunction
 
-  " Returns the line count that will be displayed on the right side of
-  " the fold.
-  function! GetLineFoldLineCountText()
-    let lines_count = v:foldend - v:foldstart + 1
-    return ' ' . printf('%10s', lines_count . ' lines') . ' '
-  endfunction
+" Returns the line count that will be displayed on the right side of
+" the fold.
+function! GetLineFoldLineCountText()
+  let lines_count = v:foldend - v:foldstart + 1
+  return ' ' . printf('%10s', lines_count . ' lines') . ' '
+endfunction
 
-  set foldlevelstart=1 " Start folding at level 1, rather than 0
-  set foldmethod=syntax " Use the indent level to create folds
-  set foldminlines=3 " Don't fold groups that are smaller than this
-  " End custom folding
-  " }}}1" <
+set foldlevelstart=1 " Start folding at level 1, rather than 0
+set foldmethod=syntax " Use the indent level to create folds
+set foldminlines=3 " Don't fold groups that are smaller than this
+" End custom folding
+" }}}1"
 
 " Custom mappings {{{1
   " Don't use Ex mode, use Q for formatting
