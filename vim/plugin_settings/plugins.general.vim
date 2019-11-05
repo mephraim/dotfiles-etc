@@ -88,6 +88,14 @@ Plug 'vim-scripts/matchit.zip'
   let g:nrrw_rgn_hl = 'NarrowRegion'
 " }}}1
 
+" Polyglot {{{
+  Plug 'sheerun/vim-polyglot'
+
+  " Configure JavaScript syntax highlighting
+  let g:jsx_ext_required = 0
+  let g:javascript_plugin_jsdoc = 1
+" }}}1
+
 " Snippets {{{1
   Plug 'SirVer/ultisnips'
 
