@@ -142,4 +142,19 @@ side() {
 # Open a man page in a split tmux window
 sman() {
   side "USING_VIM_MANPAGER=true man ${@}"
+
+  # Bind ctrl-b to scroll the side pane up
+  sman-scroll-up() { tmux send-keys -t 1 "C-b" }
+  zle -N sman-scroll-up
+  bindkey '^b' sman-scroll-up
+
+  # Bind ctrl-f to scroll the side pane down
+  sman-scroll-down() { tmux send-keys -t 1 "C-f" }
+  zle -N sman-scroll-down
+  bindkey '^f' sman-scroll-down
+
+  # Bind ctrl-q to close the side pane
+  sman-quit() { tmux send-keys -t 1 ":qall" Enter }
+  zle -N sman-quit
+  bindkey '^q' sman-quit
 }
