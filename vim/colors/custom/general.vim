@@ -8,12 +8,6 @@ hi NonText guifg=bg ctermfg=black
 hi Warning    guifg=#e7f6da guibg=#3A0505
 hi WarningMsg guifg=#F11818 guibg=bg
 
-" Highlight trailing whitespace
-if has("gui_running")
-  autocmd BufRead * match Warning /\s\+\%#\@<!$/
-  autocmd BufRead * match Warning /\s\+$/
-endif
-
 " UI Elements
 hi Boolean     guifg=#E04331 gui=underline
 hi ColorColumn guibg=#130707
@@ -36,14 +30,11 @@ hi StatusLineFile     guibg=bg
 hi StatusLineFileType guifg=#8ac6f2 guibg=bg
 hi StatusLineGit      guifg=#D4EB9C guibg=bg
 
-" Vim >= 7.0 specific colors
-if v:version >= 700
-  hi CursorColumn guibg=#2d2d2d
-  hi CursorLine   guibg=#1F4457 ctermbg=black cterm=NONE gui=bold
-  hi MatchParen   guifg=#E04331 guibg=bg ctermfg=124 ctermbg=16
-  hi Pmenu        guifg=#f6f3e8 guibg=#242829
-  hi PmenuSel     guifg=#000000 guibg=#cae682
-endif
+hi CursorColumn guibg=#2d2d2d
+hi CursorLine   guibg=#131313 ctermbg=black cterm=NONE gui=bold
+hi MatchParen   guifg=#E04331 guibg=bg ctermfg=124 ctermbg=16
+hi Pmenu        guifg=#f6f3e8 guibg=#242829
+hi PmenuSel     guifg=#000000 guibg=#cae682
 
 " Diff highlighting
 hi DiffAdd    guibg=#D1FFB6 guifg=#080C06
