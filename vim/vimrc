@@ -7,7 +7,11 @@ let mapleader = ','
 " Plugin setup {{{1
   call plug#begin('~/dotfiles-etc/vim/plugged')
 
-  source ~/dotfiles-etc/vim/plugin_settings/plugins.general.vim
+  if empty($USING_VIM_MANPAGER)
+    source ~/dotfiles-etc/vim/plugin_settings/plugins.general.vim
+  else
+    source ~/dotfiles-etc/vim/plugin_settings/plugins.prose.vim
+  endif
 
   call plug#end()
 " End Plugin setup
@@ -166,7 +170,7 @@ augroup ColorOverrides
 augroup END
 
 function! OverrideColors()
-  if g:disable_color_overrides != 1
+  if g:disable_color_overrides != 1 && empty($USING_VIM_MANPAGER)
     for color_file in split(glob('~/dotfiles-etc/vim/colors/custom/*.vim'), '\n')
       exe 'source' color_file
     endfor
@@ -444,12 +448,7 @@ set foldminlines=3 " Don't fold groups that are smaller than this
     nnoremap <silent> <buffer> <C-T> :call man#pop_tag()<CR>
 
     Pencil
-
-    augroup handsomeMan
-      au!
-
-      autocmd FocusGained,FocusLost * Goyo 80
-    augroup END
+    Goyo 80
   endfunction
 
   command! HandsomeMan call HandsomeMan()

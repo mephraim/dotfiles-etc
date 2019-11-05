@@ -128,10 +128,10 @@ Plug 'vim-scripts/matchit.zip'
   noremap <leader>yr :YRShow<cr>
 " }}}1
 
-source ~/dotfiles-etc/vim/plugin_settings/plugins.completion.vim
 source ~/dotfiles-etc/vim/plugin_settings/airline.vim
 source ~/dotfiles-etc/vim/plugin_settings/ale.vim
 source ~/dotfiles-etc/vim/plugin_settings/fzf.vim
 source ~/dotfiles-etc/vim/plugin_settings/git.vim
 source ~/dotfiles-etc/vim/plugin_settings/nerdtree.vim
-source ~/dotfiles-etc/vim/plugin_settings/prose.vim
+source ~/dotfiles-etc/vim/plugin_settings/plugins.completion.vim
+source ~/dotfiles-etc/vim/plugin_settings/plugins.prose.vim
