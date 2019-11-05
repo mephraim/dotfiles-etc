@@ -1,10 +1,8 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+scriptencoding
 
 " Set the mapleader before doing anything else, so that any leader mappings will
 " have the correct leader key.
-let mapleader = ","
+let mapleader = ','
 
 " Plugin setup {{{1
   call plug#begin('~/dotfiles-etc/vim/plugged')
@@ -73,7 +71,7 @@ let mapleader = ","
 
   " Ale {{{2
     function! AfterAleInstall(info)
-      if a:info.status == 'installed' || a:info.force
+      if a:info.status ==# 'installed' || a:info.force
         call InstallLinters()
       endif
     endfunction
@@ -102,13 +100,13 @@ let mapleader = ","
 
     " In nvim, the ALE signs can have more than one character
     if has('nvim')
-      let g:ale_sign_error = "× "
-      let g:ale_sign_warning = "× "
+      let g:ale_sign_error = '× '
+      let g:ale_sign_warning = '× '
 
     " Only use one character for other vims
     else
-      let g:ale_sign_error = "×"
-      let g:ale_sign_warning = "×"
+      let g:ale_sign_error = '×'
+      let g:ale_sign_warning = '×'
     end
 
     " Enable the Ale airline plugin
@@ -151,7 +149,7 @@ let mapleader = ","
       \ ]
 
       function! AfterCocInstall(info)
-        if a:info.status == 'installed' || a:info.force
+        if a:info.status ==# 'installed' || a:info.force
           call coc#util#install()
           call InstallLanguageServers()
         endif
@@ -202,8 +200,8 @@ let mapleader = ","
   " CtrlSF {{{2
     Plug 'dyng/ctrlsf.vim', { 'on': 'CtrlSF' }
     let g:ctrlsf_auto_close = {
-      \ "normal" : 0,
-      \ "compact": 0
+      \ 'normal' : 0,
+      \ 'compact': 0
     \}
   " }}}2
 
@@ -259,10 +257,6 @@ let mapleader = ","
       imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
       imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
     endfunction
-
-    " Automatically show the quickfix window for any of the commands that use
-    " `grep` (e.g. Glog).
-    autocmd QuickFixCmdPost *grep* cwindow
   " }}}2
 
   " Gitgutter {{{2
@@ -338,16 +332,16 @@ let mapleader = ","
 
     " Custom git indicators
     let g:NERDTreeIndicatorMapCustom = {
-          \ "Modified"  : "🔺",
-          \ "Staged"    : "👍",
-          \ "Untracked" : "+",
-          \ "Renamed"   : "➜",
-          \ "Unmerged"  : "═",
-          \ "Deleted"   : "❌",
-          \ "Dirty"     : "🔺",
-          \ "Clean"     : "✔︎",
+          \ 'Modified'  : '🔺',
+          \ 'Staged'    : '👍',
+          \ 'Untracked' : '+',
+          \ 'Renamed'   : '➜',
+          \ 'Unmerged'  : '═',
+          \ 'Deleted'   : '❌',
+          \ 'Dirty'     : '🔺',
+          \ 'Clean'     : '✔︎',
           \ 'Ignored'   : '☒',
-          \ "Unknown"   : "?"
+          \ 'Unknown'   : '?'
           \ }
 
     augroup nerdTreeAutoCommands
@@ -374,8 +368,6 @@ let mapleader = ","
     " Configure JavaScript syntax highlighting
     let g:jsx_ext_required = 0
     let g:javascript_plugin_jsdoc = 1
-
-    au BufNewFile,BufRead *.js6 set filetype=javascript
   " }}}2
 
   " Prose {{{2
@@ -411,9 +403,9 @@ let mapleader = ","
   " Supercollider {{{2
     Plug 'supercollider/scvim'
 
-    let g:sclangTerm = "open -a iTerm"
-    let g:sclangPipeApp = "~/.vim/plugged/scvim/bin/start_pipe"
-    let g:sclangDispatcher = "~/.vim/plugged/scvim/bin/sc_dispatcher"
+    let g:sclangTerm = 'open -a iTerm'
+    let g:sclangPipeApp = '~/.vim/plugged/scvim/bin/start_pipe'
+    let g:sclangDispatcher = '~/.vim/plugged/scvim/bin/sc_dispatcher'
     let g:scFlash = 1
   " }}}2
 
@@ -422,7 +414,7 @@ let mapleader = ","
 
     " Store the tags files in a central location so we don't have ignore them
     " in specific projects
-    let g:gutentags_cache_dir = "~/.vim/tag_files"
+    let g:gutentags_cache_dir = '~/.vim/tag_files'
 
     " These directories don't need to be scanned for tags
     let g:gutentags_ctags_exclude = ['node_modules', 'plugged']
@@ -436,7 +428,7 @@ let mapleader = ","
     Plug 'vim-scripts/YankRing.vim'
 
     " Set up the yankring history location
-    let g:yankring_history_dir = "~/dotfiles-etc/vim/tmp/yankring"
+    let g:yankring_history_dir = '~/dotfiles-etc/vim/tmp/yankring'
 
     " Override the default yankring cycling keys
     " This prevents a conflict with the ctrlp plugin
@@ -454,7 +446,7 @@ let mapleader = ","
 " Syntax and colorscheme {{{1
   " Switch syntax highlighting on when the terminal has colors
   " or when a GUI is running.
-  if &t_Co > 2 || has("gui_running")
+  if &t_Co > 2 || has('gui_running')
     syntax on
   endif
 
@@ -488,7 +480,7 @@ let mapleader = ","
 " Assorted configuration options {{{1
 "
   " Customize the fill character for folds
-  if has("gui_running")
+  if has('gui_running')
     set fillchars=fold:┈,vert:⎸
   else
     set fillchars=fold:┈
@@ -536,7 +528,7 @@ let mapleader = ","
   set listchars=trail:·,tab:▸\ ,eol:¬,extends:…,precedes:…
 
   " Show ↪ at the beginning of wrapped lines
-  set showbreak=↪\ " <= Extra whitespace intentional
+  set showbreak=↪\ ""= Extra whitespace intentional
 
   set undodir=~/dotfiles-etc/vim/undodir
   set undofile
@@ -545,7 +537,7 @@ let mapleader = ","
 
   " Use the patience algorithm for diffs
   " (explanation here: https://vimways.org/2018/the-power-of-diff/)
-  if has("patch-8.1.0360")
+  if has('patch-8.1.0360')
     set diffopt+=algorithm:patience
   end
 
@@ -556,7 +548,7 @@ let mapleader = ","
   end
 
   " GUI only {{{2
-  if has("gui_running")
+  if has('gui_running')
     " Maximize gvim window.
     set lines=150 columns=230
 
@@ -569,12 +561,12 @@ let mapleader = ","
     set guioptions-=b " Get rid of the bottom scrollbar
 
     " Always start Macvim fullscreen
-    if has("gui_macvim")
+    if has('gui_macvim')
       set fullscreen
     end
 
     " If there's a gui and it's not Macvim, assume it's something like gvim
-    if !has("gui_macvim")
+    if !has('gui_macvim')
       " Get rid of the menu bar (almost as good as full screen)
       set guioptions-=m
     end
@@ -592,10 +584,10 @@ let mapleader = ","
   endif
   " End GUI only
   " }}}2
-" End assorted configuration
-" }}}1
+  " End assorted configuration
+  " }}}1
 
-" Custom colorscheme overrides {{{1
+  " Custom colorscheme overrides {{{1
   let g:disable_color_overrides = 0
 
   augroup ColorOverrides
@@ -612,14 +604,14 @@ let mapleader = ","
       " Refresh devicons after reloading colorschemes
       " Check to make sure that NERDTree exists before doing this, otherwise it
       " may cause an error, because NERDTree is lazy loaded.
-      if exists("g:loaded_webdevicons") && exists("g:NERDTree")
+      if exists('g:loaded_webdevicons') && exists('g:NERDTree')
         call webdevicons#refresh()
       endif
     endif
   endfunction
-" }}}1
+  " }}}1
 
-" Folding {{{1
+  " Folding {{{1
   " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
   set foldtext=GetFoldText()
   function! GetFoldText() "{{{2
@@ -661,14 +653,14 @@ let mapleader = ","
   " the fold.
   function! GetLineFoldLineCountText()
     let lines_count = v:foldend - v:foldstart + 1
-    return ' ' . printf("%10s", lines_count . ' lines') . ' '
+    return ' ' . printf('%10s', lines_count . ' lines') . ' '
   endfunction
 
   set foldlevelstart=1 " Start folding at level 1, rather than 0
   set foldmethod=syntax " Use the indent level to create folds
   set foldminlines=3 " Don't fold groups that are smaller than this
   " End custom folding
-" }}}1
+  " }}}1" <
 
 " Custom mappings {{{1
   " Don't use Ex mode, use Q for formatting
@@ -685,7 +677,7 @@ let mapleader = ","
   inoremap <C-U> <C-G>u<C-U>
 
   " If there's a gui and it's not Macvim, assume it's something like gvim
-  if has("gui_running") && !has("gui_macvim")
+  if has('gui_running') && !has('gui_macvim')
     " Set up copy and paste so they work more like other apps
     inoremap <C-V> <ESC>"+gpi
     cnoremap <C-V> <C-R>+
@@ -782,12 +774,6 @@ let mapleader = ","
   " Don't jump around so much when matching with *
   nnoremap * *<c-o>
 
-  " Run a ruby test
-  autocmd Filetype ruby noremap <buffer> <leader>rt :terminal ++rows=10 bundle exec rspec %<CR><C-W><C-W>
-
-  " Run a ruby for the current line
-  autocmd Filetype ruby noremap <buffer> <leader>rtl :execute 'terminal ++rows=10 bundle exec rspec %:' . line('.')<CR><C-W><C-W>
-
   " JSON Pretty format the current buffer.
   noremap <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
 
@@ -795,7 +781,7 @@ let mapleader = ","
 " }}}1
 
 " Autocommands {{{1
-  if has("autocmd")
+  if has('autocmd')
     " Enable file type detection.
     " Use the default filetype settings, so that mail gets 'tw' set to 72,
     " 'cindent' is on in C files, etc.
@@ -835,6 +821,13 @@ let mapleader = ","
 
       " Set a few JavaScript related *rc filetypes to JSON
       autocmd BufNewFile,BufRead .babelrc,.eslintrc setlocal spell filetype=json
+
+      " Automatically show the quickfix window for any of the commands that use
+      " `grep` (e.g. Glog).
+      autocmd QuickFixCmdPost *grep* cwindow
+
+      " Set .js6 files to the JavaScript filetype
+      autocmd BufNewFile,BufRead *.js6 set filetype=javascript
     augroup END
   else
     set autoindent " always set autoindenting on
