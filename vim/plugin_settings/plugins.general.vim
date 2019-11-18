@@ -52,16 +52,6 @@ Plug 'vim-scripts/matchit.zip'
   let g:highlightedyank_highlight_duration = 3000
 " }}}1
 
-" Livedown {{{2
-  Plug 'shime/vim-livedown'
-
-  " Livedown (markdown preview) binding
-  nmap <leader>lm :LivedownToggle<CR>
-
-  " Open the Livedown window automatically
-  let g:livedown_open = 1
-" }}}2
-
 " Loremipsum {{{1
   Plug 'vim-scripts/loremipsum', { 'on': 'Loremipsum' }
   " Quickly generate some lorem ipsum text
