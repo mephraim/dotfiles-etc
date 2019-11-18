@@ -55,3 +55,19 @@ fzf-git-commit-hash() {
 fzf-git-commit-hash-widget() LBUFFER+=$(fzf-git-commit-hash | fzf-join-lines)
 zle -N fzf-git-commit-hash-widget
 bindkey '^g^h' fzf-git-commit-hash-widget
+
+fzf-git-tag() {
+  # Don't do anything if we're not in a git repo
+  is-in-git-repo || return
+
+  # Show git tags sorted by version
+  git tag -l --sort=-version:refname | \
+    fzf --reverse --ansi --preview-window="$FZF_PREVIEW_WINDOW" \
+    --preview 'git show --color=always $(echo {} | cut -f 1 -d " ")' \
+    --bind "$FZF_PREVIEW_BINDINGS" \
+}
+
+# Create a zsh widget and bind it to Ctrl-G/Ctrl-H
+fzf-git-tag-widget() LBUFFER+=$(fzf-git-tag | fzf-join-lines)
+zle -N fzf-git-tag-widget
+bindkey '^g^t' fzf-git-tag-widget
