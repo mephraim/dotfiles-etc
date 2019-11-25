@@ -2,6 +2,7 @@
 
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim'
+Plug 'psliwka/vim-smoothie'
 Plug 'reedes/vim-colors-pencil'
 Plug 'reedes/vim-pencil'
 
