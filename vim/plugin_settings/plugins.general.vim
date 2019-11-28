@@ -52,18 +52,17 @@ Plug 'vim-scripts/matchit.zip'
   let g:highlightedyank_highlight_duration = 3000
 " }}}1
 
-" Loremipsum {{{1
-  Plug 'vim-scripts/loremipsum', { 'on': 'Loremipsum' }
-  " Quickly generate some lorem ipsum text
-  noremap <leader>lorem :Loremipsum<CR>
-" }}}1
-
-" MatchTagAlways {{{1
+" HTML Tags {{{1
+  " Automatically close tags
   Plug 'alvan/vim-closetag'
-  let g:closetag_filetypes = 'eruby,html,javascript.jsx,xhtml'
+  let g:closetag_filetypes = 'eruby,html,javascript,javascript.jsx,xhtml'
 
+  " Automatically change the matching tag when one tag changes
+  Plug 'AndrewRadev/tagalong.vim'
+  let g:tagalong_additional_filetypes = ['javascript']
+
+  " Highlight the closing tag
   Plug 'Valloric/MatchTagAlways'
-
   let g:mta_filetypes = {
     \ 'html' : 1,
     \ 'xhtml' : 1,
@@ -71,6 +70,12 @@ Plug 'vim-scripts/matchit.zip'
     \ 'eruby' : 1,
     \ 'javascript' : 1
   \}
+" }}}1
+
+" Loremipsum {{{1
+  Plug 'vim-scripts/loremipsum', { 'on': 'Loremipsum' }
+  " Quickly generate some lorem ipsum text
+  noremap <leader>lorem :Loremipsum<CR>
 " }}}1
 
 " NarrowRegion {{{1
@@ -97,21 +102,6 @@ Plug 'vim-scripts/matchit.zip'
 
   " Set a custom snippets directory
   let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
-" }}}1
-
-" Tags {{{1
-  Plug 'ludovicchabant/vim-gutentags'
-
-  " Store the tags files in a central location so we don't have ignore them
-  " in specific projects
-  let g:gutentags_cache_dir = '~/.vim/tag_files'
-
-  " These directories don't need to be scanned for tags
-  let g:gutentags_ctags_exclude = ['node_modules', 'plugged']
-
-  " Gutentags throws an error after saving a commit message, so disable it
-  " for commits
-  let g:gutentags_exclude_filetypes = ['gitcommit', 'gitrebase']
 " }}}1
 
  " YankRing {{{1
