@@ -77,7 +77,15 @@ function man() {
 export NVM_DIR="$HOME/.nvm"
 
 # Setup nvm
-[ -f $(brew --prefix nvm)/nvm.sh ] && source $(brew --prefix nvm)/nvm.sh
+
+# On MacOS use brew to find the location of nvm
+if which brew > /dev/null; then
+  [ -f $(brew --prefix nvm)/nvm.sh ] && source $(brew --prefix nvm)/nvm.sh
+# On Linux load from $NVM_DIR
+else
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
 # Automatically load the correct version of node if an .nvmrc file is found
 #
@@ -151,11 +159,14 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # Setup the default FZF command and always ignore node_modules
 export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
 
-# Source fzf completion
-source /usr/local/opt/fzf/shell/completion.zsh
+# If fzf completion and bindings are available source them
+if [[ -f /usr/local/opt/henfzf/shell/completion.zsh ]]; then
+  # Source fzf completion
+  source /usr/local/opt/fzf/shell/completion.zsh
 
-# Source fzf zsh keybindings
-source /usr/local/opt/fzf/shell/key-bindings.zsh
+  # Source fzf zsh keybindings
+  source /usr/local/opt/fzf/shell/key-bindings.zsh
+fi
 
 # Source my custom zsh widgets
 source "${HOME}/dotfiles-etc/zsh/custom-widgets.zsh"
