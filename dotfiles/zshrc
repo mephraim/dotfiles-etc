@@ -112,7 +112,7 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # Load the local zsh settings if available
-[ -f ~/.zshrc_local ] && source ~/.zshrc_local
+[ -f ~/dotfiles.local/zshrc ] && source ~/dotfiles.local/zshrc
 
 # Fixes an issue where the webcam freezes up
 function fix_camera() {
