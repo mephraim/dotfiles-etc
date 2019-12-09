@@ -52,14 +52,6 @@ let mapleader = ','
 " }}}1
 
 " Assorted configuration options {{{1
-"
-  " Customize the fill character for folds
-  if has('gui_running')
-    set fillchars=fold:┈,vert:⎸
-  else
-    set fillchars=fold:┈
-  endif
-
   " Turn off modeline. I never use it and it's a vulnerability:
   " https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md
   set nomodeline
@@ -189,16 +181,21 @@ endfunction
 " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
 set foldtext=GetFoldText()
 function! GetFoldText() "{{{2
-  let foldChar = matchstr(&fillchars, 'fold:\zs.')
-
   let foldIndent = repeat(' ', indent(v:foldstart))
   let foldExcerpt = GetFoldCodeExcerpt()
   let foldTextStart = strpart(foldIndent . foldExcerpt, 0, (winwidth(0) * 2) / 3) . ' '
 
+  " Adjust the size of the right padding based on how wide the window is
+  if winwidth(0) < 150
+    let rightPadding = 8
+  else
+    let rightPadding = (winwidth(0) / 2) + 8
+  endif
+
   let linesCountText = GetLineFoldLineCountText()
-  let foldTextEnd = linesCountText . repeat(foldChar, 8)
+  let foldTextEnd = linesCountText . repeat(' ', rightPadding)
   let foldTextLength = strlen(substitute(foldTextStart . foldTextEnd, '.', 'x', 'g')) + &foldcolumn
-  return foldTextStart . repeat(foldChar, winwidth(0) - foldTextLength) . foldTextEnd
+  return foldTextStart . repeat(' ', winwidth(0) - foldTextLength) . foldTextEnd
 endfunction
 
 " Returns the excerpt of the line that will be displayed as part of the
@@ -227,7 +224,7 @@ endfunction
 " the fold.
 function! GetLineFoldLineCountText()
   let lines_count = v:foldend - v:foldstart + 1
-  return ' ' . printf('%10s', lines_count . ' lines') . ' '
+  return printf('%1s', lines_count . ' lines') . ' '
 endfunction
 
 set foldlevelstart=1 " Start folding at level 1, rather than 0

@@ -102,9 +102,16 @@ Plug 'vim-scripts/matchit.zip'
 
   " Set a custom snippets directory
   let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+
+  " Vim Doge generates full documentation blocks
+  Plug 'kkoomen/vim-doge'
+
+  " Update the forward and backward mappings to match UltiSnips
+  let g:doge_mapping_comment_jump_backward = '<C-K>'
+  let g:doge_mapping_comment_jump_forward = '<C-J>'
 " }}}1
 
- " YankRing {{{1
+" YankRing {{{1
   Plug 'vim-scripts/YankRing.vim'
 
   " Set up the yankring history location

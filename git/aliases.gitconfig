@@ -5,3 +5,5 @@
 	grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
 	co = "checkout"
 	rb = "rebase"
+	latest = ! git tag -l 'v*' | sort -V | tail -1
+	changelog = ! git log $(git latest)..HEAD
