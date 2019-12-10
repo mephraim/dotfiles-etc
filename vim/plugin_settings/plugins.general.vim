@@ -44,6 +44,8 @@ Plug 'vim-scripts/matchit.zip'
   let g:DevIconsEnableFolderExtensionPatternMatching = 1
   let g:DevIconsEnableFoldersOpenClose = 1
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+  let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+  let g:DevIconsDefaultFolderOpenSymbol = ''
 " }}}1
 
 " Highlightedyank {{{1

@@ -18,17 +18,22 @@ let NERDTreeShowHidden=1
 
 " Custom git indicators
 let g:NERDTreeIndicatorMapCustom = {
-      \ 'Modified'  : '🔺',
-      \ 'Staged'    : '👍',
+      \ 'Modified'  : '▴ ',
       \ 'Untracked' : '+',
-      \ 'Renamed'   : '➜',
+      \ 'Renamed'   : '',
       \ 'Unmerged'  : '═',
-      \ 'Deleted'   : '❌',
-      \ 'Dirty'     : '🔺',
+      \ 'Deleted'   : '',
+      \ 'Dirty'     : '▴ ',
       \ 'Clean'     : '✔︎',
       \ 'Ignored'   : '☒',
       \ 'Unknown'   : '?'
       \ }
+
+" Tweak the devicons
+let g:NERDTreeDirArrowExpandable = "\u00a0"
+let g:NERDTreeDirArrowCollapsible = "\u00a0"
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 
 augroup nerdTreeAutoCommands
   au!
