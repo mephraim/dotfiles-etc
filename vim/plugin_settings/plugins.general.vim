@@ -1,5 +1,6 @@
 " Settings for general plugins that I use 90% of the time
 
+Plug 'andymass/vim-matchup'
 Plug 'bogado/file-line'
 Plug 'elzr/vim-json'
 Plug 'jaxbot/selective-undo.vim'
@@ -18,7 +19,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/SyntaxAttr.vim'
-Plug 'vim-scripts/matchit.zip'
 
 " BufExplorer {{{1
   Plug 'vim-scripts/bufexplorer.zip'
