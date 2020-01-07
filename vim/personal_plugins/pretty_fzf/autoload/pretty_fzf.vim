@@ -45,7 +45,7 @@ endfunction
 " https://github.com/ryanoasis/vim-devicons/issues/106
 function! pretty_fzf#OpenFzfWithDevIcons()
   function! s:fzf_dev_icons_files()
-    let l:fzf_command = 'rg --hidden -l ""'
+    let l:fzf_command = "rg --hidden --glob '!.git/*' -l \"\""
     let l:files = split(system(l:fzf_command), '\n')
 
     return s:fzf_dev_icons_prepend_icon(l:files)
