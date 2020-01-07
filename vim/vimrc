@@ -399,6 +399,12 @@ set foldminlines=3 " Don't fold groups that are smaller than this
 
       " Set .js6 files to the JavaScript filetype
       autocmd BufNewFile,BufRead *.js6 set filetype=javascript
+
+      " Refresh syntax highlighting on a few events.
+      "
+      " This should fix issues here the syntax highlighting gets out of sync
+      " every once in a while.
+      autocmd BufEnter,BufLeave,InsertLeave * syntax sync fromstart
     augroup END
   else
     set autoindent " always set autoindenting on
