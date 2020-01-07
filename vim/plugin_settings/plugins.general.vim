@@ -1,6 +1,5 @@
 " Settings for general plugins that I use 90% of the time
 
-Plug 'andymass/vim-matchup'
 Plug 'bogado/file-line'
 Plug 'elzr/vim-json'
 Plug 'jaxbot/selective-undo.vim'
@@ -54,26 +53,6 @@ Plug 'vim-scripts/SyntaxAttr.vim'
   let g:highlightedyank_highlight_duration = 3000
 " }}}1
 
-" HTML Tags {{{1
-  " Automatically close tags
-  Plug 'alvan/vim-closetag'
-  let g:closetag_filetypes = 'eruby,html,javascript,javascript.jsx,xhtml'
-
-  " Automatically change the matching tag when one tag changes
-  Plug 'AndrewRadev/tagalong.vim'
-  let g:tagalong_additional_filetypes = ['javascript']
-
-  " Highlight the closing tag
-  Plug 'Valloric/MatchTagAlways'
-  let g:mta_filetypes = {
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'eruby' : 1,
-    \ 'javascript' : 1
-  \}
-" }}}1
-
 " Loremipsum {{{1
   Plug 'vim-scripts/loremipsum', { 'on': 'Loremipsum' }
   " Quickly generate some lorem ipsum text
@@ -83,6 +62,35 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 " NarrowRegion {{{1
   Plug 'chrisbra/NrrwRgn', { 'on': 'NarrowRegion' }
   let g:nrrw_rgn_hl = 'NarrowRegion'
+" }}}1
+
+" Open/Close Matching {{{1
+  " Automatically close tags
+  Plug 'alvan/vim-closetag'
+  let g:closetag_filetypes = 'eruby,html,javascript,javascript.jsx,xhtml'
+
+  " Automatically change the matching tag when one tag changes
+  Plug 'AndrewRadev/tagalong.vim'
+  let g:tagalong_additional_filetypes = ['javascript']
+
+  " Highlight closing quotes, parens, tags, etc
+  Plug 'andymass/vim-matchup'
+
+  " In Neovim, display offscreen matches in a popup
+  if has('nvim')
+    let g:matchup_matchparen_offscreen = { 'method': 'popup' }
+  endif
+
+  " Highlight the closing tag
+  " This plugin handles some extra cases that Matchup doesn't handle yet.
+  Plug 'Valloric/MatchTagAlways'
+  let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'eruby' : 1,
+    \ 'javascript' : 1
+  \}
 " }}}1
 
 " Polyglot {{{
