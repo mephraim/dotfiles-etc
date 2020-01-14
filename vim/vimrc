@@ -67,6 +67,7 @@ let mapleader = ','
   set scrolloff=2       " Show some context when scrolling
   set showcmd           " Display incomplete commands
   set tags=tags;/       " Search recursively for the tags file
+  set updatetime=100    " Set this to a lower number than the default. Some plugins (like gitgutter) will update faster.
   set visualbell        " Get rid of the annoying beep
   set wildmenu          " Show a menu when I hit tab in command mode
 
@@ -237,12 +238,6 @@ set foldminlines=3 " Don't fold groups that are smaller than this
   " Don't use Ex mode, use Q for formatting
   noremap Q gq
 
-  " Set visual yank so that it always copies to the system clipboard.
-  "
-  " I'm using this instad of set clipboard=unnamed, because I don't
-  " want every deletion to also get sent to the system clipboard.
-  vnoremap y "*y
-
   " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
   " so that you can undo CTRL-U after inserting a line break.
   inoremap <C-U> <C-G>u<C-U>
@@ -348,6 +343,14 @@ set foldminlines=3 " Don't fold groups that are smaller than this
   " JSON Pretty format the current buffer.
   noremap <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
 
+  " Copy the full path of the current file to the system clipboard
+  noremap <silent> <leader>cfp :let @+ = expand('%:p')<CR>
+
+  " Copy to the system clipboard.
+  "
+  " I'm using this instad of set clipboard=unnamed, because I don't always
+  " want yank to copy to the system keyboard. Only do it when I ask for it.
+  noremap <silent> <leader>cp "+y
 " End custom mappings
 " }}}1
 
