@@ -40,4 +40,4 @@ if !exists('g:airline_symbols')
 endif
 
 let g:airline_symbols.branch = "\uE725"
-let g:airline_theme = 'base16_twilight'
+let g:airline_theme = 'base16_vim'
