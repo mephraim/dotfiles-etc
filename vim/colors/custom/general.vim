@@ -17,6 +17,7 @@ hi Cursor      guifg=bg      guibg=#F5773c gui=NONE
 hi Directory   guifg=#CFCFCF ctermfg=lightgray cterm=NONE
 hi Folded      ctermfg=59 ctermbg=16 guibg=bg guifg=#434343 gui=italic
 hi FoldColumn  guifg=#444444 guibg=#080808
+hi LineNr      ctermfg=59 ctermbg=16 guibg=bg guifg=#434343
 hi Normal      guibg=#1D1D1D gui=NONE ctermbg=16
 hi NonText     ctermfg=bg guifg=bg guibg=NONE
 hi SignColumn  guibg=#1D1D1D
