@@ -121,15 +121,6 @@ Plug 'vim-scripts/SyntaxAttr.vim'
   let g:doge_mapping_comment_jump_forward = '<C-J>'
 " }}}1
 
-" Whitespace Stripping {{{1
-  Plug 'ntpeters/vim-better-whitespace'
-
-  let g:better_whitespace_enabled=1
-  let g:current_line_whitespace_disabled_soft=1
-  let g:strip_only_modified_lines=1
-  let g:strip_whitespace_on_save=1
-" }}}1
-
 " YankRing {{{1
   Plug 'vim-scripts/YankRing.vim'
 
