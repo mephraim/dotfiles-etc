@@ -33,3 +33,9 @@ Plug 'gregsexton/gitv'
 
   let g:gitgutter_highlight_lines = 1
 " }}}1
+
+" GitMessenger {{{1
+Plug 'rhysd/git-messenger.vim'
+
+nnoremap <silent> <leader>gm :GitMessenger<CR>
+" }}}1

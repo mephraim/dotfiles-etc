@@ -8,7 +8,6 @@ Plug 'junegunn/vim-emoji'
 Plug 'markonm/traces.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'rhysd/git-messenger.vim'
 Plug 'skywind3000/asyncrun.vim', { 'on': 'AsyncRun' }
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-characterize'
