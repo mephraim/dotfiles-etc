@@ -4,7 +4,8 @@
   "diagnostic.infoSign": "✸",
   "diagnostic.warningSign": "✸",
   "suggest.enablePreview": true,
-  "suggest.snippetIndicator": " ✏ ",
+  "suggest.maxPreviewWidth": 120,
+  "suggest.snippetIndicator": "  ",
 
   "languageserver": {
     "bash": {
