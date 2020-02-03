@@ -71,7 +71,7 @@ function s:Init()
   let g:fancy_fzf_enable_dev_icons = 0
 
   " Setup the floating window
-  let g:fzf_layout = { 'window': 'call pretty_fzf#FloatingFZF()' }
+  let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.75 } }
 
   call <sid>InitDefaultOpts()
   call <sid>CountProjectFiles()

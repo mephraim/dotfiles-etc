@@ -57,7 +57,7 @@ function! pretty_fzf#OpenFzfWithDevIcons()
     for candidate in a:candidates
       let filename = fnamemodify(candidate, ':p:t')
       let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-      call add(result, printf('%s %s', icon, candidate))
+      call add(result, printf(' %s %s', icon, candidate))
     endfor
 
     return result
