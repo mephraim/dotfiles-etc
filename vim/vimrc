@@ -59,6 +59,7 @@ let mapleader = ','
   set hidden            " Allow buffer switching without saving
   set history=50        " Keep 50 lines of command line history
   set iskeyword+=-      " Add "-" to the iskeyword setting for CSS classes and ids
+  set iskeyword+=_      " Add "_" to the iskeyword setting for CSS classes and ids
   set laststatus=2      " Always show the status line
   set noerrorbells      " No error bells
   set nowrap            " Don't wrap
@@ -351,6 +352,9 @@ set foldminlines=3 " Don't fold groups that are smaller than this
   " I'm using this instad of set clipboard=unnamed, because I don't always
   " want yank to copy to the system keyboard. Only do it when I ask for it.
   noremap <silent> <leader>cp "+y
+
+  " Run the selected section through tidy to correctly format xml
+  noremap <leader>xml :'<,'>!tidy -miq -xml -wrap 0<CR>
 " End custom mappings
 " }}}1
 
