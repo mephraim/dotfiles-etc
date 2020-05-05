@@ -338,9 +338,6 @@ set foldminlines=3 " Don't fold groups that are smaller than this
   nnoremap n nzzzv
   nnoremap N Nzzzv
 
-  " Don't jump around so much when matching with *
-  nnoremap * *<c-o>
-
   " JSON Pretty format the current buffer.
   noremap <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
 
