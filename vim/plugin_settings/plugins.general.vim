@@ -68,10 +68,6 @@ Plug 'vim-scripts/SyntaxAttr.vim'
   Plug 'alvan/vim-closetag'
   let g:closetag_filetypes = 'eruby,html,javascript,javascript.jsx,xhtml'
 
-  " Automatically change the matching tag when one tag changes
-  Plug 'AndrewRadev/tagalong.vim'
-  let g:tagalong_additional_filetypes = ['javascript']
-
   " Highlight closing quotes, parens, tags, etc
   Plug 'andymass/vim-matchup'
 
