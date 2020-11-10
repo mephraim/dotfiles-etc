@@ -49,6 +49,7 @@
   function! SetupCocMappings()
     nmap gd <Plug>(coc-definition)
     nmap <leader>rn <Plug>(coc-rename)
+    nmap <leader>ref <Plug>(coc-references-used)
   endfunction
 
   augroup vimrcCompletionAutoCommands
