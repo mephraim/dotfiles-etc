@@ -16,8 +16,8 @@ function! InstallLinters()
   " Vimscript lint
   !pip3 install vim-vint
 
-  " Sass lint
-  !npm install sass-lint --global
+  " Style linting
+  !npm install  stylelint stylelint-config-standard --global
 endfunction
 
 command! InstallLinters call InstallLinters()
