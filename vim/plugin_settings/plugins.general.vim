@@ -2,7 +2,6 @@
 
 Plug 'bogado/file-line'
 Plug 'elzr/vim-json'
-Plug 'jaxbot/selective-undo.vim'
 Plug 'jparise/vim-graphql'
 Plug 'junegunn/vim-emoji'
 Plug 'markonm/traces.vim'
