@@ -15,12 +15,6 @@ else
   export GIT_EDITOR='vim'
 fi
 
-# Customize to your needs...
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# Use the git tools installed by homebrew.
-export PATH="/usr/local/Cellar/git/2.2.1/bin/:$PATH"
-
 # 10 second wait if you do something that will delete everything.
 setopt RM_STAR_WAIT
 
@@ -57,9 +51,6 @@ export SAVEHIST=10000
 # Erase history duplicates
 export HISTCONTROL=erasedups
 
-# Initialize rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # Colorize man pages
 # via: http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
 function man() {
@@ -72,44 +63,6 @@ function man() {
     LESS_TERMCAP_us=$'\e[1;32m' \
       man "$@"
 }
-
-# Set the NVM directory
-export NVM_DIR="$HOME/.nvm"
-
-# Setup nvm
-
-# On MacOS use brew to find the location of nvm
-if which brew > /dev/null; then
-  [ -f $(brew --prefix nvm)/nvm.sh ] && source $(brew --prefix nvm)/nvm.sh
-# On Linux load from $NVM_DIR
-else
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
-
-# Automatically load the correct version of node if an .nvmrc file is found
-#
-# Copied from the nvm docs:
-# https://github.com/nvm-sh/nvm#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install > /dev/null
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use > /dev/null
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    nvm use default > /dev/null
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 # Load the local zsh settings if available
 [ -f ~/dotfiles.local/zshrc ] && source ~/dotfiles.local/zshrc
@@ -200,3 +153,8 @@ sman() {
   zle -N sman-quit
   bindkey '^q' sman-quit
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Make sure the yarn global bin gets added to the path
+export PATH="$(yarn global bin):$PATH"
