@@ -409,6 +409,9 @@ set foldminlines=3 " Don't fold groups that are smaller than this
       " This should fix issues here the syntax highlighting gets out of sync
       " every once in a while.
       autocmd BufEnter,BufLeave,InsertLeave * syntax sync fromstart
+
+      " Always make help windows take up the full screen
+      autocmd BufWinEnter * if &l:buftype ==# 'help' | only
     augroup END
   else
     set autoindent " always set autoindenting on
