@@ -7,9 +7,6 @@ endfunction
 
 " Installs all of the required linters
 function! InstallLinters()
-  " Shellscript linter
-  !brew install shellcheck
-
   " Alex linter for prose
   !npm install alex --global
 
