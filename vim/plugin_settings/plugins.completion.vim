@@ -35,7 +35,7 @@
     !gem install solargraph
   endfunction
 
-  Plug 'neoclide/coc.nvim', {'do': function('AfterCocInstall')}
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
   " Setup the tab key to move through the suggested items
   inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"

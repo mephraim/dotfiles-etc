@@ -19,7 +19,7 @@ endfunction
 
 command! InstallLinters call InstallLinters()
 
-Plug 'w0rp/ale', { 'do': function('AfterAleInstall') }
+Plug 'w0rp/ale'
 
 " Open a quickfix window for Ale errors
 let g:ale_open_list = 1
