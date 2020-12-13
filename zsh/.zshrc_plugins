@@ -4,62 +4,55 @@ source $HOME/dotfiles-etc/zsh/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# If the terminal is running inside of vim, skip most of the fanciness and just
-# run a simplified theme.
-if is_terminal_running_inside_vim ; then
-  antigen bundle $HOME/dotfiles-etc/zsh/themes efrum.zsh-theme --no-local-clone
-  antigen theme efrum
-else
-  # Setup plugins
-  antigen bundle bundler
-  antigen bundle emoji
-  antigen bundle fzf
-  antigen bundle git
-  antigen bundle gitfast
-  antigen bundle rails
-  antigen bundle rake
-  antigen bundle vi-mode
-  antigen bundle yarn
-  antigen bundle zsh-users/zsh-syntax-highlighting
+# Setup plugins
+antigen bundle bundler
+antigen bundle emoji
+antigen bundle fzf
+antigen bundle git
+antigen bundle gitfast
+antigen bundle rails
+antigen bundle rake
+antigen bundle vi-mode
+antigen bundle yarn
+antigen bundle zsh-users/zsh-syntax-highlighting
 
-  antigen bundle zsh-users/zsh-autosuggestions
-  ZSH_AUTOSUGGEST_USE_ASYNC=true
+antigen bundle zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 
-  antigen theme romkatv/powerlevel10k
+antigen theme romkatv/powerlevel10k
 
-  POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_MODE='nerdfont-complete'
 
-  # Split the prompt into 2 lines
-  POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-  POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='╭ '
-  POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='╰▻ '
+# Split the prompt into 2 lines
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='╭ '
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='╰▻ '
 
-  # Also add an extra newline before the prompt
-  POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# Also add an extra newline before the prompt
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-  # Basic segment configuration
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs vi_mode)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rvm nvm)
+# Basic segment configuration
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rvm nvm)
 
-  POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
-  POWERLEVEL9K_SHORTEN_DIR_LENGTH='2'
+POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH='2'
 
-  # Style the vcs status segment
-  POWERLEVEL9K_SHOW_CHANGESET=true
-  POWERLEVEL9K_VCS_CLEAN_FOREGROUND='darkseagreen'
-  POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
-  POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
-  POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
-  POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
-  POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
+# Style the vcs status segment
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='darkseagreen'
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
 
-  # Style the insert mode segment
-  POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-  POWERLEVEL9K_VI_COMMAND_MODE_STRING=' Mode'
+# Style the insert mode segment
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING=' Mode'
 
-  # Style the vim insert mode segment
-  POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='black'
-  POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='green'
-fi
+# Style the vim insert mode segment
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='black'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='green'
 
 antigen apply
