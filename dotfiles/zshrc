@@ -14,6 +14,9 @@ setopt RM_STAR_WAIT
 # This allows rake tasks with parameters
 unsetopt nomatch
 
+# Set a local completions directory
+fpath=($HOME/.zsh_completions $fpath)
+
 # Don't do partial globs, just assume the first part of the completion is correct
 zstyle ':completion:*' accept-exact '*(N)'
 
@@ -78,6 +81,10 @@ function fix_camera() {
   sudo killall AppleCameraAssistant
 }
 
+# Initialize custom completion functionality
+autoload -U compinit
+compinit
+
 # Keybindings
 #
 # Do this after plugins have loaded, in case any of the plugins define
@@ -124,8 +131,10 @@ fi
 source "${HOME}/dotfiles-etc/zsh/custom-widgets.zsh"
 
 # Set $EDITOR to be the man pager
-export MANPAGER="USING_VIM_MANPAGER=true /bin/sh -c \"unset MANPAGER;col -b -x | \
-    $EDITOR -R +HandsomeMan -\""
+
+# Turn this off right now.
+# export MANPAGER="USING_VIM_MANPAGER=true /bin/sh -c \"unset MANPAGER;col -b -x | \
+#    $EDITOR -R +HandsomeMan -\""
 
 # Open a split pane in tmux and run the command in the pane
 side() {
