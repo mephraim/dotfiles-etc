@@ -108,7 +108,7 @@ Plug 'vim-scripts/SyntaxAttr.vim'
   let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 
   " Vim Doge generates full documentation blocks
-  Plug 'kkoomen/vim-doge'
+  Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
   " Update the forward and backward mappings to match UltiSnips
   let g:doge_mapping_comment_jump_backward = '<C-K>'
