@@ -96,11 +96,27 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 " }}}1
 
 " Syntax Highlighting / Languages {{{
-  Plug 'sheerun/vim-polyglot'
-
-  " Configure JavaScript syntax highlighting
-  let g:jsx_ext_required = 0
-  let g:javascript_plugin_jsdoc = 1
+  if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " Languages to install
+    "  bash
+    "  comment
+    "  css
+    "  graphql
+    "  javascript
+    "  jsdoc
+    "  json
+    "  jsonc
+    "  html
+    "  lua
+    "  python
+    "  regex
+    "  ruby
+    "  scss
+    "  supercollider
+    "  typescript
+    "  yaml
+  endif
 
   Plug 'jonsmithers/vim-html-template-literals'
 " }}}1
