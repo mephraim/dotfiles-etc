@@ -6,7 +6,8 @@ hi NonText guifg=bg ctermfg=black
 
 hi Conceal guibg=bg
 
-" Warnings
+" Warnings and Errors
+hi Error      guifg=#F11818 guibg=bg
 hi Warning    guifg=#e7f6da guibg=#3A0505
 hi WarningMsg guifg=#F11818 guibg=bg
 
