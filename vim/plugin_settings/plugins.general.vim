@@ -65,7 +65,15 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 " Open/Close Matching {{{1
   " Automatically close tags
   Plug 'alvan/vim-closetag'
+
   let g:closetag_filetypes = 'eruby,html,javascript,javascript.jsx,xhtml'
+
+  let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion,litHtmlRegion',
+    \ 'javascript.jsx': 'jsxRegion,litHtmlRegion',
+    \ 'javascript':     'litHtmlRegion',
+    \ 'typescript':     'litHtmlRegion',
+    \ }
 
   " Highlight closing quotes, parens, tags, etc
   Plug 'andymass/vim-matchup'
@@ -87,12 +95,14 @@ Plug 'vim-scripts/SyntaxAttr.vim'
   \}
 " }}}1
 
-" Polyglot {{{
+" Syntax Highlighting / Languages {{{
   Plug 'sheerun/vim-polyglot'
 
   " Configure JavaScript syntax highlighting
   let g:jsx_ext_required = 0
   let g:javascript_plugin_jsdoc = 1
+
+  Plug 'jonsmithers/vim-html-template-literals'
 " }}}1
 
 " Snippets {{{1
