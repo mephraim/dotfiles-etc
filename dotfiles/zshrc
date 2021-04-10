@@ -85,6 +85,10 @@ function fix_camera() {
 autoload -U compinit
 compinit
 
+# Initialize custom completion functionality
+autoload -U compinit
+compinit
+
 # Keybindings
 #
 # Do this after plugins have loaded, in case any of the plugins define
