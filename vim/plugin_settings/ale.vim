@@ -50,4 +50,8 @@ if has('nvim')
   "
   " Add a custom prefix to the virtual warnings
   let g:ale_virtualtext_prefix = '↢ '
+
+  let g:ale_floating_preview = 1
+
+  noremap <leader>ale :ALEDetail<CR>
 end
