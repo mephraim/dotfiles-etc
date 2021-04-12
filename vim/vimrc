@@ -95,6 +95,9 @@ let mapleader = ','
   " Use nicer symbols for listchars
   set listchars=trail:·,tab:▸\ ,eol:¬,extends:…,precedes:…
 
+  " Get rid of the "end of buffer" ~ that vim shows by default
+  set fillchars+=eob:\ 
+
   " Show ↪ at the beginning of wrapped lines
   set showbreak=↪\ ""= Extra whitespace intentional
 
