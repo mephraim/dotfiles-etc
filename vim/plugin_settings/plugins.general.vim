@@ -112,13 +112,14 @@ Plug 'vim-scripts/SyntaxAttr.vim'
     "  python
     "  regex
     "  ruby
-    "  scss
     "  supercollider
     "  typescript
     "  yaml
   endif
 
   Plug 'jonsmithers/vim-html-template-literals'
+  Plug 'hail2u/vim-css3-syntax'
+  Plug 'cakebaker/scss-syntax.vim'
 " }}}1
 
 " Snippets {{{1
