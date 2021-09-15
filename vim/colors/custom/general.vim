@@ -53,3 +53,6 @@ hi Terminal guibg=#111720 guifg=fg
 hi SpellBad guifg=red gui=undercurl
 
 hi QuickFixLine ctermbg=52
+
+hi TelescopeBorder guifg=#444444
+

@@ -1,4 +1,4 @@
-" Settings for general plugins that I use 90% of the time
+call plug#begin('~/dotfiles-etc/vim/plugged')
 
 Plug 'bogado/file-line'
 Plug 'elzr/vim-json'
@@ -16,6 +16,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/SyntaxAttr.vim'
+Plug 'tversteeg/registers.nvim', { 'branch': 'main' }
 
 " BufExplorer {{{1
   Plug 'vim-scripts/bufexplorer.zip'
@@ -96,12 +97,13 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 " }}}1
 
 " Syntax Highlighting / Languages {{{
-  Plug 'sheerun/vim-polyglot'
+  Plug 'pangloss/vim-javascript'
 
   " Configure JavaScript syntax highlighting
   let g:jsx_ext_required = 0
   let g:javascript_plugin_jsdoc = 1
 
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'jonsmithers/vim-html-template-literals'
 " }}}1
 
@@ -142,8 +144,12 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 
 source ~/dotfiles-etc/vim/plugin_settings/airline.vim
 source ~/dotfiles-etc/vim/plugin_settings/ale.vim
-source ~/dotfiles-etc/vim/plugin_settings/fzf.vim
+source ~/dotfiles-etc/vim/plugin_settings/telescope.vim
 source ~/dotfiles-etc/vim/plugin_settings/git.vim
 source ~/dotfiles-etc/vim/plugin_settings/nerdtree.vim
 source ~/dotfiles-etc/vim/plugin_settings/plugins.completion.vim
 source ~/dotfiles-etc/vim/plugin_settings/plugins.prose.vim
+
+call plug#end()
+
+call TelescopeSetup()
