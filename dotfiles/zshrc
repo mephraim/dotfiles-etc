@@ -78,7 +78,7 @@ function man() {
 
 # Fixes an issue where the webcam freezes up
 function fix_camera() {
-  sudo killall AppleCameraAssistant
+  sudo killall VDCAssistant
 }
 
 # Initialize custom completion functionality
