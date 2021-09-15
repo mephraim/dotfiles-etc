@@ -5,15 +5,7 @@ scriptencoding
 let mapleader = ','
 
 " Plugin setup {{{1
-  call plug#begin('~/dotfiles-etc/vim/plugged')
-
-  if empty($USING_VIM_MANPAGER)
-    source ~/dotfiles-etc/vim/plugin_settings/plugins.general.vim
-  else
-    source ~/dotfiles-etc/vim/plugin_settings/plugins.prose.vim
-  endif
-
-  call plug#end()
+  source ~/dotfiles-etc/vim/plugin_settings/plugins.general.vim
 " End Plugin setup
 " }}}1
 
@@ -415,6 +407,9 @@ set foldminlines=3 " Don't fold groups that are smaller than this
 
       " Always make help windows take up the full screen
       autocmd BufWinEnter * if &l:buftype ==# 'help' | only
+
+      " Turn off spellcheck for helpfiles
+      autocmd BufWinEnter * if &l:buftype ==# 'help' | setlocal nospell
 
       autocmd BufEnter * call SetupTerminal()
 
