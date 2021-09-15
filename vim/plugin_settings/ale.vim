@@ -21,8 +21,8 @@ command! InstallLinters call InstallLinters()
 
 Plug 'w0rp/ale'
 
-" Open a quickfix window for Ale errors
-let g:ale_open_list = 1
+" Don't open a quickfix window for Ale errors
+let g:ale_open_list = 0
 
 " In nvim, the ALE signs can have more than one character
 if has('nvim')
