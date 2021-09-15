@@ -39,3 +39,7 @@ Plug 'rhysd/git-messenger.vim'
 
 nnoremap <silent> <leader>gm :GitMessenger<CR>
 " }}}1
+
+" DiffView {{{1
+Plug 'sindrets/diffview.nvim',  { 'branch': 'main' } 
+" }}}1
