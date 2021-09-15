@@ -13,6 +13,8 @@
     \ 'coc-yaml'
   \ ]
 
+  let g:coc_node_path = '~/.asdf/installs/nodejs/14.4.0/bin/node'
+
   function! AfterCocInstall(info)
     if a:info.status ==# 'installed' || a:info.force
       call coc#util#install()
