@@ -336,6 +336,9 @@ set foldminlines=3 " Don't fold groups that are smaller than this
   " JSON Pretty format the current buffer.
   noremap <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
 
+  " XML Pretty format the current buffer
+  noremap <leader>xml :silent %!xmllint --format --recover - 2>/dev/null<CR>
+
   " Copy the full path of the current file to the system clipboard
   noremap <silent> <leader>cfp :let @+ = expand('%:p')<CR>
 
