@@ -5,7 +5,7 @@ scriptencoding
 let mapleader = ','
 
 " Plugin setup {{{1
-  source ~/dotfiles-etc/vim/plugin_settings/plugins.general.vim
+  " source ~/dotfiles-etc/vim/plugin_settings/plugins.general.vim
 " End Plugin setup
 " }}}1
 

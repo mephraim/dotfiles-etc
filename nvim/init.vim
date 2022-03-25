@@ -9,3 +9,7 @@ if has('macunix')
 elseif has('unix')
   let g:python3_host_prog = '/usr/bin/python3'
 endif
+
+lua << EOF
+  require('plugins/init')
+EOF

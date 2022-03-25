@@ -17,3 +17,6 @@ plugged
 
 # some extra stuff for work
 .vimrc_work_extras
+
+# Ignore the compiled packer configuration
+nvim/plugin/packer_compiled.lua
