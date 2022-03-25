@@ -17,7 +17,9 @@ vim.cmd("packadd packer.nvim")
 
 return require('packer').startup(function() 
   require('plugins.airline')(use)
+  require('plugins.nvim-tree')(use)
   require('plugins.telescope')(use)
+
 
   -- Have packer manage itself (this needs to be at the very end)
   use({ "wbthomason/packer.nvim", opt = true })
