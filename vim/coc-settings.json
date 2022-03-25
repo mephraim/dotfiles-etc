@@ -36,6 +36,8 @@
   "suggest.enablePreview": true,
   "suggest.maxPreviewWidth": 120,
   "suggest.snippetIndicator": " ✏ ",
+  "tree.openedIcon": "",
+  "tree.closedIcon": "",
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
