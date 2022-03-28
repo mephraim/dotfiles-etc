@@ -198,12 +198,22 @@ function SetupCompletion()
 end
 
 return function(use)
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-path'
+  -- Load standard lsconfig configurations
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      { 'williamboman/nvim-lsp-installer' }
+    },
+    config = ConfigLanguageServers
+  }
+
+  use {'stevearc/dressing.nvim'}
 
   -- For autocompletions
   use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-path'
 
   -- LSP source for nvim-cmp
   use 'hrsh7th/cmp-nvim-lsp'
@@ -214,12 +224,4 @@ return function(use)
   -- Snippets plugin
   use 'L3MON4D3/LuaSnip'
 
-  use {
-    -- Load standard lsconfig configurations
-    'neovim/nvim-lspconfig',
-    requires = {
-      { 'williamboman/nvim-lsp-installer' }
-    },
-    config = ConfigLanguageServers
-  }
 end
