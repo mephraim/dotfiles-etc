@@ -15,7 +15,7 @@ end
 
 vim.cmd("packadd packer.nvim")
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   require('plugins.airline')(use)
   require('plugins.language-server')(use)
   require('plugins.nvim-tree')(use)

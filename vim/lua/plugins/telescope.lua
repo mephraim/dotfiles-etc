@@ -1,4 +1,4 @@
-function config()
+function AirlineConfig()
   vim.cmd([[
     nmap <silent> <Space> :Telescope find_files<CR>
     nmap <silent> <C-Space> :Telescope buffers<CR>
@@ -34,13 +34,13 @@ function config()
   }
 end
 
-return function(use) 
+return function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
       {'nvim-lua/plenary.nvim'},
       {'kyazdani42/nvim-web-devicons'}
     },
-    config = config
+    config = AirlineConfig
   }
 end
