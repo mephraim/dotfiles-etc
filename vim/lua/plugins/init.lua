@@ -17,8 +17,11 @@ vim.cmd("packadd packer.nvim")
 
 return require('packer').startup(function(use)
   require('plugins.airline')(use)
+  require('plugins.general')(use)
   require('plugins.language-server')(use)
   require('plugins.nvim-tree')(use)
+  require('plugins.pair-matching')(use)
+  require('plugins.syntax')(use)
   require('plugins.telescope')(use)
 
   -- Have packer manage itself (this needs to be at the very end)
