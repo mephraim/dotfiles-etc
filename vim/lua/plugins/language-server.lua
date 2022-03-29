@@ -1,5 +1,3 @@
-local lsp_installer = require("nvim-lsp-installer")
-
 -- Custom icons for suggestion types
 local kind_icons = {
   Class = "ﴯ",
@@ -52,12 +50,15 @@ local servers = {
 function ConfigLanguageServers()
   InstallServers()
   SetupServers()
-  SetupCompletion()
+  -- Disable completion for now
+  -- SetupCompletion()
   SetupMappings()
 end
 
 -- Install of the language servers we want to use.
 function InstallServers()
+  local lsp_installer = require("nvim-lsp-installer")
+
   for _, name in pairs(servers) do
     local server_is_found, server = lsp_installer.get_server(name)
     if server_is_found and not server:is_installed() then
@@ -89,6 +90,8 @@ function SetupMappings()
 end
 
 function SetupServers()
+  local lsp_installer = require("nvim-lsp-installer")
+
   lsp_installer.on_server_ready(function(server)
     local opts = {}
 
