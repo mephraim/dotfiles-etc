@@ -91,7 +91,6 @@ function SetupMappings()
   vim.api.nvim_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   vim.api.nvim_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
@@ -233,8 +232,6 @@ return function(use)
     end
   }
 
-  use {'stevearc/dressing.nvim'}
-
   -- For autocompletions
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
@@ -249,4 +246,35 @@ return function(use)
 
   -- Snippets plugin
   use 'L3MON4D3/LuaSnip'
+
+  -- Setup linting
+  use {
+    "mfussenegger/nvim-lint",
+    config = function()
+      require("lint").linters_by_ft = {
+        css = { "stylelint" },
+        javascript = { "eslint" },
+        sh = { "shellcheck" }
+      }
+    end
+  }
+
+  -- Trouble allows us to browse all of the lint and erorr messages
+  use {
+    "folke/trouble.nvim",
+    requires = { "kyazdani42/nvim-web-devicons" },
+    config = function()
+      require("trouble").setup{}
+
+      vim.cmd [[
+        nnoremap <leader>xx <cmd>TroubleToggle<cr>
+      ]]
+
+      vim.cmd [[
+        nnoremap <leader>rf <cmd>TroubleToggle lsp_references<cr>
+      ]]
+    end
+  }
+
+  vim.cmd [[au BufWritePost <buffer> lua require('lint').try_lint()]]
 end
