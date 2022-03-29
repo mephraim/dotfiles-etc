@@ -51,6 +51,7 @@ function ConfigLanguageServers()
   InstallServers()
   SetupServers()
   SetupMappings()
+  SetupUI()
 
   if (vim.env.LSP_COMPLETION) then
     print('LSP completion enabled')
@@ -203,6 +204,21 @@ function SetupCompletion()
       ghost_text = true
     }
   }
+end
+
+function SetupUI()
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
+  vim.diagnostic.config({
+    virtual_text = {
+      prefix = '●'
+    }
+  })
 end
 
 return function(use)
