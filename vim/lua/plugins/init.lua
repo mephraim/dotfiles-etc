@@ -16,13 +16,14 @@ end
 vim.cmd("packadd packer.nvim")
 
 return require('packer').startup(function(use)
-  require('plugins.airline')(use)
+  -- require('plugins.airline')(use)
   require('plugins.coc')(use)
   require('plugins.general')(use)
   require('plugins.nvim-tree')(use)
   require('plugins.pair-matching')(use)
   require('plugins.syntax')(use)
   require('plugins.telescope')(use)
+  require('plugins.ui')(use)
 
   -- Have packer manage itself (this needs to be at the very end)
   use({ "wbthomason/packer.nvim", opt = true })
