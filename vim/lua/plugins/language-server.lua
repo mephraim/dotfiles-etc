@@ -50,9 +50,14 @@ local servers = {
 function ConfigLanguageServers()
   InstallServers()
   SetupServers()
-  -- Disable completion for now
-  -- SetupCompletion()
   SetupMappings()
+
+  if (vim.env.LSP_COMPLETION) then
+    print('LSP completion enabled')
+    SetupCompletion()
+  else
+    print('LSP completion not enabled')
+  end
 end
 
 -- Install of the language servers we want to use.
@@ -207,7 +212,9 @@ return function(use)
     requires = {
       { 'williamboman/nvim-lsp-installer' }
     },
-    config = ConfigLanguageServers
+    config = function()
+      ConfigLanguageServers()
+    end
   }
 
   use {'stevearc/dressing.nvim'}
@@ -226,5 +233,4 @@ return function(use)
 
   -- Snippets plugin
   use 'L3MON4D3/LuaSnip'
-
 end

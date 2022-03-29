@@ -30,6 +30,11 @@ return require('packer').startup(function(use)
   -- Have packer manage itself (this needs to be at the very end)
   use({ "wbthomason/packer.nvim", opt = true })
 
+  if vim.env.LSP_COMPLETION then
+    print('Disable COC')
+    vim.cmd [[autocmd BufAdd * let b:coc_enabled=0]]
+  end
+
   if packer_bootstrap then
     require('packer').sync()
   end
