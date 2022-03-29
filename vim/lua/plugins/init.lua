@@ -16,9 +16,10 @@ end
 vim.cmd("packadd packer.nvim")
 
 return require('packer').startup(function(use)
-  -- require('plugins.airline')(use)
+  require('plugins.airline')(use)
   require('plugins.coc')(use)
   require('plugins.general')(use)
+  require('plugins.git')(use)
   require('plugins.nvim-tree')(use)
   require('plugins.pair-matching')(use)
   require('plugins.syntax')(use)

@@ -1,5 +1,13 @@
 return function(use)
   use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
+
+  -- Use bufferline for tab configuration at the top
+  use {
     "akinsho/bufferline.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
