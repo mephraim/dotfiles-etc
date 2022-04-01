@@ -206,7 +206,12 @@ function SetupCompletion()
 end
 
 function SetupUI()
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " "
+  }
 
   for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
@@ -259,6 +264,8 @@ return function(use)
     end
   }
 
+  vim.cmd [[au BufWritePost <buffer> lua require('lint').try_lint()]]
+
   -- Trouble allows us to browse all of the lint and erorr messages
   use {
     "folke/trouble.nvim",
@@ -275,6 +282,4 @@ return function(use)
       ]]
     end
   }
-
-  vim.cmd [[au BufWritePost <buffer> lua require('lint').try_lint()]]
 end
