@@ -10,6 +10,9 @@ return function(use)
   use {
     "akinsho/bufferline.nvim",
     requires = "kyazdani42/nvim-web-devicons",
+    -- There's a breaking change after this commit, so stick with it until the
+    -- issue is fixed.
+    commit = "af158e4477a08be3645faf91cfb772f898c132f0",
     config = function()
       require("bufferline").setup {
         options = {
