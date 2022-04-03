@@ -29,4 +29,7 @@ return function(use)
       }
     end
   }
+
+  -- Add smooth scrolling
+  use "psliwka/vim-smoothie"
 end
