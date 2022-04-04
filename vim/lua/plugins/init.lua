@@ -25,6 +25,7 @@ return require('packer').startup(function(use)
   require('plugins.pair-matching')(use)
   require('plugins.syntax')(use)
   require('plugins.telescope')(use)
+  require('plugins.treesitter')(use)
   require('plugins.ui')(use)
 
   -- Have packer manage itself (this needs to be at the very end)
