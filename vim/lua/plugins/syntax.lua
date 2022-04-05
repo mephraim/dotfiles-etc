@@ -6,5 +6,4 @@ return function(use)
   vim.g.javascript_plugin_jsdoc = 1
 
   use "HerringtonDarkholme/yats.vim"
-  use "jonsmithers/vim-html-template-literals"
 end
