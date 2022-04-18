@@ -52,7 +52,6 @@ let mapleader = ','
   set history=50        " Keep 50 lines of command line history
   set iskeyword+=-      " Add "-" to the iskeyword setting for CSS classes and ids
   set iskeyword+=_      " Add "_" to the iskeyword setting for CSS classes and ids
-  set laststatus=2      " Always show the status line
   set noerrorbells      " No error bells
   set nowrap            " Don't wrap
   set number            " Turn on line numbers

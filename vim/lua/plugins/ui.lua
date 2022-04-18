@@ -31,8 +31,9 @@ return function(use)
   }
 
   -- Add smooth scrolling
-  use "psliwka/vim-smoothie"
+  use 'psliwka/vim-smoothie'
 
+  -- Lualine status line
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -41,6 +42,7 @@ return function(use)
 
       vim.cmd [[
         set laststatus=3
+        set noshowmode
       ]]
     end
   }
