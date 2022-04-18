@@ -32,4 +32,16 @@ return function(use)
 
   -- Add smooth scrolling
   use "psliwka/vim-smoothie"
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('plugins.lualine-config')
+
+      vim.cmd [[
+        set laststatus=3
+      ]]
+    end
+  }
 end
