@@ -245,14 +245,20 @@ ins_right {
 
 ins_right {
   'filetype',
-  color = { fg = colors.green, gui = 'bold' },
+  color = function()
+    local _, color = require('nvim-web-devicons').get_icon_color(vim.fn.expand('%:t'), vim.o.filetype)
+    return {
+      fg = color
+    }
+  end,
+  gui = 'bold',
   cond = conditions.show_if_not_filetype
 }
 
 ins_right {
   'fileformat',
   fmt = string.upper,
-  color = { fg = colors.green, gui = 'bold' },
+  color = { fg = colors.blue, gui = 'bold' },
 }
 
 -- filesize component
