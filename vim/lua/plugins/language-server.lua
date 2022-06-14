@@ -39,7 +39,6 @@ local servers = {
   "jsonls",
   "lemminx",
   "pyright",
-  "remark_ls",
   "solargraph",
   "sumneko_lua",
   "tsserver",
