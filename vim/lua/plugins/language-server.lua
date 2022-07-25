@@ -224,6 +224,8 @@ function SetupUI()
 end
 
 return function(use)
+  local enable_virtual_lines = false
+
   -- Load standard lsconfig configurations
   use {
     'neovim/nvim-lspconfig',
@@ -278,6 +280,27 @@ return function(use)
       vim.cmd [[
         nnoremap <leader>rf <cmd>TroubleToggle lsp_references<cr>
       ]]
+    end
+  }
+
+  use {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      vim.diagnostic.config({
+        virtual_lines = enable_virtual_lines
+      })
+
+      vim.keymap.set( "", "<Leader>ll", function()
+        require("lsp_lines").setup()
+
+        enable_virtual_lines = not enable_virtual_lines
+        vim.diagnostic.config({
+          virtual_lines = enable_virtual_lines,
+          virtual_text = not enable_virtual_lines
+        })
+      end,
+        { desc = "Toggle lsp_lines" }
+      )
     end
   }
 end
