@@ -1,32 +1,3 @@
--- Custom icons for suggestion types
-local kind_icons = {
-  Class = "ﴯ",
-  Color = "",
-  Constant = "",
-  Constructor = "",
-  Enum = "",
-  EnumMember = "",
-  Event = "",
-  Field = "",
-  File = "",
-  Folder = "",
-  Function = "",
-  Interface = "",
-  Keyword = "",
-  Method = "",
-  Module = "",
-  Operator = "",
-  Property = "ﰠ",
-  Reference = "",
-  Snippet = "",
-  Struct = "",
-  Text = "",
-  TypeParameter = "",
-  Unit = "",
-  Value = "",
-  Variable = ""
-}
-
 -- These are the language servers we'd like to use
 local servers = {
   "bashls",
@@ -78,34 +49,23 @@ end
 
 function SetupServers()
   require("mason-lspconfig").setup({
-    ensure_installed = {
-      "bashls",
-      "cssls",
-      "cucumber_language_server",
-      "dockerls",
-      "eslint",
-      "graphql",
-      "html",
-      "jsonls",
-      "lemminx",
-      "pyright",
-      "solargraph",
-      "sumneko_lua",
-      "tsserver",
-      "vimls",
-      "yamlls",
-    },
-
+    ensure_installed = servers,
     automatic_installation = true
   })
 
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
   require("mason-lspconfig").setup_handlers({
-    function (server_name) -- default handler (optional)
-      require('lspconfig')[server_name].setup {}
+    function (server_name)
+      require('lspconfig')[server_name].setup {
+        capabilities = capabilities
+      }
     end,
 
     ["sumneko_lua"] = function ()
       require('lspconfig').sumneko_lua.setup {
+        capabilities = capabilities,
         settings = {
           Lua = {
             diagnostics = {
@@ -119,24 +79,11 @@ function SetupServers()
 end
 
 function SetupCompletion()
-  -- Add additional capabilities supported by nvim-cmp
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-  local lspconfig = require('lspconfig')
-
-  -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-  for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-      capabilities = capabilities,
-    }
-  end
-
   -- luasnip setup
   local luasnip = require('luasnip')
 
   -- nvim-cmp setup
-  local cmp = require 'cmp'
+  local cmp = require('cmp')
   cmp.setup {
     snippet = {
       expand = function(args)
@@ -188,27 +135,43 @@ function SetupCompletion()
     },
 
     formatting = {
+      fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
-        -- Concatenate the kind icon and completion kind
-        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-
-        -- Source
-        vim_item.menu = ({
-          buffer = "[Buffer]",
-          nvim_lsp = "[LSP]",
-          luasnip = "[LuaSnip]",
-          nvim_lua = "[Lua]",
-          latex_symbols = "[LaTeX]",
-        })[entry.source.name]
-
-        return vim_item
-      end
+        return require("lspkind").cmp_format({
+          mode = "symbol",
+          maxwidth = 50
+        })(entry, vim_item)
+      end,
     },
 
     experimental = {
       ghost_text = true
     }
   }
+
+  -- Customize syntax highlighting for the completion menu
+  vim.cmd [[
+    " gray
+    highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+
+    " blue
+    highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+    highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+
+    " light blue
+    highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+    highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+    highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
+
+    " pink
+    highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+    highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+
+    " front
+    highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+    highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+    highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
+  ]]
 end
 
 function SetupUI()
@@ -246,7 +209,13 @@ return function(use)
   }
 
   -- For autocompletions
-  use 'hrsh7th/nvim-cmp'
+  use {
+    "hrsh7th/nvim-cmp",
+    requires = {
+      "onsails/lspkind.nvim"
+    }
+  }
+
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-path'
