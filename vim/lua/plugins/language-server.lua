@@ -23,13 +23,7 @@ function ConfigLanguageServers()
   SetupServers()
   SetupMappings()
   SetupUI()
-
-  if (vim.env.LSP_COMPLETION) then
-    print('LSP completion enabled')
-    SetupCompletion()
-  else
-    print('LSP completion not enabled')
-  end
+  SetupCompletion()
 end
 
 function SetupMappings()
@@ -105,7 +99,7 @@ function SetupCompletion()
         select = true,
       },
 
-      ['<Tab>'] = function(fallback)
+      ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -113,9 +107,9 @@ function SetupCompletion()
         else
           fallback()
         end
-      end,
+      end, { "i", "s" }),
 
-      ['<S-Tab>'] = function(fallback)
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -123,7 +117,7 @@ function SetupCompletion()
         else
           fallback()
         end
-      end,
+      end, { "i", "s" }),
     },
 
     sources = {
