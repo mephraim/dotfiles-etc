@@ -47,7 +47,8 @@ local servers = {
 }
 
 function ConfigLanguageServers()
-  InstallServers()
+  require("mason").setup()
+
   SetupServers()
   SetupMappings()
   SetupUI()
@@ -57,18 +58,6 @@ function ConfigLanguageServers()
     SetupCompletion()
   else
     print('LSP completion not enabled')
-  end
-end
-
--- Install of the language servers we want to use.
-function InstallServers()
-  local lsp_installer = require("nvim-lsp-installer")
-
-  for _, name in pairs(servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-    if server_is_found and not server:is_installed() then
-      server:install()
-    end
   end
 end
 
@@ -88,26 +77,45 @@ function SetupMappings()
 end
 
 function SetupServers()
-  local lsp_installer = require("nvim-lsp-installer")
+  require("mason-lspconfig").setup({
+    ensure_installed = {
+      "bashls",
+      "cssls",
+      "cucumber_language_server",
+      "dockerls",
+      "eslint",
+      "graphql",
+      "html",
+      "jsonls",
+      "lemminx",
+      "pyright",
+      "solargraph",
+      "sumneko_lua",
+      "tsserver",
+      "vimls",
+      "yamlls",
+    },
 
-  lsp_installer.on_server_ready(function(server)
-    local opts = {}
+    automatic_installation = true
+  })
 
-    if server.name == "sumneko_lua" then
-      opts.settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' }
+  require("mason-lspconfig").setup_handlers({
+    function (server_name) -- default handler (optional)
+      require('lspconfig')[server_name].setup {}
+    end,
+
+    ["sumneko_lua"] = function ()
+      require('lspconfig').sumneko_lua.setup {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" }
+            }
           }
         }
       }
     end
-
-    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
-    -- before passing it onwards to lspconfig.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-  end)
+  })
 end
 
 function SetupCompletion()
@@ -226,11 +234,11 @@ end
 return function(use)
   local enable_virtual_lines = false
 
-  -- Load standard lsconfig configurations
   use {
-    'neovim/nvim-lspconfig',
+    "williamboman/mason.nvim",
     requires = {
-      { 'williamboman/nvim-lsp-installer' }
+      "neovim/nvim-lspconfig",
+      "williamboman/mason-lspconfig.nvim"
     },
     config = function()
       ConfigLanguageServers()
