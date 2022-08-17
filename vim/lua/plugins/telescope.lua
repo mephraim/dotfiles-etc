@@ -3,6 +3,7 @@ function TelescopeConfig()
     nmap <silent> <Space> :Telescope find_files<CR>
     nmap <silent> <C-Space> :Telescope buffers<CR>
     nmap <silent> <leader><Space> :Telescope live_grep<CR>
+    nmap <silent> <leader>sym :Telescope lsp_document_symbols<CR>
   ]])
 
   local actions = require("telescope.actions")
