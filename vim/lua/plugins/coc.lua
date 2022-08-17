@@ -24,13 +24,21 @@ end
 function SetupCompletionMappings()
   -- Setup the tab key to move through the suggested items
   vim.cmd [[
-    inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-    inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<TAB>"
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+
+    inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+    inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
   ]]
 
   -- Setup the return key to select the current item
   vim.cmd [[
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+    inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
   ]]
 end
 
@@ -52,7 +60,7 @@ return function(use)
     'coc-yaml'
   }
 
-  vim.g.coc_node_path = '~/.asdf/installs/nodejs/14.4.0/bin/node'
+  vim.g.coc_node_path = '~/.asdf/installs/nodejs/16.14.2/bin/node'
 
   SetupAutoCommands()
   SetupCompletionMappings()
