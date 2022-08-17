@@ -143,6 +143,32 @@ function SetupCompletion()
     }
   }
 
+  -- Enable completion for / search
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Enable completion for ? search
+  cmp.setup.cmdline('?', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Enable completion for : commands
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
   -- Customize syntax highlighting for the completion menu
   vim.cmd [[
     " gray
