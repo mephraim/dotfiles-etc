@@ -37,7 +37,8 @@ function SetupMappings()
   vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_set_keymap('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'rn', '<cmd>Lspsaga rename<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'ca', '<cmd>CodeActionMenu<CR>', opts)
   vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 end
 
@@ -209,7 +210,7 @@ function SetupUI()
 
   vim.diagnostic.config({
     virtual_text = {
-      prefix = '●'
+      prefix = '﯎'
     }
   })
 end
@@ -243,27 +244,13 @@ return function(use)
   -- LSP source for nvim-cmp
   use 'hrsh7th/cmp-nvim-lsp'
 
- -- Snippets source for nvim-cmp
+  -- Snippets source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip'
 
   -- Snippets plugin
   use 'L3MON4D3/LuaSnip'
 
-  -- Setup linting
-  use {
-    "mfussenegger/nvim-lint",
-    config = function()
-      require("lint").linters_by_ft = {
-        css = { "stylelint" },
-        javascript = { "eslint" },
-        sh = { "shellcheck" }
-      }
-    end
-  }
-
-  vim.cmd [[au BufWritePost <buffer> lua require('lint').try_lint()]]
-
-  -- Trouble allows us to browse all of the lint and erorr messages
+  -- Trouble allows us to browse all of the lint and error messages
   use {
     "folke/trouble.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
@@ -299,5 +286,36 @@ return function(use)
         { desc = "Toggle lsp_lines" }
       )
     end
+  }
+
+  -- LSPSaga adds some fanciness to diagnostic and LSP windows
+  use {
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    requires = { 'neovim/nvim-lspconfig' },
+    config = function()
+      require("lspsaga").init_lsp_saga({
+        code_action_lightbulb = {
+          enable = false,
+          sign = false,
+          enable_in_insert = false,
+          virtual_text = false,
+        }
+      })
+
+      vim.cmd [[
+        highlight! LSOutlinePreviewBorder guifg=#555555
+        highlight! LspSagaAutoPreview guifg=#555555
+        highlight! LspSagaDefPreviewBorder guifg=#555555
+        highlight! LspSagaHoverBorder guifg=#555555
+        highlight! LspSagaLspFinderBorder guifg=#555555
+        highlight! LspSagaRenameBorder guifg=#555555
+      ]]
+    end,
+  }
+
+  use {
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu"
   }
 end
