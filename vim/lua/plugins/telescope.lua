@@ -18,7 +18,15 @@ function TelescopeConfig()
         i = {
           ["<c-j>"] = actions.move_selection_next,
           ["<c-k>"] = actions.move_selection_previous,
-          ["<esc>"] = actions.close
+          ["<esc>"] = actions.close,
+
+          -- This is a workaround so that folding will still work when files are
+          -- opened with telescope.
+          -- https://github.com/nvim-telescope/telescope.nvim/issues/559#issuecomment-1195895807
+          ["<CR>"] = function()
+            vim.cmd [[:stopinsert]]
+            vim.cmd [[call feedkeys("\<CR>")]]
+          end
         }
       },
       winblend = 4
