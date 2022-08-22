@@ -6,6 +6,7 @@ return function(use)
   use "michaeljsmith/vim-indent-object"
   use "tpope/vim-characterize"
   use "tpope/vim-commentary"
+  use "tpope/vim-cucumber"
   use "tpope/vim-rails"
   use "tpope/vim-repeat"
   use "tpope/vim-rhubarb"
@@ -30,6 +31,13 @@ return function(use)
         normal = 0,
         compact = 0
       }
+    end
+  }
+
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
     end
   }
 
