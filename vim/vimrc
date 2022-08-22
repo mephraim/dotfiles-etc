@@ -224,8 +224,12 @@ function! GetLineFoldLineCountText()
 endfunction
 
 set foldlevelstart=1 " Start folding at level 1, rather than 0
-set foldmethod=syntax " Use the indent level to create folds
 set foldminlines=3 " Don't fold groups that are smaller than this
+
+" Use treesitter to determine fold
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 " End custom folding
 " }}}1"
 
