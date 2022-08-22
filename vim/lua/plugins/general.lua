@@ -41,14 +41,6 @@ return function(use)
     end
   }
 
-  use {
-    "machakann/vim-highlightedyank",
-    config = function()
-      -- Set the highlight duration for the highlighted yank plugin
-      vim.g.highlightedyank_highlight_duration = 3000
-    end
-  }
-
   use "vim-scripts/loremipsum"
   vim.cmd [[
     noremap <leader>lorem :Loremipsum<CR>
@@ -72,13 +64,27 @@ return function(use)
   }
 
   use {
-    "vim-scripts/YankRing.vim",
-    cmd = { "YankRing", "YRShow" }
+    "gbprod/yanky.nvim",
+
+    config = function()
+      require("yanky").setup {
+        system_clipboard = {
+          sync_with_ring = false,
+        },
+      }
+
+      require("telescope").load_extension("yank_history")
+
+      -- Setup the suggested yank actions
+      vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+      vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+      vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+      vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+      vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+      vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+
+      -- Use yr to bring up the full yank history
+      vim.keymap.set("n", "<leader>yr", "<cmd>Telescope yank_history<CR>")
+    end
   }
-
-  -- Set up the yankring history location
-  vim.g.yankring_history_dir = "~/dotfiles-etc/vim/tmp/yankring"
-
-  -- Show the yankring
-  vim.cmd [[noremap <leader>yr :YRShow<cr>]]
 end
