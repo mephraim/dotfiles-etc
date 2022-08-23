@@ -8,7 +8,8 @@ function TelescopeConfig()
 
   local actions = require("telescope.actions")
 
-  require("telescope").setup{
+  local telescope = require("telescope")
+  telescope.setup {
     defaults = {
       border = true,
       layout_strategy = 'flex', layout_config = {
@@ -42,14 +43,19 @@ function TelescopeConfig()
       }
     }
   }
+
+  telescope.load_extension("packer")
+  telescope.load_extension('ultisnips')
 end
 
 return function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'kyazdani42/nvim-web-devicons'}
+      {"nvim-lua/plenary.nvim"},
+      {"kyazdani42/nvim-web-devicons"},
+      {"nvim-telescope/telescope-packer.nvim"},
+      {"fhill2/telescope-ultisnips.nvim"}
     },
     config = TelescopeConfig
   }
