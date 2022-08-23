@@ -55,4 +55,6 @@ hi SpellBad guifg=red gui=undercurl
 hi QuickFixLine ctermbg=52
 
 hi TelescopeBorder guifg=#444444
+hi FloatBorder guifg=#444444
+hi FloatTitle guifg=#CFCFCF guibg=bg
 

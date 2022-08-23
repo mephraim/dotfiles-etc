@@ -37,8 +37,8 @@ function SetupMappings()
   vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_set_keymap('n', 'rn', '<cmd>Lspsaga rename<CR>', opts)
-  vim.api.nvim_set_keymap('n', 'ca', '<cmd>CodeActionMenu<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 end
 
@@ -373,30 +373,11 @@ return function(use)
     end
   }
 
-  -- LSPSaga adds some fanciness to diagnostic and LSP windows
   use {
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    requires = { 'neovim/nvim-lspconfig' },
+    "stevearc/dressing.nvim",
     config = function()
-      require("lspsaga").init_lsp_saga({
-        code_action_lightbulb = {
-          enable = false,
-          sign = false,
-          enable_in_insert = false,
-          virtual_text = false,
-        }
-      })
-
-      vim.cmd [[
-        highlight! LSOutlinePreviewBorder guifg=#555555
-        highlight! LspSagaAutoPreview guifg=#555555
-        highlight! LspSagaDefPreviewBorder guifg=#555555
-        highlight! LspSagaHoverBorder guifg=#555555
-        highlight! LspSagaLspFinderBorder guifg=#555555
-        highlight! LspSagaRenameBorder guifg=#555555
-      ]]
-    end,
+      require('dressing').setup({})
+    end
   }
 
   use {
