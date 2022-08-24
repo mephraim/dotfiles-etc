@@ -17,6 +17,24 @@ local servers = {
   "yamlls",
 }
 
+function GetDiagnosticConfig(virtual_lines)
+  if virtual_lines then
+    return {
+      virtual_lines = true,
+      virtual_text = false
+    }
+  end
+
+  return {
+    virtual_lines = false,
+
+    virtual_text = {
+      prefix = '﯎',
+      spacing = 0
+    }
+  }
+end
+
 function ConfigLanguageServers()
   require("mason").setup()
 
@@ -80,6 +98,7 @@ function GetCmpMaps()
 
   local cmp = require('cmp')
   return {
+    -- Tab forward through the options
     ["<Tab>"] = cmp.mapping({
       c = function()
         if cmp.visible() then
@@ -106,6 +125,7 @@ function GetCmpMaps()
       end
     }),
 
+    -- Tab backward through the options
     ["<S-Tab>"] = cmp.mapping({
       c = function()
         if cmp.visible() then
@@ -132,9 +152,11 @@ function GetCmpMaps()
       end
     }),
 
+    -- Navigate options with the arrow keys
     ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
     ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
 
+    -- Move forward through the options with ctrl-n
     ['<C-n>'] = cmp.mapping({
       c = function()
         if cmp.visible() then
@@ -152,6 +174,7 @@ function GetCmpMaps()
       end
     }),
 
+    -- Move backward through the options with ctrl-p
     ['<C-p>'] = cmp.mapping({
       c = function()
         if cmp.visible() then
@@ -169,12 +192,17 @@ function GetCmpMaps()
       end
     }),
 
+    -- Use ctrl-b and ctrl-f to scroll the docs window
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
 
+    -- Make a selection with the return key
     ['<CR>'] = cmp.mapping({
       i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-    })
+    }),
+
+    -- Close the menu with ctrl-e
+    ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
   }
 end
 
@@ -279,11 +307,7 @@ function SetupUI()
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
 
-  vim.diagnostic.config({
-    virtual_text = {
-      prefix = '﯎'
-    }
-  })
+  vim.diagnostic.config(GetDiagnosticConfig())
 end
 
 return function(use)
@@ -355,18 +379,13 @@ return function(use)
   use {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
-      vim.diagnostic.config({
-        virtual_lines = enable_virtual_lines
-      })
+      vim.diagnostic.config(GetDiagnosticConfig())
 
       vim.keymap.set( "", "<Leader>ll", function()
         require("lsp_lines").setup()
 
         enable_virtual_lines = not enable_virtual_lines
-        vim.diagnostic.config({
-          virtual_lines = enable_virtual_lines,
-          virtual_text = not enable_virtual_lines
-        })
+        vim.diagnostic.config(GetDiagnosticConfig(enable_virtual_lines))
       end,
         { desc = "Toggle lsp_lines" }
       )
