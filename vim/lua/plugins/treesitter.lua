@@ -17,6 +17,28 @@ return function(use)
   }
 
   use {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    requires = {
+      "nvim-treesitter/nvim-treesitter"
+    },
+    config = function()
+      require("nvim-treesitter.configs").setup {
+        textobjects = {
+          swap = {
+            enable = true,
+            swap_next = {
+              ["<leader>sp"] = "@parameter.inner",
+            },
+            swap_previous = {
+              ["<leader>SP"] = "@parameter.inner",
+            },
+          },
+        },
+      }
+    end
+  }
+
+  use {
     "ThePrimeagen/refactoring.nvim",
     requires = {
       {"nvim-lua/plenary.nvim"},
@@ -27,17 +49,17 @@ return function(use)
 
       -- Display a telescope window with the extract options
       vim.api.nvim_set_keymap(
-	      "n",
-	      "<leader>rr",
-	      "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-	      { noremap = true }
+        "n",
+        "<leader>rr",
+        "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+        { noremap = true }
       )
 
       vim.api.nvim_set_keymap(
-	      "v",
-	      "<leader>rr",
-	      "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-	      { noremap = true }
+        "v",
+        "<leader>rr",
+        "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+        { noremap = true }
       )
 
       -- Remap in normal mode and passing { normal = true } will automatically find the variable under the cursor and print it
