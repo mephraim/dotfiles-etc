@@ -12,8 +12,10 @@ function TelescopeConfig()
   telescope.setup {
     defaults = {
       border = true,
-      layout_strategy = 'flex', layout_config = {
-        height = 0.7
+      layout_strategy = 'flex',
+      layout_config = {
+        height = 0.7,
+        width = 0.9
       },
       mappings = {
         i = {
