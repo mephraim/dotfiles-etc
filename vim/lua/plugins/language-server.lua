@@ -210,6 +210,12 @@ function SetupCompletion()
   -- nvim-cmp setup
   local cmp = require('cmp')
   cmp.setup {
+    window = {
+      documentation = {
+        max_height = 80,
+        max_width = 60
+      },
+    },
     snippet = {
       expand = function(args)
         vim.fn["UltiSnips#Anon"](args.body)
@@ -298,7 +304,7 @@ function SetupUI()
   local signs = {
     Error = " ",
     Warn = " ",
-    Hint = " ",
+    Hint = " ",
     Info = " "
   }
 
