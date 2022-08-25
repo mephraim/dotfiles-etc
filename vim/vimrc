@@ -89,9 +89,6 @@ let mapleader = ','
   " Get rid of the "end of buffer" ~ that vim shows by default
   set fillchars+=eob:\ 
 
-  " Show ↪ at the beginning of wrapped lines
-  set showbreak=↪\ ""= Extra whitespace intentional
-
   set undodir=~/dotfiles-etc/vim/undodir
   set undofile
   set undolevels=1000
@@ -384,13 +381,10 @@ set foldexpr=nvim_treesitter#foldexpr()
       autocmd CursorHold,CursorMoved * checktime
 
       " Enable spell check for text files
-      autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown setlocal spell spelllang=en
+      autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown,*.md setlocal spell spelllang=en
 
       " For vim files, use markers as the foldmethod and collapse everything
       autocmd Filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
-
-      " For html and eruby files using indent level for folding
-      autocmd Filetype html,eruby setlocal foldmethod=indent | setlocal foldlevel=1
 
       " Turn on listchars when in visual mode
       autocmd CursorMoved * if mode() =~# "[vV\<C-v>]" | set list | else | set nolist | endif
