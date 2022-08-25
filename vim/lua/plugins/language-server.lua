@@ -76,6 +76,15 @@ function SetupServers()
       }
     end,
 
+    ["html"] = function()
+      require('lspconfig').html.setup {
+        capabilities = capabilities,
+        -- By default, the html language server doesn't look at erb files, so we
+        -- need to override the filetypes
+        filetypes = { "html", "eruby" }
+      }
+    end,
+
     ["sumneko_lua"] = function ()
       require('lspconfig').sumneko_lua.setup {
         capabilities = capabilities,
