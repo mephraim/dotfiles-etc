@@ -85,9 +85,8 @@ function fix_camera() {
 autoload -U compinit
 compinit
 
-# Initialize custom completion functionality
-autoload -U compinit
-compinit
+# Initialize bash completion functionality
+autoload -U +X bashcompinit && bashcompinit
 
 # Keybindings
 #
