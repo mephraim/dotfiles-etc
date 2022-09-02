@@ -58,3 +58,4 @@ hi TelescopeBorder guifg=#444444
 hi FloatBorder guifg=#444444
 hi FloatTitle guifg=#CFCFCF guibg=bg
 
+hi MiniIndentscopeSymbol guifg=#444444
