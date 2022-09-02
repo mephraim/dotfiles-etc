@@ -1,4 +1,5 @@
 local lualine = require('lualine')
+local devicons = require('nvim-web-devicons')
 
 -- Color table for highlights
 local colors = {
@@ -212,7 +213,7 @@ ins_left {
   end,
 }
 
--- LSP server
+-- LSP
 ins_right {
   function()
     local clients = vim.lsp.get_active_clients()
@@ -220,18 +221,28 @@ ins_right {
       return 'none'
     end
 
-    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local current_buffer_lsps = {}
+    local current_buffer_ft = vim.api.nvim_buf_get_option(0, 'filetype')
     for _, client in ipairs(clients) do
-      local filetypes = client.config.filetypes
-      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
+      local lsp_client_filetypes = client.config.filetypes
+      if lsp_client_filetypes and vim.fn.index(lsp_client_filetypes, current_buffer_ft) ~= -1 then
+        current_buffer_lsps[#current_buffer_lsps + 1] = client.name
       end
     end
 
-    return 'none'
+    if next(current_buffer_lsps) == nil then
+      return 'none'
+    else
+      return table.concat(current_buffer_lsps, '˖')
+    end
   end,
 
-  icon = '',
+  icon = {
+    '',
+    color = {
+      fg = colors.cyan
+    }
+  },
   color = { fg = colors.fg },
   cond = conditions.buffer_not_empty
 }
@@ -239,12 +250,14 @@ ins_right {
 ins_right {
   'filetype',
   color = function()
-    local _, color = require('nvim-web-devicons').get_icon_color(vim.fn.expand('%:t'), vim.o.filetype)
+    local _, color =
+      devicons.get_icon_color(vim.fn.expand('%:t'), vim.o.filetype)
+
     return {
       fg = color
     }
   end,
-  gui = 'bold',
+
   cond = conditions.show_if_not_filetype
 }
 
