@@ -242,6 +242,7 @@ function SetupCompletion()
       { name = 'buffer' },
       { name = 'path' },
       { name = 'cmdline' },
+      { name = 'nvim_lsp_signature_help' }
     },
 
     formatting = {
@@ -446,16 +447,14 @@ return function(use)
   use {
     "hrsh7th/nvim-cmp",
     requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-path",
       "onsails/lspkind.nvim"
     }
   }
-
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-path'
-
-  -- LSP source for nvim-cmp
-  use 'hrsh7th/cmp-nvim-lsp'
 
   -- Snippets
   use {
