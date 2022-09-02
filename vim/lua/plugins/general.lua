@@ -87,4 +87,22 @@ return function(use)
       vim.keymap.set("n", "<leader>yr", "<cmd>Telescope yank_history<CR>")
     end
   }
+
+  use {
+    "echasnovski/mini.nvim",
+    config = function()
+      require("mini.indentscope").setup({
+        draw = {
+          animation = function()
+            return 10
+          end
+        }
+      })
+
+      vim.g.miniindentscope_disable = true
+      vim.keymap.set("n", "<leader>is", function()
+        vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
+      end)
+    end
+  }
 end
