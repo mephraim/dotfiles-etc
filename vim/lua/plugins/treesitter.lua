@@ -1,6 +1,9 @@
 return function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
+    requires = {
+      "nvim-treesitter/nvim-treesitter-textobjects"
+    },
     config = function()
       require('nvim-treesitter.configs').setup {
         highlight = {
@@ -11,19 +14,28 @@ return function(use)
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
-      }
-    end,
-    run = ":TSUpdate"
-  }
-
-  use {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    requires = {
-      "nvim-treesitter/nvim-treesitter"
-    },
-    config = function()
-      require("nvim-treesitter.configs").setup {
         textobjects = {
+          select = {
+            enable = true,
+            keymaps = {
+              ["af"] = {
+                query = "@function.outer",
+                desc = "Select outer part of a function"
+              },
+              ["if"] = {
+                query = "@function.inner",
+                desc = "Select inner part of a function"
+              },
+              ["ac"] = {
+                query = "@class.outer",
+                desc = "Select outer part of a class region"
+              },
+              ["ic"] = {
+                query = "@class.inner",
+                desc = "Select inner part of a class region"
+              },
+            }
+          },
           swap = {
             enable = true,
             swap_next = {
@@ -35,7 +47,8 @@ return function(use)
           },
         },
       }
-    end
+    end,
+    run = ":TSUpdate"
   }
 
   use {
