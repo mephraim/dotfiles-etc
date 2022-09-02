@@ -9,7 +9,7 @@ return function(use)
       require('nvim-tree').setup {}
 
       vim.cmd([[
-        nnoremap <leader>n :NvimTreeToggle<CR>
+        nnoremap <silent> <leader>n :NvimTreeToggle<CR>
       ]])
     end
   }
