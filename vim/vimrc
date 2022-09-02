@@ -106,42 +106,6 @@ let mapleader = ','
     set winblend=8
   end
 
-  " GUI only {{{2
-  if has('gui_running')
-    " Maximize gvim window.
-    set lines=150 columns=230
-
-    set guioptions-=T " Get rid of the toolbar
-    set guioptions-=e " Get rid of the GUI tabs
-    set guioptions-=r " Get rid of the right scrollbar
-    set guioptions-=R " Get rid of the right scrollbar
-    set guioptions-=l " Get rid of the left scrollbar
-    set guioptions-=L " Get rid of the left scrollbar
-    set guioptions-=b " Get rid of the bottom scrollbar
-
-    " Always start Macvim fullscreen
-    if has('gui_macvim')
-      set fullscreen
-    end
-
-    " If there's a gui and it's not Macvim, assume it's something like gvim
-    if !has('gui_macvim')
-      " Get rid of the menu bar (almost as good as full screen)
-      set guioptions-=m
-    end
-
-    " No blinking cursor
-    set guicursor=a:blinkon0
-
-    " We use the sign column diffs and syntax warnings so turn it on with
-    " extra features for nvim
-    if has('nvim')
-      set signcolumn='yes:[1-4]'
-    else
-      set signcolumn=yes
-    end
-  endif
-  " End GUI only
   " }}}2
   " End assorted configuration
   " }}}1
