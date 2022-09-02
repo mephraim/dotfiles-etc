@@ -237,12 +237,14 @@ function SetupCompletion()
     mapping = GetCmpMaps(),
 
     sources = {
+      { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
       { name = 'ultisnips' },
       { name = 'buffer' },
       { name = 'path' },
       { name = 'cmdline' },
-      { name = 'nvim_lsp_signature_help' }
+      { name = 'nvim_lsp_signature_help' },
+      { name = 'emoji' }
     },
 
     formatting = {
@@ -449,8 +451,10 @@ return function(use)
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
       "onsails/lspkind.nvim"
     }
