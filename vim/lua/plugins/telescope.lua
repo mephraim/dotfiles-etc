@@ -1,10 +1,33 @@
 function TelescopeConfig()
-  vim.cmd([[
-    nmap <silent> <Space> :Telescope find_files<CR>
-    nmap <silent> <C-Space> :Telescope buffers<CR>
-    nmap <silent> <leader><Space> :Telescope live_grep<CR>
-    nmap <silent> <leader>sym :Telescope lsp_document_symbols<CR>
-  ]])
+  vim.keymap.set('n', '<Space>', function()
+    require("telescope.builtin").find_files({
+      prompt_prefix="  "
+    })
+  end)
+
+  vim.keymap.set('n', '<C-Space>', function()
+    require("telescope.builtin").buffers({
+      prompt_prefix=" ﬘ "
+    })
+  end)
+
+  vim.keymap.set('n', '<leader><Space>', function()
+    require("telescope.builtin").live_grep({
+      prompt_prefix="  "
+    })
+  end)
+
+  vim.keymap.set('n', '<leader>o', function()
+    require("telescope.builtin").oldfiles({
+      prompt_prefix="  "
+    })
+  end)
+
+  vim.keymap.set('n', '<leader>sym', function()
+    require("telescope.builtin").lsp_document_symbols({
+      prompt_prefix="  "
+    })
+  end)
 
   local actions = require("telescope.actions")
 
