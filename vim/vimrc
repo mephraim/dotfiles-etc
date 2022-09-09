@@ -24,11 +24,10 @@ let mapleader = ','
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 
-  " Use a nice 256 color colorscheme
-  colorscheme twilight256
+  colorscheme neo_twilight
 
   " Load in any customizations to the stock colorschemes
-  runtime! colors/custom/*.vim
+  " runtime! colors/custom/*.vim
 " End syntax and colorscheme
 " }}}1
 
@@ -111,27 +110,27 @@ let mapleader = ','
   " }}}1
 
 " Custom colorscheme overrides {{{1
-let g:disable_color_overrides = 0
+" let g:disable_color_overrides = 0
 
-augroup ColorOverrides
-  au!
-  au ColorScheme * call OverrideColors()
-augroup END
+" augroup ColorOverrides
+"   au!
+"   au ColorScheme * call OverrideColors()
+" augroup END
 
-function! OverrideColors()
-  if g:disable_color_overrides != 1 && empty($USING_VIM_MANPAGER)
-    for color_file in split(glob('~/dotfiles-etc/vim/colors/custom/*.vim'), '\n')
-      exe 'source' color_file
-    endfor
+" function! OverrideColors()
+"   if g:disable_color_overrides != 1 && empty($USING_VIM_MANPAGER)
+"     for color_file in split(glob('~/dotfiles-etc/vim/colors/custom/*.vim'), '\n')
+"       exe 'source' color_file
+"     endfor
 
-    " Refresh devicons after reloading colorschemes
-    " Check to make sure that NERDTree exists before doing this, otherwise it
-    " may cause an error, because NERDTree is lazy loaded.
-    if exists('g:loaded_webdevicons') && exists('g:NERDTree')
-      call webdevicons#refresh()
-    endif
-  endif
-endfunction
+"     " Refresh devicons after reloading colorschemes
+"     " Check to make sure that NERDTree exists before doing this, otherwise it
+"     " may cause an error, because NERDTree is lazy loaded.
+"     if exists('g:loaded_webdevicons') && exists('g:NERDTree')
+"       call webdevicons#refresh()
+"     endif
+"   endif
+" endfunction
 " }}}1
 
 " Folding {{{1
