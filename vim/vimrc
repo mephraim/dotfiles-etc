@@ -78,9 +78,7 @@ let mapleader = ','
   set directory=~/dotfiles-etc/vim/tmp//
 
   " In many terminal emulators the mouse works just fine, thus enable it
-  if has('mouse')
-    set mouse=a
-  endif
+  set mouse=a
 
   " Use nicer symbols for listchars
   set listchars=trail:·,tab:▸\ ,eol:¬,extends:…,precedes:…
@@ -95,15 +93,14 @@ let mapleader = ','
 
   " Use the patience algorithm for diffs
   " (explanation here: https://vimways.org/2018/the-power-of-diff/)
-  if has('patch-8.1.0360')
-    set diffopt+=algorithm:patience
-  end
+  set diffopt+=algorithm:patience
 
   " Set popup menu and window blending in neovim
-  if has('nvim')
-    set pumblend=6
-    set winblend=8
-  end
+  set pumblend=6
+  set winblend=8
+
+  " Hide the command line unless it's being used
+  set cmdheight=0
 
   " }}}2
   " End assorted configuration

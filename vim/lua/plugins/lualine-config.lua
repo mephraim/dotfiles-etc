@@ -44,9 +44,14 @@ local conditions = {
     return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
   end,
 
+  buffer_is_modified = function()
+    return vim.fn.getbufinfo('%')[1].changed > 0
+  end,
+
   show_if_not_filetype = function()
     local filetypes = {
       'ctrlsf',
+      'DiffviewFiles',
       'fugitiveblame',
       'NvimTree',
       'packer',
@@ -67,6 +72,73 @@ local conditions = {
     -- Get the total number of columns for the whole terminal
     return vim.o.columns > 80
   end,
+}
+
+local diff_component = {
+  'diff',
+
+  color = {
+    bg = colors.bg
+  },
+
+  symbols = { added = ' ', modified = ' ', removed = ' ' },
+
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
+  },
+
+  cond = function ()
+    return conditions.show_if_not_filetype() and
+      conditions.show_if_wide_enough()
+  end
+}
+
+local file_icon_component = {
+  function ()
+    return ""
+  end,
+
+  color = function ()
+    if conditions.buffer_is_modified() then
+      return { fg = colors.orange, bg = colors.bg }
+    else
+      return { fg = colors.fg, bg = colors.bg }
+    end
+  end,
+
+  padding = { right = 0, left = 1 },
+
+  cond = function()
+    return conditions.buffer_not_empty() and
+      conditions.show_if_not_filetype()
+  end,
+}
+
+local filename_component = {
+  "filename",
+  color = { fg = colors.fg, bg = colors.bg },
+  file_status = false,
+  path = 1,
+  cond = function()
+    return conditions.buffer_not_empty() and
+      conditions.show_if_not_filetype()
+  end
+}
+
+local filetype_component = {
+  'filetype',
+  colored = true,
+  icon_only = true,
+  color = {
+    bg = colors.bg
+  },
+  padding = {
+    left = 0,
+    right = 1
+  },
+  cond = conditions.show_if_not_filetype
 }
 
 -- Config
@@ -95,6 +167,27 @@ local config = {
     lualine_c = {},
     lualine_x = {},
   },
+
+  winbar = {
+    lualine_a = {
+      file_icon_component,
+      filename_component,
+      filetype_component,
+      diff_component
+    },
+    lualine_z = {}
+  },
+
+  inactive_winbar = {
+    lualine_a = {
+      file_icon_component,
+      filename_component,
+      filetype_component,
+      diff_component
+    },
+    lualine_y = {},
+    lualine_z = {}
+  }
 }
 
 local function ins_left(component)
@@ -162,36 +255,11 @@ ins_left {
   padding = { right = 1 },
 }
 
--- filename component
-ins_left {
-  'filename',
-  path = 1,
-  cond = function()
-    return conditions.buffer_not_empty() and
-      conditions.show_if_not_filetype()
-  end,
-  color = { fg = colors.green },
-  shorting_target = 20
-}
-
 -- Git branch component
 ins_left {
   'branch',
   icon = '',
   color = { fg = colors.blue, gui = 'bold' },
-}
-
--- Git diff component
-ins_left {
-  'diff',
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = ' ', modified = ' ', removed = ' ' },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.show_if_wide_enough,
 }
 
 ins_left {
@@ -245,20 +313,6 @@ ins_right {
   },
   color = { fg = colors.fg },
   cond = conditions.buffer_not_empty
-}
-
-ins_right {
-  'filetype',
-  color = function()
-    local _, color =
-      devicons.get_icon_color(vim.fn.expand('%:t'), vim.o.filetype)
-
-    return {
-      fg = color
-    }
-  end,
-
-  cond = conditions.show_if_not_filetype
 }
 
 ins_right {
