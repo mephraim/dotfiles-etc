@@ -485,10 +485,10 @@ return function(use)
     "folke/trouble.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
     config = function()
-      require("trouble").setup{}
+      require("trouble").setup({})
 
       vim.cmd [[
-        nnoremap <leader>xx <cmd>TroubleToggle<cr>
+        nnoremap <leader>xx <cmd>TroubleToggle document_diagnostics<cr>
       ]]
 
       vim.cmd [[
