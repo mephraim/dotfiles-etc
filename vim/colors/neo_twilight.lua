@@ -8,15 +8,11 @@ vim.cmd [[
 
 -- Create a new syntax highlighting rule
 local function hi(syntax, rules)
-  local highlightCmd = "hi " .. syntax .. " "
-  for key, value in pairs(rules) do
-    highlightCmd = highlightCmd .. key .. '=' .. value .. " "
-  end
-
-  vim.cmd(highlightCmd)
+  vim.api.nvim_set_hl(0, syntax, rules)
 end
 
 local colors = {
+  bg = "#1D1D1D",
   black = "#000000",
   blue = "#7587A6",
   brown = "#9B703F",
@@ -35,88 +31,92 @@ local colors = {
 }
 
 -- Syntax
-hi("Boolean", { guifg = colors.light_red, gui = "underline" })
-hi("Comment", { guifg = colors.gray })
-hi("Constant", { guifg = colors.salmon })
-hi("Define", { guifg = colors.light_orange, gui = "none" })
-hi("Function", { guifg = colors.brown })
-hi("Identifier", { guifg = colors.blue, gui = "none" })
-hi("Ignore", { guifg = colors.light_gray })
-hi("PreProc", { guifg = colors.light_blue })
-hi("Special", { guifg = colors.light_green })
-hi("Statement", { guifg = colors.light_orange })
-hi("String", { guifg = colors.green })
-hi("Todo", { guifg = colors.yellow, guibg = colors.black, gui = "underline" })
-hi("Type", { guifg = colors.light_yellow })
+hi("Boolean", { fg = colors.light_red, underline = true })
+hi("Comment", { fg = colors.gray })
+hi("Constant", { fg = colors.salmon })
+hi("Define", { fg = colors.light_orange })
+hi("Function", { fg = colors.brown })
+hi("Identifier", { fg = colors.blue })
+hi("Ignore", { fg = colors.light_gray })
+hi("PreProc", { fg = colors.light_blue })
+hi("Special", { fg = colors.light_green })
+hi("Statement", { fg = colors.light_orange })
+hi("String", { fg = colors.green })
+hi("Todo", { fg = colors.yellow, bg = colors.black, underline = true })
+hi("Type", { fg = colors.light_yellow })
 
 -- Hide NonText characters by default.
 -- There's function that will make them visible in .vimrc.
-hi("NonText", { guifg = "bg" })
+hi("NonText", { fg = colors.bg })
 
  -- UI Elements
-hi("ColorColumn", { guibg = "#130707" })
-hi("Conceal", { guifg = colors.white, guibg = "bg" })
-hi("Cursor",  { guifg = "bg", guibg = "#F5773c",  gui = "NONE" })
-hi("CursorColumn", { guibg = "#2D2D2D" })
-hi("CursorLine", { guibg = "#131313", gui = "bold" })
-hi("Directory", { guifg = "#CFCFCF" })
-hi("FoldColumn", { guifg = "#444444", guibg = "#080808" })
-hi("Folded",  { guibg = "bg", guifg = "#434343", gui = "italic" })
-hi("LineNr", { guibg = "bg", guifg = "#434343" })
-hi("MatchParen",  { guifg= colors.red, guibg = "bg" })
-hi("Normal", { guibg = "#1D1D1D", gui = "NONE" })
-hi("Pmenu",  { guifg = "#F6F3E8", guibg = "#242829" })
-hi("PmenuSel", { guifg = "#000000", guibg = colors.light_green })
-hi("SignColumn", { guibg="#1D1D1D" })
-hi("TabLineSel", { guifg = colors.light_green })
-hi("VertSplit", { guifg = "#181B22", guibg="bg", gui = "NONE" })
-hi("Visual",  { guifg = "NONE", guibg = "#1F4457", gui = "none" })
-hi("WildMenu", { guifg = colors.light_red, guibg = "bg" })
+hi("ColorColumn", { bg = "#130707" })
+hi("Conceal", { fg = colors.white, bg = colors.bg })
+hi("Cursor",  { fg = colors.bg, bg = "#F5773c" })
+hi("CursorColumn", { bg = "#2D2D2D" })
+hi("CursorLine", { bg = "#131313", bold = true })
+hi("Directory", { fg = "#CFCFCF" })
+hi("FoldColumn", { fg = "#444444", bg = "#080808" })
+hi("Folded",  { bg = colors.bg, fg = "#434343", italic = true })
+hi("LineNr", { bg = colors.bg, fg = "#434343" })
+hi("MatchParen",  { fg= colors.red, bg = colors.bg })
+hi("Normal", { bg = "#1D1D1D" })
+hi("Pmenu",  { fg = "#F6F3E8", bg = "#242829" })
+hi("PmenuSel", { fg = "#000000", bg = colors.light_green })
+hi("SignColumn", { bg ="#1D1D1D" })
+hi("TabLineSel", { fg = colors.light_green })
+hi("VertSplit", { fg = "#181B22", bg = colors.bg })
+hi("Visual",  { fg = "NONE", bg = "#1F4457", })
+hi("WildMenu", { fg = colors.light_red, bg = colors.bg })
 
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/lua/nvim-treesitter/highlight.lua
-hi("TSConstant", { guifg = colors.light_red, gui = "bold" })
-hi("TSKeywordReturn", { gui = "italic" })
+hi("TSConstant", { fg = colors.light_red })
+hi("TSKeywordReturn", { italic = true })
 
 -- Warnings and Errors
-hi("Error", { guifg = colors.red, guibg = "bg" })
-hi("Warning", { guifg = "#E7F6DA", guibg = "#3A0505" })
-hi("WarningMsg", { guifg = colors.light_yellow, guibg = "bg" })
+hi("Error", { fg = colors.red, bg = "bg" })
+hi("Warning", { fg = "#E7F6DA", bg = "#3A0505" })
+hi("WarningMsg", { fg = colors.light_yellow, bg = colors.bg })
 
 -- Status Line
-hi("StatusLine", { guifg = colors.light_gray, guibg = "bg", gui = "NONE" })
-hi("StatusLineFile",  { guibg = "bg" })
-hi("StatusLineFileType", { guifg = "#8AC6F2", guibg = "bg" })
-hi("StatusLineGit", { guifg = "#D4EB9C", guibg = "bg" })
-hi("StatusLineNC", { guifg = "bg", guibg = "bg" })
+hi("StatusLine", { fg = colors.light_gray, bg = colors.bg })
+hi("StatusLineFile",  { bg = colors.bg })
+hi("StatusLineFileType", { fg = "#8AC6F2", bg = colors.bg })
+hi("StatusLineGit", { fg = "#D4EB9C", bg = colors.bg })
+hi("StatusLineNC", { fg = "bg", bg = colors.bg })
 
 -- Diff highlighting
-hi("DiffAdd", { guibg = "#012800" })
-hi("DiffChange", { guibg = "#472A00" })
-hi("DiffDelete", { guibg = "#290700", guifg = "#290700" })
-hi("DiffText",  { guibg = colors.green, guifg = "#080C06" })
+hi("DiffAdd", { bg = "#012800" })
+hi("DiffChange", { bg = "#472A00" })
+hi("DiffDelete", { bg = "#290700", fg = "#290700" })
+hi("DiffText",  { bg = colors.green, fg = "#080C06" })
 
 -- Terminal colors
-hi("Terminal", { guibg = "#111720", guifg = "fg" })
+hi("Terminal", { bg = "#111720" })
 
 -- Spelling
-hi("SpellBad", { guifg = "red", gui = "undercurl" })
+hi("SpellBad", { fg = "red", undercurl = true })
 
 -- Floats
-hi("FloatBorder", { guifg = "#444444" })
-hi("FloatTitle", { guifg = "#CFCFCF", guibg = "bg" })
+hi("FloatBorder", { fg = "#444444" })
+hi("FloatTitle", { fg = "#CFCFCF", bg = colors.bg })
 
 -- Mini
-hi("MiniIndentscopeSymbol", { guifg = "#444444" })
+hi("MiniIndentscopeSymbol", { fg = "#444444" })
 
 -- Telescope
-hi("TelescopeBorder", { guifg = "#444444" })
+hi("TelescopeBorder", { fg = "#444444" })
 
--- Signify plugin
-hi("GitGutterAdd", { guifg = "#7D8D57" })
-hi("GitGutterAddLine", { guibg="#191919" })
-hi("GitGutterChange", { guifg = "#f5773C", guibg = "NONE" })
-hi("GitGutterChangeDelete",  { guifg = "#f5773C", guibg = "NONE" })
-hi("GitGutterChangeDeleteLine", { guibg = "#191919" })
-hi("GitGutterChangeLine", { guibg = "#191919" })
-hi("GitGutterDelete", { guifg = colors.red })
-hi("GitGutterDeleteLine", { guibg = "#191919" })
+-- Signify
+hi("GitGutterAdd", { fg = "#7D8D57" })
+hi("GitGutterAddLine", { bg ="#191919" })
+hi("GitGutterChange", { fg = "#f5773C", bg = "NONE" })
+hi("GitGutterChangeDelete",  { fg = "#f5773C", bg = "NONE" })
+hi("GitGutterChangeDeleteLine", { bg = "#191919" })
+hi("GitGutterChangeLine", { bg = "#191919" })
+hi("GitGutterDelete", { fg = colors.red })
+hi("GitGutterDeleteLine", { bg = "#191919" })
+
+-- Yanky
+hi("YankyPut", { bg = "#1A251A" })
+hi("YankyYanked", { bg = "#1A251A" })
