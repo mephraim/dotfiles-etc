@@ -91,11 +91,10 @@ return function(use)
   use {
     "echasnovski/mini.nvim",
     config = function()
-      require("mini.indentscope").setup({
+      local indentscope = require('mini.indentscope')
+      indentscope.setup({
         draw = {
-          animation = function()
-            return 10
-          end
+          animation = indentscope.gen_animation('none')
         }
       })
 
