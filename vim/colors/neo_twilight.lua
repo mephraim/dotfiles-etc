@@ -90,7 +90,7 @@ hi("StatusLineGit", { guifg = "#D4EB9C", guibg = "bg" })
 hi("StatusLineNC", { guifg = "bg", guibg = "bg" })
 
 -- Diff highlighting
-hi("DiffAdd", { guibg = "#162F00" })
+hi("DiffAdd", { guibg = "#012800" })
 hi("DiffChange", { guibg = "#472A00" })
 hi("DiffDelete", { guibg = "#290700", guifg = "#290700" })
 hi("DiffText",  { guibg = colors.green, guifg = "#080C06" })
