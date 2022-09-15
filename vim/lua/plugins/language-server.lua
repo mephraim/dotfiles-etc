@@ -17,6 +17,11 @@ local servers = {
   "yamlls",
 }
 
+local has_words_before = function()
+  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 function GetDiagnosticConfig(virtual_lines)
   if virtual_lines then
     return {
@@ -107,60 +112,32 @@ function GetCmpMaps()
   end
 
   local cmp = require('cmp')
+  local luasnip = require('luasnip')
+
   return {
     -- Tab forward through the options
-    ["<Tab>"] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-        else
-          cmp.complete()
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-        elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-          vim.api.nvim_feedkeys(replaceTermcodes("<Plug>(ultisnips_jump_forward)"), 'm', true)
-        else
-          fallback()
-        end
-      end,
-      s = function(fallback)
-        if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-          vim.api.nvim_feedkeys(replaceTermcodes("<Plug>(ultisnips_jump_forward)"), 'm', true)
-        else
-          fallback()
-        end
+     ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
       end
-    }),
+    end, { "i", "s" }),
 
     -- Tab backward through the options
-    ["<S-Tab>"] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-        else
-          cmp.complete()
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-        elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-          return vim.api.nvim_feedkeys( replaceTermcodes("<Plug>(ultisnips_jump_backward)"), 'm', true)
-        else
-          fallback()
-        end
-      end,
-      s = function(fallback)
-        if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-          return vim.api.nvim_feedkeys( replaceTermcodes("<Plug>(ultisnips_jump_backward)"), 'm', true)
-        else
-          fallback()
-        end
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
       end
-    }),
+    end, { "i", "s" }),
 
     -- Navigate options with the arrow keys
     ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
@@ -228,7 +205,7 @@ function SetupCompletion()
     },
     snippet = {
       expand = function(args)
-        vim.fn["UltiSnips#Anon"](args.body)
+        require('luasnip').lsp_expand(args.body)
       end,
     },
 
@@ -239,7 +216,7 @@ function SetupCompletion()
     sources = {
       { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
-      { name = 'ultisnips' },
+      { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path' },
       { name = 'cmdline' },
@@ -462,21 +439,13 @@ return function(use)
 
   -- Snippets
   use {
-    "SirVer/ultisnips",
+    "L3MON4D3/LuaSnip",
     requires = {
-      -- A nice collection of existing snippets
-      "honza/vim-snippets",
-
-      -- Required to connect ultisnips to nvim-cmp
-      "quangnguyen30192/cmp-nvim-ultisnips"
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets"
     },
-
     config = function()
-      vim.g.UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
-      vim.g.UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
-      vim.g.UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
-      vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
-      vim.g.UltiSnipsRemoveSelectModeMappings = 0
+      require("luasnip.loaders.from_vscode").lazy_load()
     end
   }
 
