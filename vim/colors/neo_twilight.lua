@@ -98,8 +98,9 @@ hi("Terminal", { bg = "#111720" })
 hi("SpellBad", { fg = "red", undercurl = true })
 
 -- Floats
-hi("FloatBorder", { fg = "#444444" })
+hi("FloatBorder", { fg = "#444444", bg = colors.bg })
 hi("FloatTitle", { fg = "#CFCFCF", bg = colors.bg })
+hi("NormalFloat", { bg = colors.bg })
 
 -- Mini
 hi("MiniIndentscopeSymbol", { fg = "#444444" })
