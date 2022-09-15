@@ -1,9 +1,6 @@
 return function(use)
   use "tpope/vim-fugitive"
 
-  -- Better git commit log navigation
-  use "gregsexton/gitv"
-
   -- Better git commit message display
   use "rhysd/committia.vim"
 
