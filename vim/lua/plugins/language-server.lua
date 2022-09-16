@@ -18,7 +18,7 @@ local servers = {
 }
 
 local has_words_before = function()
-  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
@@ -321,7 +321,8 @@ function SetupUI()
 
   vim.lsp.handlers["window/showMessage"] = function(_, method, params, _)
     vim.notify(method.message, severity[params.type], {
-      timeout = 2000
+      title = 'LSP message',
+      timeout = 1000
     })
   end
 end
@@ -446,6 +447,7 @@ return function(use)
     },
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip").filetype_extend("ruby", {"rails"})
     end
   }
 
