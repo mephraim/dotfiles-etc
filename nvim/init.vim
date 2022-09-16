@@ -11,5 +11,6 @@ elseif has('unix')
 endif
 
 lua << EOF
+  require('autocmds')
   require('plugins/init')
 EOF
