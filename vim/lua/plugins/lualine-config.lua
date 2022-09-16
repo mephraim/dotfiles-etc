@@ -146,7 +146,9 @@ local config = {
   options = {
     -- Disable sections and component separators
     component_separators = '',
-    section_separators = ''
+    section_separators = '',
+
+    global_status = true
   },
   sections = {
     -- these are to remove the defaults
@@ -196,6 +198,10 @@ end
 
 local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
+end
+
+local function is_recording()
+  return vim.fn.reg_recording() ~= ''
 end
 
 ins_left {
@@ -271,6 +277,21 @@ ins_left {
     color_warn = { fg = colors.yellow },
     color_info = { fg = colors.cyan },
   },
+}
+
+-- Macro recording indicator
+ins_left {
+  function()
+    if is_recording() then
+      return '⊚ recording'
+    end
+  end,
+
+  color = {
+    fg = colors.red
+  },
+
+  cond = is_recording,
 }
 
 -- Insert mid section. You can make any number of sections in neovim :)
