@@ -219,7 +219,6 @@ function SetupCompletion()
       { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path' },
-      { name = 'cmdline' },
       { name = 'nvim_lsp_signature_help' },
       { name = 'emoji' }
     },
