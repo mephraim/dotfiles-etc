@@ -71,7 +71,8 @@ hi("WildMenu", { fg = colors.light_red, bg = colors.bg })
 
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/lua/nvim-treesitter/highlight.lua
 hi("TSConstant", { fg = colors.light_red })
-hi("TSKeywordReturn", { italic = true })
+hi("TSKeywordReturn", { fg = colors.salmon, italic = true })
+
 
 -- Warnings and Errors
 hi("Error", { fg = colors.red, bg = "bg" })
@@ -98,12 +99,18 @@ hi("Terminal", { bg = "#111720" })
 hi("SpellBad", { fg = "red", undercurl = true })
 
 -- Floats
-hi("FloatBorder", { fg = "#444444", bg = colors.bg })
-hi("FloatTitle", { fg = "#CFCFCF", bg = colors.bg })
-hi("NormalFloat", { bg = colors.bg })
+hi("FloatBorder", { fg = "#2A2A2A", bg = "#2A2A2A" })
+hi("FloatTitle", { fg = "#CFCFCF", bg = "#2A2A2A" })
+hi("NormalFloat", { bg = "#2A2A2A" })
+
+-- Markdown
+hi("markdownError", { fg = "None", bg = "None" })
 
 -- Mini
 hi("MiniIndentscopeSymbol", { fg = "#444444" })
+
+-- Nvim Tree
+hi("NvimTreeNormal", { bg = "#242222" })
 
 -- Telescope
 hi("TelescopeBorder", { fg = "#444444" })
