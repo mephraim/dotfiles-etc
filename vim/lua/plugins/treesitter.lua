@@ -2,8 +2,6 @@ return function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/playground"
     },
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -85,5 +83,21 @@ return function(use)
       -- Cleanup function: this remap should be made in normal mode
       vim.api.nvim_set_keymap("n", "<leader>rc", ":lua require('refactoring').debug.cleanup({})<CR>", { noremap = true })
     end
+  }
+
+  use {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = 'nvim-treesitter',
+    requires = {
+      "nvim-treesitter"
+    }
+  }
+
+  use {
+    "nvim-treesitter/playground",
+    after = 'nvim-treesitter',
+    requires = {
+      "nvim-treesitter"
+    }
   }
 end
