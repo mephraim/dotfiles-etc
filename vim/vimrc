@@ -99,9 +99,6 @@ let mapleader = ','
   set pumblend=6
   set winblend=8
 
-  " Hide the command line unless it's being used
-  set cmdheight=0
-
   " }}}2
   " End assorted configuration
   " }}}1
