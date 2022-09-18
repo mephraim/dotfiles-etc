@@ -1,10 +1,41 @@
+local ensured_ts_languages = {
+  "bash",
+  "css",
+  "html",
+  "http",
+  "gitignore",
+  "graphql",
+  "javascript",
+  "jsdoc",
+  "json",
+  "json5",
+  "lua",
+  "make",
+  "markdown",
+  "python",
+  "regex",
+  "ruby",
+  "rust",
+  "scss",
+  "sql",
+  "supercollider",
+  "typescript",
+  "vim",
+  "yaml"
+}
+
 return function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
-    requires = {
-    },
+    run = function()
+      require("nvim-treesitter.install").update {
+        with_sync = true
+      }
+    end,
     config = function()
       require('nvim-treesitter.configs').setup {
+        auto_install = true,
+        ensure_installed = ensured_ts_languages,
         highlight = {
           enable = true,
           -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -46,8 +77,7 @@ return function(use)
           },
         },
       }
-    end,
-    run = ":TSUpdate"
+    end
   }
 
   use {
