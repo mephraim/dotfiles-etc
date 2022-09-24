@@ -16,6 +16,7 @@ local colors = {
   black = "#000000",
   blue = "#7587A6",
   brown = "#9B703F",
+  dark_gray = "#313131",
   gray = "#828282",
   green = "#8F9D6A",
   light_blue = "#AFC4DB",
@@ -47,7 +48,7 @@ hi("Type", { fg = colors.light_yellow })
 
 -- Hide NonText characters by default.
 -- There's function that will make them visible in .vimrc.
-hi("NonText", { fg = colors.bg })
+hi("NonText", { fg = colors.dark_gray })
 
  -- UI Elements
 hi("ColorColumn", { bg = "#130707" })
@@ -89,7 +90,7 @@ hi("StatusLineNC", { fg = "bg", bg = colors.bg })
 -- Diff highlighting
 hi("DiffAdd", { bg = "#012800" })
 hi("DiffChange", { bg = "#472A00" })
-hi("DiffDelete", { bg = "#290700", fg = "#290700" })
+hi("DiffDelete", { fg = colors.salmon })
 hi("DiffText",  { bg = colors.green, fg = "#080C06" })
 
 -- Terminal colors

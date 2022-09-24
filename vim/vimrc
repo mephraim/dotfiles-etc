@@ -4,11 +4,6 @@ scriptencoding
 " have the correct leader key.
 let mapleader = ','
 
-" Plugin setup {{{1
-  " source ~/dotfiles-etc/vim/plugin_settings/plugins.general.vim
-" End Plugin setup
-" }}}1
-
 " Syntax and colorscheme {{{1
   " Switch syntax highlighting on when the terminal has colors
   " or when a GUI is running.
@@ -16,18 +11,12 @@ let mapleader = ','
     syntax on
   endif
 
-  " Tell the terminal to use 256 colors
-  let &t_Co=256
-
   " Setup truecolors
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 
   colorscheme neo_twilight
-
-  " Load in any customizations to the stock colorschemes
-  " runtime! colors/custom/*.vim
 " End syntax and colorscheme
 " }}}1
 
@@ -86,6 +75,9 @@ let mapleader = ','
   " Get rid of the "end of buffer" ~ that vim shows by default
   set fillchars+=eob:\ 
 
+  " Add nice fillchars for diffs
+  set fillchars+=diff:╱
+
   set undodir=~/dotfiles-etc/vim/undodir
   set undofile
   set undolevels=1000
@@ -102,30 +94,6 @@ let mapleader = ','
   " }}}2
   " End assorted configuration
   " }}}1
-
-" Custom colorscheme overrides {{{1
-" let g:disable_color_overrides = 0
-
-" augroup ColorOverrides
-"   au!
-"   au ColorScheme * call OverrideColors()
-" augroup END
-
-" function! OverrideColors()
-"   if g:disable_color_overrides != 1 && empty($USING_VIM_MANPAGER)
-"     for color_file in split(glob('~/dotfiles-etc/vim/colors/custom/*.vim'), '\n')
-"       exe 'source' color_file
-"     endfor
-
-"     " Refresh devicons after reloading colorschemes
-"     " Check to make sure that NERDTree exists before doing this, otherwise it
-"     " may cause an error, because NERDTree is lazy loaded.
-"     if exists('g:loaded_webdevicons') && exists('g:NERDTree')
-"       call webdevicons#refresh()
-"     endif
-"   endif
-" endfunction
-" }}}1
 
 " Folding {{{1
 " Custom fold method adapted from http://dhruvasagar.com/2013/03/28/vim-better-foldtext
@@ -195,17 +163,6 @@ set foldexpr=nvim_treesitter#foldexpr()
   " so that you can undo CTRL-U after inserting a line break.
   inoremap <C-U> <C-G>u<C-U>
 
-  " If there's a gui and it's not Macvim, assume it's something like gvim
-  if has('gui_running') && !has('gui_macvim')
-    " Set up copy and paste so they work more like other apps
-    inoremap <C-V> <ESC>"+gpi
-    cnoremap <C-V> <C-R>+
-    vnoremap <C-C> "+y
-
-    " Adjust the columns and lines to make the page actually full screen
-    nnoremap <leader>full :set columns+=1 lines+=1<CR>
-  end
-
   " Quick buffer stuff
   noremap <leader>bd :bd<CR>
   noremap <leader>bdd :bd!<CR>
@@ -271,12 +228,8 @@ set foldexpr=nvim_treesitter#foldexpr()
   function! s:ToggleNonText()
     if &list
       set nolist
-
-      " This will force any other NonText characters to be invisible
-      hi NonText guifg=bg ctermfg=black
     else
       set list
-      hi NonText guifg=#A7A7A7 ctermfg=lightgrey
     endif
   endfunction
 
@@ -293,9 +246,6 @@ set foldexpr=nvim_treesitter#foldexpr()
   " JSON Pretty format the current buffer.
   noremap <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
 
-  " XML Pretty format the current buffer
-  noremap <leader>xml :silent %!xmllint --format --recover - 2>/dev/null<CR>
-
   " Copy the full path of the current file to the system clipboard
   noremap <silent> <leader>cfp :let @+ = expand('%:p')<CR>
 
@@ -311,88 +261,84 @@ set foldexpr=nvim_treesitter#foldexpr()
 " }}}1
 
 " Autocommands {{{1
-  if has('autocmd')
-    " Enable file type detection.
-    " Use the default filetype settings, so that mail gets 'tw' set to 72,
-    " 'cindent' is on in C files, etc.
-    " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent on
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
 
-    augroup vimrcAutoCommands
-      au!
+  augroup vimrcAutoCommands
+    au!
 
-      " When editing a file, always jump to the last known cursor position.
-      " Don't do it when the position is invalid or when inside an event handler
-      " (happens when dropping a file on gvim).
-      " Also don't do it when the mark is in the first line, that is the default
-      " position when opening a file.
-      autocmd BufReadPost *
-        \ if line("'\"") > 1 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
-      " Resize splits when the window is resized
-      autocmd VimResized * exe "normal! \<c-w>="
+    " Resize splits when the window is resized
+    autocmd VimResized * exe "normal! \<c-w>="
 
-      " Automatically check if the file has been changed outside vim
-      autocmd CursorHold,CursorMoved * checktime
+    " Automatically check if the file has been changed outside vim
+    autocmd CursorHold,CursorMoved * checktime
 
-      " Enable spell check for text files
-      autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown,*.md setlocal spell spelllang=en
+    " Enable spell check for text files
+    autocmd BufNewFile,BufRead *.txt,*.wiki,*.mkd,*.markdown,*.md setlocal spell spelllang=en
 
-      " For vim files, use markers as the foldmethod and collapse everything
-      autocmd Filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
+    " For vim files, use markers as the foldmethod and collapse everything
+    autocmd Filetype vim setlocal foldmethod=marker | setlocal foldlevel=0
 
-      " Turn on listchars when in visual mode
-      autocmd CursorMoved * if mode() =~# "[vV\<C-v>]" | set list | else | set nolist | endif
+    " Turn on listchars when in visual mode
+    autocmd CursorMoved * if mode() =~# "[vV\<C-v>]" | set list | else | set nolist | endif
 
-      " Set a few JavaScript related *rc filetypes to JSON
-      autocmd BufNewFile,BufRead .babelrc,.eslintrc setlocal spell filetype=json
+    " Set a few JavaScript related *rc filetypes to JSON
+    autocmd BufNewFile,BufRead .babelrc,.eslintrc setlocal spell filetype=json
 
-      " Automatically show the quickfix window for any of the commands that use
-      " `grep` (e.g. Glog).
-      autocmd QuickFixCmdPost *grep* cwindow
+    " Automatically show the quickfix window for any of the commands that use
+    " `grep` (e.g. Glog).
+    autocmd QuickFixCmdPost *grep* cwindow
 
-      " Set .js6 files to the JavaScript filetype
-      autocmd BufNewFile,BufRead *.js6 set filetype=javascript
+    " Set .js6 files to the JavaScript filetype
+    autocmd BufNewFile,BufRead *.js6 set filetype=javascript
 
-      " Refresh syntax highlighting on a few events.
-      "
-      " This should fix issues here the syntax highlighting gets out of sync
-      " every once in a while.
-      autocmd BufEnter,BufLeave,InsertLeave * syntax sync fromstart
+    " Refresh syntax highlighting on a few events.
+    "
+    " This should fix issues here the syntax highlighting gets out of sync
+    " every once in a while.
+    autocmd BufEnter,BufLeave,InsertLeave * syntax sync fromstart
 
-      " Always make help windows take up the full screen
-      autocmd BufWinEnter * if &l:buftype ==# 'help' | only
+    " Always make help windows take up the full screen
+    autocmd BufWinEnter * if &l:buftype ==# 'help' | only
 
-      " Turn off spellcheck for helpfiles
-      autocmd BufWinEnter * if &l:buftype ==# 'help' | setlocal nospell
+    " Turn off spellcheck for helpfiles
+    autocmd BufWinEnter * if &l:buftype ==# 'help' | setlocal nospell
 
-      autocmd BufEnter * call SetupTerminal()
+    autocmd BufEnter * call SetupTerminal()
 
-      " Setup some special settings when using a terminal within (n)vim.
-      " This is a little more complicated than expected because we don't want to
-      " modify the fzf terminal settings.
-      function! SetupTerminal()
-        " fzf uses a terminal. Don't mess with any of its settings.
-        if &filetype == 'fzf'
-          return
-        endif
+    " Setup some special settings when using a terminal within (n)vim.
+    " This is a little more complicated than expected because we don't want to
+    " modify the fzf terminal settings.
+    function! SetupTerminal()
+      " fzf uses a terminal. Don't mess with any of its settings.
+      if &filetype == 'fzf'
+        return
+      endif
 
-        " Map the esc key in the terminal so that it will escape insert mode.
-        tnoremap <buffer> <esc> <C-\><C-n>
+      " Map the esc key in the terminal so that it will escape insert mode.
+      tnoremap <buffer> <esc> <C-\><C-n>
 
-        augroup TerminalGroup
-          autocmd! * <buffer>
+      augroup TerminalGroup
+        autocmd! * <buffer>
 
-          " Run these settings when the terminal actually opens
-          autocmd TermOpen <buffer> set nonumber | :startinsert
-        augroup END
-      endfunction
-    augroup END
-  else
-    set autoindent " always set autoindenting on
-  endif
+        " Run these settings when the terminal actually opens
+        autocmd TermOpen <buffer> set nonumber | :startinsert
+      augroup END
+    endfunction
+  augroup END
 " End autocommands
 " }}}1
 
