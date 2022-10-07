@@ -70,7 +70,6 @@ function TelescopeConfig()
   }
 
   telescope.load_extension("packer")
-  telescope.load_extension('ultisnips')
 end
 
 return function(use)
@@ -79,8 +78,7 @@ return function(use)
     requires = {
       {"nvim-lua/plenary.nvim"},
       {"kyazdani42/nvim-web-devicons"},
-      {"nvim-telescope/telescope-packer.nvim"},
-      {"fhill2/telescope-ultisnips.nvim"}
+      {"nvim-telescope/telescope-packer.nvim"}
     },
     config = TelescopeConfig
   }
