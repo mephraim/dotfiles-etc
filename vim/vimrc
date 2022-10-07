@@ -78,6 +78,9 @@ let mapleader = ','
   " Add nice fillchars for diffs
   set fillchars+=diff:╱
 
+  " Create nice fold markers
+  set fillchars+=foldopen:,foldsep:\ ,foldclose:
+
   set undodir=~/dotfiles-etc/vim/undodir
   set undofile
   set undolevels=1000
