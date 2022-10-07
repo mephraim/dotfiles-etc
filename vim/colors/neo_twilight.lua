@@ -57,7 +57,7 @@ hi("Cursor",  { fg = colors.bg, bg = "#F5773c" })
 hi("CursorColumn", { bg = "#2D2D2D" })
 hi("CursorLine", { bg = "#131313", bold = true })
 hi("Directory", { fg = "#CFCFCF" })
-hi("FoldColumn", { fg = "#444444", bg = "#080808" })
+hi("FoldColumn", { fg = "#444444", bg = colors.bg })
 hi("Folded",  { bg = colors.bg, fg = "#434343", italic = true })
 hi("LineNr", { bg = colors.bg, fg = "#434343" })
 hi("MatchParen",  { fg= colors.red, bg = colors.bg })
@@ -89,7 +89,7 @@ hi("StatusLineNC", { fg = "bg", bg = colors.bg })
 
 -- Diff highlighting
 hi("DiffAdd", { bg = "#012800" })
-hi("DiffChange", { bg = "#472A00" })
+hi("DiffChange", { bg = "#473100" })
 hi("DiffDelete", { fg = colors.salmon })
 hi("DiffText",  { bg = colors.green, fg = "#080C06" })
 
@@ -100,9 +100,9 @@ hi("Terminal", { bg = "#111720" })
 hi("SpellBad", { fg = "red", undercurl = true })
 
 -- Floats
-hi("FloatBorder", { fg = "#2A2A2A", bg = "#2A2A2A" })
-hi("FloatTitle", { fg = "#CFCFCF", bg = "#2A2A2A" })
-hi("NormalFloat", { bg = "#2A2A2A" })
+-- hi("FloatBorder", { fg = "#2A2A2A", bg = "#2A2A2A" })
+-- hi("FloatTitle", { fg = "#CFCFCF", bg = "#2A2A2A" })
+-- hi("NormalFloat", { bg = "#2A2A2A" })
 
 -- Markdown
 hi("markdownError", { fg = "None", bg = "None" })
