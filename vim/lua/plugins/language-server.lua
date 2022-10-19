@@ -46,7 +46,8 @@ function Config()
   SetupServers()
   SetupMappings()
   SetupUI()
-  SetupLSPProgressNotifications()
+  -- Disable this because it seems to have some conflict with noice
+  -- SetupLSPProgressNotifications()
   SetupCompletion()
 end
 
@@ -73,7 +74,7 @@ function SetupServers()
   })
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
   require("mason-lspconfig").setup_handlers({
     function (server_name)
