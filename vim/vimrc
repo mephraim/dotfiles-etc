@@ -167,15 +167,15 @@ set foldexpr=nvim_treesitter#foldexpr()
   inoremap <C-U> <C-G>u<C-U>
 
   " Quick buffer stuff
-  noremap <leader>bd :bd<CR>
-  noremap <leader>bdd :bd!<CR>
-  noremap <leader>q :q<CR>
+  noremap <silent> <leader>bd :bd<CR>
+  noremap <silent> <leader>bdd :bd!<CR>
+  noremap <silent> <leader>q :q<CR>
 
   " Quickly get rid of highlighting
-  noremap <leader>nh :noh<CR>
+  noremap <silent> <leader>nh :noh<CR>
 
   "Fast editing of .vimrc
-  noremap <leader>vimrc :tabedit $MYVIMRC<CR>
+  noremap <silent> <leader>vimrc :tabedit $MYVIMRC<CR>
 
   " Hitting jj will jump out of insert mode
   inoremap jj <esc>
@@ -184,13 +184,10 @@ set foldexpr=nvim_treesitter#foldexpr()
   inoremap kk <esc>
 
   " Quick vertical split
-  noremap <leader>sv :vsplit<CR>
+  noremap <silent> <leader>sv :vsplit<CR>
 
   " Quick horizontal split
-  noremap <leader>sh :split<CR>
-
-  " Quick full screen toggle
-  noremap <leader>fs :set invfullscreen<CR>
+  noremap <silent> <leader>sh :split<CR>
 
   " Search for selected text, forwards or backwards. (http://vim.wikia.com/wiki/VimTip171)
   vnoremap <silent> * :<C-U>
@@ -247,7 +244,7 @@ set foldexpr=nvim_treesitter#foldexpr()
   nnoremap N Nzzzv
 
   " JSON Pretty format the current buffer.
-  noremap <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
+  noremap <silent> <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
 
   " Copy the full path of the current file to the system clipboard
   noremap <silent> <leader>cfp :let @+ = expand('%:p')<CR>
@@ -259,7 +256,7 @@ set foldexpr=nvim_treesitter#foldexpr()
   noremap <silent> <leader>cp "+y
 
   " Run the selected section through tidy to correctly format xml
-  noremap <leader>xml :'<,'>!tidy -miq -xml -wrap 0<CR>
+  noremap <silent> <leader>xml :'<,'>!tidy -miq -xml -wrap 0<CR>
 " End custom mappings
 " }}}1
 

@@ -18,7 +18,7 @@ return function(use)
     "jeetsukumaran/vim-buffergator",
     config = function()
       vim.cmd([[
-        nnoremap <leader>be :BuffergatorToggle<CR>
+        nnoremap <silent> <leader>be :BuffergatorToggle<CR>
       ]])
     end
   }
