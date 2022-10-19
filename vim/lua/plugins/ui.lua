@@ -86,4 +86,49 @@ return function(use)
       end)
     end
   }
+
+  use {
+    "folke/noice.nvim",
+    event = "VimEnter",
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require("noice").setup({
+        cmdline = {
+          icons = {
+            ["/"] = { icon = "", hl_group = "DiagnosticWarn" },
+            ["?"] = { icon = "", hl_group = "DiagnosticWarn" },
+            [":"] = { icon = " ", firstc = false },
+          },
+        },
+        messages = {
+          enabled = false
+        },
+        routes = {
+          {
+            filter = {
+              event = "msg_show",
+              kind = "",
+              find = "written",
+            },
+            opts = { skip = true },
+          }
+        },
+        views = {
+          cmdline_popup = {
+            border = {
+              style = "none",
+              padding = { 1, 2 },
+            },
+            filter_options = {},
+            win_options = {
+              winhighlight = "NormalFloat:NoiceFloat,FloatBorder:NoiceBorder",
+            },
+          },
+        },
+      })
+    end
+  }
 end
