@@ -25,6 +25,7 @@ local colors = {
   light_orange = "#CDA869",
   light_red = "#E04331",
   light_yellow = "#F9EE98",
+  middle_gray = "#2A2A2A",
   red = "#F11818",
   salmon = "#CF6A4C",
   yellow = "#EEEE00",
@@ -100,9 +101,12 @@ hi("Terminal", { bg = "#111720" })
 hi("SpellBad", { fg = "red", undercurl = true })
 
 -- Floats
--- hi("FloatBorder", { fg = "#2A2A2A", bg = "#2A2A2A" })
--- hi("FloatTitle", { fg = "#CFCFCF", bg = "#2A2A2A" })
--- hi("NormalFloat", { bg = "#2A2A2A" })
+hi("FloatBorder", { fg = colors.middle_gray, bg = colors.middle_gray })
+hi("FloatTitle", { fg = colors.blue, bg = colors.middle_gray })
+hi("NormalFloat", { bg = colors.middle_gray })
+
+hi("NoiceBorder", { fg = "#2A2A2A", bg = "#2A2A2A" })
+hi("NoiceFloat", { bg = "#2A2A2A" })
 
 -- Markdown
 hi("markdownError", { fg = "None", bg = "None" })
@@ -114,7 +118,15 @@ hi("MiniIndentscopeSymbol", { fg = "#444444" })
 hi("NvimTreeNormal", { bg = "#242222" })
 
 -- Telescope
-hi("TelescopeBorder", { fg = "#444444" })
+hi("TelescopeBorder", { fg = colors.middle_gray, bg = colors.middle_gray })
+hi("TelescopePromptBorder", { fg = colors.middle_gray, bg = colors.middle_gray })
+hi("TelescopePromptNormal", { bg = colors.middle_gray })
+hi("TelescopePromptPrefix", { fg = colors.light_blue })
+hi("TelescopePromptTitle", { fg = colors.middle_gray, bg = colors.light_blue })
+hi("TelescopeNormal", { bg = colors.middle_gray })
+hi("TelescopePreviewTitle", { fg = colors.middle_gray, bg = colors.middle_gray })
+hi("TelescopeResultsTitle", { bg = colors.middle_gray })
+-- hi("TelescopeSelection", { bg = colors.dark_gray })
 
 -- Signify
 hi("GitGutterAdd", { fg = "#7D8D57" })
