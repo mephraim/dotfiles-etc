@@ -308,7 +308,7 @@ function SetupUI()
   -- Add a border to the hover documenation windows
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, {
-      border = "rounded"
+      max_width = 120
     }
   )
 
