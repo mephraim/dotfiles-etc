@@ -106,7 +106,15 @@ hi("FloatTitle", { fg = colors.blue, bg = colors.middle_gray })
 hi("NormalFloat", { bg = colors.middle_gray })
 
 hi("NoiceBorder", { fg = "#2A2A2A", bg = "#2A2A2A" })
+hi("NoiceCmdlinePopupBorderCmdline", { fg = "#2A2A2A", bg = "#2A2A2A", blend = 1 })
+hi("NoiceCmdlinePopupBorderFilter", { fg = "#2A2A2A", bg = "#2A2A2A" })
+hi("NoiceCmdlinePopupBorderLua", { fg = "#2A2A2A", bg = "#2A2A2A", blend = 1 })
+hi("NoiceCmdlinePopupBorderSearch", { fg = "#2A2A2A", bg = "#2A2A2A", blend = 1 })
 hi("NoiceFloat", { bg = "#2A2A2A" })
+hi("NoiceMini", { fg = colors.white, bg = "#2A2A2A" })
+
+-- HTML
+hi("@text.title", { fg = colors.green, bold = true })
 
 -- Markdown
 hi("markdownError", { fg = "None", bg = "None" })
