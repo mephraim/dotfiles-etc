@@ -97,34 +97,43 @@ return function(use)
     config = function()
       require("noice").setup({
         cmdline = {
-          icons = {
-            ["/"] = { icon = "", hl_group = "DiagnosticWarn" },
-            ["?"] = { icon = "", hl_group = "DiagnosticWarn" },
-            [":"] = { icon = " ", firstc = false },
+          conceal = true,
+          format = {
+            cmdline = { pattern = "^:", icon = " " },
+            search_down = { kind = "search", pattern = "^/", icon = "", ft = "regex" },
+            search_up = { kind = "search", pattern = "^%?", icon = "", ft = "regex" },
+            filter = { pattern = "^:%*s/+", icon = "$", ft = "sh" },
+            lua = { pattern = "^:%s*lua%s+", icon = "", ft = "lua" },
+          },
+        },
+        lsp = {
+          hover = {
+            enabled = false,
+          },
+          override = {
+            -- override the default lsp markdown formatter with Noice
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+            -- override the lsp markdown formatter with Noice
+            ["vim.lsp.util.stylize_markdown"] = false,
+            -- override cmp documentation with Noice (needs the other options to work)
+            ["cmp.entry.get_documentation"] = false,
           },
         },
         messages = {
           enabled = false
         },
-        routes = {
-          {
-            filter = {
-              event = "msg_show",
-              kind = "",
-              find = "written",
-            },
-            opts = { skip = true },
-          }
+        notify = {
+          enabled = false
         },
         views = {
           cmdline_popup = {
             border = {
-              style = "none",
-              padding = { 1, 2 },
+              style = "rounded",
+              padding = { 0, 1 },
             },
             filter_options = {},
             win_options = {
-              winhighlight = "NormalFloat:NoiceFloat,FloatBorder:NoiceBorder",
+              winhighlight = "NormalFloat:NoiceBorder,FloatBorder:NoiceFloat",
             },
           },
         },
