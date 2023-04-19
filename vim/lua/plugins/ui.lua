@@ -110,6 +110,9 @@ return function(use)
           hover = {
             enabled = false,
           },
+          messages = {
+            enabled = false
+          },
           override = {
             -- override the default lsp markdown formatter with Noice
             ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
