@@ -13,6 +13,11 @@ return function(use)
   use "tpope/vim-sleuth"
   use "tpope/vim-surround"
 
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
   -- Buffer Exploration
   use {
     "jeetsukumaran/vim-buffergator",
@@ -85,23 +90,6 @@ return function(use)
 
       -- Use yr to bring up the full yank history
       vim.keymap.set("n", "<leader>yr", "<cmd>Telescope yank_history<CR>")
-    end
-  }
-
-  use {
-    "echasnovski/mini.nvim",
-    config = function()
-      local indentscope = require('mini.indentscope')
-      indentscope.setup({
-        draw = {
-          animation = indentscope.gen_animation('none')
-        }
-      })
-
-      vim.g.miniindentscope_disable = true
-      vim.keymap.set("n", "<leader>is", function()
-        vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
-      end)
     end
   }
 end
