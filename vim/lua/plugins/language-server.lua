@@ -11,7 +11,7 @@ local servers = {
   "lemminx",
   "pyright",
   "solargraph",
-  "sumneko_lua",
+  "lua_ls",
   "tsserver",
   "vimls",
   "yamlls",
@@ -92,8 +92,8 @@ function SetupServers()
       }
     end,
 
-    ["sumneko_lua"] = function ()
-      require('lspconfig').sumneko_lua.setup {
+    ["lua_ls"] = function ()
+      require('lspconfig').lua_ls.setup {
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -312,19 +312,19 @@ function SetupUI()
     }
   )
 
-  local severity = {
-    "error",
-    "warn",
-    "info",
-    "info", -- map both hint and info to info?
-  }
+  -- local severity = {
+  --   "error",
+  --   "warn",
+  --   "info",
+  --   "info", -- map both hint and info to info?
+  -- }
 
-  vim.lsp.handlers["window/showMessage"] = function(_, method, params, _)
-    vim.notify(method.message, severity[params.type], {
-      title = 'LSP message',
-      timeout = 1000
-    })
-  end
+  -- vim.lsp.handlers["window/showMessage"] = function(_, method, params, _)
+  --   vim.notify(method.message, severity[params.type], {
+  --     title = 'LSP message',
+  --     timeout = 1000
+  --   })
+  -- end
 end
 
 function SetupLSPProgressNotifications()
