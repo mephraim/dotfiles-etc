@@ -233,10 +233,6 @@ function SetupCompletion()
         })(entry, vim_item)
       end,
     },
-
-    experimental = {
-      ghost_text = true
-    }
   }
 
   -- Enable completion for / search
