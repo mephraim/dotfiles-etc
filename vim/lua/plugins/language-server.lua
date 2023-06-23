@@ -500,4 +500,11 @@ return function(use)
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu"
   }
+
+  use {
+    "simrat39/symbols-outline.nvim",
+    config = function()
+      require("symbols-outline").setup()
+    end
+  }
 end
