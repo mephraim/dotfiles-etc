@@ -18,6 +18,10 @@ return function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
+  use({
+    "preservim/vim-markdown"
+  })
+
   -- Buffer Exploration
   use {
     "jeetsukumaran/vim-buffergator",

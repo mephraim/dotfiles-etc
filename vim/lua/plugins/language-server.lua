@@ -464,6 +464,7 @@ return function(use)
     end
   }
 
+  -- Split diagnostic messages across multiple lines
   use {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
@@ -480,6 +481,7 @@ return function(use)
     end
   }
 
+  -- Hook the neovim select menu up so it uses Telescope
   use {
     "stevearc/dressing.nvim",
     config = function()
@@ -493,6 +495,7 @@ return function(use)
     end
   }
 
+  -- Provides a fancier code action menu that shows more context
   use {
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu"
