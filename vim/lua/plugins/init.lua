@@ -15,7 +15,8 @@ end
 
 vim.cmd("packadd packer.nvim")
 
-return require('packer').startup(function(use)
+-- Packer plugins
+require('packer').startup(function(use)
   require('plugins.general')(use)
   require('plugins.git')(use)
   require('plugins.language-server')(use)
@@ -33,3 +34,6 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+
+-- Personal Plugins
+require('plugins.personal.conceal-spaces')
