@@ -16,8 +16,8 @@ end
 function Conceal2Spaces()
   vim.cmd [[
     syntax match twoSpaces /  / conceal cchar= "<- Intentional space after cchar.
-    setlocal concealcursor=nvi
-    setlocal conceallevel=1
+    setlocal concealcursor=nv
+    setlocal conceallevel=2
   ]]
 
   conceal2SpacesEnabled = true
@@ -25,6 +25,10 @@ end
 
 -- Display 2 spaces normally
 function ResetSpacesDisplay()
+  if not conceal2SpacesEnabled then
+    return
+  end
+
   vim.cmd [[
     syntax clear twoSpaces
     setlocal concealcursor=
@@ -39,11 +43,8 @@ vim.keymap.set('n', '<leader>2sp', ToggleConceal2Spaces, { silent = true })
 local conceal2SpacesGroup = vim.api.nvim_create_augroup(
   "Conceal2Spaces", { clear = true })
 
--- Turn off conceal when entering normal mode
+-- Turn off conceal when entering insert mode
 vim.api.nvim_create_autocmd(("InsertEnter"), {
-  callback = function()
-    ResetSpacesDisplay()
-  end,
-
+  callback = ResetSpacesDisplay,
   group = conceal2SpacesGroup,
 })
