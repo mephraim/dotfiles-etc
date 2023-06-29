@@ -1,6 +1,6 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-source ~/.vimrc
+source ~/dotfiles-etc/vim/vimrc
 
 " Setup Python hosts for the specific system we're on
 if has('macunix')
