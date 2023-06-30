@@ -17,6 +17,15 @@ local servers = {
   "yamlls",
 }
 
+-- These are the symbols to use for diagnostic signs
+-- and virtual text.
+local diagnostic_symbols = {
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Info = " "
+}
+
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -30,11 +39,36 @@ function GetDiagnosticConfig(virtual_lines)
     }
   end
 
+  -- Return a diagnostic symbol for the given severity
+  local function get_prefix_for_diagnostic(severity)
+    if severity == vim.diagnostic.severity.ERROR then
+      return diagnostic_symbols.Error
+    end
+
+    if severity == vim.diagnostic.severity.WARN then
+      return diagnostic_symbols.Warn
+    end
+
+    if severity == vim.diagnostic.severity.INFO then
+      return diagnostic_symbols.Info
+    end
+
+    if severity == vim.diagnostic.severity.HINT then
+      return diagnostic_symbols.Hint
+    end
+
+    return diagnostic_symbols.Warn
+  end
+
   return {
     virtual_lines = false,
 
     virtual_text = {
-      prefix = '﯎',
+      format = function(diagnostic)
+        local prefix = get_prefix_for_diagnostic(diagnostic.severity)
+        return string.format("%s %s", prefix, diagnostic.message)
+      end,
+
       spacing = 0
     }
   }
@@ -287,14 +321,7 @@ function SetupCompletion()
 end
 
 function SetupUI()
-  local signs = {
-    Error = " ",
-    Warn = " ",
-    Hint = " ",
-    Info = " "
-  }
-
-  for type, icon in pairs(signs) do
+  for type, icon in pairs(diagnostic_symbols) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
@@ -488,7 +515,7 @@ return function(use)
       require('dressing').setup({
         select = {
           telescope = require('telescope.themes').get_cursor({
-            prompt_prefix = "  "
+            prompt_prefix = "  "
           })
         }
       })

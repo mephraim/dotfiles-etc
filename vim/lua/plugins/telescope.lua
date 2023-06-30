@@ -1,13 +1,13 @@
 function TelescopeConfig()
   vim.keymap.set('n', '<Space>', function()
     require("telescope.builtin").find_files({
-      prompt_prefix="  "
+      prompt_prefix="  "
     })
   end)
 
   vim.keymap.set('n', '<C-Space>', function()
     require("telescope.builtin").buffers({
-      prompt_prefix=" ﬘ "
+      prompt_prefix="  "
     })
   end)
 
@@ -19,13 +19,13 @@ function TelescopeConfig()
 
   vim.keymap.set('n', '<leader>o', function()
     require("telescope.builtin").oldfiles({
-      prompt_prefix="  "
+      prompt_prefix=" 󰅒 "
     })
   end)
 
   vim.keymap.set('n', '<leader>sym', function()
     require("telescope.builtin").lsp_document_symbols({
-      prompt_prefix="  "
+      prompt_prefix="  "
     })
   end)
 
