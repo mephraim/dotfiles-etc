@@ -1,5 +1,4 @@
 local lualine = require('lualine')
-local devicons = require('nvim-web-devicons')
 
 -- Color table for highlights
 local colors = {
@@ -220,7 +219,7 @@ ins_left {
   -- mode component
   function()
     if vim.o.filetype == 'ctrlsf' then
-      return ''
+      return ''
     end
 
     if vim.o.filetype == 'fugitiveblame' then
@@ -232,7 +231,7 @@ ins_left {
     end
 
     if vim.o.filetype == 'TelescopePrompt' then
-      return ''
+      return ''
     end
 
     if vim.o.filetype == 'Trouble' then
@@ -244,11 +243,11 @@ ins_left {
    end
 
     if vim.fn.mode() == 'i' then
-      return ''
+      return '󰙏'
     end
 
     if vim.fn.mode() =='v' or string.find(vim.fn.mode(), 'V') then
-      return '﯎'
+      return ''
     end
 
     return ''
