@@ -11,6 +11,10 @@ elseif has('unix')
 endif
 
 lua << EOF
+  if vim.g.vscode then
+    return
+  end
+
   require('autocmds')
   require('plugins/init')
 
