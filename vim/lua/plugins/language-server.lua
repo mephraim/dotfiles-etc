@@ -1,9 +1,10 @@
 -- These are the language servers we'd like to use
 local servers = {
+  "awk_ls",
   "bashls",
   "cssls",
-  "cucumber_language_server",
   "dockerls",
+  "docker_compose_language_service",
   "eslint",
   "graphql",
   "html",
