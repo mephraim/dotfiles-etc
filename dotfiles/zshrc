@@ -40,6 +40,12 @@ zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
 
+# Initialize custom completion functionality
+autoload -U compinit && compinit
+
+# Initialize bash completion functionality
+autoload -U +X bashcompinit && bashcompinit
+
 # Bigger history
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -80,13 +86,6 @@ function man() {
 function fix_camera() {
   sudo killall VDCAssistant
 }
-
-# Initialize custom completion functionality
-autoload -U compinit
-compinit
-
-# Initialize bash completion functionality
-autoload -U +X bashcompinit && bashcompinit
 
 # Keybindings
 #
