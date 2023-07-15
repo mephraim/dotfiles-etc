@@ -9,6 +9,8 @@
 
 ## CLI tools
 
+* bat
+* git-delta # https://github.com/dandavison/delta
 * homebrew
 * asdf
   * nodejs plugin
