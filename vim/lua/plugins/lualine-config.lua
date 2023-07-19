@@ -129,12 +129,13 @@ local filename_component = {
 local filetype_component = {
   'filetype',
   colored = true,
-  icon_only = true,
+  icon_only = false,
   color = {
-    bg = colors.bg
+    bg = colors.bg,
+    fg = colors.fg
   },
   padding = {
-    left = 0,
+    left = 1,
     right = 1
   },
   cond = conditions.show_if_not_filetype
