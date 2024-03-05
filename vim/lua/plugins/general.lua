@@ -44,9 +44,12 @@ return function(use)
   }
 
   use {
-    "norcalli/nvim-colorizer.lua",
+    "brenoprata10/nvim-highlight-colors",
     config = function()
-      require("colorizer").setup()
+      require("nvim-highlight-colors").setup({
+        render = "virtual",
+        enable_named_colors = true
+      })
     end
   }
 
