@@ -6,10 +6,17 @@ return function(use)
     end
   }
 
+  use {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup()
+    end
+  }
+
   -- Use bufferline for tab configuration at the top
   use {
     "akinsho/bufferline.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    requires = "nvim-tree/nvim-web-devicons",
     config = function()
       require("bufferline").setup {
         options = {
@@ -33,7 +40,9 @@ return function(use)
   -- Lualine status line
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    requires = {
+      'nvim-tree/nvim-web-devicons'
+    },
     config = function()
       require('plugins.lualine-config')
 

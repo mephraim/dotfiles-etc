@@ -1,12 +1,17 @@
 return function(use)
   use {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     requires = {
-      'kyazdani42/nvim-web-devicons'
+      'nvim-tree/nvim-web-devicons'
     },
 
     config = function()
-      require('nvim-tree').setup {}
+      require('nvim-tree').setup {
+        hijack_netrw = false,
+        hijack_directories = {
+          enable = false,
+        }
+      }
 
       vim.cmd([[
         nnoremap <silent> <leader>nn :NvimTreeToggle<CR>
