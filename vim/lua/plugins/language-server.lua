@@ -137,6 +137,22 @@ function SetupServers()
           }
         }
       }
+    end,
+
+    ["tsserver"] = function()
+      require('lspconfig').tsserver.setup {
+        capabilities = capabilities,
+        on_attach = function(_, bufnr)
+          -- The default tsserver behavior sets "formatexpr" to
+          -- the language server's formatting function. For tsserver,
+          -- this doesn't seem to work correctly. The UI will freeze
+          -- after executing a `gq` command, for example.
+          --
+          -- Override this behavior to use the neovim default formatting
+          -- behavior for commands like `gq`.
+          vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+        end
+      }
     end
   })
 end
@@ -373,7 +389,6 @@ function SetupDiagnosticFloat()
   })
 end
 
-
 return function(use)
   local enable_virtual_lines = false
 
@@ -418,7 +433,7 @@ return function(use)
   -- Trouble allows us to browse all of the lint and error messages
   use {
     "folke/trouble.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    requires = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("trouble").setup({})
 
