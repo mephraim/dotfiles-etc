@@ -244,7 +244,7 @@ set foldexpr=nvim_treesitter#foldexpr()
   nnoremap N Nzzzv
 
   " JSON Pretty format the current buffer.
-  noremap <silent> <leader>json :%!python -m json.tool<CR>:set syntax=json<CR>
+  noremap <silent> <leader>json :%!python3 -m json.tool<CR>:set syntax=json<CR>
 
   " Copy the full path of the current file to the system clipboard
   noremap <silent> <leader>cfp :let @+ = expand('%:p')<CR>
@@ -257,6 +257,9 @@ set foldexpr=nvim_treesitter#foldexpr()
 
   " Run the selected section through tidy to correctly format xml
   noremap <silent> <leader>xml :'<,'>!tidy -miq -xml -wrap 0<CR>
+
+  " Jump to the beginning of a command with ctrl-a, just like in the shell
+  cnoremap <C-A> <C-B>
 " End custom mappings
 " }}}1
 
