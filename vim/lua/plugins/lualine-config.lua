@@ -130,15 +130,33 @@ local filetype_component = {
   'filetype',
   colored = true,
   icon_only = false,
-  color = {
-    bg = colors.bg,
-    fg = colors.fg
-  },
+  color = function()
+    local devicons = require('nvim-web-devicons')
+    local _, fgColor =
+      devicons.get_icon_color(vim.fn.expand('%'), vim.o.filetype)
+
+    return {
+      bg = colors.bg,
+      fg = fgColor or colors.fg
+    }
+  end,
   padding = {
     left = 1,
     right = 1
   },
   cond = conditions.show_if_not_filetype
+}
+
+local fugitive_blame_component = {
+  function ()
+    return " blame"
+  end,
+
+  color = { fg = colors.fg, bg = colors.bg },
+
+  cond = function ()
+    return  'fugitiveblame' == vim.o.filetype
+  end
 }
 
 -- Config
@@ -175,7 +193,8 @@ local config = {
       file_icon_component,
       filename_component,
       filetype_component,
-      diff_component
+      diff_component,
+      fugitive_blame_component
     },
     lualine_z = {}
   },
