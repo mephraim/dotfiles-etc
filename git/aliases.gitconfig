@@ -8,3 +8,6 @@
 	rb = "rebase"
 	latest = ! git tag -l 'v*' | sort -V | tail -1
 	changelog = ! git log $(git latest)..HEAD
+
+	# Delete multiple branches at once using fzf
+	brd = ! git branch --no-color | fzf -m | xargs -I {} git branch -D '{}' 
