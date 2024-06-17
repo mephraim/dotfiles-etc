@@ -48,7 +48,8 @@ return function(use)
     config = function()
       require("nvim-highlight-colors").setup({
         render = "virtual",
-        enable_named_colors = true
+        enable_named_colors = true,
+        virtual_symbol = '●'
       })
     end
   }
