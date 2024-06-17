@@ -333,7 +333,9 @@ ins_right {
     local current_buffer_ft = vim.api.nvim_buf_get_option(0, 'filetype')
     for _, client in ipairs(clients) do
       local lsp_client_filetypes = client.config.filetypes
-      if lsp_client_filetypes and vim.fn.index(lsp_client_filetypes, current_buffer_ft) ~= -1 then
+      if lsp_client_filetypes and
+        vim.fn.index(lsp_client_filetypes, current_buffer_ft) ~= -1 and
+        vim.fn.index(current_buffer_lsps, client.name) < 1 then
         current_buffer_lsps[#current_buffer_lsps + 1] = client.name
       end
     end
