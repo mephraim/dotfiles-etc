@@ -91,6 +91,11 @@ function SetupMappings()
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- Enable toggling inlay hints
+  vim.keymap.set('n', '<leader>ii', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  end)
+
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -142,6 +147,18 @@ function SetupServers()
     ["tsserver"] = function()
       require('lspconfig').tsserver.setup {
         capabilities = capabilities,
+        init_options = {
+          preferences = {
+            -- Setup inlay hint preferences
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true
+          },
+        },
         on_attach = function(_, bufnr)
           -- The default tsserver behavior sets "formatexpr" to
           -- the language server's formatting function. For tsserver,
@@ -438,11 +455,11 @@ return function(use)
       require("trouble").setup({})
 
       vim.cmd [[
-        nnoremap <leader>xx <cmd>TroubleToggle document_diagnostics<cr>
+        nnoremap <leader>xx <cmd>Trouble diagnostics toggle focus<cr>
       ]]
 
       vim.cmd [[
-        nnoremap <leader>rf <cmd>TroubleToggle lsp_references<cr>
+        nnoremap <leader>rf <cmd>Trouble lsp_references toggle focus<cr>
       ]]
     end
   }
@@ -488,6 +505,23 @@ return function(use)
     "simrat39/symbols-outline.nvim",
     config = function()
       require("symbols-outline").setup()
+    end
+  }
+
+  use {
+    "nvimtools/none-ls.nvim",
+
+    config = function()
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.code_actions.proselint,
+          null_ls.builtins.diagnostics.proselint,
+          null_ls.builtins.formatting.shellharden,
+          null_ls.builtins.formatting.shfmt
+        },
+      })
     end
   }
 end
