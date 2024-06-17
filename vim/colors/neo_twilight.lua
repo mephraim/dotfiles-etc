@@ -67,17 +67,21 @@ hi("Pmenu",  { fg = "#F6F3E8", bg = "#242829" })
 hi("PmenuSel", { fg = "#000000", bg = colors.light_green })
 hi("SignColumn", { bg ="#1D1D1D" })
 hi("TabLineSel", { fg = colors.light_green })
-hi("VertSplit", { fg = "#181B22", bg = colors.bg })
 hi("Visual",  { fg = "NONE", bg = "#1F4457", })
 hi("WildMenu", { fg = colors.light_red, bg = colors.bg })
+hi("WinSeparator", { fg = "#181B22", bg = colors.bg })
 
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/master/lua/nvim-treesitter/highlight.lua
 hi("TSConstant", { fg = colors.light_red })
 hi("TSKeywordReturn", { fg = colors.salmon, italic = true })
 
+-- LSP
+hi("LspInlayHint", { fg = colors.light_gray, bg = "bg", italic = true })
 
 -- Warnings and Errors
+hi("DiagnosticError", { fg = colors.red, bg = "bg" })
 hi("Error", { fg = colors.red, bg = "bg" })
+hi("DiagnosticWarn", { fg = "#E7F6DA", bg = "bg" })
 hi("Warning", { fg = "#E7F6DA", bg = "#3A0505" })
 hi("WarningMsg", { fg = colors.light_yellow, bg = colors.bg })
 
