@@ -94,6 +94,23 @@ return function(use)
   }
 
   use {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup {
+        relculright = true,
+        -- Customize the fold column so that neovim doesn't show
+        -- the fold level.
+        segments = {
+          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+          { text = {"%s"}, click = "v:lua.ScSa"},
+          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" }
+        }
+      }
+    end
+  }
+
+  use {
     "folke/noice.nvim",
     event = "VimEnter",
     requires = {
