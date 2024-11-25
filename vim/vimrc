@@ -322,6 +322,9 @@ set foldexpr=nvim_treesitter#foldexpr()
 
     autocmd BufEnter * call SetupTerminal()
 
+    " Set the correct filetype for docker-compose files
+    autocmd BufNewFile,BufRead docker-compose.yml set filetype=yaml.docker-compose
+
     " Setup some special settings when using a terminal within (n)vim.
     " This is a little more complicated than expected because we don't want to
     " modify the fzf terminal settings.
