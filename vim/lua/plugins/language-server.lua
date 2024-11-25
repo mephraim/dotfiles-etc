@@ -3,6 +3,7 @@ local servers = {
   "awk_ls",
   "bashls",
   "cssls",
+  "css_variables",
   "dockerls",
   "docker_compose_language_service",
   "eslint",
@@ -10,10 +11,11 @@ local servers = {
   "html",
   "jsonls",
   "lemminx",
+  "pylsp",
   "pyright",
   "solargraph",
   "lua_ls",
-  "tsserver",
+  "ts_ls",
   "vimls",
   "yamlls",
 }
@@ -144,8 +146,8 @@ function SetupServers()
       }
     end,
 
-    ["tsserver"] = function()
-      require('lspconfig').tsserver.setup {
+    ["ts_ls"] = function()
+      require('lspconfig').ts_ls.setup {
         capabilities = capabilities,
         init_options = {
           preferences = {
