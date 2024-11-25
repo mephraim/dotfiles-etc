@@ -17,10 +17,4 @@ lua << EOF
 
   require('autocmds')
   require('plugins/init')
-
-  -- Temporarily fix the treesitter highlight mappings so they
-  -- still work like the old Treesitter mappings.
-  --
-  -- https://www.reddit.com/r/neovim/comments/y5rofg/recent_treesitter_update_borked_highlighting/
-  require('ts-fix')()
 EOF
