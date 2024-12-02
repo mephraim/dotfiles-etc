@@ -139,6 +139,7 @@ hi("DiagnosticUnderlineError", { fg = colors.light_red, undercurl = true })
 hi("DiagnosticWarn", { fg = colors.light_orange })
 hi("DiagnosticUnderlineWarn", { undercurl = true })
 hi("DiagnosticInfo", { fg = colors.light_green })
+hi("DiagnosticHint", { fg = colors.light_blue, italic = true })
 hi("Error", { fg = colors.red })
 hi("Warning", { fg = colors.orange })
 hi("WarningMsg", { fg = colors.light_yellow })
@@ -181,6 +182,7 @@ hi("@text.title", { fg = colors.green, bold = true })
 
 -- Markdown
 hi("markdownError", { fg = "None", bg = "None" })
+hi("@markup.raw.block.markdown", { fg = colors.gray })
 
 -- Mini
 hi("MiniIndentscopeSymbol", { fg = "#444444" })
