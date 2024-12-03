@@ -146,6 +146,13 @@ function SetupServers()
       }
     end,
 
+    ["custom_elements_ls"] = function ()
+      require('lspconfig').custom_elements_ls.setup {
+        capabilities = capabilities,
+        filetypes = { "typescript" }
+      }
+    end,
+
     ["ts_ls"] = function()
       require('lspconfig').ts_ls.setup {
         capabilities = capabilities,
@@ -518,8 +525,6 @@ return function(use)
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.code_actions.proselint,
-          null_ls.builtins.diagnostics.proselint,
           null_ls.builtins.formatting.shellharden,
           null_ls.builtins.formatting.shfmt
         },
