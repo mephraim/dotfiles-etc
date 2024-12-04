@@ -17,6 +17,7 @@ vim.cmd("packadd packer.nvim")
 
 -- Packer plugins
 require('packer').startup(function(use)
+  require('plugins.ai')(use)
   require('plugins.general')(use)
   require('plugins.git')(use)
   require('plugins.language-server')(use)
