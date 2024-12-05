@@ -1,5 +1,3 @@
-local lualine = require('lualine')
-
 -- Color table for highlights
 local colors = {
   bg       = '#202328',
@@ -49,6 +47,7 @@ local conditions = {
 
   show_if_not_filetype = function()
     local filetypes = {
+      'codecompanion',
       'ctrlsf',
       'DiffviewFiles',
       'fugitiveblame',
@@ -391,5 +390,20 @@ ins_right {
   padding = { left = 1 },
 }
 
--- Now don't forget to initialize lualine
-lualine.setup(config)
+return {
+  {
+    'nvim-lualine/lualine.nvim',
+
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+
+    opts = config,
+    init = function()
+      vim.cmd [[
+        set laststatus=3
+        set noshowmode
+      ]]
+    end
+  }
+}

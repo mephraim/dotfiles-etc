@@ -35,10 +35,10 @@ local ensured_ts_languages = {
   "yaml"
 }
 
-return function(use)
-  use {
+return {
+  {
     "nvim-treesitter/nvim-treesitter",
-    run = function()
+    build = function()
       require("nvim-treesitter.install").update {
         with_sync = true
       }
@@ -62,13 +62,13 @@ return function(use)
         }
       }
     end
-  }
+  },
 
-  use {
+  {
     "nvim-treesitter/playground",
-    after = 'nvim-treesitter',
-    requires = {
+    event = "VeryLazy",
+    dependencies = {
       "nvim-treesitter"
     }
   }
-end
+}

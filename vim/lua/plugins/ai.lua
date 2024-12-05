@@ -1,26 +1,39 @@
-return function(use)
-  use({
-    "olimorris/codecompanion.nvim",
-    config = function()
-      require("codecompanion").setup({
-        display = {
-          chat = {
-            window = {
-              width = .35
-            }
-          }
-        },
-        strategies = {
-          chat = {
-            adapter = "copilot",
-          },
+return {
+  {
+    "github/copilot.vim",
 
-          inline = {
-            adapter = "copilot",
-          },
-        },
+    init = function()
+      vim.keymap.set('i', '<C-E>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false
       })
 
+      vim.g.copilot_no_tab_map = true
+    end
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    opts = {
+      display = {
+        chat = {
+          window = {
+            width = .40
+          }
+        }
+      },
+      strategies = {
+        chat = {
+          adapter = "copilot",
+        },
+
+        inline = {
+          adapter = "copilot",
+        },
+      }
+    },
+
+    init = function()
       local companionGroup = vim.api.nvim_create_augroup(
         "Conceal2Spaces", { clear = true })
 
@@ -35,10 +48,10 @@ return function(use)
       })
     end,
 
-    requires = {
+    dependencies = {
+      "github/copilot.vim",
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
+      "nvim-treesitter/nvim-treesitter"
     }
-  })
-end
+  }
+}

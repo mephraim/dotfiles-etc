@@ -77,7 +77,7 @@ function GetDiagnosticConfig(virtual_lines)
   }
 end
 
-function Config()
+function LspConfig()
   require("mason").setup()
 
   SetupServers()
@@ -415,23 +415,30 @@ function SetupDiagnosticFloat()
   })
 end
 
-return function(use)
-  local enable_virtual_lines = false
+local enable_virtual_lines = false
 
-  use {
-    "williamboman/mason.nvim",
-    requires = {
-      "neovim/nvim-lspconfig",
-      "rcarriga/nvim-notify",
-      "williamboman/mason-lspconfig.nvim"
-    },
-    config = Config
-  }
+return {
+  { "simrat39/symbols-outline.nvim" },
 
-  -- For autocompletions
-  use {
+  -- Use null-ls to make non-LSP tools behave like LSPs
+  {
+    "nvimtools/none-ls.nvim",
+
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.shellharden,
+          null_ls.builtins.formatting.shfmt
+        },
+      })
+    end
+  },
+
+  -- Use nvim-cmp for autocompletion
+  {
     "hrsh7th/nvim-cmp",
-    requires = {
+    dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-emoji",
@@ -441,107 +448,36 @@ return function(use)
       "hrsh7th/cmp-path",
       "onsails/lspkind.nvim"
     }
-  }
+  },
 
-  -- Snippets
-  use {
-    "L3MON4D3/LuaSnip",
-    requires = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets"
-    },
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip").filetype_extend("ruby", {"rails"})
-    end
-  }
-
-  -- Trouble allows us to browse all of the lint and error messages
-  use {
+  -- Better diagnostics display
+  {
     "folke/trouble.nvim",
-    requires = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("trouble").setup({})
+    opts = {},
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>rf",
+        "<cmd>Trouble lsp_references toggle<cr>",
+        desc = "LSP References (Trouble)",
+      },
+    },
+  },
 
-      vim.cmd [[
-        nnoremap <leader>xx <cmd>Trouble diagnostics toggle focus<cr>
-      ]]
+  -- Manage all language servers with Mason
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "rcarriga/nvim-notify",
+      "williamboman/mason-lspconfig.nvim"
+    },
 
-      vim.cmd [[
-        nnoremap <leader>rf <cmd>Trouble lsp_references toggle focus<cr>
-      ]]
-    end
-  }
-
-  -- Split diagnostic messages across multiple lines
-  use {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      vim.diagnostic.config(GetDiagnosticConfig())
-
-      vim.keymap.set("", "<Leader>ll", function()
-        require("lsp_lines").setup()
-
-        enable_virtual_lines = not enable_virtual_lines
-        vim.diagnostic.config(GetDiagnosticConfig(enable_virtual_lines))
-      end,
-        { desc = "Toggle lsp_lines" }
-      )
-    end
-  }
-
-  -- Hook the neovim select menu up so it uses Telescope
-  use {
-    "stevearc/dressing.nvim",
-    config = function()
-      require('dressing').setup({
-        select = {
-          telescope = require('telescope.themes').get_cursor({
-            prompt_prefix = "  "
-          })
-        }
-      })
-    end
-  }
-
-  -- Provides a fancier code action menu that shows more context
-  use {
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu"
-  }
-
-  use {
-    "simrat39/symbols-outline.nvim",
-    config = function()
-      require("symbols-outline").setup()
-    end
-  }
-
-  use {
-    "nvimtools/none-ls.nvim",
-
-    config = function()
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.shellharden,
-          null_ls.builtins.formatting.shfmt
-        },
-      })
-    end
-  }
-
-  use {
-    "github/copilot.vim",
-
-    config = function()
-      vim.keymap.set('i', '<C-E>', 'copilot#Accept("\\<CR>")', {
-        expr = true,
-        replace_keycodes = false
-      })
-
-      vim.g.copilot_no_tab_map = true
-    end
-  }
-end
+    config = LspConfig
+  },
+}

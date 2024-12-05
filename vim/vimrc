@@ -3,6 +3,7 @@ scriptencoding
 " Set the mapleader before doing anything else, so that any leader mappings will
 " have the correct leader key.
 let mapleader = ','
+let maplocalleader = '//'
 
 " Syntax and colorscheme {{{1
   " Switch syntax highlighting on when the terminal has colors

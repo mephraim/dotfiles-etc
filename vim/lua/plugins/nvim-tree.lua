@@ -1,21 +1,19 @@
-return function(use)
-  use {
+return {
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
+    dependencies = {
       'nvim-tree/nvim-web-devicons'
     },
 
-    config = function()
-      require('nvim-tree').setup {
-        hijack_netrw = false,
-        hijack_directories = {
-          enable = false,
-        }
+    opts = {
+      hijack_netrw = false,
+      hijack_directories = {
+        enable = false,
       }
+    },
 
-      vim.cmd([[
-        nnoremap <silent> <leader>nn :NvimTreeToggle<CR>
-      ]])
-    end
+    keys = {
+      { '<leader>nn', '<cmd>NvimTreeToggle<cr>' }
+    }
   }
-end
+}

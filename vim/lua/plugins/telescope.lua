@@ -68,18 +68,15 @@ function TelescopeConfig()
       }
     }
   }
-
-  telescope.load_extension("packer")
 end
 
-return function(use)
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
+return {
+   {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
       {"nvim-lua/plenary.nvim"},
-      {"nvim-tree/nvim-web-devicons"},
-      {"nvim-telescope/telescope-packer.nvim"}
+      {"nvim-tree/nvim-web-devicons"}
     },
     config = TelescopeConfig
   }
-end
+}

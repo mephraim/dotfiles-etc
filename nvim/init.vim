@@ -16,5 +16,5 @@ lua << EOF
   end
 
   require('autocmds')
-  require('plugins/init')
+  require('config.lazy')
 EOF

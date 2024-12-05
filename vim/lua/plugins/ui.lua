@@ -1,73 +1,46 @@
-return function(use)
-  use {
+return {
+  { 
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
-  }
+  },
 
-  use {
-    "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup()
-    end
-  }
+  { "nvim-tree/nvim-web-devicons" },
 
   -- Use bufferline for tab configuration at the top
-  use {
+  {
     "akinsho/bufferline.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("bufferline").setup {
-        options = {
-          mode = "tabs",
-          separator_style = "slant",
-          offsets = {
-            {
-              filetype = "NvimTree",
-              highlight = "Directory",
-              text_align = "left"
-            }
+    dependencies = "nvim-tree/nvim-web-devicons",
+    opts = {
+      options = {
+        mode = "tabs",
+        separator_style = "slant",
+        offsets = {
+          {
+            filetype = "NvimTree",
+            highlight = "Directory",
+            text_align = "left"
           }
-        },
-      }
-    end
-  }
+        }
+      },
+    }
+  },
 
   -- Add smooth scrolling
-  use 'psliwka/vim-smoothie'
+  { 'psliwka/vim-smoothie' },
 
-  -- Lualine status line
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = {
-      'nvim-tree/nvim-web-devicons'
-    },
-    config = function()
-      require('plugins.lualine-config')
-
-      vim.cmd [[
-        set laststatus=3
-        set noshowmode
-      ]]
-    end
-  }
-
-  use {
+  {
     "rcarriga/nvim-notify",
-    config = function()
-      local notify = require('notify')
-      notify.setup({
-        timeout = 2000
-      })
-
-      vim.notify = notify
+    opts = { timeout = 2000 },
+    init = function()
+      vim.notify = require('notify')
     end
-  }
+  },
 
-  use {
+  {
     'kevinhwang91/nvim-ufo',
-    requires = 'kevinhwang91/promise-async',
+    dependencies = 'kevinhwang91/promise-async',
     config = function()
       require('ufo').setup({
         provider_selector = function()
@@ -91,9 +64,9 @@ return function(use)
         end
       end)
     end
-  }
+  },
 
-  use {
+  {
     "luukvbaal/statuscol.nvim",
     config = function()
       local builtin = require("statuscol.builtin")
@@ -108,62 +81,92 @@ return function(use)
         }
       }
     end
-  }
+  },
 
-  use {
+  {
     "folke/noice.nvim",
     event = "VimEnter",
-    requires = {
+    dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-    config = function()
-      require("noice").setup({
-        cmdline = {
-          conceal = true,
-          format = {
-            cmdline = { pattern = "^:", icon = " " },
-            search_down = { kind = "search", pattern = "^/", icon = "", ft = "regex" },
-            search_up = { kind = "search", pattern = "^%?", icon = "", ft = "regex" },
-            filter = { pattern = "^:%*s/+", icon = "$", ft = "sh" },
-            lua = { pattern = "^:%s*lua%s+", icon = "", ft = "lua" },
-          },
+    opts = {
+      cmdline = {
+        conceal = true,
+        format = {
+          cmdline = { pattern = "^:", icon = " " },
+          search_down = { kind = "search", pattern = "^/", icon = "", ft = "regex" },
+          search_up = { kind = "search", pattern = "^%?", icon = "", ft = "regex" },
+          filter = { pattern = "^:%*s/+", icon = "$", ft = "sh" },
+          lua = { pattern = "^:%s*lua%s+", icon = "", ft = "lua" },
         },
-        lsp = {
-          hover = {
-            enabled = false,
-          },
-          messages = {
-            enabled = false
-          },
-          override = {
-            -- override the default lsp markdown formatter with Noice
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
-            -- override the lsp markdown formatter with Noice
-            ["vim.lsp.util.stylize_markdown"] = false,
-            -- override cmp documentation with Noice (needs the other options to work)
-            ["cmp.entry.get_documentation"] = false,
-          },
+      },
+      lsp = {
+        hover = {
+          enabled = false,
         },
         messages = {
           enabled = false
         },
-        notify = {
-          enabled = false
+        override = {
+          -- override the default lsp markdown formatter with Noice
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+          -- override the lsp markdown formatter with Noice
+          ["vim.lsp.util.stylize_markdown"] = false,
+          -- override cmp documentation with Noice (needs the other options to work)
+          ["cmp.entry.get_documentation"] = false,
         },
-        views = {
-          cmdline_popup = {
-            border = {
-              style = "rounded",
-              padding = { 0, 1 },
-            },
-            filter_options = {},
-            win_options = {
-              winhighlight = "NormalFloat:NoiceBorder,FloatBorder:NoiceFloat",
-            },
+      },
+      messages = {
+        enabled = false
+      },
+      notify = {
+        enabled = false
+      },
+      views = {
+        cmdline_popup = {
+          border = {
+            style = "rounded",
+            padding = { 0, 1 },
+          },
+          filter_options = {},
+          win_options = {
+            winhighlight = "NormalFloat:NoiceBorder,FloatBorder:NoiceFloat",
           },
         },
+      }
+    }
+  },
+
+  -- Hook the neovim select menu up so it uses Telescope
+  {
+    "stevearc/dressing.nvim",
+    config = function()
+      require("dressing").setup({
+        select = {
+          get_config = function(opts)
+            -- When executing a code action, use the cursor theme
+            -- so that the window opens up right next to the cursor's
+            -- current position.
+            if opts.kind == 'codeaction' then
+              return {
+                backend = 'telescope',
+                telescope = require('telescope.themes').get_cursor({
+                  prompt_prefix = "  "
+                })
+              }
+            end
+          end,
+
+          telescope = require('telescope.themes').get_dropdown({
+            prompt_prefix = "  "
+          })
+        }
       })
-    end
+    end,
+
+    requirements = {
+      "nvim-telescope/telescope.nvim"
+    }
   }
-end
+}
