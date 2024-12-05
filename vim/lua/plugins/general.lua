@@ -18,8 +18,54 @@ return function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
+  -- use({
+  --   "preservim/vim-markdown"
+  -- })
+
   use({
-    "preservim/vim-markdown"
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+      config = function()
+        require('render-markdown').setup({
+          file_types = { 'codecompanion', 'markdown', 'quarto' },
+          code = {
+            left_pad = 2,
+          },
+
+          heading = {
+            position = 'inline',
+            sign = false,
+            left_pad = 0,
+            left_margin = 0,
+            width = "block"
+          },
+
+          overrides = {
+            -- Overrides for different buftypes, see :h 'buftype'
+            buftype = {
+              nofile = {
+                padding = { highlight = 'NormalFloat' },
+                sign = { enabled = false },
+              },
+            },
+
+            filetype = {
+              -- Add overrides for codecompanion window
+              codecompanion = {
+                render_modes = { 'i', 'n', 'c', 't' },
+                anti_conceal = {
+                  enabled = false
+                },
+                sign = { enabled = false },
+                heading = {
+                  backgrounds = {},
+                  icons = { '', '󰭹 ', '󱙺 ', '', '', '' }
+                }
+              },
+            },
+          }
+        })
+      end
   })
 
   -- Buffer Exploration
