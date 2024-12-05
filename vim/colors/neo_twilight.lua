@@ -178,16 +178,19 @@ hi("NoiceCmdlinePopupBorderSearch", { fg = "#2A2A2A", bg = "#2A2A2A", blend = 1 
 hi("NoiceFloat", { bg = "#2A2A2A" })
 hi("NoiceMini", { fg = colors.white, bg = "#2A2A2A" })
 
+-- Code Companion
+hi("CodeCompanionChatHeader", { fg = colors.light_blue, nocombine = true })
+
 -- HTML
 hi("@text.title", { fg = colors.green, bold = true })
 
 -- Markdown
 hi("markdownError", { fg = "None", bg = "None" })
 hi("@markup.raw.block.markdown", { fg = colors.gray })
-hi("@markup.heading.1.markdown", { fg = colors.brown, sp = colors.light_gray, underline = true, italic = true })
-hi("@markup.heading.2.markdown", { fg = colors.light_orange, sp = colors.light_gray, underline = true, italic = true })
-hi("@markup.heading.3.markdown", { fg = colors.light_orange, sp = colors.light_gray, underline = true, italic = true})
-hi("@markup.heading.4.markdown", { fg = colors.light_yellow, sp = colors.light_gray, underline = true, italic = true })
+hi("@markup.heading.1.markdown", { fg = colors.brown, sp = colors.light_gray })
+hi("@markup.heading.2.markdown", { fg = colors.light_orange, sp = colors.light_gray })
+hi("@markup.heading.3.markdown", { fg = colors.light_orange, sp = colors.light_gray })
+hi("@markup.heading.4.markdown", { fg = colors.light_yellow, sp = colors.light_gray })
 
 -- Mini
 hi("MiniIndentscopeSymbol", { fg = "#444444" })
