@@ -1,5 +1,6 @@
 return {
   { "bogado/file-line" },
+  { 'dyng/ctrlsf.vim' },
   { "michaeljsmith/vim-indent-object" },
   { "tpope/vim-characterize" },
   { "tpope/vim-commentary" },
