@@ -13,6 +13,7 @@ local servers = {
   "lemminx",
   "pylsp",
   "pyright",
+  "rust_analyzer",
   "solargraph",
   "lua_ls",
   "ts_ls",
