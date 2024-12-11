@@ -459,12 +459,12 @@ return {
     keys = {
       {
         "<leader>xx",
-        "<cmd>Trouble diagnostics toggle<cr>",
+        "<cmd>Trouble diagnostics toggle focus<cr>",
         desc = "Diagnostics (Trouble)",
       },
       {
         "<leader>rf",
-        "<cmd>Trouble lsp_references toggle<cr>",
+        "<cmd>Trouble lsp_references toggle focus<cr>",
         desc = "LSP References (Trouble)",
       },
     },
