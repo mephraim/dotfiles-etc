@@ -237,6 +237,8 @@ set foldexpr=nvim_treesitter#foldexpr()
   " Format the selected section to wrap at 80 chars
   vnoremap <silent> f80 <esc>:set textwidth=80<CR>gvgq :set textwidth=0<CR>
 
+  vnoremap <silent> f100 <esc>:set textwidth=100<CR>gvgq :set textwidth=0<CR>
+
   " Quickly type console.log
   inoremap ccc console.log
 
