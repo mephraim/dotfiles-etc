@@ -131,7 +131,7 @@ hi("WildMenu", { fg = colors.light_red, bg = colors.bg })
 hi("WinSeparator", { fg = "#181B22", bg = colors.bg })
 
 -- LSP
-hi("LspInlayHint", { fg = colors.light_gray, bg = "bg", italic = true })
+hi("LspInlayHint", { fg = colors.light_gray, bg = "bg", italic = true, underline = true, sp = colors.dark_gray })
 
 -- Warnings and Errors
 hi("DiagnosticError", { fg = colors.light_red })
