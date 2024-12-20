@@ -481,4 +481,20 @@ return {
 
     config = LspConfig
   },
+
+  {
+    url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      vim.diagnostic.config(GetDiagnosticConfig())
+
+      vim.keymap.set("", "<Leader>ll", function()
+        require("lsp_lines").toggle()
+
+        enable_virtual_lines = not enable_virtual_lines
+        vim.diagnostic.config(GetDiagnosticConfig(enable_virtual_lines))
+      end,
+        { desc = "Toggle lsp_lines" }
+      )
+    end
+  }
 }
