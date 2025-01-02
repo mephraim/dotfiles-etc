@@ -201,15 +201,14 @@ hi("MiniIndentscopeSymbol", { fg = "#444444" })
 hi("NvimTreeNormal", { bg = "#242222" })
 
 -- Telescope
-hi("TelescopeBorder", { fg = colors.middle_gray, bg = colors.middle_gray })
-hi("TelescopePromptBorder", { fg = colors.middle_gray, bg = colors.middle_gray })
-hi("TelescopePromptNormal", { bg = colors.middle_gray })
+hi("TelescopeBorder", { fg = colors.light_gray, bg = bg })
+hi("TelescopePromptBorder", { fg = colors.light_gray, bg = bg })
+hi("TelescopePromptNormal", { bg = bg })
 hi("TelescopePromptPrefix", { fg = colors.light_blue })
-hi("TelescopePromptTitle", { fg = colors.middle_gray, bg = colors.light_blue })
-hi("TelescopeNormal", { bg = colors.middle_gray })
-hi("TelescopePreviewTitle", { fg = colors.middle_gray, bg = colors.middle_gray })
-hi("TelescopeResultsTitle", { bg = colors.middle_gray })
--- hi("TelescopeSelection", { bg = colors.dark_gray })
+hi("TelescopePromptTitle", { fg = colors.light_gray, bg = bg })
+hi("TelescopeNormal", { bg = bg })
+hi("TelescopePreviewTitle", { fg = colors.light_gray, bg = bg })
+hi("TelescopeResultsTitle", { bg = bg })
 
 -- Signify
 hi("GitGutterAdd", { fg = "#7D8D57" })
