@@ -150,7 +150,7 @@ function SetupServers()
     ["custom_elements_ls"] = function ()
       require('lspconfig').custom_elements_ls.setup {
         capabilities = capabilities,
-        filetypes = { "typescript" }
+        filetypes = { "typescript", "html", "eruby" }
       }
     end,
 
@@ -276,10 +276,9 @@ function SetupCompletion()
   local cmp = require('cmp')
   cmp.setup {
     window = {
-      documentation = {
-        max_height = 80,
-        max_width = 60
-      },
+      documentation = cmp.config.window.bordered({
+        winhighlight = "Normal:NormalFloatDoc,FloatBorder:Comment,CursorLine:PmenuSel,Search:None,Error:Normal",
+      })
     },
     snippet = {
       expand = function(args)
@@ -374,6 +373,7 @@ function SetupUI()
   -- Add a border to the hover documenation windows
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, {
+      border = "single",
       max_width = 120
     }
   )

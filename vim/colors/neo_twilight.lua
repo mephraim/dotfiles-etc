@@ -26,6 +26,7 @@ local colors = {
   light_red = "#E04331",
   light_yellow = "#F9EE98",
   middle_gray = "#2A2A2A",
+  very_light_gray = "#929292",
   orange = "#F5773C",
   red = "#F11818",
   salmon = "#CF6A4C",
@@ -38,8 +39,8 @@ local colors = {
 hi("Boolean", { fg = colors.light_red, underline = true })
 hi("TSBoolean", { fg = colors.light_red, underline = true })
 
-hi("Comment", { fg = colors.gray })
-hi("TSComment", { fg = colors.gray })
+hi("Comment", { fg = colors.gray, italic = true })
+hi("TSComment", { fg = colors.gray, italic = true })
 hi("@comment", { fg = colors.light_gray, italic = true })
 
 hi("Constant", { fg = colors.salmon })
@@ -165,16 +166,17 @@ hi("Terminal", { bg = "#111720" })
 hi("SpellBad", { fg = "red", undercurl = true })
 
 -- Floats
-hi("FloatBorder", { fg = colors.middle_gray, bg = colors.middle_gray })
+hi("FloatBorder", { fg = colors.very_light_gray })
 hi("FloatTitle", { fg = colors.blue, bg = colors.middle_gray })
-hi("NormalFloat", { bg = colors.middle_gray })
+hi("NormalFloat", { bg = bg })
+hi("NormalFloatDoc", { fg = fg })
 
 -- Noice
 hi("NoiceBorder", { fg = "#2A2A2A", bg = "#2A2A2A" })
-hi("NoiceCmdlinePopupBorderCmdline", { fg = "#2A2A2A", bg = "#2A2A2A", blend = 1 })
+hi("NoiceCmdlinePopupBorderCmdline", { fg = colors.very_light_gray, bg = bg, blend = 1 })
 hi("NoiceCmdlinePopupBorderFilter", { fg = "#2A2A2A", bg = "#2A2A2A" })
-hi("NoiceCmdlinePopupBorderLua", { fg = "#2A2A2A", bg = "#2A2A2A", blend = 1 })
-hi("NoiceCmdlinePopupBorderSearch", { fg = "#2A2A2A", bg = "#2A2A2A", blend = 1 })
+hi("NoiceCmdlinePopupBorderLua", { fg = colors.very_light_gray, bg = bg, blend = 1 })
+hi("NoiceCmdlinePopupBorderSearch", { fg = colors.very_light_gray, bg = bg, blend = 1 })
 hi("NoiceFloat", { bg = "#2A2A2A" })
 hi("NoiceMini", { fg = colors.white, bg = "#2A2A2A" })
 
