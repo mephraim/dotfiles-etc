@@ -4,6 +4,7 @@ local ensured_ts_languages = {
   "bash",
   "diff",
   "css",
+  "embedded_template",
   "git_config",
   "git_rebase",
   "gitcommit",
