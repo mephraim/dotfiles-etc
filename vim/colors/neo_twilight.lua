@@ -186,6 +186,11 @@ hi("CodeCompanionChatHeader", { fg = colors.light_blue, nocombine = true })
 -- HTML
 hi("@text.title", { fg = colors.green, bold = true })
 
+-- Illuminate
+hi("IlluminatedWordText", { underdotted = true })
+hi("IlluminatedWordRead", { underdotted = true })
+hi("IlluminatedWordWrite", { underdotted = true })
+
 -- Markdown
 hi("markdownError", { fg = "None", bg = "None" })
 hi("@markup.raw.block.markdown", { fg = colors.gray })

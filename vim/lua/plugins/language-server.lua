@@ -107,6 +107,8 @@ function SetupMappings()
   vim.keymap.set('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.keymap.set('n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.keymap.set('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.keymap.set('n', '<leader>hi', '<cmd>lua vim.lsp.buf.document_highlight()<CR>', opts)
+  vim.keymap.set('n', '<leader>cl', '<cmd>lua vim.lsp.buf.clear_references()<CR>', opts)
 end
 
 function SetupServers()
@@ -495,6 +497,33 @@ return {
       end,
         { desc = "Toggle lsp_lines" }
       )
+    end
+  },
+
+  {
+    "RRethy/vim-illuminate",
+    keys = {
+      {
+        "g[",
+        "<cmd>lua require('illuminate').goto_prev_reference()<CR>",
+        desc = "Go to previous reference in buffer"
+      },
+      {
+        "g]",
+        "<cmd>lua require('illuminate').goto_next_reference()<CR>",
+        desc = "Go to next reference in buffer"
+      },
+    },
+    config = function()
+      require('illuminate').configure({
+        delay = 10,
+        providers = {
+          'lsp',
+          'treesitter'
+        },
+
+        min_count_to_highlight = 2
+      })
     end
   }
 }
